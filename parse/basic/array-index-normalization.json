@@ -1,0 +1,70 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-array-index-normalization",
+  "description": "Array indices with leading zeros must be normalized in both assignment paths and reference values",
+  "tests": [
+    {
+      "id": "leading-zeros-single-digit",
+      "description": "Leading zeros on index 0 normalized: [00] -> [0]",
+      "input": "items[00] = \"value\"",
+      "expected": {
+        "assignments": {
+          "items[0]": { "type": "string", "value": "value" }
+        }
+      }
+    },
+    {
+      "id": "leading-zeros-all-zeros",
+      "description": "All zeros normalized: [000] -> [0]",
+      "input": "items[000] = \"first\"",
+      "expected": {
+        "assignments": {
+          "items[0]": { "type": "string", "value": "first" }
+        }
+      }
+    },
+    {
+      "id": "leading-zeros-contiguous",
+      "description": "Leading zeros with contiguous indices: [00], [01], [02] -> [0], [1], [2]",
+      "input": "items[00] = \"a\"\nitems[01] = \"b\"\nitems[02] = \"c\"",
+      "expected": {
+        "assignments": {
+          "items[0]": { "type": "string", "value": "a" },
+          "items[1]": { "type": "string", "value": "b" },
+          "items[2]": { "type": "string", "value": "c" }
+        }
+      }
+    },
+    {
+      "id": "leading-zeros-nested",
+      "description": "Leading zeros in nested path with valid indices",
+      "input": "data[00].name = \"first\"\ndata[01].name = \"second\"",
+      "expected": {
+        "assignments": {
+          "data[0].name": { "type": "string", "value": "first" },
+          "data[1].name": { "type": "string", "value": "second" }
+        }
+      }
+    },
+    {
+      "id": "reference-leading-zeros",
+      "description": "Reference paths also normalize leading zeros",
+      "input": "result = @items[007].name",
+      "expected": {
+        "assignments": {
+          "result": { "type": "reference", "path": "items[7].name" }
+        }
+      }
+    },
+    {
+      "id": "reference-nested-leading-zeros",
+      "description": "Reference with multiple bracket indices normalized",
+      "input": "result = @data[00].list[003]",
+      "expected": {
+        "assignments": {
+          "result": { "type": "reference", "path": "data[0].list[3]" }
+        }
+      }
+    }
+  ]
+}

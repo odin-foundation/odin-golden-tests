@@ -1,0 +1,240 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-binary-edge-cases",
+  "description": "Binary data (Base64) edge cases",
+  "tests": [
+    {
+      "id": "binary-simple",
+      "description": "Simple Base64 encoded binary",
+      "input": "data = ^SGVsbG8gV29ybGQh",
+      "expected": {
+        "assignments": {
+          "data": { "type": "binary", "value": "SGVsbG8gV29ybGQh", "decoded": "Hello World!" }
+        }
+      }
+    },
+    {
+      "id": "binary-empty",
+      "description": "Empty binary value",
+      "input": "data = ^",
+      "expected": {
+        "assignments": {
+          "data": { "type": "binary", "value": "", "decoded": "" }
+        }
+      }
+    },
+    {
+      "id": "binary-single-byte",
+      "description": "Single byte binary",
+      "input": "data = ^QQ==",
+      "expected": {
+        "assignments": {
+          "data": { "type": "binary", "value": "QQ==", "decoded": "A" }
+        }
+      }
+    },
+    {
+      "id": "binary-two-bytes",
+      "description": "Two bytes binary",
+      "input": "data = ^QUI=",
+      "expected": {
+        "assignments": {
+          "data": { "type": "binary", "value": "QUI=", "decoded": "AB" }
+        }
+      }
+    },
+    {
+      "id": "binary-three-bytes",
+      "description": "Three bytes (no padding needed)",
+      "input": "data = ^QUJD",
+      "expected": {
+        "assignments": {
+          "data": { "type": "binary", "value": "QUJD", "decoded": "ABC" }
+        }
+      }
+    },
+    {
+      "id": "binary-with-algorithm-sha256",
+      "description": "Binary with SHA256 algorithm prefix",
+      "input": "hash = ^sha256:n4bQgYhMfWWaL28NhtsgUhBBV6EUNi6A9YfJzN2ybWQ=",
+      "expected": {
+        "assignments": {
+          "hash": {
+            "type": "binary",
+            "algorithm": "sha256",
+            "value": "n4bQgYhMfWWaL28NhtsgUhBBV6EUNi6A9YfJzN2ybWQ="
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-with-algorithm-sha512",
+      "description": "Binary with SHA512 algorithm prefix",
+      "input": "hash = ^sha512:LHT9F+2v2A6ER7DUZ0HuJDt+t03SFJoKsbkkb7MDgvJ+hb0gmXG3A6gqGhQMGQfAHjmhqYQTWvvF+3hHn3rGxw==",
+      "expected": {
+        "assignments": {
+          "hash": {
+            "type": "binary",
+            "algorithm": "sha512",
+            "value": "LHT9F+2v2A6ER7DUZ0HuJDt+t03SFJoKsbkkb7MDgvJ+hb0gmXG3A6gqGhQMGQfAHjmhqYQTWvvF+3hHn3rGxw=="
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-with-algorithm-md5",
+      "description": "Binary with MD5 algorithm prefix",
+      "input": "hash = ^md5:XrY7u+Ae7tCTyyK7j1rNww==",
+      "expected": {
+        "assignments": {
+          "hash": {
+            "type": "binary",
+            "algorithm": "md5",
+            "value": "XrY7u+Ae7tCTyyK7j1rNww=="
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-signature-ed25519",
+      "description": "Binary signature with ED25519",
+      "input": "sig = ^ed25519:SGVsbG8gV29ybGQhIFRoaXMgaXMgYSB0ZXN0Lg==",
+      "expected": {
+        "assignments": {
+          "sig": {
+            "type": "binary",
+            "algorithm": "ed25519",
+            "value": "SGVsbG8gV29ybGQhIFRoaXMgaXMgYSB0ZXN0Lg=="
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-all-bytes",
+      "description": "Binary containing all byte values 0-255",
+      "input": "data = ^AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "byteCount": 256
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-large",
+      "description": "Large binary value (1KB)",
+      "input": "data = ^QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQQ==",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "byteCount": 1024
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-null-bytes",
+      "description": "Binary with null bytes",
+      "input": "data = ^AAAAAAAA",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "value": "AAAAAAAA",
+            "decoded": "\\0\\0\\0\\0\\0\\0"
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-url-safe",
+      "description": "URL-safe Base64 variant (+ and /)",
+      "input": "data = ^+/+/",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "value": "+/+/"
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-pdf-magic",
+      "description": "PDF file magic bytes",
+      "input": "data = ^JVBERi0=",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "value": "JVBERi0=",
+            "decoded": "%PDF-"
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-png-magic",
+      "description": "PNG file magic bytes",
+      "input": "data = ^iVBORw0KGgo=",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "value": "iVBORw0KGgo=",
+            "note": "PNG signature bytes"
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-json-content",
+      "description": "Binary containing JSON",
+      "input": "data = ^eyJrZXkiOiAidmFsdWUifQ==",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "value": "eyJrZXkiOiAidmFsdWUifQ==",
+            "decoded": "{\"key\": \"value\"}"
+          }
+        }
+      }
+    },
+    {
+      "id": "binary-utf8-content",
+      "description": "Binary containing UTF-8 text with emoji",
+      "input": "data = ^SGVsbG8g8J+YgA==",
+      "expected": {
+        "assignments": {
+          "data": {
+            "type": "binary",
+            "value": "SGVsbG8g8J+YgA=="
+          }
+        }
+      }
+    },
+    {
+      "id": "error-invalid-base64-char",
+      "description": "Invalid Base64 character (contains !)",
+      "input": "data = ^SGVs!G8=",
+      "expectError": {
+        "code": "P001",
+        "message": "Invalid Base64 character"
+      }
+    },
+    {
+      "id": "error-invalid-base64-padding",
+      "description": "Invalid Base64 padding (wrong position)",
+      "input": "data = ^SGVs=bG8",
+      "expectError": {
+        "code": "P001",
+        "message": "Invalid Base64 padding"
+      }
+    }
+  ],
+  "_note": "error-invalid-algorithm test removed - ODIN spec allows any identifier as algorithm; validation is schema/app concern"
+}

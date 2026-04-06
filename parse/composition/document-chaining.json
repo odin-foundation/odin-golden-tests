@@ -1,0 +1,234 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-composition",
+  "description": "Document chaining and composition tests",
+  "tests": [
+    {
+      "id": "single-document",
+      "description": "Single document without separator",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\nname = \"John\"",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc1" },
+            "assignments": {
+              "name": { "type": "string", "value": "John" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "two-documents",
+      "description": "Two documents separated by ---",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\nname = \"John\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\n\nname = \"Jane\"",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc1" },
+            "assignments": {
+              "name": { "type": "string", "value": "John" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc2" },
+            "assignments": {
+              "name": { "type": "string", "value": "Jane" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "document-chain-overlay",
+      "description": "Document chain with overlay semantics",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\nrole = \"base\"\n\n{person}\nname = \"John\"\nage = ##30\ncity = \"Austin\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"overlay\"\nrole = \"endorsement\"\nparent = @base\n\n{person}\nage = ##31\nstate = \"TX\"",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "base", "role": "base" },
+            "assignments": {
+              "person.name": { "type": "string", "value": "John" },
+              "person.age": { "type": "integer", "value": 30 },
+              "person.city": { "type": "string", "value": "Austin" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "overlay", "role": "endorsement" },
+            "assignments": {
+              "person.age": { "type": "integer", "value": 31 },
+              "person.state": { "type": "string", "value": "TX" }
+            }
+          }
+        ],
+        "computed": {
+          "person.name": { "type": "string", "value": "John" },
+          "person.age": { "type": "integer", "value": 31 },
+          "person.city": { "type": "string", "value": "Austin" },
+          "person.state": { "type": "string", "value": "TX" }
+        }
+      }
+    },
+    {
+      "id": "null-removes-field",
+      "description": "Null value in later document removes field",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\n\n{person}\nname = \"John\"\nage = ##30\ntemporary = \"will be removed\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"update\"\nparent = @base\n\n{person}\ntemporary = ~",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "base" },
+            "assignments": {
+              "person.name": { "type": "string", "value": "John" },
+              "person.age": { "type": "integer", "value": 30 },
+              "person.temporary": { "type": "string", "value": "will be removed" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "update" },
+            "assignments": {
+              "person.temporary": { "type": "null", "value": null }
+            }
+          }
+        ],
+        "computed": {
+          "person.name": { "type": "string", "value": "John" },
+          "person.age": { "type": "integer", "value": 30 }
+        }
+      }
+    },
+    {
+      "id": "array-clear",
+      "description": "Explicit empty array clears inherited array",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\n\nitems[0].name = \"Item 1\"\nitems[1].name = \"Item 2\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"clear\"\nparent = @base\n\nitems[] = ~",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "base" },
+            "assignments": {
+              "items[0].name": { "type": "string", "value": "Item 1" },
+              "items[1].name": { "type": "string", "value": "Item 2" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "clear" },
+            "assignments": {
+              "items[]": { "type": "null", "value": null, "isArrayClear": true }
+            }
+          }
+        ],
+        "computed": {}
+      }
+    },
+    {
+      "id": "three-document-chain",
+      "description": "Three documents in chain",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"header\"\nrole = \"header\"\n\ninsured.name = \"John Smith\"\ninsured.ssn = *\"123-45-6789\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"policy_base\"\nrole = \"base\"\nparent = @header\n\npolicy.number = \"PAP-001\"\npolicy.effective = 2024-06-15\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"endorsement_001\"\nrole = \"endorsement\"\nparent = @policy_base\neffective = 2024-09-01\n\npolicy.effective = 2024-09-01\nvehicles[0].vin = \"1HGCM82633A004352\"",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "header", "role": "header" },
+            "assignments": {
+              "insured.name": { "type": "string", "value": "John Smith" },
+              "insured.ssn": { "type": "string", "value": "123-45-6789", "modifiers": ["confidential"] }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "policy_base", "role": "base" },
+            "assignments": {
+              "policy.number": { "type": "string", "value": "PAP-001" },
+              "policy.effective": { "type": "date", "value": "2024-06-15" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "endorsement_001", "role": "endorsement", "effective": "2024-09-01" },
+            "assignments": {
+              "policy.effective": { "type": "date", "value": "2024-09-01" },
+              "vehicles[0].vin": { "type": "string", "value": "1HGCM82633A004352" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "document-roles",
+      "description": "Various document roles",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\nrole = \"base\"\n\npolicy.number = \"PAP-001\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"renewal\"\nrole = \"renewal\"\nparent = @base\n\npolicy.term = P12M\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"cancel\"\nrole = \"cancellation\"\nparent = @renewal\n\npolicy.cancelDate = 2024-12-31",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "base", "role": "base" }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "renewal", "role": "renewal" }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "cancel", "role": "cancellation" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "separator-with-comment",
+      "description": "Document separator with comment",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\nname = \"First\"\n\n--- ; End of first document\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\n\nname = \"Second\"",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc1" },
+            "assignments": {
+              "name": { "type": "string", "value": "First" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc2" },
+            "assignments": {
+              "name": { "type": "string", "value": "Second" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "metadata-isolation",
+      "description": "Each document's metadata is independent",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\ncustom.field1 = \"value1\"\n\ndata = \"first\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\ncustom.field2 = \"value2\"\n\ndata = \"second\"",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc1", "custom.field1": "value1" },
+            "assignments": {
+              "data": { "type": "string", "value": "first" }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "doc2", "custom.field2": "value2" },
+            "assignments": {
+              "data": { "type": "string", "value": "second" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "supersedes-reference",
+      "description": "Document with supersedes reference",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"endorsement_001\"\nrole = \"endorsement\"\n\namount = #$100.00\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"endorsement_002\"\nrole = \"endorsement\"\nsupersedes = @endorsement_001\n\namount = #$150.00",
+      "expected": {
+        "documents": [
+          {
+            "metadata": { "odin": "1.0.0", "id": "endorsement_001", "role": "endorsement" },
+            "assignments": {
+              "amount": { "type": "currency", "value": 100.00 }
+            }
+          },
+          {
+            "metadata": { "odin": "1.0.0", "id": "endorsement_002", "role": "endorsement" },
+            "assignments": {
+              "amount": { "type": "currency", "value": 150.00 }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

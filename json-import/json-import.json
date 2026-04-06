@@ -1,0 +1,154 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "json-import",
+  "description": "JSON import type handling and extraction tests",
+  "tests": [
+    {
+      "id": "string-value",
+      "description": "Parses string values",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": "hello world" },
+      "expected": { "output": { "result": "hello world" } }
+    },
+    {
+      "id": "empty-string",
+      "description": "Parses empty string",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": "" },
+      "expected": { "output": { "result": "" } }
+    },
+    {
+      "id": "integer-value",
+      "description": "Parses integer values",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": 42 },
+      "expected": { "output": { "result": 42 } }
+    },
+    {
+      "id": "negative-integer",
+      "description": "Parses negative integer values",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": -100 },
+      "expected": { "output": { "result": -100 } }
+    },
+    {
+      "id": "zero-value",
+      "description": "Parses zero",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": 0 },
+      "expected": { "output": { "result": 0 } }
+    },
+    {
+      "id": "float-value",
+      "description": "Parses floating point values",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": 3.14159 },
+      "expected": { "output": { "result": 3.14159 } }
+    },
+    {
+      "id": "negative-float",
+      "description": "Parses negative floating point values",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": -99.99 },
+      "expected": { "output": { "result": -99.99 } }
+    },
+    {
+      "id": "boolean-true",
+      "description": "Parses boolean true",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": true },
+      "expected": { "output": { "result": true } }
+    },
+    {
+      "id": "boolean-false",
+      "description": "Parses boolean false",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": false },
+      "expected": { "output": { "result": false } }
+    },
+    {
+      "id": "null-value",
+      "description": "Parses null values",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": null },
+      "expected": { "output": { "result": null } }
+    },
+    {
+      "id": "nested-object",
+      "description": "Parses nested object fields",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.person.name\"",
+      "input": { "person": { "name": "John", "age": 30 } },
+      "expected": { "output": { "result": "John" } }
+    },
+    {
+      "id": "deeply-nested",
+      "description": "Parses deeply nested object fields",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.level1.level2.level3.value\"",
+      "input": { "level1": { "level2": { "level3": { "value": "deep" } } } },
+      "expected": { "output": { "result": "deep" } }
+    },
+    {
+      "id": "array-count",
+      "description": "Counts array of strings",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\ncount = %count @.items",
+      "input": { "items": ["a", "b", "c"] },
+      "expected": { "output": { "count": 3 } }
+    },
+    {
+      "id": "array-sum",
+      "description": "Sums array of numbers",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nsum = %sum @.numbers\navg = %avg @.numbers",
+      "input": { "numbers": [10, 20, 30] },
+      "expected": { "output": { "sum": 60, "avg": 20 } }
+    },
+    {
+      "id": "array-of-objects",
+      "description": "Aggregates array of objects",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\ncount = %count @.users",
+      "input": { "users": [{ "name": "Alice", "age": 25 }, { "name": "Bob", "age": 30 }] },
+      "expected": { "output": { "count": 2 } }
+    },
+    {
+      "id": "empty-array",
+      "description": "Handles empty array",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\ncount = %count @.items",
+      "input": { "items": [] },
+      "expected": { "output": { "count": 0 } }
+    },
+    {
+      "id": "unicode-string",
+      "description": "Parses strings with unicode",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.text\"",
+      "input": { "text": "\u65e5\u672c\u8a9e\u30c6\u30b9\u30c8" },
+      "expected": { "output": { "result": "\u65e5\u672c\u8a9e\u30c6\u30b9\u30c8" } }
+    },
+    {
+      "id": "emoji-string",
+      "description": "Parses strings with emoji",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.text\"",
+      "input": { "text": "Hello \ud83d\udc4b World \ud83c\udf0d" },
+      "expected": { "output": { "result": "Hello \ud83d\udc4b World \ud83c\udf0d" } }
+    },
+    {
+      "id": "type-preservation-multi",
+      "description": "Preserves types through transformations",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nstr = \"@.strVal\"\nnum = \"@.numVal\"\nbool = \"@.boolVal\"",
+      "input": { "strVal": "test", "numVal": 123, "boolVal": true },
+      "expected": { "output": { "str": "test", "num": 123, "bool": true } }
+    },
+    {
+      "id": "large-integer",
+      "description": "Handles large integers",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": 9007199254740991 },
+      "expected": { "output": { "result": 9007199254740991 } }
+    },
+    {
+      "id": "scientific-notation",
+      "description": "Handles scientific notation",
+      "transform": "{$}\nodin = \"1.0.0\"\ntransform = \"1.0.0\"\ndirection = \"json->json\"\n\n{output}\nresult = \"@.value\"",
+      "input": { "value": 15000000000 },
+      "expected": { "output": { "result": 15000000000 } }
+    }
+  ]
+}

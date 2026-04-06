@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person xmlns:odin="https://odin.foundation/ns">
+    <name>Alice</name>
+    <age odin:type="integer">30</age>
+</person>
+<address xmlns:odin="https://odin.foundation/ns">
+    <city>Springfield</city>
+    <state>IL</state>
+</address>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person xmlns:odin="https://odin.foundation/ns">
+  <name>Alice</name>
+  <age odin:type="integer">30</age>
+  <email odin:type="null"></email>
+  <phone odin:type="null"></phone>
+  <active odin:type="boolean">true</active>
+</person>

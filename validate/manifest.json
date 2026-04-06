@@ -1,0 +1,36 @@
+{
+  "category": "validate",
+  "name": "Validation Tests",
+  "description": "Schema validation tests for cross-SDK compatibility",
+  "testSuites": [
+    {
+      "id": "formats",
+      "name": "Format Validators",
+      "description": "Built-in format constraint validation",
+      "path": "formats/format-validators.json"
+    },
+    {
+      "id": "schema-rules",
+      "name": "Schema Validation Rules",
+      "description": "V001-V013 validation error codes",
+      "path": "schema-validation.json"
+    }
+  ],
+  "features_tested": [
+    "format_email",
+    "format_url",
+    "format_uuid",
+    "format_ssn",
+    "format_vin",
+    "format_phone",
+    "format_zip",
+    "format_ipv4",
+    "format_ipv6",
+    "format_creditcard",
+    "format_naic",
+    "format_fein",
+    "format_currency_code",
+    "format_country_code",
+    "format_state_code"
+  ]
+}

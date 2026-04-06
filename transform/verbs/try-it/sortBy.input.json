@@ -1,0 +1,7 @@
+{
+  "coverages": [
+    {"type": "comprehensive", "premium": 600},
+    {"type": "liability", "premium": 250},
+    {"type": "collision", "premium": 450}
+  ]
+}

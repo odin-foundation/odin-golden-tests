@@ -1,0 +1,117 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-error-recovery",
+  "description": "Error recovery and multiple error reporting tests",
+  "tests": [
+    {
+      "id": "multiple-duplicate-paths",
+      "description": "Multiple duplicate path assignments should report all duplicates",
+      "input": "name = \"John\"\nage = ##30\nname = \"Jane\"\ncity = \"Austin\"\nname = \"Bob\"",
+      "expectError": {
+        "code": "P007",
+        "message": "Duplicate path assignment"
+      }
+    },
+    {
+      "id": "multiple-unterminated-strings",
+      "description": "Multiple unterminated strings",
+      "input": "name = \"John\nage = ##30\ncity = \"Austin",
+      "expectError": {
+        "code": "P004",
+        "message": "Unterminated string"
+      }
+    },
+    {
+      "id": "invalid-type-prefixes",
+      "description": "Invalid type prefix usage",
+      "input": "num1 = ###123",
+      "expectError": {
+        "code": "P006",
+        "message": "Invalid type prefix"
+      }
+    },
+    {
+      "id": "invalid-header-array-syntax",
+      "description": "Invalid header with array bracket",
+      "input": "{invalid[}\nname = \"test\"",
+      "expectError": {
+        "code": "P003",
+        "message": "Invalid array index"
+      }
+    },
+    {
+      "id": "recoverable-after-error",
+      "description": "Parser stops at first unquoted string error",
+      "input": "valid1 = \"ok\"\ninvalid = bare\nvalid2 = ##42",
+      "expectError": {
+        "code": "P002",
+        "message": "Strings must be quoted"
+      }
+    },
+    {
+      "id": "malformed-durations",
+      "description": "Malformed duration values",
+      "input": "dur1 = P\n",
+      "expectError": {
+        "code": "P002",
+        "message": "Invalid duration format"
+      }
+    },
+    {
+      "id": "deeply-nested-error",
+      "description": "Error in deeply nested path",
+      "input": "{level1.level2.level3.level4.level5}\nvalue = bare string",
+      "expectError": {
+        "code": "P002",
+        "message": "Strings must be quoted"
+      }
+    },
+    {
+      "id": "error-context-before",
+      "description": "Error on line with missing equals",
+      "input": "; Comment line\n{header}\nname = \"test\"\ninvalid_line",
+      "expectError": {
+        "code": "P001",
+        "message": "Invalid syntax"
+      }
+    }
+  ],
+  "_planned_tests": [
+    {
+      "id": "mixed-errors-types",
+      "description": "Multiple different error types - requires multi-error support",
+      "status": "planned",
+      "reason": "Parser currently stops at first error; multi-error reporting planned"
+    },
+    {
+      "id": "circular-reference-chain",
+      "description": "Circular reference detection",
+      "status": "planned",
+      "reason": "Circular reference detection happens at validation phase, not parse phase"
+    },
+    {
+      "id": "malformed-dates",
+      "description": "Malformed date values like 2024-13-01",
+      "status": "planned",
+      "reason": "Parser accepts date-like strings; semantic validation planned"
+    },
+    {
+      "id": "malformed-timestamps",
+      "description": "Malformed timestamp values like 2024-06-15T25:00:00Z",
+      "status": "planned",
+      "reason": "Parser accepts timestamp-like strings; semantic validation planned"
+    },
+    {
+      "id": "max-errors-limit",
+      "description": "Parser stops after maximum error count",
+      "status": "planned",
+      "reason": "Multi-error recovery with limit not yet implemented"
+    },
+    {
+      "id": "tabular-errors",
+      "description": "Multiple errors in tabular data",
+      "status": "planned",
+      "reason": "Requires multi-error support in tabular parsing"
+    }
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-tabular",
+  "description": "Tabular array syntax parsing",
+  "tests": [
+    {
+      "id": "tabular-basic",
+      "description": "Basic object array with tabular syntax",
+      "input": "{items[] : name, qty, price}\n\"Widget\", ##10, #$5.99\n\"Gadget\", ##5, #$12.50",
+      "expected": {
+        "assignments": {
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].qty": { "type": "integer", "value": 10 },
+          "items[0].price": { "type": "currency", "value": 5.99 },
+          "items[1].name": { "type": "string", "value": "Gadget" },
+          "items[1].qty": { "type": "integer", "value": 5 },
+          "items[1].price": { "type": "currency", "value": 12.50 }
+        }
+      }
+    },
+    {
+      "id": "tabular-typed-values",
+      "description": "Tabular rows with various typed values",
+      "input": "{data[] : label, count, rate, active}\n\"Alpha\", ##1, #3.14, ?true\n\"Beta\", ##0, #0.5, ?false",
+      "expected": {
+        "assignments": {
+          "data[0].label": { "type": "string", "value": "Alpha" },
+          "data[0].count": { "type": "integer", "value": 1 },
+          "data[0].rate": { "type": "number", "value": 3.14 },
+          "data[0].active": { "type": "boolean", "value": true },
+          "data[1].label": { "type": "string", "value": "Beta" },
+          "data[1].count": { "type": "integer", "value": 0 },
+          "data[1].rate": { "type": "number", "value": 0.5 },
+          "data[1].active": { "type": "boolean", "value": false }
+        }
+      }
+    },
+    {
+      "id": "tabular-null-cell",
+      "description": "Null value (~) in a tabular cell creates a null value",
+      "input": "{items[] : name, description}\n\"Widget\", \"A useful widget\"\n\"Gadget\", ~",
+      "expected": {
+        "assignments": {
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].description": { "type": "string", "value": "A useful widget" },
+          "items[1].name": { "type": "string", "value": "Gadget" },
+          "items[1].description": { "type": "null" }
+        }
+      }
+    },
+    {
+      "id": "tabular-empty-string-cell",
+      "description": "Empty string (\"\") in a tabular cell",
+      "input": "{items[] : name, notes}\n\"Widget\", \"In stock\"\n\"Gadget\", \"\"",
+      "expected": {
+        "assignments": {
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].notes": { "type": "string", "value": "In stock" },
+          "items[1].name": { "type": "string", "value": "Gadget" },
+          "items[1].notes": { "type": "string", "value": "" }
+        }
+      }
+    },
+    {
+      "id": "tabular-absent-cell",
+      "description": "Empty cell (nothing between commas) means field is absent",
+      "input": "{items[] : name, description, notes}\n\"Widget\", \"A widget\", \"In stock\"\n\"Gadget\", ,",
+      "expected": {
+        "assignments": {
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].description": { "type": "string", "value": "A widget" },
+          "items[0].notes": { "type": "string", "value": "In stock" },
+          "items[1].name": { "type": "string", "value": "Gadget" }
+        }
+      }
+    },
+    {
+      "id": "tabular-string-with-comma",
+      "description": "Quoted string containing comma in tabular cell",
+      "input": "{items[] : sku, description, qty}\n\"ABC-001\", \"Cable, 6ft\", ##20\n\"ABC-002\", \"Bolt, hex, 3in\", ##100",
+      "expected": {
+        "assignments": {
+          "items[0].sku": { "type": "string", "value": "ABC-001" },
+          "items[0].description": { "type": "string", "value": "Cable, 6ft" },
+          "items[0].qty": { "type": "integer", "value": 20 },
+          "items[1].sku": { "type": "string", "value": "ABC-002" },
+          "items[1].description": { "type": "string", "value": "Bolt, hex, 3in" },
+          "items[1].qty": { "type": "integer", "value": 100 }
+        }
+      }
+    },
+    {
+      "id": "tabular-reference-cell",
+      "description": "Reference value in tabular cell",
+      "input": "{assignments[] : driver, vehicle}\n@drivers[0], @vehicles[0]\n@drivers[1], ~",
+      "expected": {
+        "assignments": {
+          "assignments[0].driver": { "type": "reference", "path": "drivers[0]" },
+          "assignments[0].vehicle": { "type": "reference", "path": "vehicles[0]" },
+          "assignments[1].driver": { "type": "reference", "path": "drivers[1]" },
+          "assignments[1].vehicle": { "type": "null" }
+        }
+      }
+    },
+    {
+      "id": "tabular-date-cell",
+      "description": "Date values in tabular cells",
+      "input": "{events[] : name, date}\n\"Launch\", 2025-01-15\n\"Review\", 2025-06-30",
+      "expected": {
+        "assignments": {
+          "events[0].name": { "type": "string", "value": "Launch" },
+          "events[0].date": { "type": "date", "value": "2025-01-15" },
+          "events[1].name": { "type": "string", "value": "Review" },
+          "events[1].date": { "type": "date", "value": "2025-06-30" }
+        }
+      }
+    },
+    {
+      "id": "tabular-binary-cell",
+      "description": "Binary (base64) value in tabular cell",
+      "input": "{files[] : name, data}\n\"hello.txt\", ^SGVsbG8=\n\"world.txt\", ^V29ybGQ=",
+      "expected": {
+        "assignments": {
+          "files[0].name": { "type": "string", "value": "hello.txt" },
+          "files[0].data": { "type": "binary", "base64": "SGVsbG8=" },
+          "files[1].name": { "type": "string", "value": "world.txt" },
+          "files[1].data": { "type": "binary", "base64": "V29ybGQ=" }
+        }
+      }
+    },
+    {
+      "id": "tabular-exit-on-next-header",
+      "description": "Tabular mode ends when next header appears",
+      "input": "{items[] : name, qty}\n\"Widget\", ##10\n{metadata}\nversion = \"1.0\"",
+      "expected": {
+        "assignments": {
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].qty": { "type": "integer", "value": 10 },
+          "metadata.version": { "type": "string", "value": "1.0" }
+        }
+      }
+    },
+    {
+      "id": "tabular-single-level-dot-column",
+      "description": "Single-level dot notation in column names",
+      "input": "{items[] : product.name, product.sku, qty}\n\"Widget Pro\", \"WGT-001\", ##10\n\"Cable 6ft\", \"CBL-006\", ##25",
+      "expected": {
+        "assignments": {
+          "items[0].product.name": { "type": "string", "value": "Widget Pro" },
+          "items[0].product.sku": { "type": "string", "value": "WGT-001" },
+          "items[0].qty": { "type": "integer", "value": 10 },
+          "items[1].product.name": { "type": "string", "value": "Cable 6ft" },
+          "items[1].product.sku": { "type": "string", "value": "CBL-006" },
+          "items[1].qty": { "type": "integer", "value": 25 }
+        }
+      }
+    },
+    {
+      "id": "tabular-relative-column-names",
+      "description": "Relative column names inherit parent from previous column",
+      "input": "{holders[] : name, address.line1, .city, .state}\n\"ABC Corp\", \"500 Commerce St\", \"Dallas\", \"TX\"\n\"XYZ LLC\", \"123 Main St\", \"Austin\", \"TX\"",
+      "expected": {
+        "assignments": {
+          "holders[0].name": { "type": "string", "value": "ABC Corp" },
+          "holders[0].address.line1": { "type": "string", "value": "500 Commerce St" },
+          "holders[0].address.city": { "type": "string", "value": "Dallas" },
+          "holders[0].address.state": { "type": "string", "value": "TX" },
+          "holders[1].name": { "type": "string", "value": "XYZ LLC" },
+          "holders[1].address.line1": { "type": "string", "value": "123 Main St" },
+          "holders[1].address.city": { "type": "string", "value": "Austin" },
+          "holders[1].address.state": { "type": "string", "value": "TX" }
+        }
+      }
+    },
+    {
+      "id": "tabular-multiple-context-switches",
+      "description": "Multiple context switches in column names",
+      "input": "{data[] : name, home.street, .city, work.street, .city}\n\"John\", \"123 Oak Ave\", \"Dallas\", \"456 Elm St\", \"Austin\"",
+      "expected": {
+        "assignments": {
+          "data[0].name": { "type": "string", "value": "John" },
+          "data[0].home.street": { "type": "string", "value": "123 Oak Ave" },
+          "data[0].home.city": { "type": "string", "value": "Dallas" },
+          "data[0].work.street": { "type": "string", "value": "456 Elm St" },
+          "data[0].work.city": { "type": "string", "value": "Austin" }
+        }
+      }
+    },
+    {
+      "id": "tabular-single-level-array-column",
+      "description": "Single-level array index in column names",
+      "input": "{users[] : name, permissions[0], permissions[1]}\n\"Admin\", \"read\", \"write\"\n\"Guest\", \"read\", ~",
+      "expected": {
+        "assignments": {
+          "users[0].name": { "type": "string", "value": "Admin" },
+          "users[0].permissions[0]": { "type": "string", "value": "read" },
+          "users[0].permissions[1]": { "type": "string", "value": "write" },
+          "users[1].name": { "type": "string", "value": "Guest" },
+          "users[1].permissions[0]": { "type": "string", "value": "read" },
+          "users[1].permissions[1]": { "type": "null" }
+        }
+      }
+    },
+    {
+      "id": "tabular-primitive-string-array",
+      "description": "Primitive string array with ~ column marker",
+      "input": "{tags[] : ~}\n\"urgent\"\n\"important\"\n\"reviewed\"",
+      "expected": {
+        "assignments": {
+          "tags[0]": { "type": "string", "value": "urgent" },
+          "tags[1]": { "type": "string", "value": "important" },
+          "tags[2]": { "type": "string", "value": "reviewed" }
+        }
+      }
+    },
+    {
+      "id": "tabular-primitive-integer-array",
+      "description": "Primitive integer array",
+      "input": "{ids[] : ~}\n##100\n##200\n##300",
+      "expected": {
+        "assignments": {
+          "ids[0]": { "type": "integer", "value": 100 },
+          "ids[1]": { "type": "integer", "value": 200 },
+          "ids[2]": { "type": "integer", "value": 300 }
+        }
+      }
+    },
+    {
+      "id": "tabular-primitive-mixed-array",
+      "description": "Primitive array with mixed types",
+      "input": "{values[] : ~}\n\"text\"\n##42\n?true\n~",
+      "expected": {
+        "assignments": {
+          "values[0]": { "type": "string", "value": "text" },
+          "values[1]": { "type": "integer", "value": 42 },
+          "values[2]": { "type": "boolean", "value": true },
+          "values[3]": { "type": "null" }
+        }
+      }
+    },
+    {
+      "id": "tabular-empty-primitive-array",
+      "description": "Primitive array with no data rows produces empty array",
+      "input": "{tags[] : ~}\n{metadata}\nversion = \"1.0\"",
+      "expected": {
+        "assignments": {
+          "metadata.version": { "type": "string", "value": "1.0" }
+        }
+      }
+    },
+    {
+      "id": "tabular-comment-in-rows",
+      "description": "Comments between tabular rows are ignored",
+      "input": "{items[] : name, qty}\n\"Widget\", ##10\n; this is a comment\n\"Gadget\", ##5",
+      "expected": {
+        "assignments": {
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].qty": { "type": "integer", "value": 10 },
+          "items[1].name": { "type": "string", "value": "Gadget" },
+          "items[1].qty": { "type": "integer", "value": 5 }
+        }
+      }
+    },
+    {
+      "id": "tabular-boolean-values",
+      "description": "Boolean values in tabular cells",
+      "input": "{flags[] : name, enabled}\n\"feature-a\", ?true\n\"feature-b\", ?false\n\"feature-c\", true",
+      "expected": {
+        "assignments": {
+          "flags[0].name": { "type": "string", "value": "feature-a" },
+          "flags[0].enabled": { "type": "boolean", "value": true },
+          "flags[1].name": { "type": "string", "value": "feature-b" },
+          "flags[1].enabled": { "type": "boolean", "value": false },
+          "flags[2].name": { "type": "string", "value": "feature-c" },
+          "flags[2].enabled": { "type": "boolean", "value": true }
+        }
+      }
+    },
+    {
+      "id": "tabular-currency-with-code",
+      "description": "Currency values with currency code in tabular cells",
+      "input": "{prices[] : item, amount}\n\"Widget\", #$29.99:USD\n\"Gadget\", #$149.50:EUR",
+      "expected": {
+        "assignments": {
+          "prices[0].item": { "type": "string", "value": "Widget" },
+          "prices[0].amount": { "type": "currency", "value": 29.99, "currencyCode": "USD" },
+          "prices[1].item": { "type": "string", "value": "Gadget" },
+          "prices[1].amount": { "type": "currency", "value": 149.50, "currencyCode": "EUR" }
+        }
+      }
+    },
+    {
+      "id": "tabular-percent-values",
+      "description": "Percent values in tabular cells",
+      "input": "{rates[] : name, rate}\n\"Tax\", #%0.085\n\"Discount\", #%0.15",
+      "expected": {
+        "assignments": {
+          "rates[0].name": { "type": "string", "value": "Tax" },
+          "rates[0].rate": { "type": "percent", "value": 0.085 },
+          "rates[1].name": { "type": "string", "value": "Discount" },
+          "rates[1].rate": { "type": "percent", "value": 0.15 }
+        }
+      }
+    }
+  ]
+}

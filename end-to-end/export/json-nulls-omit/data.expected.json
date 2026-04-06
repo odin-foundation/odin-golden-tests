@@ -1,0 +1,11 @@
+{
+  "person": {
+    "name": "Alice",
+    "age": 30
+  },
+  "address": {
+    "street": "123 Main St",
+    "city": "Springfield",
+    "zip": "62701"
+  }
+}

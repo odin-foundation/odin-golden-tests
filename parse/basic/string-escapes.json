@@ -1,0 +1,127 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-string-escapes",
+  "description": "Complete string escape sequence coverage",
+  "tests": [
+    {
+      "id": "escape-backslash",
+      "description": "Escaped backslash",
+      "input": "path = \"C:\\\\Users\\\\admin\"",
+      "expected": {
+        "assignments": {
+          "path": { "type": "string", "value": "C:\\Users\\admin" }
+        }
+      }
+    },
+    {
+      "id": "escape-double-quote",
+      "description": "Escaped double quote",
+      "input": "msg = \"say \\\"hello\\\"\"",
+      "expected": {
+        "assignments": {
+          "msg": { "type": "string", "value": "say \"hello\"" }
+        }
+      }
+    },
+    {
+      "id": "escape-newline",
+      "description": "Escaped newline (\\n)",
+      "input": "text = \"line1\\nline2\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "line1\nline2" }
+        }
+      }
+    },
+    {
+      "id": "escape-tab",
+      "description": "Escaped tab (\\t)",
+      "input": "text = \"col1\\tcol2\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "col1\tcol2" }
+        }
+      }
+    },
+    {
+      "id": "escape-carriage-return",
+      "description": "Escaped carriage return (\\r)",
+      "input": "text = \"line1\\rline2\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "line1\rline2" }
+        }
+      }
+    },
+    {
+      "id": "escape-null-char",
+      "description": "Escaped null character (\\0)",
+      "input": "text = \"null\\0byte\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "null\u0000byte" }
+        }
+      }
+    },
+    {
+      "id": "escape-unicode-short",
+      "description": "Short unicode escape (\\uXXXX)",
+      "input": "text = \"\\u0048ello\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "Hello" }
+        }
+      }
+    },
+    {
+      "id": "escape-unicode-long",
+      "description": "Long unicode escape (\\UXXXXXXXX) for emoji",
+      "input": "emoji = \"\\U0001F600\"",
+      "expected": {
+        "assignments": {
+          "emoji": { "type": "string", "value": "\uD83D\uDE00" }
+        }
+      }
+    },
+    {
+      "id": "escape-all-combined",
+      "description": "All escape sequences in a single string",
+      "input": "all = \"tab\\there\\nnewline\\rreturn\\\\slash\\\"quote\\0null\"",
+      "expected": {
+        "assignments": {
+          "all": { "type": "string", "value": "tab\there\nnewline\rreturn\\slash\"quote\u0000null" }
+        }
+      }
+    },
+    {
+      "id": "escape-unicode-copyright",
+      "description": "Unicode copyright symbol",
+      "input": "sym = \"\\u00A9 2025\"",
+      "expected": {
+        "assignments": {
+          "sym": { "type": "string", "value": "\u00A9 2025" }
+        }
+      }
+    },
+    {
+      "id": "escape-unicode-lowercase-hex",
+      "description": "Unicode escape with lowercase hex digits",
+      "input": "text = \"\\u00e9\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "\u00e9" }
+        }
+      }
+    },
+    {
+      "id": "escape-unicode-uppercase-hex",
+      "description": "Unicode escape with uppercase hex digits",
+      "input": "text = \"\\u00E9\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "\u00e9" }
+        }
+      }
+    }
+  ]
+}

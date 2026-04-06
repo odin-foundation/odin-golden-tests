@@ -1,0 +1,448 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-format-validators",
+  "description": "Format constraint validation tests",
+  "tests": [
+    {
+      "id": "email-valid-simple",
+      "description": "Simple valid email",
+      "schema": "email = :format email",
+      "input": "email = \"user@example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "email-valid-subdomain",
+      "description": "Email with subdomain",
+      "schema": "email = :format email",
+      "input": "email = \"user@mail.example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "email-valid-plus-tag",
+      "description": "Email with plus tag",
+      "schema": "email = :format email",
+      "input": "email = \"user+tag@example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "email-valid-dots",
+      "description": "Email with dots in local part",
+      "schema": "email = :format email",
+      "input": "email = \"first.last@example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "email-invalid-no-at",
+      "description": "Email without @ symbol",
+      "schema": "email = :format email",
+      "input": "email = \"userexample.com\"",
+      "expected": { "valid": false, "error": "Invalid email format" }
+    },
+    {
+      "id": "email-invalid-no-domain",
+      "description": "Email without domain",
+      "schema": "email = :format email",
+      "input": "email = \"user@\"",
+      "expected": { "valid": false, "error": "Invalid email format" }
+    },
+    {
+      "id": "email-invalid-double-at",
+      "description": "Email with double @",
+      "schema": "email = :format email",
+      "input": "email = \"user@@example.com\"",
+      "expected": { "valid": false, "error": "Invalid email format" }
+    },
+    {
+      "id": "url-valid-https",
+      "description": "Valid HTTPS URL",
+      "schema": "website = :format url",
+      "input": "website = \"https://example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "url-valid-http",
+      "description": "Valid HTTP URL",
+      "schema": "website = :format url",
+      "input": "website = \"http://example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "url-valid-with-path",
+      "description": "URL with path",
+      "schema": "website = :format url",
+      "input": "website = \"https://example.com/path/to/resource\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "url-valid-with-query",
+      "description": "URL with query string",
+      "schema": "website = :format url",
+      "input": "website = \"https://example.com/search?q=test&page=1\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "url-valid-with-port",
+      "description": "URL with port",
+      "schema": "website = :format url",
+      "input": "website = \"https://example.com:8443/api\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "url-invalid-no-protocol",
+      "description": "URL without protocol",
+      "schema": "website = :format url",
+      "input": "website = \"example.com\"",
+      "expected": { "valid": false, "error": "Invalid URL format" }
+    },
+    {
+      "id": "uuid-valid-v4",
+      "description": "Valid UUID v4",
+      "schema": "id = :format uuid",
+      "input": "id = \"550e8400-e29b-41d4-a716-446655440000\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "uuid-valid-uppercase",
+      "description": "UUID with uppercase (should be valid)",
+      "schema": "id = :format uuid",
+      "input": "id = \"550E8400-E29B-41D4-A716-446655440000\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "uuid-invalid-wrong-length",
+      "description": "UUID with wrong length",
+      "schema": "id = :format uuid",
+      "input": "id = \"550e8400-e29b-41d4-a716\"",
+      "expected": { "valid": false, "error": "Invalid UUID format" }
+    },
+    {
+      "id": "uuid-invalid-wrong-format",
+      "description": "UUID with wrong format",
+      "schema": "id = :format uuid",
+      "input": "id = \"550e8400e29b41d4a716446655440000\"",
+      "expected": { "valid": false, "error": "Invalid UUID format" }
+    },
+    {
+      "id": "ssn-valid",
+      "description": "Valid SSN format",
+      "schema": "ssn = :format ssn",
+      "input": "ssn = \"123-45-6789\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "ssn-valid-no-dashes",
+      "description": "SSN without dashes",
+      "schema": "ssn = :format ssn",
+      "input": "ssn = \"123456789\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "ssn-invalid-wrong-length",
+      "description": "SSN with wrong length",
+      "schema": "ssn = :format ssn",
+      "input": "ssn = \"123-45-678\"",
+      "expected": { "valid": false, "error": "Invalid SSN format" }
+    },
+    {
+      "id": "ssn-invalid-letters",
+      "description": "SSN with letters",
+      "schema": "ssn = :format ssn",
+      "input": "ssn = \"123-AB-6789\"",
+      "expected": { "valid": false, "error": "Invalid SSN format" }
+    },
+    {
+      "id": "ssn-invalid-000-area",
+      "description": "SSN with invalid area code 000",
+      "schema": "ssn = :format ssn",
+      "input": "ssn = \"000-45-6789\"",
+      "expected": { "valid": false, "error": "Invalid SSN - area code cannot be 000" }
+    },
+    {
+      "id": "vin-valid",
+      "description": "Valid VIN",
+      "schema": "vin = :format vin",
+      "input": "vin = \"1HGCM82633A004352\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "vin-invalid-wrong-length",
+      "description": "VIN with wrong length",
+      "schema": "vin = :format vin",
+      "input": "vin = \"1HGCM82633A0043\"",
+      "expected": { "valid": false, "error": "VIN must be 17 characters" }
+    },
+    {
+      "id": "vin-invalid-contains-I",
+      "description": "VIN contains invalid character I",
+      "schema": "vin = :format vin",
+      "input": "vin = \"1HGIM82633A004352\"",
+      "expected": { "valid": false, "error": "VIN cannot contain I, O, or Q" }
+    },
+    {
+      "id": "vin-invalid-contains-O",
+      "description": "VIN contains invalid character O",
+      "schema": "vin = :format vin",
+      "input": "vin = \"1HGOM82633A004352\"",
+      "expected": { "valid": false, "error": "VIN cannot contain I, O, or Q" }
+    },
+    {
+      "id": "vin-invalid-contains-Q",
+      "description": "VIN contains invalid character Q",
+      "schema": "vin = :format vin",
+      "input": "vin = \"1HGQM82633A004352\"",
+      "expected": { "valid": false, "error": "VIN cannot contain I, O, or Q" }
+    },
+    {
+      "id": "phone-valid-us",
+      "description": "Valid US phone number",
+      "schema": "phone = :format phone",
+      "input": "phone = \"+1-555-123-4567\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "phone-valid-international",
+      "description": "Valid international phone",
+      "schema": "phone = :format phone",
+      "input": "phone = \"+44-20-7946-0958\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "phone-valid-simple",
+      "description": "Simple phone format",
+      "schema": "phone = :format phone",
+      "input": "phone = \"555-123-4567\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "phone-invalid-letters",
+      "description": "Phone with letters",
+      "schema": "phone = :format phone",
+      "input": "phone = \"555-ABC-4567\"",
+      "expected": { "valid": false, "error": "Invalid phone format" }
+    },
+    {
+      "id": "zip-valid-5",
+      "description": "Valid 5-digit ZIP",
+      "schema": "zip = :format zip",
+      "input": "zip = \"78701\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "zip-valid-9",
+      "description": "Valid 9-digit ZIP+4",
+      "schema": "zip = :format zip",
+      "input": "zip = \"78701-1234\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "zip-invalid-4-digit",
+      "description": "Invalid 4-digit ZIP",
+      "schema": "zip = :format zip",
+      "input": "zip = \"7870\"",
+      "expected": { "valid": false, "error": "Invalid ZIP format" }
+    },
+    {
+      "id": "zip-invalid-letters",
+      "description": "ZIP with letters",
+      "schema": "zip = :format zip",
+      "input": "zip = \"7870A\"",
+      "expected": { "valid": false, "error": "Invalid ZIP format" }
+    },
+    {
+      "id": "ipv4-valid",
+      "description": "Valid IPv4 address",
+      "schema": "ip = :format ipv4",
+      "input": "ip = \"192.168.1.1\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "ipv4-valid-localhost",
+      "description": "Valid localhost",
+      "schema": "ip = :format ipv4",
+      "input": "ip = \"127.0.0.1\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "ipv4-invalid-octet-too-high",
+      "description": "IPv4 with octet > 255",
+      "schema": "ip = :format ipv4",
+      "input": "ip = \"192.168.1.256\"",
+      "expected": { "valid": false, "error": "Invalid IPv4 format" }
+    },
+    {
+      "id": "ipv4-invalid-too-few-octets",
+      "description": "IPv4 with too few octets",
+      "schema": "ip = :format ipv4",
+      "input": "ip = \"192.168.1\"",
+      "expected": { "valid": false, "error": "Invalid IPv4 format" }
+    },
+    {
+      "id": "ipv6-valid",
+      "description": "Valid IPv6 address",
+      "schema": "ip = :format ipv6",
+      "input": "ip = \"2001:0db8:85a3:0000:0000:8a2e:0370:7334\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "ipv6-valid-compressed",
+      "description": "Valid compressed IPv6",
+      "schema": "ip = :format ipv6",
+      "input": "ip = \"2001:db8:85a3::8a2e:370:7334\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "ipv6-valid-localhost",
+      "description": "IPv6 localhost",
+      "schema": "ip = :format ipv6",
+      "input": "ip = \"::1\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "creditcard-valid-visa",
+      "description": "Valid Visa card number",
+      "schema": "card = :format creditcard",
+      "input": "card = \"4111111111111111\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "creditcard-valid-mastercard",
+      "description": "Valid Mastercard number",
+      "schema": "card = :format creditcard",
+      "input": "card = \"5500000000000004\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "creditcard-invalid-checksum",
+      "description": "Credit card with invalid Luhn checksum",
+      "schema": "card = :format creditcard",
+      "input": "card = \"4111111111111112\"",
+      "expected": { "valid": false, "error": "Invalid credit card checksum" }
+    },
+    {
+      "id": "date-iso-valid",
+      "description": "Valid ISO date",
+      "schema": "date = :format date-iso",
+      "input": "date = \"2024-06-15\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "date-iso-valid-leap-day",
+      "description": "Valid ISO date on leap day",
+      "schema": "date = :format date-iso",
+      "input": "date = \"2024-02-29\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "date-iso-valid-year-boundary",
+      "description": "Valid ISO date at year boundary",
+      "schema": "date = :format date-iso",
+      "input": "date = \"2000-01-01\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "date-iso-invalid-no-dashes",
+      "description": "Date without dashes",
+      "schema": "date = :format date-iso",
+      "input": "date = \"20240615\"",
+      "expected": { "valid": false }
+    },
+    {
+      "id": "date-iso-invalid-with-time",
+      "description": "ISO datetime instead of date",
+      "schema": "date = :format date-iso",
+      "input": "date = \"2024-06-15T10:30:00\"",
+      "expected": { "valid": false }
+    },
+    {
+      "id": "date-iso-invalid-short-year",
+      "description": "Two-digit year",
+      "schema": "date = :format date-iso",
+      "input": "date = \"24-06-15\"",
+      "expected": { "valid": false }
+    },
+    {
+      "id": "date-iso-invalid-letters",
+      "description": "Date with letters",
+      "schema": "date = :format date-iso",
+      "input": "date = \"2024-Jun-15\"",
+      "expected": { "valid": false }
+    },
+    {
+      "id": "date-iso-invalid-empty",
+      "description": "Empty string for date",
+      "schema": "date = :format date-iso",
+      "input": "date = \"\"",
+      "expected": { "valid": false }
+    },
+    {
+      "id": "naic-valid",
+      "description": "Valid NAIC code",
+      "schema": "naic = :format naic",
+      "input": "naic = \"12345\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "naic-invalid",
+      "description": "Invalid NAIC code (wrong length)",
+      "schema": "naic = :format naic",
+      "input": "naic = \"1234\"",
+      "expected": { "valid": false, "error": "Invalid NAIC code format" }
+    },
+    {
+      "id": "fein-valid",
+      "description": "Valid FEIN/EIN",
+      "schema": "ein = :format fein",
+      "input": "ein = \"12-3456789\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "fein-invalid",
+      "description": "Invalid FEIN format",
+      "schema": "ein = :format fein",
+      "input": "ein = \"123-456789\"",
+      "expected": { "valid": false, "error": "Invalid FEIN format" }
+    },
+    {
+      "id": "currency-code-valid",
+      "description": "Valid ISO currency code",
+      "schema": "currency = :format currency-code",
+      "input": "currency = \"USD\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "currency-code-invalid",
+      "description": "Invalid currency code",
+      "schema": "currency = :format currency-code",
+      "input": "currency = \"XXX\"",
+      "expected": { "valid": false, "error": "Unknown currency code" }
+    },
+    {
+      "id": "country-code-valid-alpha2",
+      "description": "Valid ISO 3166 alpha-2 country code",
+      "schema": "country = :format country-alpha2",
+      "input": "country = \"US\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "country-code-valid-alpha3",
+      "description": "Valid ISO 3166 alpha-3 country code",
+      "schema": "country = :format country-alpha3",
+      "input": "country = \"USA\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "state-code-valid",
+      "description": "Valid US state code",
+      "schema": "state = :format state-us",
+      "input": "state = \"TX\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "state-code-invalid",
+      "description": "Invalid US state code",
+      "schema": "state = :format state-us",
+      "input": "state = \"XX\"",
+      "expected": { "valid": false, "error": "Invalid US state code" }
+    }
+  ]
+}

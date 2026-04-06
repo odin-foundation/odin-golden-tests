@@ -1,0 +1,9 @@
+{
+  "person": {
+    "name": "Jane Doe",
+    "ssn": "***********",
+    "email": "jane.doe@example.com",
+    "phone": "***************",
+    "age": 32
+  }
+}

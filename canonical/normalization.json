@@ -1,0 +1,85 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "canonical-normalization",
+  "description": "Canonical form normalization: whitespace, comments, CRLF, BOM, sorting",
+  "tests": [
+    {
+      "id": "canonical-strip-comments",
+      "description": "Comments are removed in canonical form",
+      "input": "; This is a comment\nname = \"John\"\n; Another comment\nage = ##30",
+      "expected": "age = ##30\nname = \"John\"\n"
+    },
+    {
+      "id": "canonical-strip-blank-lines",
+      "description": "Blank lines are removed in canonical form",
+      "input": "name = \"John\"\n\n\nage = ##30\n\n",
+      "expected": "age = ##30\nname = \"John\"\n"
+    },
+    {
+      "id": "canonical-crlf-to-lf",
+      "description": "CRLF input produces LF-only canonical output",
+      "input": "name = \"John\"\r\nage = ##30\r\n",
+      "expected": "age = ##30\nname = \"John\"\n"
+    },
+    {
+      "id": "canonical-bom-stripped",
+      "description": "UTF-8 BOM is stripped in canonical form",
+      "input": "\uFEFFname = \"John\"\nage = ##30",
+      "expected": "age = ##30\nname = \"John\"\n"
+    },
+    {
+      "id": "canonical-whitespace-around-equals",
+      "description": "Varying whitespace around = normalizes to single space",
+      "input": "name  =  \"John\"\nage=##30\ncity =    \"Austin\"",
+      "expected": "age = ##30\ncity = \"Austin\"\nname = \"John\"\n"
+    },
+    {
+      "id": "canonical-sort-lexicographic",
+      "description": "Paths are sorted lexicographically",
+      "input": "zebra = \"last\"\nalpha = \"first\"\nmiddle = \"mid\"",
+      "expected": "alpha = \"first\"\nmiddle = \"mid\"\nzebra = \"last\"\n"
+    },
+    {
+      "id": "canonical-sort-sections",
+      "description": "Section paths are sorted by full path",
+      "input": "{customer}\nname = \"John\"\n{address}\ncity = \"Austin\"",
+      "expected": "address.city = \"Austin\"\ncustomer.name = \"John\"\n"
+    },
+    {
+      "id": "canonical-sort-array-numeric",
+      "description": "Array indices sort numerically not lexicographically",
+      "input": "{items[] : ~}\n\"Zero\"\n\"One\"\n\"Two\"\n\"Three\"\n\"Four\"\n\"Five\"\n\"Six\"\n\"Seven\"\n\"Eight\"\n\"Nine\"\n\"Ten\"",
+      "expected": "items[0] = \"Zero\"\nitems[1] = \"One\"\nitems[2] = \"Two\"\nitems[3] = \"Three\"\nitems[4] = \"Four\"\nitems[5] = \"Five\"\nitems[6] = \"Six\"\nitems[7] = \"Seven\"\nitems[8] = \"Eight\"\nitems[9] = \"Nine\"\nitems[10] = \"Ten\"\n"
+    },
+    {
+      "id": "canonical-metadata-first",
+      "description": "$ metadata sorts before all other paths",
+      "input": "name = \"Policy\"\n{$}\nodin = \"1.0.0\"",
+      "expected": "$.odin = \"1.0.0\"\nname = \"Policy\"\n"
+    },
+    {
+      "id": "canonical-currency-trailing-zeros",
+      "description": "Currency always has two decimal places",
+      "input": "price = #$10\namount = #$99.50",
+      "expected": "amount = #$99.50\nprice = #$10.00\n"
+    },
+    {
+      "id": "canonical-number-no-trailing-zeros",
+      "description": "Numbers do not have trailing zeros (unlike currency)",
+      "input": "rate = #3.140\npi = #3.14",
+      "expected": "pi = #3.14\nrate = #3.14\n"
+    },
+    {
+      "id": "canonical-boolean-no-prefix",
+      "description": "Canonical boolean form omits ? prefix",
+      "input": "active = ?true\nenabled = ?false",
+      "expected": "active = true\nenabled = false\n"
+    },
+    {
+      "id": "canonical-nested-paths-expanded",
+      "description": "Section headers expand to fully qualified paths",
+      "input": "{person}\nname = \"Alice\"\n{person}\nage = ##30",
+      "expected": "person.age = ##30\nperson.name = \"Alice\"\n"
+    }
+  ]
+}

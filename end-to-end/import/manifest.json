@@ -1,0 +1,103 @@
+{
+  "category": "import",
+  "name": "Import Tests",
+  "description": "Transform from external formats to ODIN",
+  "tests": [
+    {
+      "id": "odin-to-odin",
+      "description": "Import ODIN to ODIN (passthrough transformation)",
+      "direction": "odin->odin",
+      "input": "odin-to-odin/all-types.input.odin",
+      "transform": "odin-to-odin/all-types.transform.odin",
+      "expected": "odin-to-odin/all-types.expected.odin"
+    },
+    {
+      "id": "json-to-odin",
+      "description": "Import all types from JSON source",
+      "direction": "json->odin",
+      "input": "json-to-odin/all-types.input.json",
+      "transform": "json-to-odin/all-types.transform.odin",
+      "expected": "json-to-odin/all-types.expected.odin"
+    },
+    {
+      "id": "xml-to-odin",
+      "description": "Import all types from XML source",
+      "direction": "xml->odin",
+      "input": "xml-to-odin/all-types.input.xml",
+      "transform": "xml-to-odin/all-types.transform.odin",
+      "expected": "xml-to-odin/all-types.expected.odin"
+    },
+    {
+      "id": "flat-kvp-to-odin",
+      "description": "Import flat key-value pairs to ODIN",
+      "direction": "flat->odin",
+      "input": "flat-to-odin/all-types.input.properties",
+      "transform": "flat-to-odin/all-types.transform.odin",
+      "expected": "flat-to-odin/all-types.expected.odin"
+    },
+    {
+      "id": "yaml-to-odin",
+      "description": "Import YAML configuration to ODIN with indentation",
+      "direction": "yaml->odin",
+      "input": "yaml-to-odin/config.input.yaml",
+      "transform": "yaml-to-odin/config.transform.odin",
+      "expected": "yaml-to-odin/config.expected.odin"
+    },
+    {
+      "id": "csv-to-odin",
+      "description": "Import CSV tabular data to ODIN",
+      "direction": "csv->odin",
+      "input": "csv-to-odin/tabular.input.csv",
+      "transform": "csv-to-odin/tabular.transform.odin",
+      "expected": "csv-to-odin/tabular.expected.odin"
+    },
+    {
+      "id": "fwf-to-odin",
+      "description": "Import fixed-width payroll format to ODIN",
+      "direction": "fixed-width->odin",
+      "input": "fwf-to-odin/payroll.input.fwf",
+      "transform": "fwf-to-odin/payroll.transform.odin",
+      "expected": "fwf-to-odin/payroll.expected.odin"
+    },
+    {
+      "id": "csv-discriminator",
+      "description": "Import multi-record CSV using field-based discriminator",
+      "direction": "csv->odin",
+      "input": "multi-record/csv-discriminator.input.csv",
+      "transform": "multi-record/csv-discriminator.transform.odin",
+      "expected": "multi-record/csv-discriminator.expected.odin"
+    },
+    {
+      "id": "fwf-discriminator",
+      "description": "Import multi-record fixed-width using position-based discriminator",
+      "direction": "fixed-width->odin",
+      "input": "multi-record/fixed-width-discriminator.input.fwf",
+      "transform": "multi-record/fixed-width-discriminator.transform.odin",
+      "expected": "multi-record/fixed-width-discriminator.expected.odin"
+    },
+    {
+      "id": "json-discriminator",
+      "description": "Import JSON array with recordType discriminator",
+      "direction": "json->odin",
+      "input": "multi-record/json-discriminator.input.json",
+      "transform": "multi-record/json-discriminator.transform.odin",
+      "expected": "multi-record/json-discriminator.expected.odin"
+    },
+    {
+      "id": "xml-namespace-soap",
+      "description": "Import namespaced XML (SOAP envelope) with multiple namespace prefixes",
+      "direction": "xml->odin",
+      "input": "xml-namespace/namespaced.input.xml",
+      "transform": "xml-namespace/namespaced.transform.odin",
+      "expected": "xml-namespace/namespaced.expected.odin"
+    },
+    {
+      "id": "xml-namespace-default",
+      "description": "Import XML with default namespace",
+      "direction": "xml->odin",
+      "input": "xml-namespace/default-namespace.input.xml",
+      "transform": "xml-namespace/default-namespace.transform.odin",
+      "expected": "xml-namespace/default-namespace.expected.odin"
+    }
+  ]
+}

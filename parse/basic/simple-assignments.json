@@ -1,0 +1,108 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-basic",
+  "description": "Basic ODIN document parsing",
+  "tests": [
+    {
+      "id": "quoted-string",
+      "description": "Quoted string value",
+      "input": "name = \"John Smith\"",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John Smith" }
+        }
+      }
+    },
+    {
+      "id": "quoted-string-special",
+      "description": "Quoted string with special characters",
+      "input": "desc = \"Price = $50\"",
+      "expected": {
+        "assignments": {
+          "desc": { "type": "string", "value": "Price = $50" }
+        }
+      }
+    },
+    {
+      "id": "escaped-string",
+      "description": "String with escape sequences",
+      "input": "note = \"Line one\\nLine two\"",
+      "expected": {
+        "assignments": {
+          "note": { "type": "string", "value": "Line one\nLine two" }
+        }
+      }
+    },
+    {
+      "id": "empty-string",
+      "description": "Empty quoted string",
+      "input": "empty = \"\"",
+      "expected": {
+        "assignments": {
+          "empty": { "type": "string", "value": "" }
+        }
+      }
+    },
+    {
+      "id": "multiple-assignments",
+      "description": "Multiple assignments",
+      "input": "first = \"John\"\nlast = \"Smith\"\ncity = \"Austin\"",
+      "expected": {
+        "assignments": {
+          "first": { "type": "string", "value": "John" },
+          "last": { "type": "string", "value": "Smith" },
+          "city": { "type": "string", "value": "Austin" }
+        }
+      }
+    },
+    {
+      "id": "nested-path",
+      "description": "Nested path with dots",
+      "input": "customer.name.first = \"John\"",
+      "expected": {
+        "assignments": {
+          "customer.name.first": { "type": "string", "value": "John" }
+        }
+      }
+    },
+    {
+      "id": "with-comment",
+      "description": "Assignment with inline comment",
+      "input": "name = \"John\" ; this is a comment",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" }
+        }
+      }
+    },
+    {
+      "id": "full-line-comment",
+      "description": "Full line comments are ignored",
+      "input": "; This is a comment\nname = \"John\"\n; Another comment",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" }
+        }
+      }
+    },
+    {
+      "id": "quoted-whitespace-preserved",
+      "description": "Quoted string whitespace is preserved",
+      "input": "name = \"  John Smith  \"",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "  John Smith  " }
+        }
+      }
+    },
+    {
+      "id": "bare-string-error",
+      "description": "Bare strings are not allowed",
+      "input": "name = John Smith",
+      "expectError": {
+        "code": "P002",
+        "message": "Strings must be quoted"
+      }
+    }
+  ]
+}

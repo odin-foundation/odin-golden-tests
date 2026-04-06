@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <primitives>
+    <string_simple>Hello World</string_simple>
+    <string_empty></string_empty>
+    <string_unicode>Hello 世界 🌍 مرحبا</string_unicode>
+    <string_special_chars>Line1
+Line2	Tabbed"Quoted"</string_special_chars>
+    <string_long>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string_long>
+    <integer_positive>42</integer_positive>
+    <integer_negative>-100</integer_negative>
+    <integer_zero>0</integer_zero>
+    <integer_large>9007199254740991</integer_large>
+    <integer_large_negative>-9007199254740991</integer_large_negative>
+    <number_simple>3.14</number_simple>
+    <number_negative>-273.15</number_negative>
+    <number_zero>0.0</number_zero>
+    <number_scientific>6.022e23</number_scientific>
+    <number_high_precision>3.141592653589793238</number_high_precision>
+    <currency_simple>99.99</currency_simple>
+    <currency_zero>0.00</currency_zero>
+    <currency_negative>-50.00</currency_negative>
+    <currency_high_precision>0.123456789012345678</currency_high_precision>
+    <currency_large>1000000.00</currency_large>
+    <boolean_true>true</boolean_true>
+    <boolean_false>false</boolean_false>
+    <null_value/>
+  </primitives>
+
+  <temporal>
+    <date_simple>2024-12-15</date_simple>
+    <date_leap_year>2024-02-29</date_leap_year>
+    <date_year_start>2024-01-01</date_year_start>
+    <date_year_end>2024-12-31</date_year_end>
+    <timestamp_utc>2024-12-15T10:30:00Z</timestamp_utc>
+    <timestamp_offset>2024-12-15T10:30:00+05:30</timestamp_offset>
+    <timestamp_negative_offset>2024-12-15T10:30:00-08:00</timestamp_negative_offset>
+    <timestamp_milliseconds>2024-12-15T10:30:00.123Z</timestamp_milliseconds>
+    <time_simple>14:30:00</time_simple>
+    <time_midnight>00:00:00</time_midnight>
+    <time_end_of_day>23:59:59</time_end_of_day>
+    <time_with_millis>14:30:00.500</time_with_millis>
+    <duration_years>P1Y</duration_years>
+    <duration_months>P6M</duration_months>
+    <duration_days>P30D</duration_days>
+    <duration_complex>P1Y2M3D</duration_complex>
+    <duration_time>PT2H30M</duration_time>
+    <duration_full>P1Y2M3DT4H5M6S</duration_full>
+  </temporal>
+
+  <special>
+    <reference_target>primitives.string_simple</reference_target>
+    <reference_nested>temporal.timestamp_utc</reference_nested>
+    <reference_array>arrays.strings[0]</reference_array>
+    <binary_simple>SGVsbG8gV29ybGQ=</binary_simple>
+    <binary_with_algorithm>sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</binary_with_algorithm>
+  </special>
+
+  <arrays>
+    <strings>
+      <item>first</item>
+      <item>second</item>
+      <item>third</item>
+    </strings>
+    <integers>
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+    </integers>
+    <mixed>
+      <item>string value</item>
+      <item>42</item>
+      <item>99.99</item>
+      <item>true</item>
+      <item/>
+    </mixed>
+    <empty_array>
+      <item/>
+    </empty_array>
+    <smart_mixed>
+      <item>hello world</item>
+      <item>42</item>
+      <item>3.14</item>
+      <item>true</item>
+      <item>false</item>
+      <item>2024-06-15</item>
+      <item/>
+    </smart_mixed>
+  </arrays>
+
+  <products>
+    <product id="1" name="Widget A" price="29.99" inStock="true" category="Electronics"/>
+    <product id="2" name="Gadget B" price="149.50" inStock="false" category="Electronics"/>
+    <product id="3" name="Tool C" price="9.99" inStock="true" category="Hardware"/>
+  </products>
+
+  <employees>
+    <employee id="101" name="John Smith" hireDate="2020-01-15" salary="75000.00" active="true"/>
+    <employee id="102" name="Jane Doe" hireDate="2019-06-01" salary="82000.00" active="true"/>
+    <employee id="103" name="Bob Wilson" hireDate="2021-03-20" salary="68000.00" active="false"/>
+  </employees>
+
+  <nested>
+    <level1>
+      <level2>
+        <level3>
+          <value>deeply nested</value>
+        </level3>
+        <sibling>42</sibling>
+      </level2>
+    </level1>
+    <person>
+      <name>Alice Johnson</name>
+      <age>30</age>
+      <address>
+        <street>123 Main St</street>
+        <city>Springfield</city>
+        <zip>12345</zip>
+        <country>USA</country>
+      </address>
+      <contacts>
+        <contact type="email" value="alice@example.com"/>
+        <contact type="phone" value="+1-555-123-4567"/>
+      </contacts>
+    </person>
+  </nested>
+
+  <edge_cases>
+    <crypto_amount>0.000000000000000001</crypto_amount>
+    <pi_extended>3.14159265358979323846264338327950288</pi_extended>
+    <json_in_string><![CDATA[{"key": "value", "array": [1,2,3]}]]></json_in_string>
+    <xml_in_string><![CDATA[<root><child attr="val">text</child></root>]]></xml_in_string>
+    <path_with_spaces>C:\Program Files\My App\config.json</path_with_spaces>
+    <url>https://example.com/path?query=value&amp;other=123</url>
+    <max_safe_integer>9007199254740991</max_safe_integer>
+    <min_safe_integer>-9007199254740991</min_safe_integer>
+    <emoji_string>🎉🚀💯🔥</emoji_string>
+    <rtl_text>שלום עולם</rtl_text>
+    <chinese_text>你好世界</chinese_text>
+    <mixed_scripts>Hello こんにちは Привет</mixed_scripts>
+  </edge_cases>
+</root>

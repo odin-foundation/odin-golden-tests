@@ -1,0 +1,37 @@
+{
+  "category": "roundtrip",
+  "name": "Roundtrip Tests",
+  "description": "Format -> ODIN -> Format with exact match verification",
+  "tests": [
+    {
+      "id": "fwf-payroll",
+      "description": "ACME Payroll Export fixed-width roundtrip",
+      "direction": "fixed-width->fixed-width",
+      "input": "fwf-payroll/payroll.input.fwf",
+      "importTransform": "fwf-payroll/payroll.import.odin",
+      "exportTransform": "fwf-payroll/payroll.export.odin",
+      "intermediate": "fwf-payroll/payroll.intermediate.odin",
+      "expected": "fwf-payroll/payroll.expected.fwf"
+    },
+    {
+      "id": "json-business",
+      "description": "Business data JSON roundtrip (json->odin->json)",
+      "direction": "json->json",
+      "input": "json-business/data.input.json",
+      "importTransform": "json-business/data.import.odin",
+      "exportTransform": "json-business/data.export.odin",
+      "intermediate": "json-business/data.intermediate.odin",
+      "expected": "json-business/data.expected.json"
+    },
+    {
+      "id": "csv-products",
+      "description": "Product catalog CSV roundtrip (csv->odin->csv)",
+      "direction": "csv->csv",
+      "input": "csv-products/products.input.csv",
+      "importTransform": "csv-products/products.import.odin",
+      "exportTransform": "csv-products/products.export.odin",
+      "intermediate": "csv-products/products.intermediate.odin",
+      "expected": "csv-products/products.expected.csv"
+    }
+  ]
+}

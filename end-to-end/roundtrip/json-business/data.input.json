@@ -1,0 +1,36 @@
+{
+  "company": {
+    "name": "ACME Corporation",
+    "active": true,
+    "employeeCount": 150,
+    "rating": 4.7
+  },
+  "contact": {
+    "email": "info@acme.com",
+    "phone": "+1-555-123-4567"
+  },
+  "employees": [
+    {
+      "id": 101,
+      "name": "John Smith",
+      "department": "Engineering",
+      "salary": 85000,
+      "active": true
+    },
+    {
+      "id": 102,
+      "name": "Jane Doe",
+      "department": "Marketing",
+      "salary": 72000,
+      "active": true
+    },
+    {
+      "id": 103,
+      "name": "Bob Wilson",
+      "department": "Engineering",
+      "salary": 92000,
+      "active": false
+    }
+  ],
+  "tags": ["enterprise", "manufacturing", "global"]
+}

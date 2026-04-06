@@ -1,0 +1,43 @@
+{
+  "types": {
+    "string_value": "Hello World",
+    "integer_value": 42,
+    "number_value": 3.141592653589793,
+    "currency_value": 99.99,
+    "currency_high_precision": 0.12345678901234568,
+    "currency_usd": 250,
+    "currency_eur": 199.99,
+    "percent_rate": 0.15,
+    "percent_over_100": 1.5,
+    "boolean_true": true,
+    "boolean_false": false,
+    "null_value": null,
+    "date_value": "2024-12-15",
+    "timestamp_value": "2024-12-15T10:30:00Z",
+    "time_value": "T14:30:00",
+    "duration_value": "P1Y2M3D",
+    "reference_value": "@types.string_value",
+    "binary_value": "^SGVsbG8gV29ybGQ="
+  },
+  "modifiers": {
+    "required_field": "This field is required",
+    "confidential_field": "This field is confidential",
+    "deprecated_field": "This field is deprecated",
+    "all_modifiers": "Has all three modifiers",
+    "required_confidential": "Required and confidential",
+    "deprecated_confidential": "Deprecated and confidential"
+  },
+  "edge_cases": {
+    "large_integer": 9007199254740992,
+    "crypto_precision": 1e-18,
+    "pi_extended": 3.141592653589793,
+    "percent_high_precision": 0.12345678901234568,
+    "emoji_string": "🎉🚀💯🔥",
+    "rtl_text": "שלום עולם",
+    "chinese_text": "你好世界"
+  },
+  "$": {
+    "odin": "1.0.0",
+    "description": "Test data for type fidelity and modifier preservation"
+  }
+}

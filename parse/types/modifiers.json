@@ -1,0 +1,267 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-modifiers",
+  "description": "Modifier prefixes (!, *, -) with all value types and combinations",
+  "tests": [
+    {
+      "id": "modifier-required-string",
+      "description": "Required modifier on string",
+      "input": "name = !\"John\"",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" }
+        },
+        "modifiers": {
+          "name": { "required": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-confidential-string",
+      "description": "Confidential modifier on string",
+      "input": "ssn = *\"123-45-6789\"",
+      "expected": {
+        "assignments": {
+          "ssn": { "type": "string", "value": "123-45-6789" }
+        },
+        "modifiers": {
+          "ssn": { "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-deprecated-string",
+      "description": "Deprecated modifier on string",
+      "input": "old = -\"legacy\"",
+      "expected": {
+        "assignments": {
+          "old": { "type": "string", "value": "legacy" }
+        },
+        "modifiers": {
+          "old": { "deprecated": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-required-integer",
+      "description": "Required modifier on integer",
+      "input": "count = !##42",
+      "expected": {
+        "assignments": {
+          "count": { "type": "integer", "value": 42 }
+        },
+        "modifiers": {
+          "count": { "required": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-confidential-number",
+      "description": "Confidential modifier on number",
+      "input": "rate = *#3.14",
+      "expected": {
+        "assignments": {
+          "rate": { "type": "number", "value": 3.14 }
+        },
+        "modifiers": {
+          "rate": { "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-required-currency",
+      "description": "Required modifier on currency",
+      "input": "premium = !#$99.99",
+      "expected": {
+        "assignments": {
+          "premium": { "type": "currency", "value": 99.99 }
+        },
+        "modifiers": {
+          "premium": { "required": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-confidential-currency-with-code",
+      "description": "Confidential modifier on currency with code",
+      "input": "salary = *#$75000.00:USD",
+      "expected": {
+        "assignments": {
+          "salary": { "type": "currency", "value": 75000.00, "currencyCode": "USD" }
+        },
+        "modifiers": {
+          "salary": { "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-required-boolean",
+      "description": "Required modifier on boolean",
+      "input": "active = !true",
+      "expected": {
+        "assignments": {
+          "active": { "type": "boolean", "value": true }
+        },
+        "modifiers": {
+          "active": { "required": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-confidential-null",
+      "description": "Confidential modifier on null",
+      "input": "deleted = *~",
+      "expected": {
+        "assignments": {
+          "deleted": { "type": "null" }
+        },
+        "modifiers": {
+          "deleted": { "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-deprecated-date",
+      "description": "Deprecated modifier on date",
+      "input": "oldDate = -2024-01-15",
+      "expected": {
+        "assignments": {
+          "oldDate": { "type": "date", "raw": "2024-01-15" }
+        },
+        "modifiers": {
+          "oldDate": { "deprecated": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-confidential-reference",
+      "description": "Confidential modifier on reference",
+      "input": "link = *@other.path",
+      "expected": {
+        "assignments": {
+          "link": { "type": "reference", "path": "other.path" }
+        },
+        "modifiers": {
+          "link": { "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-required-binary",
+      "description": "Required modifier on binary",
+      "input": "cert = !^SGVsbG8=",
+      "expected": {
+        "assignments": {
+          "cert": { "type": "binary", "base64": "SGVsbG8=" }
+        },
+        "modifiers": {
+          "cert": { "required": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-required-percent",
+      "description": "Required modifier on percent",
+      "input": "taxRate = !#%0.0825",
+      "expected": {
+        "assignments": {
+          "taxRate": { "type": "percent", "value": 0.0825 }
+        },
+        "modifiers": {
+          "taxRate": { "required": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-combined-required-confidential",
+      "description": "Combined required + confidential modifiers",
+      "input": "ssn = !*\"123-45-6789\"",
+      "expected": {
+        "assignments": {
+          "ssn": { "type": "string", "value": "123-45-6789" }
+        },
+        "modifiers": {
+          "ssn": { "required": true, "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-combined-required-deprecated",
+      "description": "Combined required + deprecated modifiers",
+      "input": "field = !-\"value\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "value" }
+        },
+        "modifiers": {
+          "field": { "required": true, "deprecated": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-combined-all-three",
+      "description": "All three modifiers combined",
+      "input": "secret = !*-\"classified\"",
+      "expected": {
+        "assignments": {
+          "secret": { "type": "string", "value": "classified" }
+        },
+        "modifiers": {
+          "secret": { "required": true, "confidential": true, "deprecated": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-combined-all-three-integer",
+      "description": "All three modifiers on integer value",
+      "input": "legacyCount = !*-##100",
+      "expected": {
+        "assignments": {
+          "legacyCount": { "type": "integer", "value": 100 }
+        },
+        "modifiers": {
+          "legacyCount": { "required": true, "confidential": true, "deprecated": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-order-normalized",
+      "description": "Modifiers in non-canonical order are still parsed",
+      "input": "field = -*!\"value\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "value" }
+        },
+        "modifiers": {
+          "field": { "required": true, "confidential": true, "deprecated": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-nested-path",
+      "description": "Modifier on nested path value",
+      "input": "person.ssn = *\"987-65-4321\"",
+      "expected": {
+        "assignments": {
+          "person.ssn": { "type": "string", "value": "987-65-4321" }
+        },
+        "modifiers": {
+          "person.ssn": { "confidential": true }
+        }
+      }
+    },
+    {
+      "id": "modifier-array-element",
+      "description": "Modifier on array element",
+      "input": "items[0].secret = *\"hidden\"",
+      "expected": {
+        "assignments": {
+          "items[0].secret": { "type": "string", "value": "hidden" }
+        },
+        "modifiers": {
+          "items[0].secret": { "confidential": true }
+        }
+      }
+    }
+  ]
+}

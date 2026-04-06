@@ -1,0 +1,341 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-types",
+  "description": "All ODIN type prefixes and formats",
+  "tests": [
+    {
+      "id": "type-null",
+      "description": "Null value ~",
+      "input": "value = ~",
+      "expected": {
+        "assignments": {
+          "value": { "type": "null" }
+        }
+      }
+    },
+    {
+      "id": "type-boolean-true-prefixed",
+      "description": "Boolean true with prefix",
+      "input": "active = ?true",
+      "expected": {
+        "assignments": {
+          "active": { "type": "boolean", "value": true }
+        }
+      }
+    },
+    {
+      "id": "type-boolean-false-prefixed",
+      "description": "Boolean false with prefix",
+      "input": "active = ?false",
+      "expected": {
+        "assignments": {
+          "active": { "type": "boolean", "value": false }
+        }
+      }
+    },
+    {
+      "id": "type-boolean-true-bare",
+      "description": "Boolean true without prefix",
+      "input": "active = true",
+      "expected": {
+        "assignments": {
+          "active": { "type": "boolean", "value": true }
+        }
+      }
+    },
+    {
+      "id": "type-boolean-false-bare",
+      "description": "Boolean false without prefix",
+      "input": "active = false",
+      "expected": {
+        "assignments": {
+          "active": { "type": "boolean", "value": false }
+        }
+      }
+    },
+    {
+      "id": "type-number-integer-form",
+      "description": "Generic number (integer form)",
+      "input": "count = #42",
+      "expected": {
+        "assignments": {
+          "count": { "type": "number", "value": 42 }
+        }
+      }
+    },
+    {
+      "id": "type-number-decimal",
+      "description": "Generic number (decimal)",
+      "input": "rate = #3.14159",
+      "expected": {
+        "assignments": {
+          "rate": { "type": "number", "value": 3.14159 }
+        }
+      }
+    },
+    {
+      "id": "type-number-negative",
+      "description": "Negative number",
+      "input": "temp = #-273.15",
+      "expected": {
+        "assignments": {
+          "temp": { "type": "number", "value": -273.15 }
+        }
+      }
+    },
+    {
+      "id": "type-number-exponent",
+      "description": "Number with exponent",
+      "input": "avogadro = #6.022e23",
+      "expected": {
+        "assignments": {
+          "avogadro": { "type": "number", "value": 6.022e23 }
+        }
+      }
+    },
+    {
+      "id": "type-integer",
+      "description": "Explicit integer ##",
+      "input": "count = ##42",
+      "expected": {
+        "assignments": {
+          "count": { "type": "integer", "value": 42 }
+        }
+      }
+    },
+    {
+      "id": "type-integer-negative",
+      "description": "Negative integer",
+      "input": "offset = ##-100",
+      "expected": {
+        "assignments": {
+          "offset": { "type": "integer", "value": -100 }
+        }
+      }
+    },
+    {
+      "id": "type-currency",
+      "description": "Currency #$",
+      "input": "price = #$99.99",
+      "expected": {
+        "assignments": {
+          "price": { "type": "currency", "value": 99.99, "decimalPlaces": 2 }
+        }
+      }
+    },
+    {
+      "id": "type-currency-negative",
+      "description": "Negative currency",
+      "input": "refund = #$-50.00",
+      "expected": {
+        "assignments": {
+          "refund": { "type": "currency", "value": -50.00, "decimalPlaces": 2 }
+        }
+      }
+    },
+    {
+      "id": "type-date",
+      "description": "Date value",
+      "input": "effective = 2024-06-15",
+      "expected": {
+        "assignments": {
+          "effective": { "type": "date", "raw": "2024-06-15" }
+        }
+      }
+    },
+    {
+      "id": "type-timestamp-utc",
+      "description": "Timestamp with UTC timezone",
+      "input": "created = 2025-12-06T14:30:00Z",
+      "expected": {
+        "assignments": {
+          "created": { "type": "timestamp", "raw": "2025-12-06T14:30:00Z" }
+        }
+      }
+    },
+    {
+      "id": "type-timestamp-offset",
+      "description": "Timestamp with offset",
+      "input": "created = 2025-12-06T09:30:00-05:00",
+      "expected": {
+        "assignments": {
+          "created": { "type": "timestamp", "raw": "2025-12-06T09:30:00-05:00" }
+        }
+      }
+    },
+    {
+      "id": "type-time",
+      "description": "Time value",
+      "input": "start = T09:30:00",
+      "expected": {
+        "assignments": {
+          "start": { "type": "time", "value": "T09:30:00" }
+        }
+      }
+    },
+    {
+      "id": "type-time-milliseconds",
+      "description": "Time with milliseconds",
+      "input": "start = T09:30:00.500",
+      "expected": {
+        "assignments": {
+          "start": { "type": "time", "value": "T09:30:00.500" }
+        }
+      }
+    },
+    {
+      "id": "type-duration",
+      "description": "Duration value",
+      "input": "term = P6M",
+      "expected": {
+        "assignments": {
+          "term": { "type": "duration", "value": "P6M" }
+        }
+      }
+    },
+    {
+      "id": "type-duration-complex",
+      "description": "Complex duration",
+      "input": "period = P1Y2M3DT4H5M6S",
+      "expected": {
+        "assignments": {
+          "period": { "type": "duration", "value": "P1Y2M3DT4H5M6S" }
+        }
+      }
+    },
+    {
+      "id": "type-reference",
+      "description": "Reference to path",
+      "input": "primary = @drivers[0]",
+      "expected": {
+        "assignments": {
+          "primary": { "type": "reference", "path": "drivers[0]" }
+        }
+      }
+    },
+    {
+      "id": "type-reference-nested",
+      "description": "Reference to nested path",
+      "input": "billing = @customer.address.billing",
+      "expected": {
+        "assignments": {
+          "billing": { "type": "reference", "path": "customer.address.billing" }
+        }
+      }
+    },
+    {
+      "id": "type-binary",
+      "description": "Binary value",
+      "input": "data = ^SGVsbG8gV29ybGQh",
+      "expected": {
+        "assignments": {
+          "data": { "type": "binary", "base64": "SGVsbG8gV29ybGQh" }
+        }
+      }
+    },
+    {
+      "id": "type-binary-with-algorithm",
+      "description": "Binary with algorithm prefix",
+      "input": "hash = ^sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": {
+        "assignments": {
+          "hash": {
+            "type": "binary",
+            "algorithm": "sha256",
+            "base64": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      }
+    },
+    {
+      "id": "type-percent",
+      "description": "Percent value #%",
+      "input": "rate = #%0.15",
+      "expected": {
+        "assignments": {
+          "rate": { "type": "percent", "value": 0.15 }
+        }
+      }
+    },
+    {
+      "id": "type-percent-100",
+      "description": "Percent at 100% (1.0)",
+      "input": "complete = #%1.0",
+      "expected": {
+        "assignments": {
+          "complete": { "type": "percent", "value": 1.0 }
+        }
+      }
+    },
+    {
+      "id": "type-percent-zero",
+      "description": "Percent at 0%",
+      "input": "zero = #%0",
+      "expected": {
+        "assignments": {
+          "zero": { "type": "percent", "value": 0 }
+        }
+      }
+    },
+    {
+      "id": "type-percent-negative",
+      "description": "Negative percent",
+      "input": "loss = #%-0.05",
+      "expected": {
+        "assignments": {
+          "loss": { "type": "percent", "value": -0.05 }
+        }
+      }
+    },
+    {
+      "id": "type-percent-over-100",
+      "description": "Percent over 100% (150%)",
+      "input": "growth = #%1.5",
+      "expected": {
+        "assignments": {
+          "growth": { "type": "percent", "value": 1.5 }
+        }
+      }
+    },
+    {
+      "id": "type-currency-with-code-usd",
+      "description": "Currency with USD code",
+      "input": "price = #$99.99:USD",
+      "expected": {
+        "assignments": {
+          "price": { "type": "currency", "value": 99.99, "decimalPlaces": 2, "currencyCode": "USD" }
+        }
+      }
+    },
+    {
+      "id": "type-currency-with-code-eur",
+      "description": "Currency with EUR code",
+      "input": "cost = #$1234.56:EUR",
+      "expected": {
+        "assignments": {
+          "cost": { "type": "currency", "value": 1234.56, "decimalPlaces": 2, "currencyCode": "EUR" }
+        }
+      }
+    },
+    {
+      "id": "type-currency-with-code-lowercase",
+      "description": "Currency code is uppercased",
+      "input": "price = #$50.00:gbp",
+      "expected": {
+        "assignments": {
+          "price": { "type": "currency", "value": 50.00, "decimalPlaces": 2, "currencyCode": "GBP" }
+        }
+      }
+    },
+    {
+      "id": "type-currency-negative-with-code",
+      "description": "Negative currency with code",
+      "input": "refund = #$-25.00:USD",
+      "expected": {
+        "assignments": {
+          "refund": { "type": "currency", "value": -25.00, "decimalPlaces": 2, "currencyCode": "USD" }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-currency-scientific-notation",
+  "description": "Currency values with scientific notation must parse correctly",
+  "tests": [
+    {
+      "id": "currency-scientific-basic",
+      "description": "Scientific notation parses to correct numeric value",
+      "input": "amount = #$1.5e2",
+      "expected": {
+        "assignments": {
+          "amount": { "type": "currency", "value": 150 }
+        }
+      }
+    },
+    {
+      "id": "currency-scientific-larger",
+      "description": "1.25e3 = 1250",
+      "input": "amount = #$1.25e3",
+      "expected": {
+        "assignments": {
+          "amount": { "type": "currency", "value": 1250 }
+        }
+      }
+    },
+    {
+      "id": "currency-no-decimal-scientific",
+      "description": "5e2 = 500",
+      "input": "amount = #$5e2",
+      "expected": {
+        "assignments": {
+          "amount": { "type": "currency", "value": 500 }
+        }
+      }
+    },
+    {
+      "id": "currency-normal-unaffected",
+      "description": "Normal currency 99.99 has 2 decimal places",
+      "input": "price = #$99.99",
+      "expected": {
+        "assignments": {
+          "price": { "type": "currency", "value": 99.99, "decimalPlaces": 2 }
+        }
+      }
+    },
+    {
+      "id": "currency-three-decimals",
+      "description": "Currency with 3 decimal places preserved",
+      "input": "rate = #$1.234",
+      "expected": {
+        "assignments": {
+          "rate": { "type": "currency", "value": 1.234, "decimalPlaces": 3 }
+        }
+      }
+    }
+  ]
+}

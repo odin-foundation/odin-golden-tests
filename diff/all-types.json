@@ -1,0 +1,385 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "diff-types",
+  "description": "Diff comparison for all ODIN types",
+  "tests": [
+    {
+      "id": "diff-null-same",
+      "description": "Null values are equal",
+      "doc1": "value = ~",
+      "doc2": "value = ~",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-boolean-same",
+      "description": "Same boolean values",
+      "doc1": "flag = ?true",
+      "doc2": "flag = ?true",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-boolean-different",
+      "description": "Different boolean values",
+      "doc1": "flag = ?true",
+      "doc2": "flag = ?false",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "flag" }
+        ]
+      }
+    },
+    {
+      "id": "diff-string-same",
+      "description": "Same string values",
+      "doc1": "name = \"John\"",
+      "doc2": "name = \"John\"",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-string-different",
+      "description": "Different string values",
+      "doc1": "name = \"John\"",
+      "doc2": "name = \"Jane\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "name" }
+        ]
+      }
+    },
+    {
+      "id": "diff-number-same",
+      "description": "Same number values",
+      "doc1": "rate = #3.14",
+      "doc2": "rate = #3.14",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-number-different",
+      "description": "Different number values",
+      "doc1": "rate = #3.14",
+      "doc2": "rate = #2.71",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "rate" }
+        ]
+      }
+    },
+    {
+      "id": "diff-integer-same",
+      "description": "Same integer values",
+      "doc1": "count = ##42",
+      "doc2": "count = ##42",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-integer-different",
+      "description": "Different integer values",
+      "doc1": "count = ##42",
+      "doc2": "count = ##100",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "count" }
+        ]
+      }
+    },
+    {
+      "id": "diff-integer-vs-number",
+      "description": "Integer vs number type difference",
+      "doc1": "value = ##42",
+      "doc2": "value = #42",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "value" }
+        ]
+      }
+    },
+    {
+      "id": "diff-currency-same",
+      "description": "Same currency values",
+      "doc1": "price = #$99.99",
+      "doc2": "price = #$99.99",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-currency-different-value",
+      "description": "Different currency values",
+      "doc1": "price = #$99.99",
+      "doc2": "price = #$149.99",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "price" }
+        ]
+      }
+    },
+    {
+      "id": "diff-currency-with-code-same",
+      "description": "Same currency values with currency code",
+      "doc1": "amount = #$100.00:USD",
+      "doc2": "amount = #$100.00:USD",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-currency-different-code",
+      "description": "Same value but different currency code",
+      "doc1": "amount = #$100.00:USD",
+      "doc2": "amount = #$100.00:EUR",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "amount" }
+        ]
+      }
+    },
+    {
+      "id": "diff-currency-code-vs-no-code",
+      "description": "Currency with code vs without code",
+      "doc1": "price = #$50.00:USD",
+      "doc2": "price = #$50.00",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "price" }
+        ]
+      }
+    },
+    {
+      "id": "diff-percent-same",
+      "description": "Same percent values",
+      "doc1": "rate = #%0.15",
+      "doc2": "rate = #%0.15",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-percent-different",
+      "description": "Different percent values",
+      "doc1": "rate = #%0.15",
+      "doc2": "rate = #%0.25",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "rate" }
+        ]
+      }
+    },
+    {
+      "id": "diff-percent-vs-number",
+      "description": "Percent vs number type difference",
+      "doc1": "value = #%0.15",
+      "doc2": "value = #0.15",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "value" }
+        ]
+      }
+    },
+    {
+      "id": "diff-date-same",
+      "description": "Same date values",
+      "doc1": "effective = 2024-06-15",
+      "doc2": "effective = 2024-06-15",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-date-different",
+      "description": "Different date values",
+      "doc1": "effective = 2024-06-15",
+      "doc2": "effective = 2024-06-16",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "effective" }
+        ]
+      }
+    },
+    {
+      "id": "diff-timestamp-same",
+      "description": "Same timestamp values",
+      "doc1": "created = 2024-06-15T10:30:00Z",
+      "doc2": "created = 2024-06-15T10:30:00Z",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-timestamp-different",
+      "description": "Different timestamp values",
+      "doc1": "created = 2024-06-15T10:30:00Z",
+      "doc2": "created = 2024-06-15T11:30:00Z",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "created" }
+        ]
+      }
+    },
+    {
+      "id": "diff-time-same",
+      "description": "Same time values",
+      "doc1": "start = T09:30:00",
+      "doc2": "start = T09:30:00",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-time-different",
+      "description": "Different time values",
+      "doc1": "start = T09:30:00",
+      "doc2": "start = T10:30:00",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "start" }
+        ]
+      }
+    },
+    {
+      "id": "diff-duration-same",
+      "description": "Same duration values",
+      "doc1": "term = P6M",
+      "doc2": "term = P6M",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-duration-different",
+      "description": "Different duration values",
+      "doc1": "term = P6M",
+      "doc2": "term = P1Y",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "term" }
+        ]
+      }
+    },
+    {
+      "id": "diff-reference-same",
+      "description": "Same reference values",
+      "doc1": "primary = @drivers[0]",
+      "doc2": "primary = @drivers[0]",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-reference-different",
+      "description": "Different reference values",
+      "doc1": "primary = @drivers[0]",
+      "doc2": "primary = @drivers[1]",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "primary" }
+        ]
+      }
+    },
+    {
+      "id": "diff-binary-same",
+      "description": "Same binary values",
+      "doc1": "data = ^SGVsbG8=",
+      "doc2": "data = ^SGVsbG8=",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-binary-different",
+      "description": "Different binary values",
+      "doc1": "data = ^SGVsbG8=",
+      "doc2": "data = ^V29ybGQ=",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "data" }
+        ]
+      }
+    },
+    {
+      "id": "diff-binary-different-algorithm",
+      "description": "Same data but different algorithm",
+      "doc1": "hash = ^sha256:abc123",
+      "doc2": "hash = ^md5:abc123",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "hash" }
+        ]
+      }
+    },
+    {
+      "id": "diff-addition",
+      "description": "Field addition",
+      "doc1": "name = \"John\"",
+      "doc2": "name = \"John\"\nage = ##30",
+      "expected": {
+        "isEmpty": false,
+        "additions": [
+          { "path": "age" }
+        ]
+      }
+    },
+    {
+      "id": "diff-deletion",
+      "description": "Field deletion",
+      "doc1": "name = \"John\"\nage = ##30",
+      "doc2": "name = \"John\"",
+      "expected": {
+        "isEmpty": false,
+        "deletions": [
+          { "path": "age" }
+        ]
+      }
+    },
+    {
+      "id": "diff-move",
+      "description": "Field move (same value, different path)",
+      "doc1": "oldField = \"value\"",
+      "doc2": "newField = \"value\"",
+      "expected": {
+        "isEmpty": false,
+        "moves": [
+          { "fromPath": "oldField", "toPath": "newField" }
+        ]
+      }
+    },
+    {
+      "id": "diff-type-change",
+      "description": "Value type change (string to integer)",
+      "doc1": "value = \"42\"",
+      "doc2": "value = ##42",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "value" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "items": [
+    {"name": "width", "value": 100},
+    {"name": "height", "value": 200},
+    {"name": "depth", "value": 50}
+  ]
+}

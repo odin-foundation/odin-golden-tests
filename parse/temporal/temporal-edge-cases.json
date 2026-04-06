@@ -1,0 +1,347 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-temporal-edge-cases",
+  "description": "Temporal type edge cases and precision tests",
+  "tests": [
+    {
+      "id": "date-leap-year-feb-29",
+      "description": "February 29 in leap year",
+      "input": "date = 2024-02-29",
+      "expected": {
+        "assignments": {
+          "date": { "type": "date", "value": "2024-02-29" }
+        }
+      }
+    },
+    {
+      "id": "date-leap-year-century",
+      "description": "Century year leap day (2000 is leap, 1900 is not)",
+      "input": "y2000 = 2000-02-29",
+      "expected": {
+        "assignments": {
+          "y2000": { "type": "date", "value": "2000-02-29" }
+        }
+      }
+    },
+    {
+      "id": "date-month-boundaries",
+      "description": "Last day of each month",
+      "input": "jan = 2024-01-31\nfeb = 2024-02-29\nmar = 2024-03-31\napr = 2024-04-30\nmay = 2024-05-31\njun = 2024-06-30\njul = 2024-07-31\naug = 2024-08-31\nsep = 2024-09-30\noct = 2024-10-31\nnov = 2024-11-30\ndec = 2024-12-31",
+      "expected": {
+        "assignments": {
+          "jan": { "type": "date", "value": "2024-01-31" },
+          "feb": { "type": "date", "value": "2024-02-29" },
+          "mar": { "type": "date", "value": "2024-03-31" },
+          "apr": { "type": "date", "value": "2024-04-30" },
+          "may": { "type": "date", "value": "2024-05-31" },
+          "jun": { "type": "date", "value": "2024-06-30" },
+          "jul": { "type": "date", "value": "2024-07-31" },
+          "aug": { "type": "date", "value": "2024-08-31" },
+          "sep": { "type": "date", "value": "2024-09-30" },
+          "oct": { "type": "date", "value": "2024-10-31" },
+          "nov": { "type": "date", "value": "2024-11-30" },
+          "dec": { "type": "date", "value": "2024-12-31" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-utc-z",
+      "description": "Timestamp with Z suffix (UTC)",
+      "input": "ts = 2024-06-15T14:30:00Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-positive-offset",
+      "description": "Timestamp with positive offset",
+      "input": "ts = 2024-06-15T14:30:00+05:30",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00+05:30" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-negative-offset",
+      "description": "Timestamp with negative offset",
+      "input": "ts = 2024-06-15T14:30:00-08:00",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00-08:00" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-max-offset",
+      "description": "Timestamp with maximum offset (+14:00)",
+      "input": "ts = 2024-06-15T14:30:00+14:00",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00+14:00" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-min-offset",
+      "description": "Timestamp with minimum offset (-12:00)",
+      "input": "ts = 2024-06-15T14:30:00-12:00",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00-12:00" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-milliseconds",
+      "description": "Timestamp with millisecond precision",
+      "input": "ts = 2024-06-15T14:30:00.123Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00.123Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-microseconds",
+      "description": "Timestamp with microsecond precision",
+      "input": "ts = 2024-06-15T14:30:00.123456Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00.123456Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-nanoseconds",
+      "description": "Timestamp with nanosecond precision",
+      "input": "ts = 2024-06-15T14:30:00.123456789Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T14:30:00.123456789Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-midnight",
+      "description": "Timestamp at midnight",
+      "input": "ts = 2024-06-15T00:00:00Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T00:00:00Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-end-of-day",
+      "description": "Timestamp at end of day",
+      "input": "ts = 2024-06-15T23:59:59Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T23:59:59Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-leap-second",
+      "description": "Timestamp with leap second (23:59:60)",
+      "input": "ts = 2016-12-31T23:59:60Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2016-12-31T23:59:60Z" }
+        }
+      },
+      "note": "Leap seconds are valid per ISO 8601"
+    },
+    {
+      "id": "time-simple",
+      "description": "Simple time value",
+      "input": "t = T14:30:00",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T14:30:00" }
+        }
+      }
+    },
+    {
+      "id": "time-with-milliseconds",
+      "description": "Time with milliseconds",
+      "input": "t = T14:30:00.500",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T14:30:00.500" }
+        }
+      }
+    },
+    {
+      "id": "time-midnight",
+      "description": "Midnight",
+      "input": "t = T00:00:00",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T00:00:00" }
+        }
+      }
+    },
+    {
+      "id": "time-end-of-day",
+      "description": "Last second of day",
+      "input": "t = T23:59:59",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T23:59:59" }
+        }
+      }
+    },
+    {
+      "id": "duration-years",
+      "description": "Duration in years",
+      "input": "d = P5Y",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "P5Y" }
+        }
+      }
+    },
+    {
+      "id": "duration-months",
+      "description": "Duration in months",
+      "input": "d = P6M",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "P6M" }
+        }
+      }
+    },
+    {
+      "id": "duration-weeks",
+      "description": "Duration in weeks",
+      "input": "d = P2W",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "P2W" }
+        }
+      }
+    },
+    {
+      "id": "duration-days",
+      "description": "Duration in days",
+      "input": "d = P30D",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "P30D" }
+        }
+      }
+    },
+    {
+      "id": "duration-hours",
+      "description": "Duration in hours",
+      "input": "d = PT24H",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "PT24H" }
+        }
+      }
+    },
+    {
+      "id": "duration-minutes",
+      "description": "Duration in minutes",
+      "input": "d = PT90M",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "PT90M" }
+        }
+      }
+    },
+    {
+      "id": "duration-seconds",
+      "description": "Duration in seconds",
+      "input": "d = PT3600S",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "PT3600S" }
+        }
+      }
+    },
+    {
+      "id": "duration-complex",
+      "description": "Complex duration with multiple components",
+      "input": "d = P1Y2M3DT4H5M6S",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "P1Y2M3DT4H5M6S" }
+        }
+      }
+    },
+    {
+      "id": "duration-fractional-seconds",
+      "description": "Duration with fractional seconds",
+      "input": "d = PT0.5S",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "PT0.5S" }
+        }
+      }
+    },
+    {
+      "id": "date-far-past",
+      "description": "Date in far past",
+      "input": "d = 0001-01-01",
+      "expected": {
+        "assignments": {
+          "d": { "type": "date", "value": "0001-01-01" }
+        }
+      }
+    },
+    {
+      "id": "date-far-future",
+      "description": "Date in far future",
+      "input": "d = 9999-12-31",
+      "expected": {
+        "assignments": {
+          "d": { "type": "date", "value": "9999-12-31" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-year-boundary",
+      "description": "Timestamp at year boundary",
+      "input": "ts = 2024-12-31T23:59:59.999Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-12-31T23:59:59.999Z" }
+        }
+      }
+    },
+    {
+      "id": "duration-zero",
+      "description": "Zero duration",
+      "input": "d = PT0S",
+      "expected": {
+        "assignments": {
+          "d": { "type": "duration", "value": "PT0S" }
+        }
+      }
+    },
+    {
+      "id": "date-not-leap-year-error",
+      "description": "February 29 in non-leap year is invalid",
+      "input": "date = 2023-02-29",
+      "expectError": {
+        "code": "P001",
+        "message": "Invalid day 29"
+      }
+    },
+    {
+      "id": "date-century-not-leap-error",
+      "description": "Century year not divisible by 400 is not leap year",
+      "input": "date = 1900-02-29",
+      "expectError": {
+        "code": "P001",
+        "message": "Invalid day 29"
+      }
+    }
+  ]
+}

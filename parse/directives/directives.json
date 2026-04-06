@@ -1,0 +1,201 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-directives",
+  "description": "Directive parsing (@import, @schema, @if)",
+  "tests": [
+    {
+      "id": "import-relative-path",
+      "description": "Import directive with relative path",
+      "input": "@import ./other.odin\n\nname = \"test\"",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "./other.odin", "alias": null }
+        ],
+        "assignments": {
+          "name": { "type": "string", "value": "test" }
+        }
+      }
+    },
+    {
+      "id": "import-with-alias",
+      "description": "Import directive with alias",
+      "input": "@import ./shared/types.odin as types\n\nname = \"test\"",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "./shared/types.odin", "alias": "types" }
+        ],
+        "assignments": {
+          "name": { "type": "string", "value": "test" }
+        }
+      }
+    },
+    {
+      "id": "import-parent-directory",
+      "description": "Import from parent directory",
+      "input": "@import ../common.odin\n\nvalue = ##42",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "../common.odin", "alias": null }
+        ],
+        "assignments": {
+          "value": { "type": "integer", "value": 42 }
+        }
+      }
+    },
+    {
+      "id": "import-absolute-path",
+      "description": "Import with absolute path",
+      "input": "@import /schemas/policy.odin\n\nname = \"policy\"",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "/schemas/policy.odin", "alias": null }
+        ],
+        "assignments": {
+          "name": { "type": "string", "value": "policy" }
+        }
+      }
+    },
+    {
+      "id": "import-url",
+      "description": "Import from URL",
+      "input": "@import https://schemas.example.com/auto/2024.odin\n\nversion = \"2024\"",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "https://schemas.example.com/auto/2024.odin", "alias": null }
+        ],
+        "assignments": {
+          "version": { "type": "string", "value": "2024" }
+        }
+      }
+    },
+    {
+      "id": "import-multiple",
+      "description": "Multiple import directives",
+      "input": "@import ./insured.odin as insured\n@import ./policy.odin as policy\n@import ./vehicle.odin\n\nname = \"test\"",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "./insured.odin", "alias": "insured" },
+          { "type": "import", "path": "./policy.odin", "alias": "policy" },
+          { "type": "import", "path": "./vehicle.odin", "alias": null }
+        ],
+        "assignments": {
+          "name": { "type": "string", "value": "test" }
+        }
+      }
+    },
+    {
+      "id": "schema-directive",
+      "description": "Schema directive",
+      "input": "@schema https://odin.example.org/schemas/policy/1.0.odin\n\n{$}\nodin = \"1.0.0\"",
+      "expected": {
+        "directives": [
+          { "type": "schema", "url": "https://odin.example.org/schemas/policy/1.0.odin" }
+        ],
+        "assignments": {
+          "$.odin": { "type": "string", "value": "1.0.0" }
+        }
+      }
+    },
+    {
+      "id": "if-directive-simple",
+      "description": "Simple conditional directive",
+      "input": "@if policy.state = \"TX\"\n{endorsement}\nsr22 = true",
+      "expected": {
+        "directives": [
+          { "type": "if", "condition": "policy.state = \"TX\"" }
+        ],
+        "assignments": {
+          "endorsement.sr22": { "type": "boolean", "value": true }
+        }
+      }
+    },
+    {
+      "id": "if-directive-multiple",
+      "description": "Multiple conditional directives",
+      "input": "@if policy.state = \"TX\"\n{tx_endorsement}\nsr22 = true\n\n@if policy.state = \"CA\"\n{ca_endorsement}\nproof = true",
+      "expected": {
+        "directives": [
+          { "type": "if", "condition": "policy.state = \"TX\"" },
+          { "type": "if", "condition": "policy.state = \"CA\"" }
+        ],
+        "assignments": {
+          "tx_endorsement.sr22": { "type": "boolean", "value": true },
+          "ca_endorsement.proof": { "type": "boolean", "value": true }
+        }
+      }
+    },
+    {
+      "id": "directive-with-comment",
+      "description": "Directive followed by comment",
+      "input": "@import ./data.odin ; load data file\n\nvalue = ##1",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "./data.odin", "alias": null }
+        ],
+        "assignments": {
+          "value": { "type": "integer", "value": 1 }
+        }
+      }
+    },
+    {
+      "id": "error-invalid-directive",
+      "description": "Invalid directive name",
+      "input": "@invalid ./file.odin\n\nname = \"test\"",
+      "expectError": {
+        "code": "P001",
+        "message": "Invalid directive"
+      }
+    },
+    {
+      "id": "error-import-missing-path",
+      "description": "Import directive without path",
+      "input": "@import\n\nname = \"test\"",
+      "expectError": {
+        "code": "P009",
+        "message": "Invalid import directive syntax"
+      }
+    },
+    {
+      "id": "error-import-invalid-alias",
+      "description": "Import with invalid alias syntax (trailing 'as')",
+      "input": "@import ./file.odin as\n\nname = \"test\"",
+      "expectError": {
+        "code": "P009",
+        "message": "Import alias requires identifier"
+      }
+    },
+    {
+      "id": "error-schema-missing-url",
+      "description": "Schema directive without URL",
+      "input": "@schema\n\nname = \"test\"",
+      "expectError": {
+        "code": "P009",
+        "message": "Schema directive requires URL"
+      }
+    },
+    {
+      "id": "error-if-missing-condition",
+      "description": "If directive without condition",
+      "input": "@if\n\nname = \"test\"",
+      "expectError": {
+        "code": "P009",
+        "message": "Conditional directive requires expression"
+      }
+    },
+    {
+      "id": "mixed-directives",
+      "description": "Import, schema, and if directives together",
+      "input": "@import ./types.odin as types\n@schema https://example.com/schema.odin\n@if policy.state = \"TX\"\n\nname = \"test\"",
+      "expected": {
+        "directives": [
+          { "type": "import", "path": "./types.odin", "alias": "types" },
+          { "type": "schema", "url": "https://example.com/schema.odin" },
+          { "type": "if", "condition": "policy.state = \"TX\"" }
+        ],
+        "assignments": {
+          "name": { "type": "string", "value": "test" }
+        }
+      }
+    }
+  ]
+}

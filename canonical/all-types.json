@@ -1,0 +1,175 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "canonical-types",
+  "description": "Canonical form for all ODIN types",
+  "tests": [
+    {
+      "id": "canonical-null",
+      "description": "Null value canonical form",
+      "input": "value = ~",
+      "expected": "value = ~\n"
+    },
+    {
+      "id": "canonical-boolean-true",
+      "description": "Boolean true canonical form (no prefix)",
+      "input": "flag = ?true",
+      "expected": "flag = true\n"
+    },
+    {
+      "id": "canonical-boolean-false",
+      "description": "Boolean false canonical form",
+      "input": "flag = ?false",
+      "expected": "flag = false\n"
+    },
+    {
+      "id": "canonical-string",
+      "description": "String canonical form",
+      "input": "name = \"John\"",
+      "expected": "name = \"John\"\n"
+    },
+    {
+      "id": "canonical-string-escape",
+      "description": "String with escapes canonical form",
+      "input": "text = \"line1\\nline2\"",
+      "expected": "text = \"line1\\nline2\"\n"
+    },
+    {
+      "id": "canonical-number",
+      "description": "Number canonical form",
+      "input": "rate = #3.14",
+      "expected": "rate = #3.14\n"
+    },
+    {
+      "id": "canonical-number-integer-form",
+      "description": "Number (integer form) canonical removes trailing zero",
+      "input": "count = #42",
+      "expected": "count = #42\n"
+    },
+    {
+      "id": "canonical-integer",
+      "description": "Integer canonical form",
+      "input": "count = ##42",
+      "expected": "count = ##42\n"
+    },
+    {
+      "id": "canonical-integer-negative",
+      "description": "Negative integer canonical form",
+      "input": "offset = ##-100",
+      "expected": "offset = ##-100\n"
+    },
+    {
+      "id": "canonical-currency",
+      "description": "Currency canonical form",
+      "input": "price = #$99.99",
+      "expected": "price = #$99.99\n"
+    },
+    {
+      "id": "canonical-currency-with-code",
+      "description": "Currency with code canonical form",
+      "input": "amount = #$100.00:USD",
+      "expected": "amount = #$100.00:USD\n"
+    },
+    {
+      "id": "canonical-currency-code-uppercased",
+      "description": "Currency code is uppercased",
+      "input": "price = #$50.00:gbp",
+      "expected": "price = #$50.00:GBP\n"
+    },
+    {
+      "id": "canonical-currency-negative",
+      "description": "Negative currency canonical form",
+      "input": "refund = #$-25.00",
+      "expected": "refund = #$-25.00\n"
+    },
+    {
+      "id": "canonical-percent",
+      "description": "Percent canonical form",
+      "input": "rate = #%0.15",
+      "expected": "rate = #%0.15\n"
+    },
+    {
+      "id": "canonical-percent-whole",
+      "description": "Percent at 100% canonical form",
+      "input": "complete = #%1",
+      "expected": "complete = #%1\n"
+    },
+    {
+      "id": "canonical-percent-negative",
+      "description": "Negative percent canonical form",
+      "input": "loss = #%-0.05",
+      "expected": "loss = #%-0.05\n"
+    },
+    {
+      "id": "canonical-date",
+      "description": "Date canonical form",
+      "input": "effective = 2024-06-15",
+      "expected": "effective = 2024-06-15\n"
+    },
+    {
+      "id": "canonical-timestamp",
+      "description": "Timestamp canonical form",
+      "input": "created = 2024-06-15T10:30:00Z",
+      "expected": "created = 2024-06-15T10:30:00Z\n"
+    },
+    {
+      "id": "canonical-time",
+      "description": "Time canonical form",
+      "input": "start = T09:30:00",
+      "expected": "start = T09:30:00\n"
+    },
+    {
+      "id": "canonical-duration",
+      "description": "Duration canonical form",
+      "input": "term = P6M",
+      "expected": "term = P6M\n"
+    },
+    {
+      "id": "canonical-reference",
+      "description": "Reference canonical form",
+      "input": "primary = @drivers[0]",
+      "expected": "primary = @drivers[0]\n"
+    },
+    {
+      "id": "canonical-binary",
+      "description": "Binary canonical form",
+      "input": "data = ^SGVsbG8=",
+      "expected": "data = ^SGVsbG8=\n"
+    },
+    {
+      "id": "canonical-binary-algorithm",
+      "description": "Binary with algorithm canonical form",
+      "input": "hash = ^sha256:SGVsbG8=",
+      "expected": "hash = ^sha256:SGVsbG8=\n"
+    },
+    {
+      "id": "canonical-sorted-paths",
+      "description": "Paths are sorted alphabetically",
+      "input": "zebra = \"last\"\nalpha = \"first\"\nmiddle = \"second\"",
+      "expected": "alpha = \"first\"\nmiddle = \"second\"\nzebra = \"last\"\n"
+    },
+    {
+      "id": "canonical-modifiers-required",
+      "description": "Required modifier preserved",
+      "input": "name = !\"John\"",
+      "expected": "name = !\"John\"\n"
+    },
+    {
+      "id": "canonical-modifiers-confidential",
+      "description": "Confidential modifier preserved",
+      "input": "ssn = *\"123-45-6789\"",
+      "expected": "ssn = *\"123-45-6789\"\n"
+    },
+    {
+      "id": "canonical-modifiers-deprecated",
+      "description": "Deprecated modifier preserved",
+      "input": "oldField = -\"legacy\"",
+      "expected": "oldField = -\"legacy\"\n"
+    },
+    {
+      "id": "canonical-modifiers-combined",
+      "description": "Combined modifiers preserved in canonical order (!*-)",
+      "input": "important = !-*\"secret\"",
+      "expected": "important = !*-\"secret\"\n"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:odin="https://odin.foundation/ns">
+  <types>
+    <string_value>Hello World</string_value>
+    <integer_value odin:type="integer">42</integer_value>
+    <number_value odin:type="number">3.14159265358979323846</number_value>
+    <currency_value odin:type="currency">99.99</currency_value>
+    <currency_high_precision odin:type="currency">0.123456789012345678</currency_high_precision>
+    <currency_usd odin:type="currency" odin:currencyCode="USD">250.00</currency_usd>
+    <currency_eur odin:type="currency" odin:currencyCode="EUR">199.99</currency_eur>
+    <percent_rate odin:type="percent">0.15</percent_rate>
+    <percent_over_100 odin:type="percent">1.5</percent_over_100>
+    <boolean_true odin:type="boolean">true</boolean_true>
+    <boolean_false odin:type="boolean">false</boolean_false>
+    <date_value odin:type="date">2024-12-15</date_value>
+    <timestamp_value odin:type="timestamp">2024-12-15T10:30:00Z</timestamp_value>
+    <time_value odin:type="time">T14:30:00</time_value>
+    <duration_value odin:type="duration">P1Y2M3D</duration_value>
+    <reference_value odin:type="reference">@types.string_value</reference_value>
+    <binary_value odin:type="binary">^SGVsbG8gV29ybGQ=</binary_value>
+  </types>
+  <modifiers>
+    <required_field odin:required="true">This field is required</required_field>
+    <confidential_field odin:confidential="true">This field is confidential</confidential_field>
+    <deprecated_field odin:deprecated="true">This field is deprecated</deprecated_field>
+    <all_modifiers odin:required="true" odin:confidential="true" odin:deprecated="true">Has all three modifiers</all_modifiers>
+    <required_confidential odin:required="true" odin:confidential="true">Required and confidential</required_confidential>
+    <deprecated_confidential odin:confidential="true" odin:deprecated="true">Deprecated and confidential</deprecated_confidential>
+  </modifiers>
+  <edge_cases>
+    <large_integer odin:type="integer">9007199254740992</large_integer>
+    <crypto_precision odin:type="currency">0.000000000000000001</crypto_precision>
+    <pi_extended odin:type="number">3.14159265358979323846264338327950288</pi_extended>
+    <percent_high_precision odin:type="percent">0.123456789012345678</percent_high_precision>
+    <emoji_string>🎉🚀💯🔥</emoji_string>
+    <rtl_text>שלום עולם</rtl_text>
+    <chinese_text>你好世界</chinese_text>
+  </edge_cases>
+</root>

@@ -1,0 +1,5 @@
+{reversed[] : ~}
+"third"
+"second"
+"first"
+

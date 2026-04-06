@@ -1,0 +1,57 @@
+address:
+  city: Springfield
+  country: USA
+  state: IL
+  street: 123 Main Street
+  zip: 62701
+company:
+  active: "true"
+  annualRevenue: 2500000
+  employeeCount: 150
+  founded: 2010-05-15
+  name: ACME Corporation
+contact:
+  email: info@acme.com
+  phone: +1-555-123-4567
+  website: "https://acme.com"
+employees:
+  - active: "true"
+    department: Engineering
+    hireDate: 2020-01-15
+    id: 101
+    name: John Smith
+    salary: 85000
+  - active: "true"
+    department: Marketing
+    hireDate: 2019-06-01
+    id: 102
+    name: Jane Doe
+    salary: 72000
+  - active: "true"
+    department: Engineering
+    hireDate: 2018-03-20
+    id: 103
+    name: Bob Wilson
+    salary: 92000
+  - active: "false"
+    department: HR
+    hireDate: 2021-09-01
+    id: 104
+    name: Alice Brown
+    salary: 68000
+products:
+  - available: "true"
+    name: Widget Pro
+    price: 29.99
+    quantity: 100
+    sku: SKU-001
+  - available: "true"
+    name: Gadget Plus
+    price: 149.5
+    quantity: 25
+    sku: SKU-002
+  - available: "false"
+    name: Tool Master
+    price: 9.99
+    quantity: 0
+    sku: SKU-003

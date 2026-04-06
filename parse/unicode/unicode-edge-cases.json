@@ -1,0 +1,249 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-unicode-edge-cases",
+  "description": "Unicode handling edge cases",
+  "tests": [
+    {
+      "id": "emoji-simple",
+      "description": "Simple emoji characters",
+      "input": "emoji = \"\ud83d\ude00\ud83d\ude01\ud83d\ude02\"",
+      "expected": {
+        "assignments": {
+          "emoji": { "type": "string", "value": "\ud83d\ude00\ud83d\ude01\ud83d\ude02" }
+        }
+      }
+    },
+    {
+      "id": "emoji-skin-tones",
+      "description": "Emoji with skin tone modifiers",
+      "input": "hands = \"\ud83d\udc4b\ud83d\udc4b\ud83c\udffb\ud83d\udc4b\ud83c\udffc\ud83d\udc4b\ud83c\udffd\ud83d\udc4b\ud83c\udffe\ud83d\udc4b\ud83c\udfff\"",
+      "expected": {
+        "assignments": {
+          "hands": { "type": "string", "value": "\ud83d\udc4b\ud83d\udc4b\ud83c\udffb\ud83d\udc4b\ud83c\udffc\ud83d\udc4b\ud83c\udffd\ud83d\udc4b\ud83c\udffe\ud83d\udc4b\ud83c\udfff" }
+        }
+      }
+    },
+    {
+      "id": "emoji-zwj-sequence",
+      "description": "Emoji ZWJ sequences (family emoji)",
+      "input": "family = \"\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66\"",
+      "expected": {
+        "assignments": {
+          "family": { "type": "string", "value": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66" }
+        }
+      }
+    },
+    {
+      "id": "emoji-flags",
+      "description": "Flag emoji (regional indicators)",
+      "input": "flags = \"\ud83c\uddfa\ud83c\uddf8\ud83c\uddec\ud83c\udde7\ud83c\uddef\ud83c\uddf5\"",
+      "expected": {
+        "assignments": {
+          "flags": { "type": "string", "value": "\ud83c\uddfa\ud83c\uddf8\ud83c\uddec\ud83c\udde7\ud83c\uddef\ud83c\uddf5" }
+        }
+      }
+    },
+    {
+      "id": "chinese-simplified",
+      "description": "Chinese simplified characters",
+      "input": "greeting = \"\u4f60\u597d\u4e16\u754c\"",
+      "expected": {
+        "assignments": {
+          "greeting": { "type": "string", "value": "\u4f60\u597d\u4e16\u754c" }
+        }
+      }
+    },
+    {
+      "id": "chinese-traditional",
+      "description": "Chinese traditional characters",
+      "input": "greeting = \"\u4f60\u597d\u4e16\u754c\"",
+      "expected": {
+        "assignments": {
+          "greeting": { "type": "string", "value": "\u4f60\u597d\u4e16\u754c" }
+        }
+      }
+    },
+    {
+      "id": "japanese-mixed",
+      "description": "Japanese with hiragana, katakana, and kanji",
+      "input": "text = \"\u3053\u3093\u306b\u3061\u306f\u4e16\u754c\u30cf\u30ed\u30fc\"",
+      "expected": {
+        "assignments": {
+          "text": { "type": "string", "value": "\u3053\u3093\u306b\u3061\u306f\u4e16\u754c\u30cf\u30ed\u30fc" }
+        }
+      }
+    },
+    {
+      "id": "korean",
+      "description": "Korean hangul",
+      "input": "greeting = \"\uc548\ub155\ud558\uc138\uc694\"",
+      "expected": {
+        "assignments": {
+          "greeting": { "type": "string", "value": "\uc548\ub155\ud558\uc138\uc694" }
+        }
+      }
+    },
+    {
+      "id": "arabic",
+      "description": "Arabic text (RTL)",
+      "input": "greeting = \"\u0645\u0631\u062d\u0628\u0627 \u0628\u0627\u0644\u0639\u0627\u0644\u0645\"",
+      "expected": {
+        "assignments": {
+          "greeting": { "type": "string", "value": "\u0645\u0631\u062d\u0628\u0627 \u0628\u0627\u0644\u0639\u0627\u0644\u0645" }
+        }
+      }
+    },
+    {
+      "id": "hebrew",
+      "description": "Hebrew text (RTL)",
+      "input": "greeting = \"\u05e9\u05dc\u05d5\u05dd \u05e2\u05d5\u05dc\u05dd\"",
+      "expected": {
+        "assignments": {
+          "greeting": { "type": "string", "value": "\u05e9\u05dc\u05d5\u05dd \u05e2\u05d5\u05dc\u05dd" }
+        }
+      }
+    },
+    {
+      "id": "mixed-scripts",
+      "description": "Multiple scripts in one value",
+      "input": "mixed = \"Hello \u4f60\u597d \u3053\u3093\u306b\u3061\u306f \u0645\u0631\u062d\u0628\u0627 \ud83d\udc4b\"",
+      "expected": {
+        "assignments": {
+          "mixed": { "type": "string", "value": "Hello \u4f60\u597d \u3053\u3093\u306b\u3061\u306f \u0645\u0631\u062d\u0628\u0627 \ud83d\udc4b" }
+        }
+      }
+    },
+    {
+      "id": "unicode-escape-4",
+      "description": "4-digit unicode escape",
+      "input": "heart = \"\\u2764\"",
+      "expected": {
+        "assignments": {
+          "heart": { "type": "string", "value": "\u2764" }
+        }
+      }
+    },
+    {
+      "id": "unicode-escape-8",
+      "description": "8-digit unicode escape (emoji)",
+      "input": "emoji = \"\\U0001F600\"",
+      "expected": {
+        "assignments": {
+          "emoji": { "type": "string", "value": "\ud83d\ude00" }
+        }
+      }
+    },
+    {
+      "id": "combining-characters",
+      "description": "Characters with combining marks",
+      "input": "accented = \"caf\u00e9 na\u00efve r\u00e9sum\u00e9\"",
+      "expected": {
+        "assignments": {
+          "accented": { "type": "string", "value": "caf\u00e9 na\u00efve r\u00e9sum\u00e9" }
+        }
+      }
+    },
+    {
+      "id": "precomposed-vs-decomposed",
+      "description": "Precomposed and decomposed forms (byte comparison)",
+      "input": "precomposed = \"\u00e9\"\ndecomposed = \"e\\u0301\"",
+      "expected": {
+        "assignments": {
+          "precomposed": { "type": "string", "value": "\u00e9" },
+          "decomposed": { "type": "string", "value": "e\u0301" }
+        },
+        "note": "These are different byte sequences representing the same visual character"
+      }
+    },
+    {
+      "id": "zero-width-characters",
+      "description": "Zero-width characters preserved",
+      "input": "zw = \"a\\u200Bb\\u200Cc\\u200Dd\\uFEFF\"",
+      "expected": {
+        "assignments": {
+          "zw": { "type": "string", "value": "a\u200bb\u200cc\u200dd\ufeff" }
+        }
+      }
+    },
+    {
+      "id": "bidi-control-characters",
+      "description": "Bidirectional control characters",
+      "input": "bidi = \"\\u202AHello\\u202C \\u202B\u05e9\u05dc\u05d5\u05dd\\u202C\"",
+      "expected": {
+        "assignments": {
+          "bidi": { "type": "string", "value": "\u202aHello\u202c \u202b\u05e9\u05dc\u05d5\u05dd\u202c" }
+        }
+      }
+    },
+    {
+      "id": "math-symbols",
+      "description": "Mathematical symbols",
+      "input": "math = \"\u2211 \u220f \u222b \u221a \u221e \u2202 \u2207\"",
+      "expected": {
+        "assignments": {
+          "math": { "type": "string", "value": "\u2211 \u220f \u222b \u221a \u221e \u2202 \u2207" }
+        }
+      }
+    },
+    {
+      "id": "currency-symbols",
+      "description": "Currency symbols",
+      "input": "currencies = \"$ \u20ac \u00a3 \u00a5 \u20b9 \u20bd \u20bf\"",
+      "expected": {
+        "assignments": {
+          "currencies": { "type": "string", "value": "$ \u20ac \u00a3 \u00a5 \u20b9 \u20bd \u20bf" }
+        }
+      }
+    },
+    {
+      "id": "box-drawing",
+      "description": "Box drawing characters",
+      "input": "box = \"\u250c\u2500\u2500\u2510\\n\u2502  \u2502\\n\u2514\u2500\u2500\u2518\"",
+      "expected": {
+        "assignments": {
+          "box": { "type": "string", "value": "\u250c\u2500\u2500\u2510\n\u2502  \u2502\n\u2514\u2500\u2500\u2518" }
+        }
+      }
+    },
+    {
+      "id": "private-use-area",
+      "description": "Private Use Area characters",
+      "input": "pua = \"\\uE000\\uE001\\uF8FF\"",
+      "expected": {
+        "assignments": {
+          "pua": { "type": "string", "value": "\ue000\ue001\uf8ff" }
+        }
+      }
+    },
+    {
+      "id": "supplementary-plane",
+      "description": "Supplementary plane characters (beyond BMP)",
+      "input": "supp = \"\\U00010000\\U00010FFF\\U0001F4A9\"",
+      "expected": {
+        "assignments": {
+          "supp": { "type": "string", "value": "\ud800\udc00\ud803\udfff\ud83d\udca9" }
+        }
+      }
+    },
+    {
+      "id": "null-character-in-string",
+      "description": "Null character in string",
+      "input": "nul = \"a\\0b\"",
+      "expected": {
+        "assignments": {
+          "nul": { "type": "string", "value": "a\u0000b" }
+        }
+      }
+    },
+    {
+      "id": "control-characters",
+      "description": "Various control characters",
+      "input": "ctrl = \"\\t\\r\\n\"",
+      "expected": {
+        "assignments": {
+          "ctrl": { "type": "string", "value": "\t\r\n" }
+        }
+      }
+    }
+  ]
+}

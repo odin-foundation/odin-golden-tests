@@ -1,0 +1,7 @@
+{
+  "coverages": [
+    {"type": "liability", "status": "active"},
+    {"type": "collision", "status": "cancelled"},
+    {"type": "comprehensive", "status": "active"}
+  ]
+}

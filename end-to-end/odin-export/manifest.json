@@ -1,0 +1,51 @@
+{
+  "category": "odin-export",
+  "name": "ODIN Direct Export",
+  "description": "Direct ODIN export without transform - tests type fidelity and modifiers",
+  "tests": [
+    {
+      "id": "toJSON-types-modifiers",
+      "description": "Export ODIN to JSON with type and modifier preservation",
+      "method": "toJSON",
+      "input": "odin-to-json-fidelity/types-modifiers.input.odin",
+      "expected": "odin-to-json-fidelity/types-modifiers.expected.json",
+      "options": {
+        "preserveTypes": true,
+        "preserveModifiers": true
+      }
+    },
+    {
+      "id": "toJSON-modifiers-only",
+      "description": "Export ODIN to JSON with modifier preservation only",
+      "method": "toJSON",
+      "input": "odin-to-json-fidelity/types-modifiers.input.odin",
+      "expected": "odin-to-json-fidelity/modifiers-only.expected.json",
+      "options": {
+        "preserveTypes": false,
+        "preserveModifiers": true
+      }
+    },
+    {
+      "id": "toXML-types-modifiers",
+      "description": "Export ODIN to XML with type and modifier preservation",
+      "method": "toXML",
+      "input": "odin-to-xml-fidelity/types-modifiers.input.odin",
+      "expected": "odin-to-xml-fidelity/types-modifiers.expected.xml",
+      "options": {
+        "preserveTypes": true,
+        "preserveModifiers": true
+      }
+    },
+    {
+      "id": "toXML-modifiers-only",
+      "description": "Export ODIN to XML with modifier preservation only",
+      "method": "toXML",
+      "input": "odin-to-xml-fidelity/types-modifiers.input.odin",
+      "expected": "odin-to-xml-fidelity/modifiers-only.expected.xml",
+      "options": {
+        "preserveTypes": false,
+        "preserveModifiers": true
+      }
+    }
+  ]
+}

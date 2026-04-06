@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:pol="http://example.com/policy"
+    xmlns:veh="http://example.com/vehicle"
+    xmlns:drv="http://example.com/driver">
+    <soapenv:Body>
+        <pol:PolicyRequest>
+            <pol:PolicyNumber>PAP-2024-001</pol:PolicyNumber>
+            <pol:EffectiveDate>2024-06-15</pol:EffectiveDate>
+            <pol:Term>P6M</pol:Term>
+            <pol:Premium currency="USD">1250.00</pol:Premium>
+            <veh:Vehicle id="veh1">
+                <veh:VIN>1HGCM82633A004352</veh:VIN>
+                <veh:Year>2022</veh:Year>
+                <veh:Make>Honda</veh:Make>
+                <veh:Model>Accord</veh:Model>
+                <veh:Usage>commute</veh:Usage>
+            </veh:Vehicle>
+            <veh:Vehicle id="veh2">
+                <veh:VIN>5YJSA1E26MF123456</veh:VIN>
+                <veh:Year>2023</veh:Year>
+                <veh:Make>Tesla</veh:Make>
+                <veh:Model>Model 3</veh:Model>
+                <veh:Usage>pleasure</veh:Usage>
+            </veh:Vehicle>
+            <drv:Driver primary="true">
+                <drv:Name>
+                    <drv:First>John</drv:First>
+                    <drv:Last>Smith</drv:Last>
+                </drv:Name>
+                <drv:License>
+                    <drv:Number>S123-456-789</drv:Number>
+                    <drv:State>TX</drv:State>
+                </drv:License>
+                <drv:DateOfBirth>1985-03-15</drv:DateOfBirth>
+            </drv:Driver>
+            <drv:Driver primary="false">
+                <drv:Name>
+                    <drv:First>Jane</drv:First>
+                    <drv:Last>Smith</drv:Last>
+                </drv:Name>
+                <drv:License>
+                    <drv:Number>S987-654-321</drv:Number>
+                    <drv:State>TX</drv:State>
+                </drv:License>
+                <drv:DateOfBirth>1988-07-22</drv:DateOfBirth>
+            </drv:Driver>
+        </pol:PolicyRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

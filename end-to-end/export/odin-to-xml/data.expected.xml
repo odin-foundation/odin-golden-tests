@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company xmlns:odin="https://odin.foundation/ns">
+  <name>ACME Corporation</name>
+  <founded>2010-05-15</founded>
+  <active odin:type="boolean">true</active>
+  <employeeCount odin:type="integer">150</employeeCount>
+  <annualRevenue odin:type="integer">2500000</annualRevenue>
+</company>
+<contact xmlns:odin="https://odin.foundation/ns">
+  <email>info@acme.com</email>
+  <phone>+1-555-123-4567</phone>
+  <website>https://acme.com</website>
+</contact>
+<address xmlns:odin="https://odin.foundation/ns">
+  <street>123 Main Street</street>
+  <city>Springfield</city>
+  <state>IL</state>
+  <zip>62701</zip>
+  <country>USA</country>
+</address>
+<employees id="101">
+  <name>John Smith</name>
+  <department>Engineering</department>
+  <salary odin:type="integer">85000</salary>
+  <hireDate>2020-01-15</hireDate>
+  <active odin:type="boolean">true</active>
+</employees>
+<employees id="102">
+  <name>Jane Doe</name>
+  <department>Marketing</department>
+  <salary odin:type="integer">72000</salary>
+  <hireDate>2019-06-01</hireDate>
+  <active odin:type="boolean">true</active>
+</employees>
+<employees id="103">
+  <name>Bob Wilson</name>
+  <department>Engineering</department>
+  <salary odin:type="integer">92000</salary>
+  <hireDate>2018-03-20</hireDate>
+  <active odin:type="boolean">true</active>
+</employees>
+<employees id="104">
+  <name>Alice Brown</name>
+  <department>HR</department>
+  <salary odin:type="integer">68000</salary>
+  <hireDate>2021-09-01</hireDate>
+  <active odin:type="boolean">false</active>
+</employees>
+<products sku="SKU-001">
+  <name>Widget Pro</name>
+  <price odin:type="number">29.99</price>
+  <quantity odin:type="integer">100</quantity>
+  <available odin:type="boolean">true</available>
+</products>
+<products sku="SKU-002">
+  <name>Gadget Plus</name>
+  <price odin:type="number">149.5</price>
+  <quantity odin:type="integer">25</quantity>
+  <available odin:type="boolean">true</available>
+</products>
+<products sku="SKU-003">
+  <name>Tool Master</name>
+  <price odin:type="number">9.99</price>
+  <quantity odin:type="integer">0</quantity>
+  <available odin:type="boolean">false</available>
+</products>
+

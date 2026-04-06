@@ -1,0 +1,87 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-verb-expressions",
+  "description": "Verb expression parsing (%verb syntax)",
+  "tests": [
+    {
+      "id": "verb-simple-reference",
+      "description": "Simple verb with reference argument",
+      "input": "result = %upper @name",
+      "expected": {
+        "assignments": {
+          "result": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-string-literal",
+      "description": "Verb with string literal argument",
+      "input": "greeting = %upper \"hello\"",
+      "expected": {
+        "assignments": {
+          "greeting": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-multi-arg",
+      "description": "Verb with multiple arguments",
+      "input": "fullName = %concat @firstName \" \" @lastName",
+      "expected": {
+        "assignments": {
+          "fullName": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-nested",
+      "description": "Nested verb expressions",
+      "input": "result = %upper %concat @first \" \" @last",
+      "expected": {
+        "assignments": {
+          "result": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-custom-namespace",
+      "description": "Custom verb with %& prefix",
+      "input": "custom = %&myNamespace.customVerb @value",
+      "expected": {
+        "assignments": {
+          "custom": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-with-number-arg",
+      "description": "Verb with numeric argument",
+      "input": "padded = %padLeft @name #20",
+      "expected": {
+        "assignments": {
+          "padded": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-with-boolean-arg",
+      "description": "Verb with boolean argument",
+      "input": "result = %format @value true",
+      "expected": {
+        "assignments": {
+          "result": { "type": "verb" }
+        }
+      }
+    },
+    {
+      "id": "verb-with-null-arg",
+      "description": "Verb with null argument",
+      "input": "result = %coalesce @value ~",
+      "expected": {
+        "assignments": {
+          "result": { "type": "verb" }
+        }
+      }
+    }
+  ]
+}

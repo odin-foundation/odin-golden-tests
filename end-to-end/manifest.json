@@ -1,0 +1,56 @@
+{
+  "suite": "end-to-end",
+  "version": "1.0.0",
+  "description": "End-to-end transform tests for cross-SDK validation",
+  "categories": [
+    {
+      "id": "import",
+      "name": "Import Tests",
+      "description": "Transform from external formats to ODIN",
+      "path": "import"
+    },
+    {
+      "id": "export",
+      "name": "Export Tests",
+      "description": "Transform from ODIN to external formats",
+      "path": "export"
+    },
+    {
+      "id": "roundtrip",
+      "name": "Roundtrip Tests",
+      "description": "Format -> ODIN -> Format with exact match",
+      "path": "roundtrip"
+    },
+    {
+      "id": "odin-export",
+      "name": "ODIN Direct Export",
+      "description": "Direct ODIN export without transform (tests type fidelity and modifiers)",
+      "path": "odin-export"
+    }
+  ],
+  "types_tested": [
+    "string",
+    "integer",
+    "number",
+    "currency",
+    "boolean",
+    "date",
+    "timestamp",
+    "time",
+    "duration",
+    "reference",
+    "binary",
+    "null",
+    "array",
+    "object"
+  ],
+  "edge_cases": [
+    "high_precision_currency_18_decimals",
+    "large_integer_beyond_js_safe",
+    "unicode_emoji_and_special_chars",
+    "empty_string",
+    "empty_array",
+    "deeply_nested_object",
+    "special_chars_needing_escape"
+  ]
+}

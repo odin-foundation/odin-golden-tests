@@ -1,0 +1,304 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "schema-composition",
+  "description": "Schema composition, inheritance, and reusable type tests",
+  "tests": [
+    {
+      "id": "simple-type-definition",
+      "description": "Simple reusable type definition",
+      "schema": "@PhoneNumber\n= :(10..15) :pattern \"^\\+?[0-9\\-\\s]+$\"",
+      "expected": {
+        "types": {
+          "PhoneNumber": {
+            "base": "string",
+            "constraints": {
+              "minLength": 10,
+              "maxLength": 15,
+              "pattern": "^\\+?[0-9\\-\\s]+$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "type-with-namespace",
+      "description": "Namespaced type definition",
+      "schema": "@&com.acme.CustomerID\n= :(8..12) :pattern \"^CUS-[A-Z0-9]+$\"",
+      "expected": {
+        "types": {
+          "&com.acme.CustomerID": {
+            "base": "string",
+            "namespace": "com.acme",
+            "constraints": {
+              "minLength": 8,
+              "maxLength": 12,
+              "pattern": "^CUS-[A-Z0-9]+$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "type-reference",
+      "description": "Using a defined type in schema",
+      "schema": "@Email\n= :format email\n\n{contact}\nemail = @Email",
+      "expected": {
+        "types": {
+          "Email": {
+            "base": "string",
+            "constraints": { "format": "email" }
+          }
+        },
+        "fields": {
+          "contact.email": { "type": "@Email" }
+        }
+      }
+    },
+    {
+      "id": "type-intersection",
+      "description": "Type intersection with & operator",
+      "schema": "@Positive\n= ##:(1..)\n\n@SmallNumber\n= ##:(..100)\n\n@SmallPositive\n= @Positive & @SmallNumber",
+      "expected": {
+        "types": {
+          "Positive": { "base": "integer", "constraints": { "min": 1 } },
+          "SmallNumber": { "base": "integer", "constraints": { "max": 100 } },
+          "SmallPositive": {
+            "intersection": ["@Positive", "@SmallNumber"],
+            "effectiveConstraints": { "min": 1, "max": 100 }
+          }
+        }
+      }
+    },
+    {
+      "id": "type-inheritance",
+      "description": "Type inheritance",
+      "schema": "@BaseAddress\nstreet = \nstreet2 = :optional\ncity = \nstate = :(2)\nzip = :(5..10)\n\n@USAddress : @BaseAddress\ncountry = \"US\"",
+      "expected": {
+        "types": {
+          "BaseAddress": {
+            "fields": {
+              "street": { "required": true },
+              "street2": { "required": false },
+              "city": { "required": true },
+              "state": { "required": true, "length": 2 },
+              "zip": { "required": true, "minLength": 5, "maxLength": 10 }
+            }
+          },
+          "USAddress": {
+            "extends": "@BaseAddress",
+            "fields": {
+              "country": { "value": "US", "constant": true }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "override-modifier",
+      "description": "Override field from parent type",
+      "schema": "@BaseEntity\nid = :required\nname = :required\n\n@ExtendedEntity : @BaseEntity\nid = :override :format uuid\ndescription = :optional",
+      "expected": {
+        "types": {
+          "ExtendedEntity": {
+            "extends": "@BaseEntity",
+            "overrides": {
+              "id": { "format": "uuid" }
+            },
+            "additionalFields": {
+              "description": { "required": false }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "union-types",
+      "description": "Union type definitions",
+      "schema": "@StringOrNull\n= \"\"|~\n\n@NumberOrString\n= #|\"\"",
+      "expected": {
+        "types": {
+          "StringOrNull": {
+            "union": ["string", "null"]
+          },
+          "NumberOrString": {
+            "union": ["number", "string"]
+          }
+        }
+      }
+    },
+    {
+      "id": "conditional-fields",
+      "description": "Conditional field definitions with :if",
+      "schema": "{payment}\nmethod = :enum(\"card\", \"bank\", \"crypto\")\ncardNumber = :if method = \"card\"\nroutingNumber = :if method = \"bank\"\nwalletAddress = :if method = \"crypto\"",
+      "expected": {
+        "fields": {
+          "payment.method": {
+            "enum": ["card", "bank", "crypto"]
+          },
+          "payment.cardNumber": {
+            "conditional": { "field": "payment.method", "equals": "card" }
+          },
+          "payment.routingNumber": {
+            "conditional": { "field": "payment.method", "equals": "bank" }
+          },
+          "payment.walletAddress": {
+            "conditional": { "field": "payment.method", "equals": "crypto" }
+          }
+        }
+      }
+    },
+    {
+      "id": "inverse-conditional",
+      "description": "Inverse conditional with :unless",
+      "schema": "{person}\nisDeceased = ?\nemail = :unless isDeceased = true\nphone = :unless isDeceased = true",
+      "expected": {
+        "fields": {
+          "person.email": {
+            "inverseConditional": { "field": "person.isDeceased", "equals": true }
+          },
+          "person.phone": {
+            "inverseConditional": { "field": "person.isDeceased", "equals": true }
+          }
+        }
+      }
+    },
+    {
+      "id": "array-of-custom-type",
+      "description": "Array using custom type",
+      "schema": "@LineItem\nsku = \nqty = ##:(1..)\nprice = #$\n\n{order}\nitems[] = @LineItem",
+      "expected": {
+        "types": {
+          "LineItem": {
+            "fields": {
+              "sku": { "type": "string" },
+              "qty": { "type": "integer", "min": 1 },
+              "price": { "type": "currency" }
+            }
+          }
+        },
+        "fields": {
+          "order.items": {
+            "type": "array",
+            "itemType": "@LineItem"
+          }
+        }
+      }
+    },
+    {
+      "id": "cardinality-constraints",
+      "description": "N-of-M cardinality constraints",
+      "schema": "{contact}\n:one_of(home_phone, work_phone, mobile_phone)\nhome_phone = :optional\nwork_phone = :optional\nmobile_phone = :optional",
+      "expected": {
+        "constraints": {
+          "contact": {
+            "one_of": ["home_phone", "work_phone", "mobile_phone"]
+          }
+        }
+      }
+    },
+    {
+      "id": "exactly-one-of",
+      "description": "Exactly one of constraint",
+      "schema": "{identifier}\n:exactly_one(ssn, ein, itin)\nssn = :optional :pattern \"^\\d{3}-\\d{2}-\\d{4}$\"\nein = :optional :pattern \"^\\d{2}-\\d{7}$\"\nitin = :optional :pattern \"^9\\d{2}-\\d{2}-\\d{4}$\"",
+      "expected": {
+        "constraints": {
+          "identifier": {
+            "exactly_one": ["ssn", "ein", "itin"]
+          }
+        }
+      }
+    },
+    {
+      "id": "at-most-one-of",
+      "description": "At most one of constraint",
+      "schema": "{vehicle}\n:at_most_one(lease_end, loan_payoff)\nlease_end = :optional\nloan_payoff = :optional",
+      "expected": {
+        "constraints": {
+          "vehicle": {
+            "at_most_one": ["lease_end", "loan_payoff"]
+          }
+        }
+      }
+    },
+    {
+      "id": "invariant-constraint",
+      "description": "Cross-field invariant",
+      "schema": "{date_range}\n:invariant start_date <= end_date\nstart_date = :date\nend_date = :date",
+      "expected": {
+        "invariants": [
+          {
+            "scope": "date_range",
+            "expression": "start_date <= end_date"
+          }
+        ]
+      }
+    },
+    {
+      "id": "computed-field",
+      "description": "Computed field definition",
+      "schema": "{order}\nsubtotal = #$ :computed\ntax = #$ :computed\ntotal = #$ :computed = subtotal + tax",
+      "expected": {
+        "fields": {
+          "order.subtotal": { "computed": true },
+          "order.tax": { "computed": true },
+          "order.total": { "computed": true, "formula": "subtotal + tax" }
+        }
+      }
+    },
+    {
+      "id": "immutable-field",
+      "description": "Immutable field definition",
+      "schema": "{entity}\nid = :immutable\ncreated = :immutable\nmodified = ",
+      "expected": {
+        "fields": {
+          "entity.id": { "immutable": true },
+          "entity.created": { "immutable": true },
+          "entity.modified": { "immutable": false }
+        }
+      }
+    },
+    {
+      "id": "schema-metadata",
+      "description": "Schema with metadata header",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"com.example.policy\"\nversion = \"2024.1\"\ndescription = \"Auto policy schema\"\n\n{policy}\nnumber = :required",
+      "expected": {
+        "metadata": {
+          "odin": "1.0.0",
+          "schema": "1.0.0",
+          "id": "com.example.policy",
+          "version": "2024.1",
+          "description": "Auto policy schema"
+        }
+      }
+    },
+    {
+      "id": "deprecated-type",
+      "description": "Deprecated type definition",
+      "schema": "@OldFormat\n= :deprecated \"Use NewFormat instead\"\n= :(20)",
+      "expected": {
+        "types": {
+          "OldFormat": {
+            "deprecated": true,
+            "deprecationMessage": "Use NewFormat instead",
+            "constraints": { "length": 20 }
+          }
+        }
+      }
+    },
+    {
+      "id": "multiple-inheritance",
+      "description": "Type with multiple inheritance (intersection)",
+      "schema": "@Timestamped\ncreated = :timestamp\nmodified = :timestamp\n\n@Audited\ncreatedBy = \nmodifiedBy = \n\n@AuditedEntity : @Timestamped & @Audited\nid = ",
+      "expected": {
+        "types": {
+          "AuditedEntity": {
+            "extends": ["@Timestamped", "@Audited"],
+            "fields": {
+              "id": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

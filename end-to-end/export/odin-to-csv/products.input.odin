@@ -1,0 +1,9 @@
+{$}
+odin = "1.0.0"
+{}
+{products[] : sku, name, category, price, quantity, inStock, lastUpdated}
+"SKU-001", "Widget Pro", "Electronics", #$29.99, ##100, true, "2024-12-01"
+"SKU-002", "Gadget Plus", "Electronics", #$149.50, ##25, true, "2024-12-05"
+"SKU-003", "Tool Master", "Hardware", #$9.99, ##0, false, "2024-11-20"
+"SKU-004", "Cable Kit", "Accessories", #$15.00, ##200, true, "2024-12-10"
+"SKU-005", "Power Supply", "Electronics", #$79.99, ##50, true, "2024-12-12"

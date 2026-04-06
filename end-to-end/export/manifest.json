@@ -1,0 +1,175 @@
+{
+  "category": "export",
+  "name": "Export Tests",
+  "description": "Transform from ODIN to external formats",
+  "tests": [
+    {
+      "id": "odin-to-json",
+      "description": "Export ODIN business data to JSON format",
+      "direction": "odin->json",
+      "input": "odin-to-json/data.input.odin",
+      "transform": "odin-to-json/data.transform.odin",
+      "expected": "odin-to-json/data.expected.json"
+    },
+    {
+      "id": "json-nulls-omit",
+      "description": "Export ODIN to JSON with null values omitted",
+      "direction": "odin->json",
+      "input": "json-nulls-omit/data.input.odin",
+      "transform": "json-nulls-omit/data.transform.odin",
+      "expected": "json-nulls-omit/data.expected.json"
+    },
+    {
+      "id": "json-empty-arrays-omit",
+      "description": "Export ODIN to JSON with empty arrays omitted",
+      "direction": "odin->json",
+      "input": "json-empty-arrays-omit/data.input.odin",
+      "transform": "json-empty-arrays-omit/data.transform.odin",
+      "expected": "json-empty-arrays-omit/data.expected.json"
+    },
+    {
+      "id": "json-indent-zero",
+      "description": "Export ODIN to minified JSON (indent=0)",
+      "direction": "odin->json",
+      "input": "json-indent-zero/data.input.odin",
+      "transform": "json-indent-zero/data.transform.odin",
+      "expected": "json-indent-zero/data.expected.json"
+    },
+    {
+      "id": "odin-to-xml",
+      "description": "Export ODIN business data to XML format",
+      "direction": "odin->xml",
+      "input": "odin-to-xml/data.input.odin",
+      "transform": "odin-to-xml/data.transform.odin",
+      "expected": "odin-to-xml/data.expected.xml"
+    },
+    {
+      "id": "xml-no-declaration",
+      "description": "Export ODIN to XML without XML declaration",
+      "direction": "odin->xml",
+      "input": "xml-no-declaration/data.input.odin",
+      "transform": "xml-no-declaration/data.transform.odin",
+      "expected": "xml-no-declaration/data.expected.xml"
+    },
+    {
+      "id": "xml-indent-four",
+      "description": "Export ODIN to XML with 4-space indentation",
+      "direction": "odin->xml",
+      "input": "xml-indent-four/data.input.odin",
+      "transform": "xml-indent-four/data.transform.odin",
+      "expected": "xml-indent-four/data.expected.xml"
+    },
+    {
+      "id": "odin-to-flat-kvp",
+      "description": "Export ODIN to flat key-value pairs format",
+      "direction": "odin->flat",
+      "input": "odin-to-flat-kvp/data.input.odin",
+      "transform": "odin-to-flat-kvp/data.transform.odin",
+      "expected": "odin-to-flat-kvp/data.expected.properties"
+    },
+    {
+      "id": "odin-to-flat-yaml",
+      "description": "Export ODIN to YAML format with indentation",
+      "direction": "odin->flat",
+      "input": "odin-to-flat-yaml/data.input.odin",
+      "transform": "odin-to-flat-yaml/data.transform.odin",
+      "expected": "odin-to-flat-yaml/data.expected.yaml"
+    },
+    {
+      "id": "odin-to-fwf",
+      "description": "Export ODIN payroll data to fixed-width format",
+      "direction": "odin->fixed-width",
+      "input": "odin-to-fwf/payroll.input.odin",
+      "transform": "odin-to-fwf/payroll.transform.odin",
+      "expected": "odin-to-fwf/payroll.expected.fwf"
+    },
+    {
+      "id": "odin-to-csv",
+      "description": "Export ODIN product catalog to CSV format",
+      "direction": "odin->csv",
+      "input": "odin-to-csv/products.input.odin",
+      "transform": "odin-to-csv/products.transform.odin",
+      "expected": "odin-to-csv/products.expected.csv"
+    },
+    {
+      "id": "csv-pipe-delimiter",
+      "description": "Export ODIN to CSV with pipe delimiter",
+      "direction": "odin->csv",
+      "input": "csv-pipe-delimiter/data.input.odin",
+      "transform": "csv-pipe-delimiter/data.transform.odin",
+      "expected": "csv-pipe-delimiter/data.expected.csv"
+    },
+    {
+      "id": "csv-no-header",
+      "description": "Export ODIN to CSV without header row",
+      "direction": "odin->csv",
+      "input": "csv-no-header/data.input.odin",
+      "transform": "csv-no-header/data.transform.odin",
+      "expected": "csv-no-header/data.expected.csv"
+    },
+    {
+      "id": "csv-currency-precision",
+      "description": "Export ODIN to CSV verifying currency value formatting",
+      "direction": "odin->csv",
+      "input": "csv-currency-precision/data.input.odin",
+      "transform": "csv-currency-precision/data.transform.odin",
+      "expected": "csv-currency-precision/data.expected.csv"
+    },
+    {
+      "id": "csv-quoting-edge-cases",
+      "description": "Export ODIN to CSV with proper quoting for commas and double quotes",
+      "direction": "odin->csv",
+      "input": "csv-quoting-edge-cases/data.input.odin",
+      "transform": "csv-quoting-edge-cases/data.transform.odin",
+      "expected": "csv-quoting-edge-cases/data.expected.csv"
+    },
+    {
+      "id": "xml-null-values",
+      "description": "Export ODIN to XML verifying null value rendering",
+      "direction": "odin->xml",
+      "input": "xml-null-values/data.input.odin",
+      "transform": "xml-null-values/data.transform.odin",
+      "expected": "xml-null-values/data.expected.xml"
+    },
+    {
+      "id": "json-confidential-redact",
+      "description": "Export ODIN to JSON with confidential fields redacted to null",
+      "direction": "odin->json",
+      "input": "json-confidential-redact/data.input.odin",
+      "transform": "json-confidential-redact/data.transform.odin",
+      "expected": "json-confidential-redact/data.expected.json"
+    },
+    {
+      "id": "json-confidential-mask",
+      "description": "Export ODIN to JSON with confidential fields masked with asterisks",
+      "direction": "odin->json",
+      "input": "json-confidential-mask/data.input.odin",
+      "transform": "json-confidential-mask/data.transform.odin",
+      "expected": "json-confidential-mask/data.expected.json"
+    },
+    {
+      "id": "json-constants-accumulators",
+      "description": "Export ODIN to JSON using constants and accumulators for running totals",
+      "direction": "odin->json",
+      "input": "json-constants-accumulators/data.input.odin",
+      "transform": "json-constants-accumulators/data.transform.odin",
+      "expected": "json-constants-accumulators/data.expected.json"
+    },
+    {
+      "id": "json-on-missing-skip",
+      "description": "Export ODIN to JSON with missing fields included as null (onMissing=skip)",
+      "direction": "odin->json",
+      "input": "json-on-missing-skip/data.input.odin",
+      "transform": "json-on-missing-skip/data.transform.odin",
+      "expected": "json-on-missing-skip/data.expected.json"
+    },
+    {
+      "id": "json-on-missing-default",
+      "description": "Export ODIN to JSON with missing fields using default values (onMissing=default)",
+      "direction": "odin->json",
+      "input": "json-on-missing-default/data.input.odin",
+      "transform": "json-on-missing-default/data.transform.odin",
+      "expected": "json-on-missing-default/data.expected.json"
+    }
+  ]
+}

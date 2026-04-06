@@ -1,0 +1,128 @@
+{
+  "category": "parse",
+  "name": "Parser Tests",
+  "description": "ODIN document parsing tests for cross-SDK validation",
+  "testSuites": [
+    {
+      "id": "basic",
+      "name": "Basic Parsing",
+      "description": "Simple assignments, strings, comments",
+      "path": "basic/simple-assignments.json"
+    },
+    {
+      "id": "types",
+      "name": "All Types",
+      "description": "All ODIN value types and prefixes",
+      "path": "types/all-types.json"
+    },
+    {
+      "id": "numeric-precision",
+      "name": "Numeric Precision",
+      "description": "Integer, number, and currency precision edge cases",
+      "path": "types/numeric-precision.json"
+    },
+    {
+      "id": "precision-canary",
+      "name": "Precision Canary",
+      "description": "Floating point edge cases that catch cross-SDK rounding divergence",
+      "path": "types/precision-canary.json"
+    },
+    {
+      "id": "binary-edge-cases",
+      "name": "Binary Edge Cases",
+      "description": "Base64 encoding, algorithms, and edge cases",
+      "path": "types/binary-edge-cases.json"
+    },
+    {
+      "id": "temporal-edge-cases",
+      "name": "Temporal Edge Cases",
+      "description": "Date, timestamp, time, duration edge cases",
+      "path": "temporal/temporal-edge-cases.json"
+    },
+    {
+      "id": "unicode-edge-cases",
+      "name": "Unicode Edge Cases",
+      "description": "Emoji, RTL, CJK, combining characters",
+      "path": "unicode/unicode-edge-cases.json"
+    },
+    {
+      "id": "errors",
+      "name": "Parse Errors",
+      "description": "Error conditions and messages",
+      "path": "errors/parse-errors.json"
+    },
+    {
+      "id": "error-recovery",
+      "name": "Error Recovery",
+      "description": "Multiple errors and recovery",
+      "path": "errors/error-recovery.json"
+    },
+    {
+      "id": "security-limits",
+      "name": "Security Limits",
+      "description": "Billion laughs, depth bombs, and resource exhaustion prevention",
+      "path": "errors/security-limits.json"
+    },
+    {
+      "id": "directives",
+      "name": "Directives",
+      "description": "@import, @schema, @if directive parsing",
+      "path": "directives/directives.json"
+    },
+    {
+      "id": "composition",
+      "name": "Document Composition",
+      "description": "Document chaining, overlay, and composition",
+      "path": "composition/document-chaining.json"
+    },
+    {
+      "id": "array-index-normalization",
+      "name": "Array Index Normalization",
+      "description": "Leading zeros in array indices normalized in paths and references",
+      "path": "basic/array-index-normalization.json"
+    },
+    {
+      "id": "currency-scientific",
+      "name": "Currency Scientific Notation",
+      "description": "Currency decimal places counted correctly with scientific notation",
+      "path": "types/currency-scientific.json"
+    }
+  ],
+  "features_tested": [
+    "string_values",
+    "quoted_strings",
+    "escape_sequences",
+    "boolean_values",
+    "null_values",
+    "numbers",
+    "integers",
+    "currency",
+    "dates",
+    "timestamps",
+    "times",
+    "durations",
+    "references",
+    "binary_base64",
+    "binary_algorithms",
+    "modifiers_critical",
+    "modifiers_confidential",
+    "modifiers_deprecated",
+    "comments",
+    "headers",
+    "arrays",
+    "tabular_syntax",
+    "document_separators",
+    "directives_import",
+    "directives_schema",
+    "directives_if",
+    "unicode_emoji",
+    "unicode_cjk",
+    "unicode_rtl",
+    "high_precision_numbers",
+    "leap_years",
+    "leap_seconds",
+    "document_chaining",
+    "overlay_semantics",
+    "null_field_removal"
+  ]
+}

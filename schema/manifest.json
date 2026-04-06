@@ -1,0 +1,30 @@
+{
+  "category": "schema",
+  "name": "Schema Tests",
+  "description": "ODIN schema parsing and composition tests",
+  "testSuites": [
+    {
+      "id": "composition",
+      "name": "Schema Composition",
+      "description": "Type definitions, inheritance, intersection, conditionals",
+      "path": "composition/schema-composition.json"
+    }
+  ],
+  "features_tested": [
+    "type_definitions",
+    "namespaced_types",
+    "type_references",
+    "type_intersection",
+    "type_inheritance",
+    "union_types",
+    "conditional_fields",
+    "inverse_conditionals",
+    "array_of_custom_type",
+    "cardinality_constraints",
+    "invariants",
+    "computed_fields",
+    "immutable_fields",
+    "deprecated_types",
+    "multiple_inheritance"
+  ]
+}

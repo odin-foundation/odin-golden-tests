@@ -1,0 +1,70 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-relative-headers",
+  "description": "Relative header syntax and context tracking",
+  "tests": [
+    {
+      "id": "relative-header-basic",
+      "description": "Relative header appends to current context",
+      "input": "{vehicles[0]}\nvin = \"1HGCM82633A004352\"\nyear = ##2022\n\n{.garaging}\nline1 = \"123 Main Street\"\ncity = \"Columbus\"",
+      "expected": {
+        "assignments": {
+          "vehicles[0].vin": { "type": "string", "value": "1HGCM82633A004352" },
+          "vehicles[0].year": { "type": "integer", "value": 2022 },
+          "vehicles[0].garaging.line1": { "type": "string", "value": "123 Main Street" },
+          "vehicles[0].garaging.city": { "type": "string", "value": "Columbus" }
+        }
+      }
+    },
+    {
+      "id": "relative-header-multiple",
+      "description": "Multiple relative headers under same parent",
+      "input": "{vehicles[0]}\nvin = \"ABC123\"\n\n{.garaging}\ncity = \"Dallas\"\n\n{.lienholder}\nname = \"First National Bank\"",
+      "expected": {
+        "assignments": {
+          "vehicles[0].vin": { "type": "string", "value": "ABC123" },
+          "vehicles[0].garaging.city": { "type": "string", "value": "Dallas" },
+          "vehicles[0].lienholder.name": { "type": "string", "value": "First National Bank" }
+        }
+      }
+    },
+    {
+      "id": "relative-header-then-absolute",
+      "description": "Absolute header resets context after relative headers",
+      "input": "{vehicles[0]}\nvin = \"ABC123\"\n\n{.garaging}\ncity = \"Dallas\"\n\n{drivers[0]}\nname = \"John Smith\"",
+      "expected": {
+        "assignments": {
+          "vehicles[0].vin": { "type": "string", "value": "ABC123" },
+          "vehicles[0].garaging.city": { "type": "string", "value": "Dallas" },
+          "drivers[0].name": { "type": "string", "value": "John Smith" }
+        }
+      }
+    },
+    {
+      "id": "relative-header-nested",
+      "description": "Multiple relative headers are siblings under the parent",
+      "input": "{policy}\nid = \"POL-001\"\n\n{.insured}\nname = \"John\"\n\n{.address}\ncity = \"Austin\"",
+      "expected": {
+        "assignments": {
+          "policy.id": { "type": "string", "value": "POL-001" },
+          "policy.insured.name": { "type": "string", "value": "John" },
+          "policy.address.city": { "type": "string", "value": "Austin" }
+        }
+      },
+      "note": "Both {.insured} and {.address} resolve against {policy}, making them siblings"
+    },
+    {
+      "id": "relative-header-with-array-index",
+      "description": "Relative header on array-indexed parent",
+      "input": "{parties[0]}\nname = \"John\"\n\n{.contact}\nphone = \"555-1234\"\n\n{parties[1]}\nname = \"Jane\"\n\n{.contact}\nphone = \"555-5678\"",
+      "expected": {
+        "assignments": {
+          "parties[0].name": { "type": "string", "value": "John" },
+          "parties[0].contact.phone": { "type": "string", "value": "555-1234" },
+          "parties[1].name": { "type": "string", "value": "Jane" },
+          "parties[1].contact.phone": { "type": "string", "value": "555-5678" }
+        }
+      }
+    }
+  ]
+}

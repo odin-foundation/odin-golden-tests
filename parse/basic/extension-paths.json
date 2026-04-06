@@ -1,0 +1,73 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-extension-paths",
+  "description": "Extension path syntax with reverse domain notation",
+  "tests": [
+    {
+      "id": "extension-path-string",
+      "description": "Extension path with string value",
+      "input": "&com.acme.tier = \"A\"",
+      "expected": {
+        "assignments": {
+          "&com.acme.tier": { "type": "string", "value": "A" }
+        }
+      }
+    },
+    {
+      "id": "extension-path-integer",
+      "description": "Extension path with integer value",
+      "input": "&com.progressive.symbol = ##15",
+      "expected": {
+        "assignments": {
+          "&com.progressive.symbol": { "type": "integer", "value": 15 }
+        }
+      }
+    },
+    {
+      "id": "extension-path-boolean",
+      "description": "Extension path with boolean value",
+      "input": "&org.example.enabled = ?true",
+      "expected": {
+        "assignments": {
+          "&org.example.enabled": { "type": "boolean", "value": true }
+        }
+      }
+    },
+    {
+      "id": "extension-path-null",
+      "description": "Extension path with null value",
+      "input": "&com.acme.deprecated = ~",
+      "expected": {
+        "assignments": {
+          "&com.acme.deprecated": { "type": "null" }
+        }
+      }
+    },
+    {
+      "id": "extension-path-with-regular",
+      "description": "Extension paths mixed with regular assignments",
+      "input": "name = \"Policy\"\n&com.acme.tier = \"Gold\"\nstatus = \"active\"\n&org.example.score = ##95",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "Policy" },
+          "&com.acme.tier": { "type": "string", "value": "Gold" },
+          "status": { "type": "string", "value": "active" },
+          "&org.example.score": { "type": "integer", "value": 95 }
+        }
+      }
+    },
+    {
+      "id": "extension-path-with-modifiers",
+      "description": "Extension path with modifier prefixes",
+      "input": "&com.acme.secret = *\"classified\"",
+      "expected": {
+        "assignments": {
+          "&com.acme.secret": { "type": "string", "value": "classified" }
+        },
+        "modifiers": {
+          "&com.acme.secret": { "confidential": true }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-crlf-bom",
+  "description": "Cross-platform line ending and BOM handling",
+  "tests": [
+    {
+      "id": "crlf-line-endings",
+      "description": "CRLF line endings are accepted",
+      "input": "name = \"John\"\r\nage = ##30\r\ncity = \"Austin\"",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" },
+          "age": { "type": "integer", "value": 30 },
+          "city": { "type": "string", "value": "Austin" }
+        }
+      }
+    },
+    {
+      "id": "mixed-line-endings",
+      "description": "Mixed LF and CRLF line endings in same document",
+      "input": "first = \"John\"\r\nsecond = \"Jane\"\nthird = \"Bob\"",
+      "expected": {
+        "assignments": {
+          "first": { "type": "string", "value": "John" },
+          "second": { "type": "string", "value": "Jane" },
+          "third": { "type": "string", "value": "Bob" }
+        }
+      }
+    },
+    {
+      "id": "utf8-bom",
+      "description": "UTF-8 BOM at start of document is ignored",
+      "input": "\uFEFFname = \"John\"\nage = ##30",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" },
+          "age": { "type": "integer", "value": 30 }
+        }
+      }
+    },
+    {
+      "id": "utf8-bom-with-crlf",
+      "description": "UTF-8 BOM combined with CRLF line endings",
+      "input": "\uFEFFname = \"John\"\r\nage = ##30\r\n",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" },
+          "age": { "type": "integer", "value": 30 }
+        }
+      }
+    },
+    {
+      "id": "crlf-with-sections",
+      "description": "CRLF line endings with section headers",
+      "input": "{person}\r\nname = \"John\"\r\nage = ##30\r\n{address}\r\ncity = \"Austin\"",
+      "expected": {
+        "assignments": {
+          "person.name": { "type": "string", "value": "John" },
+          "person.age": { "type": "integer", "value": 30 },
+          "address.city": { "type": "string", "value": "Austin" }
+        }
+      }
+    },
+    {
+      "id": "crlf-with-comments",
+      "description": "CRLF line endings with comments",
+      "input": "; This is a comment\r\nname = \"John\"\r\n; Another comment\r\nage = ##30",
+      "expected": {
+        "assignments": {
+          "name": { "type": "string", "value": "John" },
+          "age": { "type": "integer", "value": 30 }
+        }
+      }
+    }
+  ]
+}

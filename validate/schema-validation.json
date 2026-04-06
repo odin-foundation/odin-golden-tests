@@ -1,0 +1,290 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-schema-rules",
+  "description": "Schema validation rule tests (V001-V013)",
+  "tests": [
+    {
+      "id": "v001-required-field-missing",
+      "description": "Required field not provided",
+      "schema": "name = !\nage = ##",
+      "input": "age = ##25",
+      "expected": { "valid": false, "errors": [{ "code": "V001", "path": "name" }] }
+    },
+    {
+      "id": "v001-required-field-present",
+      "description": "Required field is provided",
+      "schema": "name = !",
+      "input": "name = \"Alice\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v001-multiple-required-one-missing",
+      "description": "Multiple required fields, one missing",
+      "schema": "first = !\nlast = !\nemail = !",
+      "input": "first = \"Alice\"\nemail = \"alice@example.com\"",
+      "expected": { "valid": false, "errors": [{ "code": "V001", "path": "last" }] }
+    },
+    {
+      "id": "v002-type-mismatch-integer-got-string",
+      "description": "Schema expects integer but value is a string",
+      "schema": "age = ##",
+      "input": "age = \"twenty\"",
+      "expected": { "valid": false, "errors": [{ "code": "V002", "path": "age" }] }
+    },
+    {
+      "id": "v002-type-mismatch-boolean-got-number",
+      "description": "Schema expects boolean but value is a number",
+      "schema": "active = ?",
+      "input": "active = #1",
+      "expected": { "valid": false, "errors": [{ "code": "V002", "path": "active" }] }
+    },
+    {
+      "id": "v002-type-mismatch-number-got-boolean",
+      "description": "Schema expects number but value is a boolean",
+      "schema": "score = #",
+      "input": "score = ?true",
+      "expected": { "valid": false, "errors": [{ "code": "V002", "path": "score" }] }
+    },
+    {
+      "id": "v002-type-correct-integer",
+      "description": "Schema expects integer and value is an integer",
+      "schema": "count = ##",
+      "input": "count = ##42",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v003-value-below-minimum",
+      "description": "Value is below the minimum bound",
+      "schema": "score = #:(0..100)",
+      "input": "score = #-5",
+      "expected": { "valid": false, "errors": [{ "code": "V003", "path": "score" }] }
+    },
+    {
+      "id": "v003-value-above-maximum",
+      "description": "Value is above the maximum bound",
+      "schema": "score = #:(0..100)",
+      "input": "score = #150",
+      "expected": { "valid": false, "errors": [{ "code": "V003", "path": "score" }] }
+    },
+    {
+      "id": "v003-value-within-bounds",
+      "description": "Value is within the specified bounds",
+      "schema": "score = #:(0..100)",
+      "input": "score = #75",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v003-string-length-too-long",
+      "description": "String length exceeds maximum constraint",
+      "schema": "code = :(2..5)",
+      "input": "code = \"ABCDEF\"",
+      "expected": { "valid": false, "errors": [{ "code": "V003", "path": "code" }] }
+    },
+    {
+      "id": "v004-pattern-mismatch",
+      "description": "Value does not match the required pattern",
+      "schema": "state = :/^[A-Z]{2}$/",
+      "input": "state = \"Texas\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "state" }] }
+    },
+    {
+      "id": "v004-pattern-match",
+      "description": "Value matches the required pattern",
+      "schema": "state = :/^[A-Z]{2}$/",
+      "input": "state = \"TX\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v004-pattern-mismatch-digits",
+      "description": "Pattern expects digits only but value has letters",
+      "schema": "zip = :/^\\d{5}$/",
+      "input": "zip = \"7870A\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "zip" }] }
+    },
+    {
+      "id": "v005-invalid-enum-value",
+      "description": "Value is not one of the allowed enum values",
+      "schema": "color = (red, green, blue)",
+      "input": "color = \"yellow\"",
+      "expected": { "valid": false, "errors": [{ "code": "V005", "path": "color" }] }
+    },
+    {
+      "id": "v005-valid-enum-value",
+      "description": "Value is one of the allowed enum values",
+      "schema": "color = (red, green, blue)",
+      "input": "color = \"green\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v005-enum-case-sensitive",
+      "description": "Enum comparison is case-sensitive",
+      "schema": "status = (active, inactive)",
+      "input": "status = \"Active\"",
+      "expected": { "valid": false, "errors": [{ "code": "V005", "path": "status" }] }
+    },
+    {
+      "id": "v006-array-too-few",
+      "description": "Array has fewer items than minimum length",
+      "schema": "{items[]}\n:(1..5)\nname = !",
+      "input": "{items[]}",
+      "expected": { "valid": false, "errors": [{ "code": "V006", "path": "items" }] }
+    },
+    {
+      "id": "v006-array-too-many",
+      "description": "Array has more items than maximum length",
+      "schema": "{tags[]}\n:(..2)\nvalue = !",
+      "input": "{tags[]}\n[0].value = \"a\"\n[1].value = \"b\"\n[2].value = \"c\"",
+      "expected": { "valid": false, "errors": [{ "code": "V006", "path": "tags" }] }
+    },
+    {
+      "id": "v006-array-within-bounds",
+      "description": "Array length is within the allowed bounds",
+      "schema": "{items[]}\n:(1..5)\nname = !",
+      "input": "{items[]}\n[0].name = \"Widget\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v007-unique-violation-strings",
+      "description": "Array has duplicate string values violating unique constraint",
+      "schema": "{tags[]}\n:unique\nvalue = !",
+      "input": "{tags[]}\n[0].value = \"alpha\"\n[1].value = \"alpha\"",
+      "expected": { "valid": false, "errors": [{ "code": "V007", "path": "tags" }] }
+    },
+    {
+      "id": "v007-unique-no-duplicates",
+      "description": "Array values are all unique",
+      "schema": "{tags[]}\n:unique\nvalue = !",
+      "input": "{tags[]}\n[0].value = \"alpha\"\n[1].value = \"beta\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v007-unique-violation-numbers",
+      "description": "Array has duplicate numeric values violating unique constraint",
+      "schema": "{scores[]}\n:unique\nval = !##",
+      "input": "{scores[]}\n[0].val = ##10\n[1].val = ##10",
+      "expected": { "valid": false, "errors": [{ "code": "V007", "path": "scores" }] }
+    },
+    {
+      "id": "v008-invariant-violation",
+      "description": "Invariant expression evaluates to false",
+      "schema": "{range}\nstart = !##\nend = !##\n:invariant end >= start",
+      "input": "{range}\nstart = ##10\nend = ##5",
+      "expected": { "valid": false, "errors": [{ "code": "V008", "path": "range" }] }
+    },
+    {
+      "id": "v008-invariant-satisfied",
+      "description": "Invariant expression evaluates to true",
+      "schema": "{range}\nstart = !##\nend = !##\n:invariant end >= start",
+      "input": "{range}\nstart = ##1\nend = ##10",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v008-invariant-arithmetic",
+      "description": "Arithmetic invariant violated: total != subtotal + tax",
+      "schema": "{order}\nsubtotal = !#$\ntax = !#$\ntotal = !#$\n:invariant total = subtotal + tax",
+      "input": "{order}\nsubtotal = #$100.00\ntax = #$8.25\ntotal = #$200.00",
+      "expected": { "valid": false, "errors": [{ "code": "V008", "path": "order" }] }
+    },
+    {
+      "id": "v009-cardinality-too-few",
+      "description": "Fewer fields provided than cardinality minimum",
+      "schema": "{contact}\nemail =\nphone =\nfax =\n:of (2..) email, phone, fax",
+      "input": "{contact}\nemail = \"user@example.com\"",
+      "expected": { "valid": false, "errors": [{ "code": "V009", "path": "contact" }] }
+    },
+    {
+      "id": "v009-cardinality-satisfied",
+      "description": "Number of provided fields satisfies cardinality constraint",
+      "schema": "{contact}\nemail =\nphone =\n:one_of email, phone",
+      "input": "{contact}\nemail = \"user@example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v009-cardinality-exactly-one-violated",
+      "description": "More than one field provided when exactly one is required",
+      "schema": "{id}\nssn = *\npassport = *\n:exactly_one ssn, passport",
+      "input": "{id}\nssn = \"123-45-6789\"\npassport = \"AB1234567\"",
+      "expected": { "valid": false, "errors": [{ "code": "V009", "path": "id" }] }
+    },
+    {
+      "id": "v009-cardinality-none-provided",
+      "description": "No fields provided when at least one is required",
+      "schema": "{contact}\nemail =\nphone =\n:one_of email, phone",
+      "input": "{contact}",
+      "expected": { "valid": false, "errors": [{ "code": "V009", "path": "contact" }] }
+    },
+    {
+      "id": "v010-conditional-requirement-not-met",
+      "description": "Conditional required field missing when condition is true",
+      "schema": "{payment}\nmethod = !(card, bank)\ncard_number = !:if method = card",
+      "input": "{payment}\nmethod = \"card\"",
+      "expected": { "valid": false, "errors": [{ "code": "V010", "path": "payment.card_number" }] }
+    },
+    {
+      "id": "v010-conditional-requirement-met",
+      "description": "Conditional required field present when condition is true",
+      "schema": "{payment}\nmethod = !(card, bank)\ncard_number = !:if method = card",
+      "input": "{payment}\nmethod = \"card\"\ncard_number = \"4111111111111111\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v010-conditional-not-triggered",
+      "description": "Conditional field not required when condition is false",
+      "schema": "{payment}\nmethod = !(card, bank)\ncard_number = !:if method = card",
+      "input": "{payment}\nmethod = \"bank\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v011-unknown-field-strict",
+      "description": "Field not declared in schema (strict mode)",
+      "schema": "name = !\nage = ##",
+      "input": "name = \"Alice\"\nage = ##30\ncolor = \"blue\"",
+      "options": { "strict": true },
+      "expected": { "valid": false, "errors": [{ "code": "V011", "path": "color" }] }
+    },
+    {
+      "id": "v011-no-unknown-fields",
+      "description": "All fields are declared in schema (strict mode passes)",
+      "schema": "name = !\nage = ##",
+      "input": "name = \"Alice\"\nage = ##30",
+      "options": { "strict": true },
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v011-unknown-field-non-strict",
+      "description": "Unknown field is allowed in non-strict mode",
+      "schema": "name = !",
+      "input": "name = \"Alice\"\nextra = \"data\"",
+      "options": { "strict": false },
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v012-circular-reference",
+      "description": "Two types referencing each other create a cycle",
+      "schema": "{@typeA}\nref = @typeB\n\n{@typeB}\nref = @typeA",
+      "input": "",
+      "expected": { "valid": false, "errors": [{ "code": "V012", "path": "@typeA" }] }
+    },
+    {
+      "id": "v012-no-circular-reference",
+      "description": "Type references without cycles are valid",
+      "schema": "{@address}\nstreet = !\ncity = !\n\n{customer}\nname = !\nhome = @address",
+      "input": "{customer}\nname = \"Alice\"\nhome.street = \"123 Main St\"\nhome.city = \"Austin\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "v013-unresolved-reference",
+      "description": "Reference to a type that does not exist in schema",
+      "schema": "{order}\ncustomer = @person",
+      "input": "{order}\ncustomer.name = \"Alice\"",
+      "expected": { "valid": false, "errors": [{ "code": "V013", "path": "order.customer" }] }
+    },
+    {
+      "id": "v013-resolved-reference",
+      "description": "Reference to a defined type resolves successfully",
+      "schema": "{@person}\nname = !\n\n{order}\ncustomer = @person",
+      "input": "{order}\ncustomer.name = \"Alice\"",
+      "expected": { "valid": true }
+    }
+  ]
+}

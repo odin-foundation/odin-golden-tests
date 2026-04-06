@@ -1,0 +1,56 @@
+{
+  "suite": "transform-verbs-try-it",
+  "version": "1.0.0",
+  "description": "Golden tests for every 'Try It' verb example from the website transform reference. Each test is a triplet: {verb}.input.json + {verb}.transform.odin -> {verb}.expected.odin",
+  "source": "website/static/examples/verbs/*.json",
+  "generatedBy": "TypeScript reference SDK (generate-expected.mjs)",
+  "testFormat": {
+    "input": "{verb}.input.json",
+    "transform": "{verb}.transform.odin",
+    "expected": "{verb}.expected.odin",
+    "direction": "json->odin"
+  },
+  "skipped": {
+    "today": "Non-deterministic (current date)",
+    "now": "Non-deterministic (current timestamp)"
+  },
+  "categories": [
+    {
+      "name": "String & Case",
+      "verbs": ["concat", "upper", "lower", "capitalize", "titleCase", "trim", "substring", "replace", "padLeft", "padRight", "truncate", "mask", "split", "join", "length", "contains", "camelCase", "snakeCase", "kebabCase", "pascalCase", "slugify"]
+    },
+    {
+      "name": "Numeric",
+      "verbs": ["formatNumber", "formatInteger", "formatCurrency", "formatPercent", "abs", "round", "floor", "ceil", "multiply", "divide", "add", "subtract", "mod", "negate"]
+    },
+    {
+      "name": "Financial & Statistical",
+      "verbs": ["compound", "discount", "pmt", "fv", "pv", "npv", "std", "median", "mode", "percentile", "correlation"]
+    },
+    {
+      "name": "Date & Time",
+      "verbs": ["formatDate", "formatTimestamp", "parseDate", "addDays", "addMonths", "addYears", "dateDiff", "dayOfWeek"]
+    },
+    {
+      "name": "Conditional",
+      "verbs": ["coalesce", "ifElse", "ifNull", "ifEmpty", "switch", "eq", "gt", "lt", "not"]
+    },
+    {
+      "name": "Lookup",
+      "verbs": ["lookup", "lookupDefault"]
+    },
+    {
+      "name": "Aggregation",
+      "verbs": ["accumulate", "sum", "count", "min", "max", "avg", "first", "last"]
+    },
+    {
+      "name": "Array",
+      "verbs": ["at", "filter", "flatten", "distinct", "sort", "sortBy", "reverse"]
+    },
+    {
+      "name": "Type Coercion & Encoding",
+      "verbs": ["coerceString", "coerceNumber", "coerceInteger", "coerceBoolean", "coerceDate", "tryCoerce", "base64Encode", "base64Decode", "urlEncode", "sha256", "md5"]
+    }
+  ],
+  "totalTests": 92
+}

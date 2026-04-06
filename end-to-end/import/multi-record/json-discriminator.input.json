@@ -1,0 +1,61 @@
+{
+  "records": [
+    {
+      "recordType": "POLICY",
+      "policyNumber": "PAP-2024-001",
+      "effectiveDate": "2024-06-15",
+      "termMonths": 6,
+      "premium": 1250.00
+    },
+    {
+      "recordType": "VEHICLE",
+      "vin": "1HGCM82633A004352",
+      "year": 2022,
+      "make": "Honda",
+      "model": "Accord"
+    },
+    {
+      "recordType": "VEHICLE",
+      "vin": "5YJSA1E26MF123456",
+      "year": 2023,
+      "make": "Tesla",
+      "model": "Model 3"
+    },
+    {
+      "recordType": "DRIVER",
+      "firstName": "John",
+      "lastName": "Smith",
+      "licenseNumber": "S123-456-789",
+      "licenseState": "TX",
+      "dateOfBirth": "1985-03-15",
+      "isPrimary": true
+    },
+    {
+      "recordType": "DRIVER",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "licenseNumber": "S987-654-321",
+      "licenseState": "TX",
+      "dateOfBirth": "1988-07-22",
+      "isPrimary": false
+    },
+    {
+      "recordType": "COVERAGE",
+      "type": "liability",
+      "limit": 100000,
+      "premium": 250.00
+    },
+    {
+      "recordType": "COVERAGE",
+      "type": "collision",
+      "deductible": 500,
+      "premium": 400.00
+    },
+    {
+      "recordType": "COVERAGE",
+      "type": "comprehensive",
+      "deductible": 250,
+      "premium": 200.00
+    }
+  ]
+}

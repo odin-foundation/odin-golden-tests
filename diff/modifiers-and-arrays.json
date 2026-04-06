@@ -1,0 +1,197 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "diff-modifiers-arrays",
+  "description": "Diff tests for modifier changes, array operations, and null transitions",
+  "tests": [
+    {
+      "id": "diff-modifier-added",
+      "description": "Modifier added to a value",
+      "doc1": "name = \"John\"",
+      "doc2": "name = !\"John\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "name" }
+        ]
+      }
+    },
+    {
+      "id": "diff-modifier-removed",
+      "description": "Modifier removed from a value",
+      "doc1": "name = !\"John\"",
+      "doc2": "name = \"John\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "name" }
+        ]
+      }
+    },
+    {
+      "id": "diff-modifier-changed",
+      "description": "Modifier changed from required to confidential",
+      "doc1": "ssn = !\"123-45-6789\"",
+      "doc2": "ssn = *\"123-45-6789\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "ssn" }
+        ]
+      }
+    },
+    {
+      "id": "diff-modifier-same-value-same-modifier",
+      "description": "Same value with same modifier is equal",
+      "doc1": "name = !\"John\"",
+      "doc2": "name = !\"John\"",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-modifier-combined-same",
+      "description": "Same combined modifiers are equal",
+      "doc1": "field = !*\"secret\"",
+      "doc2": "field = !*\"secret\"",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-modifier-combined-different",
+      "description": "Different combined modifiers produce modification",
+      "doc1": "field = !\"value\"",
+      "doc2": "field = !*\"value\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "field" }
+        ]
+      }
+    },
+    {
+      "id": "diff-null-to-value",
+      "description": "Null changed to actual value",
+      "doc1": "name = ~",
+      "doc2": "name = \"John\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "name" }
+        ]
+      }
+    },
+    {
+      "id": "diff-value-to-null",
+      "description": "Value changed to null",
+      "doc1": "name = \"John\"",
+      "doc2": "name = ~",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "name" }
+        ]
+      }
+    },
+    {
+      "id": "diff-field-added",
+      "description": "New field added",
+      "doc1": "name = \"John\"",
+      "doc2": "name = \"John\"\nage = ##30",
+      "expected": {
+        "isEmpty": false,
+        "additions": [
+          { "path": "age" }
+        ]
+      }
+    },
+    {
+      "id": "diff-field-removed",
+      "description": "Field removed",
+      "doc1": "name = \"John\"\nage = ##30",
+      "doc2": "name = \"John\"",
+      "expected": {
+        "isEmpty": false,
+        "deletions": [
+          { "path": "age" }
+        ]
+      }
+    },
+    {
+      "id": "diff-array-element-added",
+      "description": "Array element added",
+      "doc1": "items[0] = \"first\"",
+      "doc2": "items[0] = \"first\"\nitems[1] = \"second\"",
+      "expected": {
+        "isEmpty": false,
+        "additions": [
+          { "path": "items[1]" }
+        ]
+      }
+    },
+    {
+      "id": "diff-array-element-removed",
+      "description": "Array element removed",
+      "doc1": "items[0] = \"first\"\nitems[1] = \"second\"",
+      "doc2": "items[0] = \"first\"",
+      "expected": {
+        "isEmpty": false,
+        "deletions": [
+          { "path": "items[1]" }
+        ]
+      }
+    },
+    {
+      "id": "diff-array-element-modified",
+      "description": "Array element value changed",
+      "doc1": "items[0] = \"old\"",
+      "doc2": "items[0] = \"new\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "items[0]" }
+        ]
+      }
+    },
+    {
+      "id": "diff-empty-documents",
+      "description": "Two empty documents are equal",
+      "doc1": "",
+      "doc2": "",
+      "expected": {
+        "isEmpty": true
+      }
+    },
+    {
+      "id": "diff-multiple-changes",
+      "description": "Multiple additions, deletions, and modifications in one diff",
+      "doc1": "name = \"John\"\nage = ##30\ncity = \"Austin\"",
+      "doc2": "name = \"Jane\"\nstate = \"TX\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "name" }
+        ],
+        "additions": [
+          { "path": "state" }
+        ],
+        "deletions": [
+          { "path": "age" },
+          { "path": "city" }
+        ]
+      }
+    },
+    {
+      "id": "diff-nested-change",
+      "description": "Change deep in nested path",
+      "doc1": "{person}\n{.address}\ncity = \"Austin\"\nstate = \"TX\"",
+      "doc2": "{person}\n{.address}\ncity = \"Dallas\"\nstate = \"TX\"",
+      "expected": {
+        "isEmpty": false,
+        "modifications": [
+          { "path": "person.address.city" }
+        ]
+      }
+    }
+  ]
+}

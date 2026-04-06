@@ -1,0 +1,204 @@
+{
+  "category": "transform",
+  "name": "Transform Tests",
+  "description": "Transform verb and engine tests for cross-SDK compatibility",
+  "testSuites": [
+    {
+      "id": "core",
+      "name": "Core Verbs",
+      "description": "trim, coalesce, ifNull, ifEmpty, lookup (reverse)",
+      "path": "verbs/core.test.odin"
+    },
+    {
+      "id": "string",
+      "name": "String Verbs",
+      "description": "capitalize, length, contains, replace, split, join, etc.",
+      "path": "verbs/string.test.odin"
+    },
+    {
+      "id": "string-case",
+      "name": "String Case Verbs",
+      "description": "camelCase, snakeCase, kebabCase, pascalCase, titleCase",
+      "path": "verbs/string-case.test.odin"
+    },
+    {
+      "id": "numeric",
+      "name": "Numeric Verbs",
+      "description": "add, subtract, multiply, divide, round, ceil, floor, abs",
+      "path": "verbs/numeric.test.odin"
+    },
+    {
+      "id": "datetime",
+      "name": "DateTime Verbs",
+      "description": "formatDate, parseDate, addDays, daysBetween, now",
+      "path": "verbs/datetime.test.odin"
+    },
+    {
+      "id": "logic",
+      "name": "Logic Verbs",
+      "description": "and, or, not, eq, ne, gt, lt, gte, lte",
+      "path": "verbs/logic.test.odin"
+    },
+    {
+      "id": "ifelse",
+      "name": "Conditional Verbs",
+      "description": "ifElse verb comprehensive tests",
+      "path": "verbs/ifelse-verify.test.odin"
+    },
+    {
+      "id": "array",
+      "name": "Array Verbs",
+      "description": "flatten, unique, reverse, slice, join, first, last, count",
+      "path": "verbs/array.test.odin"
+    },
+    {
+      "id": "object",
+      "name": "Object Verbs",
+      "description": "merge, keys, values, entries",
+      "path": "verbs/object.test.odin"
+    },
+    {
+      "id": "encoding",
+      "name": "Encoding Verbs",
+      "description": "encodeUrl, decodeUrl, encodeBase64, decodeBase64, encodeHex, decodeHex",
+      "path": "verbs/encoding.test.odin"
+    },
+    {
+      "id": "finance",
+      "name": "Financial Verbs",
+      "description": "calculateTax, discountPrice, calculateInterest",
+      "path": "verbs/finance.test.odin"
+    },
+    {
+      "id": "financial-advanced",
+      "name": "Advanced Financial Verbs",
+      "description": "amortization, compound interest",
+      "path": "verbs/financial-advanced.test.odin"
+    },
+    {
+      "id": "insurance",
+      "name": "Insurance Verbs",
+      "description": "calculateRating, calculatePremium",
+      "path": "verbs/insurance.test.odin"
+    },
+    {
+      "id": "accumulator",
+      "name": "Accumulator Verbs",
+      "description": "accumulate counters and totals",
+      "path": "verbs/accumulator.test.odin"
+    },
+    {
+      "id": "state",
+      "name": "State Verbs",
+      "description": "useState, setState",
+      "path": "verbs/state.test.odin"
+    },
+    {
+      "id": "generation",
+      "name": "Generation Verbs",
+      "description": "generateId, generateUUID",
+      "path": "verbs/generation.test.odin"
+    },
+    {
+      "id": "coercion",
+      "name": "Coercion Verbs",
+      "description": "tryCoerce, coerceInteger, coerceNumber, coerceBoolean",
+      "path": "verbs/coercion.test.odin"
+    },
+    {
+      "id": "custom-verbs",
+      "name": "Custom Verbs",
+      "description": "Custom verb syntax (%&namespace.verb)",
+      "path": "verbs/custom-verbs.test.odin"
+    },
+    {
+      "id": "precision",
+      "name": "Precision",
+      "description": "Currency rounding, floating point handling, high precision",
+      "path": "verbs/precision.test.odin"
+    },
+    {
+      "id": "lookup-multikey",
+      "name": "Multi-Key Lookup",
+      "description": "Lookup tables with 3+ matching columns, rate tables, territory tables",
+      "path": "verbs/lookup-multikey.test.odin"
+    },
+    {
+      "id": "persist",
+      "name": "Accumulator Persist",
+      "description": "Persist vs non-persist accumulator behavior across passes",
+      "path": "verbs/persist.test.odin"
+    },
+    {
+      "id": "convertUnit",
+      "name": "Unit Conversion",
+      "description": "convertUnit across all 8 unit families: mass, length, volume, speed, area, data, time, temperature",
+      "path": "verbs/convertUnit.test.odin"
+    },
+    {
+      "id": "business-date",
+      "name": "Business Date",
+      "description": "businessDays, nextBusinessDay — weekend skipping",
+      "path": "verbs/business-date.test.odin"
+    },
+    {
+      "id": "format-extra",
+      "name": "Format Extra",
+      "description": "formatDuration, formatPhone, formatTimestamp, parseDate — additional format verbs",
+      "path": "verbs/format-extra.test.odin"
+    },
+    {
+      "id": "collection-extra",
+      "name": "Collection Extra",
+      "description": "reduce, movingAvg, pivot, unpivot — additional collection verbs",
+      "path": "verbs/collection-extra.test.odin"
+    }
+  ],
+  "trySuites": [
+    {
+      "id": "try-it",
+      "name": "Website Try It Verb Examples",
+      "description": "Golden tests from the website transform reference 'Try It' examples (91 verbs)",
+      "path": "verbs/try-it",
+      "format": "triplet (input.json + transform.odin -> expected.odin)"
+    }
+  ],
+  "features_tested": [
+    "trim_whitespace",
+    "coalesce_null_empty",
+    "string_manipulation",
+    "case_conversion",
+    "numeric_arithmetic",
+    "rounding_modes",
+    "date_formatting",
+    "date_parsing",
+    "date_arithmetic",
+    "conditional_logic",
+    "array_operations",
+    "object_manipulation",
+    "url_encoding",
+    "base64_encoding",
+    "hex_encoding",
+    "financial_calculations",
+    "insurance_calculations",
+    "accumulator_counters",
+    "state_management",
+    "id_generation",
+    "type_coercion",
+    "custom_verb_syntax",
+    "currency_precision",
+    "floating_point_handling",
+    "multi_key_lookup",
+    "lookup_3_columns",
+    "lookup_4_columns",
+    "territory_lookup",
+    "accumulator_persist",
+    "reduce_fold",
+    "pivot_unpivot",
+    "phone_formatting",
+    "moving_average",
+    "business_days",
+    "duration_formatting",
+    "unit_conversion"
+  ]
+}

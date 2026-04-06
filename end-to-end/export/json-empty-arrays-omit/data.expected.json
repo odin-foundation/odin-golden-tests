@@ -1,0 +1,16 @@
+{
+  "company": {
+    "name": "ACME Corp",
+    "active": true
+  },
+  "employees": [
+    {
+      "id": 1,
+      "name": "Alice"
+    },
+    {
+      "id": 2,
+      "name": "Bob"
+    }
+  ]
+}

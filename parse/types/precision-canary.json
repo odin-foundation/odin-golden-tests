@@ -1,0 +1,235 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-precision-canary",
+  "description": "Precision canary tests — floating point edge cases that catch cross-SDK rounding divergence",
+  "tests": [
+    {
+      "id": "canary-ieee754-0.1",
+      "description": "IEEE 754: 0.1 is not exactly representable in binary floating point",
+      "input": "n = #0.1",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.1 }
+        }
+      }
+    },
+    {
+      "id": "canary-ieee754-0.2",
+      "description": "IEEE 754: 0.2 is not exactly representable in binary floating point",
+      "input": "n = #0.2",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.2 }
+        }
+      }
+    },
+    {
+      "id": "canary-ieee754-0.3",
+      "description": "IEEE 754: 0.3 should parse and round-trip as 0.3",
+      "input": "n = #0.3",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.3 }
+        }
+      }
+    },
+    {
+      "id": "canary-ieee754-exact-0.1",
+      "description": "Exact IEEE 754 representation of 0.1 with full decimal expansion",
+      "input": "n = #0.1000000000000000055511151231257827021181583404541015625",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.1, "raw": "0.1000000000000000055511151231257827021181583404541015625" }
+        }
+      },
+      "_note": "The exact decimal expansion of what f64 stores for 0.1; raw preserves the full input"
+    },
+    {
+      "id": "canary-currency-99.99",
+      "description": "Common currency value #$99.99",
+      "input": "n = #$99.99",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 99.99 }
+        }
+      }
+    },
+    {
+      "id": "canary-currency-penny",
+      "description": "Penny precision — smallest common currency unit",
+      "input": "n = #$0.01",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 0.01 }
+        }
+      }
+    },
+    {
+      "id": "canary-currency-large",
+      "description": "Large currency value with cents",
+      "input": "n = #$9999999.99",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 9999999.99 }
+        }
+      }
+    },
+    {
+      "id": "canary-currency-trailing-zero",
+      "description": "Currency trailing zero preservation — raw keeps '0.10', value is 0.1",
+      "input": "n = #$0.10",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 0.1, "raw": "0.10" }
+        }
+      },
+      "_note": "Trailing zero in raw is significant for currency display"
+    },
+    {
+      "id": "canary-currency-half-cent",
+      "description": "Half-cent rounding case — raw preserves 3 decimal places",
+      "input": "n = #$19.995",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 19.995, "raw": "19.995" }
+        }
+      },
+      "_note": "Half-cent values must be preserved exactly for downstream rounding decisions"
+    },
+    {
+      "id": "canary-integer-2pow53",
+      "description": "2^53 — first integer NOT safely representable in f64",
+      "input": "n = ##9007199254740992",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "raw": "9007199254740992" }
+        }
+      },
+      "_note": "2^53 is the boundary where f64 can no longer represent consecutive integers"
+    },
+    {
+      "id": "canary-integer-2pow53-plus-1",
+      "description": "2^53 + 1 — loses precision in f64 (rounds to 2^53)",
+      "input": "n = ##9007199254740993",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "raw": "9007199254740993" }
+        }
+      },
+      "_note": "f64 cannot distinguish 9007199254740993 from 9007199254740992"
+    },
+    {
+      "id": "canary-integer-neg-2pow53",
+      "description": "Negative 2^53 — boundary on the negative side",
+      "input": "n = ##-9007199254740992",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "raw": "-9007199254740992" }
+        }
+      }
+    },
+    {
+      "id": "canary-percent-one-third",
+      "description": "One-third percentage — 33.33% stored as 0.3333 per spec",
+      "input": "n = #%0.3333",
+      "expected": {
+        "assignments": {
+          "n": { "type": "percent", "value": 0.3333 }
+        }
+      }
+    },
+    {
+      "id": "canary-percent-tiny",
+      "description": "Tiny percentage — 0.01% stored as 0.0001",
+      "input": "n = #%0.0001",
+      "expected": {
+        "assignments": {
+          "n": { "type": "percent", "value": 0.0001 }
+        }
+      }
+    },
+    {
+      "id": "canary-percent-exact-100",
+      "description": "Exact 100% stored as 1.0",
+      "input": "n = #%1.0",
+      "expected": {
+        "assignments": {
+          "n": { "type": "percent", "value": 1.0 }
+        }
+      }
+    },
+    {
+      "id": "canary-near-min-normal",
+      "description": "Near minimum positive normal f64 value (1e-308)",
+      "input": "n = #1e-308",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 1e-308 }
+        }
+      }
+    },
+    {
+      "id": "canary-near-max-f64",
+      "description": "Near maximum f64 value (1.7976931348623157e+308)",
+      "input": "n = #1.7976931348623157e+308",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "raw": "1.7976931348623157e+308" }
+        }
+      },
+      "_note": "Near DBL_MAX — raw preserves exact notation"
+    },
+    {
+      "id": "canary-min-subnormal",
+      "description": "Minimum positive subnormal f64 value (5e-324)",
+      "input": "n = #5e-324",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 5e-324 }
+        }
+      }
+    },
+    {
+      "id": "canary-negative-zero",
+      "description": "Negative zero — should parse as 0.0 (IEEE 754 negative zero)",
+      "input": "n = #-0.0",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.0 }
+        }
+      },
+      "_note": "Negative zero and positive zero are equal in value comparisons"
+    },
+    {
+      "id": "canary-large-plus-small",
+      "description": "Large integer part with small fractional part — tests mantissa precision",
+      "input": "n = #1000000.01",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 1000000.01 }
+        }
+      }
+    },
+    {
+      "id": "canary-very-small-positive",
+      "description": "Very small positive decimal — six zeros after decimal point",
+      "input": "n = #0.000001",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.000001 }
+        }
+      }
+    },
+    {
+      "id": "canary-too-many-digits-for-f64",
+      "description": "More significant digits than f64 mantissa can hold",
+      "input": "n = #123456789.123456789",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 123456789.12345679, "raw": "123456789.123456789" }
+        }
+      },
+      "_note": "f64 rounds the last digits; raw preserves the authored value"
+    }
+  ]
+}

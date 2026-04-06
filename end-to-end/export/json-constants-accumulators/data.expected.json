@@ -1,0 +1,29 @@
+{
+  "report": {
+    "company": "ACME Corp",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "name": "Widget",
+      "price": 10,
+      "qty": 3,
+      "lineTotal": 30
+    },
+    {
+      "name": "Gadget",
+      "price": 25,
+      "qty": 2,
+      "lineTotal": 50
+    },
+    {
+      "name": "Tool",
+      "price": 5,
+      "qty": 10,
+      "lineTotal": 50
+    }
+  ],
+  "summary": {
+    "totalValue": 130
+  }
+}

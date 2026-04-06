@@ -1,0 +1,310 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-numeric-precision",
+  "description": "Numeric precision and edge case tests",
+  "tests": [
+    {
+      "id": "integer-zero",
+      "description": "Integer zero",
+      "input": "n = ##0",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "value": 0 }
+        }
+      }
+    },
+    {
+      "id": "integer-negative-zero",
+      "description": "Negative zero integer",
+      "input": "n = ##-0",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "value": 0 }
+        }
+      }
+    },
+    {
+      "id": "integer-max-safe",
+      "description": "Maximum safe integer (2^53 - 1)",
+      "input": "n = ##9007199254740991",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "value": 9007199254740991 }
+        }
+      }
+    },
+    {
+      "id": "integer-min-safe",
+      "description": "Minimum safe integer (-(2^53 - 1))",
+      "input": "n = ##-9007199254740991",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "value": -9007199254740991 }
+        }
+      }
+    },
+    {
+      "id": "number-decimal-simple",
+      "description": "Simple decimal number",
+      "input": "n = #3.14159",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 3.14159 }
+        }
+      }
+    },
+    {
+      "id": "number-very-small",
+      "description": "Very small number",
+      "input": "n = #0.0000000000000001",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.0000000000000001 }
+        }
+      }
+    },
+    {
+      "id": "number-scientific-positive",
+      "description": "Scientific notation with positive exponent",
+      "input": "n = #1.5e10",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 15000000000 }
+        }
+      }
+    },
+    {
+      "id": "number-scientific-negative",
+      "description": "Scientific notation with negative exponent",
+      "input": "n = #1.5e-10",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.00000000015 }
+        }
+      }
+    },
+    {
+      "id": "number-scientific-uppercase",
+      "description": "Scientific notation with uppercase E",
+      "input": "n = #1.5E10",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 15000000000 }
+        }
+      }
+    },
+    {
+      "id": "number-scientific-explicit-plus",
+      "description": "Scientific notation with explicit positive exponent",
+      "input": "n = #1.5e+10",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 15000000000 }
+        }
+      }
+    },
+    {
+      "id": "currency-simple",
+      "description": "Simple currency value",
+      "input": "n = #$100.00",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 100.00 }
+        }
+      }
+    },
+    {
+      "id": "currency-zero",
+      "description": "Zero currency",
+      "input": "n = #$0.00",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 0.00 }
+        }
+      }
+    },
+    {
+      "id": "currency-negative",
+      "description": "Negative currency",
+      "input": "n = #$-50.25",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": -50.25 }
+        }
+      }
+    },
+    {
+      "id": "currency-one-cent",
+      "description": "One cent",
+      "input": "n = #$0.01",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 0.01 }
+        }
+      }
+    },
+    {
+      "id": "currency-large",
+      "description": "Large currency value",
+      "input": "n = #$999999999.99",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 999999999.99 }
+        }
+      }
+    },
+    {
+      "id": "currency-rounding-case-1",
+      "description": "Currency rounding - three decimals",
+      "input": "n = #$1.225",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 1.225 }
+        }
+      }
+    },
+    {
+      "id": "currency-rounding-case-2",
+      "description": "Currency rounding - three decimals",
+      "input": "n = #$1.235",
+      "expected": {
+        "assignments": {
+          "n": { "type": "currency", "value": 1.235 }
+        }
+      }
+    },
+    {
+      "id": "number-leading-zero",
+      "description": "Number with leading zero",
+      "input": "n = #0.5",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.5 }
+        }
+      }
+    },
+    {
+      "id": "number-trailing-zeros",
+      "description": "Number with trailing zeros",
+      "input": "n = #10.500",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 10.5 }
+        }
+      }
+    },
+    {
+      "id": "float-representation-issue",
+      "description": "Classic floating point representation (0.1 + 0.2)",
+      "input": "n = #0.30000000000000004",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": 0.30000000000000004, "note": "Common float64 representation of 0.1 + 0.2" }
+        }
+      }
+    },
+    {
+      "id": "number-negative-decimal",
+      "description": "Negative decimal number",
+      "input": "n = #-3.14159",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "value": -3.14159 }
+        }
+      }
+    },
+    {
+      "id": "integer-single-digit",
+      "description": "Single digit integers",
+      "input": "a = ##0\nb = ##1\nc = ##9",
+      "expected": {
+        "assignments": {
+          "a": { "type": "integer", "value": 0 },
+          "b": { "type": "integer", "value": 1 },
+          "c": { "type": "integer", "value": 9 }
+        }
+      }
+    },
+    {
+      "id": "error-double-negative",
+      "description": "Double negative is invalid",
+      "input": "n = #--5",
+      "expectError": {
+        "code": "P006",
+        "message": "Invalid numeric format"
+      }
+    },
+    {
+      "id": "error-empty-number",
+      "description": "Empty number after prefix",
+      "input": "n = #",
+      "expectError": {
+        "code": "P006",
+        "message": "Invalid numeric format"
+      }
+    },
+    {
+      "id": "integer-beyond-safe",
+      "description": "Integer beyond JS safe range (2^53)",
+      "input": "n = ##9007199254740992",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "raw": "9007199254740992" }
+        }
+      },
+      "_note": "Value is beyond 2^53-1, raw field preserves exact value for round-trip"
+    },
+    {
+      "id": "integer-very-large",
+      "description": "Very large integer (20 digits)",
+      "input": "n = ##12345678901234567890",
+      "expected": {
+        "assignments": {
+          "n": { "type": "integer", "raw": "12345678901234567890" }
+        }
+      },
+      "_note": "20-digit integer preserved via raw field"
+    },
+    {
+      "id": "number-high-precision",
+      "description": "High precision decimal (15+ significant digits)",
+      "input": "n = #3.141592653589793238",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "raw": "3.141592653589793238" }
+        }
+      },
+      "_note": "High precision preserved via raw field"
+    },
+    {
+      "id": "number-very-large",
+      "description": "Very large number with exponent",
+      "input": "n = #1.7976931348623157e+308",
+      "expected": {
+        "assignments": {
+          "n": { "type": "number", "raw": "1.7976931348623157e+308" }
+        }
+      },
+      "_note": "Near float64 max value, raw field preserves exact representation"
+    },
+    {
+      "id": "currency-crypto-18-decimals",
+      "description": "Cryptocurrency with 18 decimal places (Ethereum wei)",
+      "input": "amount = #$1.000000000000000001",
+      "expected": {
+        "assignments": {
+          "amount": { "type": "currency", "raw": "1.000000000000000001" }
+        }
+      },
+      "_note": "18 decimal places for Ethereum-style precision"
+    }
+  ],
+  "_planned_tests": [
+    {
+      "id": "error-integer-with-decimal",
+      "description": "Integer type with decimal value should error",
+      "status": "planned",
+      "reason": "Parser currently accepts ##3.14; validation planned"
+    }
+  ]
+}

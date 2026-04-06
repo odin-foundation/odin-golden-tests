@@ -1,0 +1,49 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "canonical-tabular",
+  "description": "Canonical form expands tabular syntax to explicit paths",
+  "tests": [
+    {
+      "id": "canonical-tabular-to-expanded",
+      "description": "Tabular input expands to explicit indexed paths in canonical form",
+      "input": "{items[] : name, qty, price}\n\"Widget\", ##10, #$5.99\n\"Gadget\", ##5, #$12.50",
+      "expected": "items[0].name = \"Widget\"\nitems[0].price = #$5.99\nitems[0].qty = ##10\nitems[1].name = \"Gadget\"\nitems[1].price = #$12.50\nitems[1].qty = ##5\n"
+    },
+    {
+      "id": "canonical-primitive-array-expanded",
+      "description": "Primitive array expands to explicit indexed paths",
+      "input": "{tags[] : ~}\n\"urgent\"\n\"important\"\n\"reviewed\"",
+      "expected": "tags[0] = \"urgent\"\ntags[1] = \"important\"\ntags[2] = \"reviewed\"\n"
+    },
+    {
+      "id": "canonical-tabular-sorted",
+      "description": "Tabular columns are sorted within each row",
+      "input": "{items[] : zebra, alpha}\n\"z-val\", \"a-val\"",
+      "expected": "items[0].alpha = \"a-val\"\nitems[0].zebra = \"z-val\"\n"
+    },
+    {
+      "id": "canonical-tabular-null-preserved",
+      "description": "Null cells in tabular create explicit null assignments",
+      "input": "{items[] : name, description}\n\"Widget\", ~",
+      "expected": "items[0].description = ~\nitems[0].name = \"Widget\"\n"
+    },
+    {
+      "id": "canonical-tabular-absent-omitted",
+      "description": "Absent cells in tabular produce no assignment",
+      "input": "{items[] : name, description}\n\"Widget\",",
+      "expected": "items[0].name = \"Widget\"\n"
+    },
+    {
+      "id": "canonical-relative-header-expanded",
+      "description": "Relative headers expand to absolute paths in canonical form",
+      "input": "{vehicles[0]}\nvin = \"ABC123\"\n\n{.garaging}\ncity = \"Dallas\"",
+      "expected": "vehicles[0].garaging.city = \"Dallas\"\nvehicles[0].vin = \"ABC123\"\n"
+    },
+    {
+      "id": "canonical-tabular-with-dot-columns",
+      "description": "Dot-qualified tabular columns expand to nested paths",
+      "input": "{items[] : product.name, product.sku, qty}\n\"Widget\", \"WGT-001\", ##10",
+      "expected": "items[0].product.name = \"Widget\"\nitems[0].product.sku = \"WGT-001\"\nitems[0].qty = ##10\n"
+    }
+  ]
+}

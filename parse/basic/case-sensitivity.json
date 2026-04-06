@@ -1,0 +1,80 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-case-sensitivity",
+  "description": "Case sensitivity contract for paths and values",
+  "tests": [
+    {
+      "id": "case-different-fields",
+      "description": "Name and name are different fields",
+      "input": "Name = \"Upper\"\nname = \"lower\"",
+      "expected": {
+        "assignments": {
+          "Name": { "type": "string", "value": "Upper" },
+          "name": { "type": "string", "value": "lower" }
+        }
+      }
+    },
+    {
+      "id": "case-field-named-true",
+      "description": "Field named 'true' is valid (not a boolean keyword)",
+      "input": "true = \"some value\"",
+      "expected": {
+        "assignments": {
+          "true": { "type": "string", "value": "some value" }
+        }
+      }
+    },
+    {
+      "id": "case-field-named-false",
+      "description": "Field named 'false' is valid",
+      "input": "false = ##42",
+      "expected": {
+        "assignments": {
+          "false": { "type": "integer", "value": 42 }
+        }
+      }
+    },
+    {
+      "id": "case-field-named-null",
+      "description": "Field named 'null' is valid",
+      "input": "null = \"not null\"",
+      "expected": {
+        "assignments": {
+          "null": { "type": "string", "value": "not null" }
+        }
+      }
+    },
+    {
+      "id": "case-field-named-date",
+      "description": "Field named 'date' with a date value",
+      "input": "date = 2024-06-15",
+      "expected": {
+        "assignments": {
+          "date": { "type": "date", "value": "2024-06-15" }
+        }
+      }
+    },
+    {
+      "id": "case-mixed-section-names",
+      "description": "Section names are case-sensitive",
+      "input": "{Person}\nname = \"John\"\n{person}\nname = \"Jane\"",
+      "expected": {
+        "assignments": {
+          "Person.name": { "type": "string", "value": "John" },
+          "person.name": { "type": "string", "value": "Jane" }
+        }
+      }
+    },
+    {
+      "id": "case-boolean-lowercase-only",
+      "description": "Boolean literals must be lowercase",
+      "input": "flag = ?true\nother = ?false",
+      "expected": {
+        "assignments": {
+          "flag": { "type": "boolean", "value": true },
+          "other": { "type": "boolean", "value": false }
+        }
+      }
+    }
+  ]
+}

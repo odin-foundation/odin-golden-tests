@@ -1,0 +1,55 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-security-limits",
+  "description": "Security limit tests \u2014 depth bombs and array index bombs (mandatory). Throughput limits (max string size, max assignments) are implementation-specific.",
+  "tests": [
+    {
+      "id": "security-deep-nesting-200",
+      "description": "200-level deep nesting via dotted paths exceeds max depth",
+      "input": "aa.ab.ac.ad.ae.af.ag.ah.ai.aj.ak.al.am.an.ao.ap.aq.ar.as.at.au.av.aw.ax.ay.az.ba.bb.bc.bd.be.bf.bg.bh.bi.bj.bk.bl.bm.bn.bo.bp.bq.br.bs.bt.bu.bv.bw.bx.by.bz.ca.cb.cc.cd.ce.cf.cg.ch.ci.cj.ck.cl.cm.cn.co.cp.cq.cr.cs.ct.cu.cv.cw.cx.cy.cz.da.db.dc.dd.de.df.dg.dh.di.dj.dk.dl.dm.dn.do.dp.dq.dr.ds.dt.du.dv.dw.dx.dy.dz.ea.eb.ec.ed.ee.ef.eg.eh.ei.ej.ek.el.em.en.eo.ep.eq.er.es.et.eu.ev.ew.ex.ey.ez.fa.fb.fc.fd.fe.ff.fg.fh.fi.fj.fk.fl.fm.fn.fo.fp.fq.fr.fs.ft.fu.fv.fw.fx.fy.fz.ga.gb.gc.gd.ge.gf.gg.gh.gi.gj.gk.gl.gm.gn.go.gp.gq.gr.gs.gt.gu.gv.gw.gx.gy.gz.ha.hb.hc.hd.he.hf.hg.hh.hi.hj.hk.hl.hm.hn.ho.hp.hq.hr = \"too deep\"",
+      "expectError": {
+        "code": "P010"
+      }
+    },
+    {
+      "id": "security-array-index-bomb",
+      "description": "Array index at INT32_MAX designed to cause massive memory allocation",
+      "input": "items[2147483647].name = \"bomb\"",
+      "expectError": {
+        "code": "P015"
+      }
+    },
+    {
+      "id": "security-header-array-nesting",
+      "description": "Deep nesting via array-indexed path segments",
+      "input": "aa[0].ab[0].ac[0].ad[0].ae[0].af[0].ag[0].ah[0].ai[0].aj[0].ak[0].al[0].am[0].an[0].ao[0].aq[0].ar[0].as[0].au[0].av[0].aw[0].ax[0].ay[0].az[0].ba[0].bb[0].bc[0].bd[0].be[0].bf[0].bg[0].bh[0].bi[0].bj[0].bk[0].bl[0].bm[0].bn[0].bo[0].bq[0].br[0].bs[0].bu[0].bv[0].bw[0].bx[0].by[0].bz[0].ca[0] = \"deep\"",
+      "expectError": {
+        "code": "P010"
+      }
+    },
+    {
+      "id": "security-negative-large-index",
+      "description": "Negative INT32_MIN array index",
+      "input": "items[-2147483648].name = \"bomb\"",
+      "expectError": {
+        "code": "P003"
+      }
+    },
+    {
+      "id": "security-header-plus-deep-path",
+      "description": "Header section combined with 150-level dotted path exceeds max depth",
+      "input": "{DeepRoot}\naa.ab.ac.ad.ae.af.ag.ah.ai.aj.ak.al.am.an.ao.ap.aq.ar.as.at.au.av.aw.ax.ay.az.ba.bb.bc.bd.be.bf.bg.bh.bi.bj.bk.bl.bm.bn.bo.bp.bq.br.bs.bt.bu.bv.bw.bx.by.bz.ca.cb.cc.cd.ce.cf.cg.ch.ci.cj.ck.cl.cm.cn.co.cp.cq.cr.cs.ct.cu.cv.cw.cx.cy.cz.da.db.dc.dd.de.df.dg.dh.di.dj.dk.dl.dm.dn.do.dp.dq.dr.ds.dt.du.dv.dw.dx.dy.dz.ea.eb.ec.ed.ee.ef.eg.eh.ei.ej.ek.el.em.en.eo.ep.eq.er.es.et.eu.ev.ew.ex.ey.ez.fa.fb.fc.fd.fe.ff.fg.fh.fi.fj.fk.fl.fm.fn.fo.fp.fq.fr.fs.ft = \"too deep\"",
+      "expectError": {
+        "code": "P010"
+      }
+    },
+    {
+      "id": "security-chained-large-indices",
+      "description": "Multiple chained large array indices compound memory allocation",
+      "input": "a[999999].b[999999].c[999999] = \"bomb\"",
+      "expectError": {
+        "code": "P015"
+      }
+    }
+  ]
+}

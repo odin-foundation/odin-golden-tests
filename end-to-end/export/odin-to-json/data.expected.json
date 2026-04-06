@@ -1,0 +1,80 @@
+{
+  "company": {
+    "name": "ACME Corporation",
+    "founded": "2010-05-15",
+    "active": true,
+    "employeeCount": 150,
+    "annualRevenue": 2500000,
+    "taxRate": 0.21,
+    "discountRate": 0.1
+  },
+  "contact": {
+    "email": "info@acme.com",
+    "phone": "+1-555-123-4567",
+    "website": "https://acme.com"
+  },
+  "address": {
+    "street": "123 Main Street",
+    "city": "Springfield",
+    "state": "IL",
+    "zip": "62701",
+    "country": "USA"
+  },
+  "employees": [
+    {
+      "id": 101,
+      "name": "John Smith",
+      "department": "Engineering",
+      "salary": 85000,
+      "hireDate": "2020-01-15",
+      "active": true
+    },
+    {
+      "id": 102,
+      "name": "Jane Doe",
+      "department": "Marketing",
+      "salary": 72000,
+      "hireDate": "2019-06-01",
+      "active": true
+    },
+    {
+      "id": 103,
+      "name": "Bob Wilson",
+      "department": "Engineering",
+      "salary": 92000,
+      "hireDate": "2018-03-20",
+      "active": true
+    },
+    {
+      "id": 104,
+      "name": "Alice Brown",
+      "department": "HR",
+      "salary": 68000,
+      "hireDate": "2021-09-01",
+      "active": false
+    }
+  ],
+  "products": [
+    {
+      "sku": "SKU-001",
+      "name": "Widget Pro",
+      "price": 29.99,
+      "quantity": 100,
+      "available": true
+    },
+    {
+      "sku": "SKU-002",
+      "name": "Gadget Plus",
+      "price": 149.5,
+      "quantity": 25,
+      "available": true
+    },
+    {
+      "sku": "SKU-003",
+      "name": "Tool Master",
+      "price": 9.99,
+      "quantity": 0,
+      "available": false
+    }
+  ]
+}

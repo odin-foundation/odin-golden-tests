@@ -1,0 +1,367 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "canonical-binary-output",
+  "description": "Canonical binary output verification for cross-SDK hash stability",
+  "tests": [
+    {
+      "id": "binary-empty-document",
+      "description": "Empty document produces 0 bytes",
+      "input": "",
+      "expected": {
+        "hex": "",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "binary-single-null",
+      "description": "Single null value",
+      "input": "value = ~",
+      "expected": {
+        "hex": "76616c7565203d207e0a",
+        "sha256": "ef6e649df24504f46efdb847cbebe01286001d8c69f5e000f27ab6203086eedb",
+        "byteLength": 10
+      }
+    },
+    {
+      "id": "binary-bool-true",
+      "description": "Boolean true",
+      "input": "flag = ?true",
+      "expected": {
+        "hex": "666c6167203d20747275650a",
+        "sha256": "090797d5c53cb34379aaaecbfb2000c5ba980fd6fbe691c2fdf697515cd2f37c",
+        "byteLength": 12
+      }
+    },
+    {
+      "id": "binary-bool-false",
+      "description": "Boolean false",
+      "input": "flag = ?false",
+      "expected": {
+        "hex": "666c6167203d2066616c73650a",
+        "sha256": "b9327e6b87b6528c0daf99fc3d76049fd75cf6de8f4948219f3e8cd304225abc",
+        "byteLength": 13
+      }
+    },
+    {
+      "id": "binary-string",
+      "description": "Simple string value",
+      "input": "name = \"John\"",
+      "expected": {
+        "hex": "6e616d65203d20224a6f686e220a",
+        "sha256": "1e4a713f428184ebb8589c20a6df2dbd7b1b0ecfd15d77114726d9f927267e49",
+        "byteLength": 14
+      }
+    },
+    {
+      "id": "binary-integer",
+      "description": "Integer value",
+      "input": "count = ##42",
+      "expected": {
+        "hex": "636f756e74203d20232334320a",
+        "sha256": "a89db324e5e3a41deb540607881562d972a477e29689e56781ce0373a4440bb9",
+        "byteLength": 13
+      }
+    },
+    {
+      "id": "binary-number",
+      "description": "Number value",
+      "input": "rate = #3.14",
+      "expected": {
+        "hex": "72617465203d2023332e31340a",
+        "sha256": "181ab4222c9c17104bf6954991104a670037fa8a96939e755d83af5bf0f539ab",
+        "byteLength": 13
+      }
+    },
+    {
+      "id": "binary-unicode-latin-extended",
+      "description": "Latin extended characters (2-byte UTF-8)",
+      "input": "city = \"Zürich\"",
+      "expected": {
+        "hex": "63697479203d20225ac3bc72696368220a",
+        "sha256": "aa6938052979c4cda91b9ff8e5550018bf679fa78ad78d4e93975baa9217c763",
+        "byteLength": 17
+      }
+    },
+    {
+      "id": "binary-unicode-cjk",
+      "description": "CJK characters (3-byte UTF-8)",
+      "input": "greeting = \"你好\"",
+      "expected": {
+        "hex": "6772656574696e67203d2022e4bda0e5a5bd220a",
+        "sha256": "65088d0d149a70c393ea03cdac0fc3743f77575ed0705e529e971db65cc0c97c",
+        "byteLength": 20
+      }
+    },
+    {
+      "id": "binary-unicode-emoji",
+      "description": "Emoji character (4-byte UTF-8)",
+      "input": "icon = \"🌍\"",
+      "expected": {
+        "hex": "69636f6e203d2022f09f8c8d220a",
+        "sha256": "034fb9b2c6f13742df9be7fd86378abeb5f44b839bfc375c9fdc54fbb55d4dcd",
+        "byteLength": 14
+      }
+    },
+    {
+      "id": "binary-sorted-flat",
+      "description": "Flat paths sorted alphabetically",
+      "input": "zebra = \"last\"\nalpha = \"first\"\nmiddle = \"second\"",
+      "expected": {
+        "hex": "616c706861203d20226669727374220a6d6964646c65203d20227365636f6e64220a7a65627261203d20226c617374220a",
+        "sha256": "1c1c0d265661467471e82334e03fb54fd191c2881fcac05b5b9d46d6b9b40e5c",
+        "byteLength": 49
+      }
+    },
+    {
+      "id": "binary-sorted-nested-2",
+      "description": "Nested 2-level paths sorted",
+      "input": "{person}\nname = \"Alice\"\n{person}\nage = ##30",
+      "expected": {
+        "hex": "706572736f6e2e616765203d20232333300a706572736f6e2e6e616d65203d2022416c696365220a",
+        "sha256": "abbe07d1de29101f2299f0a49854d27e8a0854a37460e75b33af330131eb735e",
+        "byteLength": 40
+      }
+    },
+    {
+      "id": "binary-sorted-nested-3",
+      "description": "Nested 3-level paths sorted",
+      "input": "{a}\n{a.z}\nval = ##1\n{a}\n{a.m}\nval = ##2",
+      "expected": {
+        "hex": "612e6d2e76616c203d202323320a612e7a2e76616c203d202323310a",
+        "sha256": "f4112997c3ae4b2fb8acd4d754bdb164228d5d46145287f384addc6124590b12",
+        "byteLength": 28
+      }
+    },
+    {
+      "id": "binary-modifier-required",
+      "description": "Required modifier",
+      "input": "name = !\"John\"",
+      "expected": {
+        "hex": "6e616d65203d2021224a6f686e220a",
+        "sha256": "4644fd36d708797febaa78f9b0169bf73057c9a0cc668213647c970cb789904b",
+        "byteLength": 15
+      }
+    },
+    {
+      "id": "binary-modifier-confidential",
+      "description": "Confidential modifier",
+      "input": "ssn = *\"123-45-6789\"",
+      "expected": {
+        "hex": "73736e203d202a223132332d34352d36373839220a",
+        "sha256": "4623e2b3f50932d311fe3c6dcdb54660d333d4ec3ac7c39f66fb9554f85385a4",
+        "byteLength": 21
+      }
+    },
+    {
+      "id": "binary-modifier-deprecated",
+      "description": "Deprecated modifier",
+      "input": "oldField = -\"legacy\"",
+      "expected": {
+        "hex": "6f6c644669656c64203d202d226c6567616379220a",
+        "sha256": "1d69810569f3e16029ae2165b9ec5b7190bc6e5232fcfbeab88ca17d63fcf904",
+        "byteLength": 21
+      }
+    },
+    {
+      "id": "binary-modifier-combined",
+      "description": "Combined modifiers in canonical order (!*-)",
+      "input": "important = !-*\"secret\"",
+      "expected": {
+        "hex": "696d706f7274616e74203d20212a2d22736563726574220a",
+        "sha256": "3b4fb6ffac267b0ccc785a9ef448f2bd8294f6cd735f16aaeffe780fcaf05607",
+        "byteLength": 24
+      }
+    },
+    {
+      "id": "binary-binary-value",
+      "description": "Binary (base64) value",
+      "input": "data = ^SGVsbG8=",
+      "expected": {
+        "hex": "64617461203d205e534756736247383d0a",
+        "sha256": "a0b9bcd4c7655b8544965e9b86fb30cdbe4526287a179dda4cb27f6e3ecf0d16",
+        "byteLength": 17
+      }
+    },
+    {
+      "id": "binary-binary-algorithm",
+      "description": "Binary with algorithm",
+      "input": "hash = ^sha256:SGVsbG8=",
+      "expected": {
+        "hex": "68617368203d205e7368613235363a534756736247383d0a",
+        "sha256": "9a49bd8571c209486697ccca128664c64f5282fa5cf5ce3e44c630c133691add",
+        "byteLength": 24
+      }
+    },
+    {
+      "id": "binary-reference",
+      "description": "Reference value",
+      "input": "primary = @drivers[0]",
+      "expected": {
+        "hex": "7072696d617279203d2040647269766572735b305d0a",
+        "sha256": "cae5d19f5baa9f29ba688715f32394ef1b8bb9a9d363f4fa93528715243689ed",
+        "byteLength": 22
+      }
+    },
+    {
+      "id": "binary-date",
+      "description": "Date value",
+      "input": "effective = 2024-06-15",
+      "expected": {
+        "hex": "656666656374697665203d20323032342d30362d31350a",
+        "sha256": "8e54b6118416fb5081bcbb1703f99f6f0f865c1a2d24a7dd8a5bb97fc5a6b68e",
+        "byteLength": 23
+      }
+    },
+    {
+      "id": "binary-timestamp",
+      "description": "Timestamp value",
+      "input": "created = 2024-06-15T10:30:00Z",
+      "expected": {
+        "hex": "63726561746564203d20323032342d30362d31355431303a33303a30305a0a",
+        "sha256": "a43d6fd3817d894e1eecb1cc172f55f01a74c01157e1759b98fae6260e2cb8cf",
+        "byteLength": 31
+      }
+    },
+    {
+      "id": "binary-time",
+      "description": "Time value",
+      "input": "start = T09:30:00",
+      "expected": {
+        "hex": "7374617274203d205430393a33303a30300a",
+        "sha256": "67f8b40ba8024dfc35fc79c5cf3e28c122d700a0ced20b2badb919e72b8b1149",
+        "byteLength": 18
+      }
+    },
+    {
+      "id": "binary-duration",
+      "description": "Duration value",
+      "input": "term = P6M",
+      "expected": {
+        "hex": "7465726d203d2050364d0a",
+        "sha256": "34a3d38c6f86afd3ed8d6d61891f8125c0778a3f4acb4518b627f1d09f9cec45",
+        "byteLength": 11
+      }
+    },
+    {
+      "id": "binary-percent",
+      "description": "Percent value",
+      "input": "rate = #%0.15",
+      "expected": {
+        "hex": "72617465203d202325302e31350a",
+        "sha256": "7c3be8a45527da682ac0fa9f801e3de688d1741e809dde0a7cb6e76340f0ff62",
+        "byteLength": 14
+      }
+    },
+    {
+      "id": "binary-currency-simple",
+      "description": "Currency value",
+      "input": "price = #$99.99",
+      "expected": {
+        "hex": "7072696365203d20232439392e39390a",
+        "sha256": "03676fbd924badc85dd9d2ac2c49fafa00e90ebded861d43afc3dc30975eb20f",
+        "byteLength": 16
+      }
+    },
+    {
+      "id": "binary-currency-with-code",
+      "description": "Currency with code",
+      "input": "amount = #$100.00:USD",
+      "expected": {
+        "hex": "616d6f756e74203d2023243130302e30303a5553440a",
+        "sha256": "8b3841f69205e83441b4220af894d5d8f29554c1a89b1792431ff7664f8ee31e",
+        "byteLength": 22
+      }
+    },
+    {
+      "id": "binary-currency-code-uppercased",
+      "description": "Currency code uppercased in canonical form",
+      "input": "price = #$50.00:gbp",
+      "expected": {
+        "hex": "7072696365203d20232435302e30303a4742500a",
+        "sha256": "85df9f82761a239b32fe3437d156087fa6a18ce27ea6e5dfb9b8e44a6f656efe",
+        "byteLength": 20
+      }
+    },
+    {
+      "id": "binary-currency-negative",
+      "description": "Negative currency",
+      "input": "refund = #$-25.00",
+      "expected": {
+        "hex": "726566756e64203d2023242d32352e30300a",
+        "sha256": "76250d34d1f4a901e1ec6243ade325583100bbffbcbb10a03000fbd644b6a967",
+        "byteLength": 18
+      }
+    },
+    {
+      "id": "binary-string-newline",
+      "description": "String with newline escape",
+      "input": "text = \"line1\\nline2\"",
+      "expected": {
+        "hex": "74657874203d20226c696e65315c6e6c696e6532220a",
+        "sha256": "9bbd01b936579b46411a79b6c18050d5c221c49093722014bb995c11c007de7f",
+        "byteLength": 22
+      }
+    },
+    {
+      "id": "binary-string-tab",
+      "description": "String with tab escape",
+      "input": "text = \"col1\\tcol2\"",
+      "expected": {
+        "hex": "74657874203d2022636f6c315c74636f6c32220a",
+        "sha256": "056dc480e28f1381ce472ac3722819d2c8d1f7ea67eb07bbd11e6f0b8ae72542",
+        "byteLength": 20
+      }
+    },
+    {
+      "id": "binary-string-quote",
+      "description": "String with escaped quote",
+      "input": "text = \"say \\\"hello\\\"\"",
+      "expected": {
+        "hex": "74657874203d2022736179205c2268656c6c6f5c22220a",
+        "sha256": "de3c036d2acb052eb92d756943e1116764b8a48f84c58754e772de17d146d586",
+        "byteLength": 23
+      }
+    },
+    {
+      "id": "binary-mixed-types",
+      "description": "Document with multiple types",
+      "input": "active = ?true\ncount = ##5\nname = \"test\"\nprice = #$10.00\nrate = #3.14",
+      "expected": {
+        "hex": "616374697665203d20747275650a636f756e74203d202323350a6e616d65203d202274657374220a7072696365203d20232431302e30300a72617465203d2023332e31340a",
+        "sha256": "ed12010b7c0d8827d63a6123c74c94ca0d828565fd2612fc108c46ff23a0e8c7",
+        "byteLength": 69
+      }
+    },
+    {
+      "id": "binary-policy-document",
+      "description": "Realistic policy document for hash stability",
+      "input": "{policy}\nnumber = \"PAP-2024-001\"\npremium = #$747.50\neffective = 2024-06-15\n{policy}\nstatus = \"active\"",
+      "expected": {
+        "hex": "706f6c6963792e656666656374697665203d20323032342d30362d31350a706f6c6963792e6e756d626572203d20225041502d323032342d303031220a706f6c6963792e7072656d69756d203d2023243734372e35300a706f6c6963792e737461747573203d2022616374697665220a",
+        "sha256": "7dbeb4da35e305f303a640f48d6ee74c93a1782514a84e2f55d9175645ca34b5",
+        "byteLength": 112
+      }
+    },
+    {
+      "id": "binary-insertion-order-1",
+      "description": "Fields in order A (should match order B)",
+      "input": "alpha = ##1\nbeta = ##2\ngamma = ##3",
+      "expected": {
+        "hex": "616c706861203d202323310a62657461203d202323320a67616d6d61203d202323330a",
+        "sha256": "e2a221798a95fb8d517873c25149e044b14052fdcaf74b5d4a94cfd565dbc4e5",
+        "byteLength": 35
+      }
+    },
+    {
+      "id": "binary-insertion-order-2",
+      "description": "Fields in order B (should match order A)",
+      "input": "gamma = ##3\nalpha = ##1\nbeta = ##2",
+      "expected": {
+        "hex": "616c706861203d202323310a62657461203d202323320a67616d6d61203d202323330a",
+        "sha256": "e2a221798a95fb8d517873c25149e044b14052fdcaf74b5d4a94cfd565dbc4e5",
+        "byteLength": 35
+      }
+    }
+  ]
+}

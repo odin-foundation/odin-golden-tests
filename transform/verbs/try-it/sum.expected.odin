@@ -1,0 +1,2 @@
+totalPremium = ##1000
+

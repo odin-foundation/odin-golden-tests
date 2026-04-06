@@ -1,0 +1,5 @@
+<person xmlns:odin="https://odin.foundation/ns">
+  <name>Alice</name>
+  <age odin:type="integer">30</age>
+  <active odin:type="boolean">true</active>
+</person>
