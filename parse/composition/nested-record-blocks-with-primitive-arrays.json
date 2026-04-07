@@ -1,0 +1,87 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-nested-record-blocks-with-primitive-arrays",
+  "description": "Parsing of arrays-of-records emitted by the optimal serializer form: per-record `{path[N]}` blocks containing scalar fields and relative `{.subarr[] : ~}` primitive-array sub-blocks. This is the form all SDK serializers produce when records contain ragged (variable-length) sub-arrays. All SDK parsers must round-trip this shape losslessly.",
+  "tests": [
+    {
+      "id": "ragged-string-subarrays",
+      "description": "Two records with variable-length string sub-arrays via relative {.tags[] : ~} sub-blocks",
+      "input": "{records[0]}\nname = \"Alice\"\n{.tags[] : ~}\n\"red\"\n\"green\"\n\"blue\"\n\n{records[1]}\nname = \"Bob\"\n{.tags[] : ~}\n\"yellow\"\n",
+      "expected": {
+        "assignments": {
+          "records[0].name": { "type": "string", "value": "Alice" },
+          "records[0].tags[0]": { "type": "string", "value": "red" },
+          "records[0].tags[1]": { "type": "string", "value": "green" },
+          "records[0].tags[2]": { "type": "string", "value": "blue" },
+          "records[1].name": { "type": "string", "value": "Bob" },
+          "records[1].tags[0]": { "type": "string", "value": "yellow" }
+        }
+      }
+    },
+    {
+      "id": "ragged-numeric-subarrays",
+      "description": "Records with variable-length integer sub-arrays via relative primitive-array sub-blocks",
+      "input": "{points[0]}\nlabel = \"A\"\n{.coords[] : ~}\n##1\n##2\n\n{points[1]}\nlabel = \"B\"\n{.coords[] : ~}\n##3\n##4\n##5\n##6\n",
+      "expected": {
+        "assignments": {
+          "points[0].label": { "type": "string", "value": "A" },
+          "points[0].coords[0]": { "type": "integer", "value": 1 },
+          "points[0].coords[1]": { "type": "integer", "value": 2 },
+          "points[1].label": { "type": "string", "value": "B" },
+          "points[1].coords[0]": { "type": "integer", "value": 3 },
+          "points[1].coords[1]": { "type": "integer", "value": 4 },
+          "points[1].coords[2]": { "type": "integer", "value": 5 },
+          "points[1].coords[3]": { "type": "integer", "value": 6 }
+        }
+      }
+    },
+    {
+      "id": "multiple-subarrays-per-record",
+      "description": "Records with two distinct primitive-array sub-blocks each — search-index style",
+      "input": "{entries[0]}\nslug = \"a/one\"\ntitle = \"One\"\n{.types[] : ~}\n\"alpha\"\n\"beta\"\n{.fields[] : ~}\n\"id\"\n\"name\"\n\"description\"\n\n{entries[1]}\nslug = \"b/two\"\ntitle = \"Two\"\n{.types[] : ~}\n\"gamma\"\n{.fields[] : ~}\n\"id\"\n",
+      "expected": {
+        "assignments": {
+          "entries[0].slug": { "type": "string", "value": "a/one" },
+          "entries[0].title": { "type": "string", "value": "One" },
+          "entries[0].types[0]": { "type": "string", "value": "alpha" },
+          "entries[0].types[1]": { "type": "string", "value": "beta" },
+          "entries[0].fields[0]": { "type": "string", "value": "id" },
+          "entries[0].fields[1]": { "type": "string", "value": "name" },
+          "entries[0].fields[2]": { "type": "string", "value": "description" },
+          "entries[1].slug": { "type": "string", "value": "b/two" },
+          "entries[1].title": { "type": "string", "value": "Two" },
+          "entries[1].types[0]": { "type": "string", "value": "gamma" },
+          "entries[1].fields[0]": { "type": "string", "value": "id" }
+        }
+      }
+    },
+    {
+      "id": "tabular-with-uniform-width-subarrays",
+      "description": "Records with uniform-length sub-arrays may be emitted as tabular with key[N] columns",
+      "input": "{points[] : label, coords[0], coords[1]}\n\"A\", ##1, ##2\n\"B\", ##3, ##4\n",
+      "expected": {
+        "assignments": {
+          "points[0].label": { "type": "string", "value": "A" },
+          "points[0].coords[0]": { "type": "integer", "value": 1 },
+          "points[0].coords[1]": { "type": "integer", "value": 2 },
+          "points[1].label": { "type": "string", "value": "B" },
+          "points[1].coords[0]": { "type": "integer", "value": 3 },
+          "points[1].coords[1]": { "type": "integer", "value": 4 }
+        }
+      }
+    },
+    {
+      "id": "relative-subarray-isolation-between-records",
+      "description": "A relative {.subarr[] : ~} sub-block must scope to its parent record block, not leak into the next sibling record. Regression test for the Rust and Python parser bugs found during the 2026-04 fix.",
+      "input": "{records[0]}\nname = \"first\"\n{.tags[] : ~}\n\"a\"\n\"b\"\n\n{records[1]}\nname = \"second\"\n",
+      "expected": {
+        "assignments": {
+          "records[0].name": { "type": "string", "value": "first" },
+          "records[0].tags[0]": { "type": "string", "value": "a" },
+          "records[0].tags[1]": { "type": "string", "value": "b" },
+          "records[1].name": { "type": "string", "value": "second" }
+        }
+      }
+    }
+  ]
+}

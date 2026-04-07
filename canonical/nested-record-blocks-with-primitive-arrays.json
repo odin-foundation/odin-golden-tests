@@ -1,0 +1,25 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "canonical-nested-record-blocks-with-primitive-arrays",
+  "description": "Canonical-form expansion of arrays-of-records emitted in the nested record-block form with relative `{.subarr[] : ~}` primitive-array sub-blocks. The canonical form must flatten every record's nested data into explicit absolute paths regardless of the input shape.",
+  "tests": [
+    {
+      "id": "canonical-ragged-string-subarrays",
+      "description": "Ragged string sub-arrays expand to fully-qualified absolute paths",
+      "input": "{records[0]}\nname = \"Alice\"\n{.tags[] : ~}\n\"red\"\n\"green\"\n\"blue\"\n\n{records[1]}\nname = \"Bob\"\n{.tags[] : ~}\n\"yellow\"\n",
+      "expected": "records[0].name = \"Alice\"\nrecords[0].tags[0] = \"red\"\nrecords[0].tags[1] = \"green\"\nrecords[0].tags[2] = \"blue\"\nrecords[1].name = \"Bob\"\nrecords[1].tags[0] = \"yellow\"\n"
+    },
+    {
+      "id": "canonical-multiple-subarrays-per-record",
+      "description": "Records with multiple distinct primitive-array sub-blocks expand cleanly",
+      "input": "{entries[0]}\nslug = \"a/one\"\n{.types[] : ~}\n\"alpha\"\n\"beta\"\n{.fields[] : ~}\n\"id\"\n\"name\"\n\n{entries[1]}\nslug = \"b/two\"\n{.types[] : ~}\n\"gamma\"\n{.fields[] : ~}\n\"id\"\n",
+      "expected": "entries[0].fields[0] = \"id\"\nentries[0].fields[1] = \"name\"\nentries[0].slug = \"a/one\"\nentries[0].types[0] = \"alpha\"\nentries[0].types[1] = \"beta\"\nentries[1].fields[0] = \"id\"\nentries[1].slug = \"b/two\"\nentries[1].types[0] = \"gamma\"\n"
+    },
+    {
+      "id": "canonical-uniform-subarray-tabular",
+      "description": "Tabular form with key[N] columns canonicalizes to flat indexed paths",
+      "input": "{points[] : label, coords[0], coords[1]}\n\"A\", ##1, ##2\n\"B\", ##3, ##4\n",
+      "expected": "points[0].coords[0] = ##1\npoints[0].coords[1] = ##2\npoints[0].label = \"A\"\npoints[1].coords[0] = ##3\npoints[1].coords[1] = ##4\npoints[1].label = \"B\"\n"
+    }
+  ]
+}
