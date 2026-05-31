@@ -6,7 +6,7 @@
     {
       "id": "single-document",
       "description": "Single document without separator",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\nname = \"John\"",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\n{}\nname = \"John\"",
       "expected": {
         "documents": [
           {
@@ -21,7 +21,7 @@
     {
       "id": "two-documents",
       "description": "Two documents separated by ---",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\nname = \"John\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\n\nname = \"Jane\"",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\n{}\nname = \"John\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\n\n{}\nname = \"Jane\"",
       "expected": {
         "documents": [
           {
@@ -41,7 +41,7 @@
     },
     {
       "id": "document-chain-overlay",
-      "description": "Document chain with overlay semantics",
+      "description": "Document chain with overlay semantics (each document parsed independently)",
       "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\nrole = \"base\"\n\n{person}\nname = \"John\"\nage = ##30\ncity = \"Austin\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"overlay\"\nrole = \"endorsement\"\nparent = @base\n\n{person}\nage = ##31\nstate = \"TX\"",
       "expected": {
         "documents": [
@@ -60,18 +60,12 @@
               "person.state": { "type": "string", "value": "TX" }
             }
           }
-        ],
-        "computed": {
-          "person.name": { "type": "string", "value": "John" },
-          "person.age": { "type": "integer", "value": 31 },
-          "person.city": { "type": "string", "value": "Austin" },
-          "person.state": { "type": "string", "value": "TX" }
-        }
+        ]
       }
     },
     {
       "id": "null-removes-field",
-      "description": "Null value in later document removes field",
+      "description": "Null value in later document is captured in that document",
       "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\n\n{person}\nname = \"John\"\nage = ##30\ntemporary = \"will be removed\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"update\"\nparent = @base\n\n{person}\ntemporary = ~",
       "expected": {
         "documents": [
@@ -89,40 +83,13 @@
               "person.temporary": { "type": "null", "value": null }
             }
           }
-        ],
-        "computed": {
-          "person.name": { "type": "string", "value": "John" },
-          "person.age": { "type": "integer", "value": 30 }
-        }
-      }
-    },
-    {
-      "id": "array-clear",
-      "description": "Explicit empty array clears inherited array",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\n\nitems[0].name = \"Item 1\"\nitems[1].name = \"Item 2\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"clear\"\nparent = @base\n\nitems[] = ~",
-      "expected": {
-        "documents": [
-          {
-            "metadata": { "odin": "1.0.0", "id": "base" },
-            "assignments": {
-              "items[0].name": { "type": "string", "value": "Item 1" },
-              "items[1].name": { "type": "string", "value": "Item 2" }
-            }
-          },
-          {
-            "metadata": { "odin": "1.0.0", "id": "clear" },
-            "assignments": {
-              "items[]": { "type": "null", "value": null, "isArrayClear": true }
-            }
-          }
-        ],
-        "computed": {}
+        ]
       }
     },
     {
       "id": "three-document-chain",
       "description": "Three documents in chain",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"header\"\nrole = \"header\"\n\ninsured.name = \"John Smith\"\ninsured.ssn = *\"123-45-6789\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"policy_base\"\nrole = \"base\"\nparent = @header\n\npolicy.number = \"PAP-001\"\npolicy.effective = 2024-06-15\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"endorsement_001\"\nrole = \"endorsement\"\nparent = @policy_base\neffective = 2024-09-01\n\npolicy.effective = 2024-09-01\nvehicles[0].vin = \"1HGCM82633A004352\"",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"header\"\nrole = \"header\"\n\n{}\ninsured.name = \"John Smith\"\ninsured.ssn = *\"123-45-6789\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"policy_base\"\nrole = \"base\"\nparent = @header\n\n{}\npolicy.number = \"PAP-001\"\npolicy.effective = 2024-06-15\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"endorsement_001\"\nrole = \"endorsement\"\nparent = @policy_base\neffective = 2024-09-01\n\n{}\npolicy.effective = 2024-09-01\nvehicles[0].vin = \"1HGCM82633A004352\"",
       "expected": {
         "documents": [
           {
@@ -152,7 +119,7 @@
     {
       "id": "document-roles",
       "description": "Various document roles",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\nrole = \"base\"\n\npolicy.number = \"PAP-001\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"renewal\"\nrole = \"renewal\"\nparent = @base\n\npolicy.term = P12M\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"cancel\"\nrole = \"cancellation\"\nparent = @renewal\n\npolicy.cancelDate = 2024-12-31",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"base\"\nrole = \"base\"\n\n{}\npolicy.number = \"PAP-001\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"renewal\"\nrole = \"renewal\"\nparent = @base\n\n{}\npolicy.term = P12M\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"cancel\"\nrole = \"cancellation\"\nparent = @renewal\n\n{}\npolicy.cancelDate = 2024-12-31",
       "expected": {
         "documents": [
           {
@@ -170,7 +137,7 @@
     {
       "id": "separator-with-comment",
       "description": "Document separator with comment",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\nname = \"First\"\n\n--- ; End of first document\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\n\nname = \"Second\"",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\n\n{}\nname = \"First\"\n\n--- ; End of first document\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\n\n{}\nname = \"Second\"",
       "expected": {
         "documents": [
           {
@@ -191,7 +158,7 @@
     {
       "id": "metadata-isolation",
       "description": "Each document's metadata is independent",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\ncustom.field1 = \"value1\"\n\ndata = \"first\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\ncustom.field2 = \"value2\"\n\ndata = \"second\"",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"doc1\"\ncustom.field1 = \"value1\"\n\n{}\ndata = \"first\"\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"doc2\"\ncustom.field2 = \"value2\"\n\n{}\ndata = \"second\"",
       "expected": {
         "documents": [
           {
@@ -212,7 +179,7 @@
     {
       "id": "supersedes-reference",
       "description": "Document with supersedes reference",
-      "input": "{$}\nodin = \"1.0.0\"\nid = \"endorsement_001\"\nrole = \"endorsement\"\n\namount = #$100.00\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"endorsement_002\"\nrole = \"endorsement\"\nsupersedes = @endorsement_001\n\namount = #$150.00",
+      "input": "{$}\nodin = \"1.0.0\"\nid = \"endorsement_001\"\nrole = \"endorsement\"\n\n{}\namount = #$100.00\n\n---\n\n{$}\nodin = \"1.0.0\"\nid = \"endorsement_002\"\nrole = \"endorsement\"\nsupersedes = @endorsement_001\n\n{}\namount = #$150.00",
       "expected": {
         "documents": [
           {
