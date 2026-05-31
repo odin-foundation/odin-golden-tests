@@ -1,0 +1,148 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "schema-conformance",
+  "description": "Schema parser conformance: percent type, typed defaults, unions, temporal bounds, glued directives, pattern conditionals, intersections",
+  "tests": [
+    {
+      "id": "percent-type",
+      "description": "#% parses as a first-class percent type",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\ntax = #%",
+      "assert": {
+        "fields": {
+          "root.tax": { "typeKind": "percent" }
+        }
+      }
+    },
+    {
+      "id": "typed-default-integer",
+      "description": "Bare integer default ##3 is captured",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\na = ##3",
+      "assert": {
+        "fields": {
+          "root.a": { "typeKind": "integer", "default": { "type": "integer", "value": 3 } }
+        }
+      }
+    },
+    {
+      "id": "typed-default-number",
+      "description": "Bare number default #0.05 is captured",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nb = #0.05",
+      "assert": {
+        "fields": {
+          "root.b": { "typeKind": "number", "default": { "type": "number", "value": 0.05 } }
+        }
+      }
+    },
+    {
+      "id": "typed-default-currency",
+      "description": "Bare currency default #$5.00 is captured",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nc = #$5.00",
+      "assert": {
+        "fields": {
+          "root.c": { "typeKind": "currency", "default": { "type": "currency", "value": 5 } }
+        }
+      }
+    },
+    {
+      "id": "typed-default-percent",
+      "description": "Bare percent default #%0.15 is captured",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\np = #%0.15",
+      "assert": {
+        "fields": {
+          "root.p": { "typeKind": "percent", "default": { "type": "percent", "value": 0.15 } }
+        }
+      }
+    },
+    {
+      "id": "constrained-default",
+      "description": "Default trailing a bounds constraint is captured",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\npriority = ##:(1..5) ##3",
+      "assert": {
+        "fields": {
+          "root.priority": {
+            "typeKind": "integer",
+            "default": { "type": "integer", "value": 3 },
+            "constraints": [{ "kind": "bounds", "min": 1, "max": 5 }]
+          }
+        }
+      }
+    },
+    {
+      "id": "union-date-timestamp",
+      "description": "date|timestamp keeps both members",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nu = date|timestamp",
+      "assert": {
+        "fields": {
+          "root.u": { "union": ["date", "timestamp"] }
+        }
+      }
+    },
+    {
+      "id": "union-number-null",
+      "description": "#|~ keeps number and null members",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nn = #|~",
+      "assert": {
+        "fields": {
+          "root.n": { "union": ["number", "null"] }
+        }
+      }
+    },
+    {
+      "id": "temporal-bounds-preserved",
+      "description": "date:(min..max) preserves temporal literals as strings",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nd = date:(2020-06-15..2020-06-20)",
+      "assert": {
+        "fields": {
+          "root.d": {
+            "typeKind": "date",
+            "constraints": [{ "kind": "bounds", "min": "2020-06-15", "max": "2020-06-20" }]
+          }
+        }
+      }
+    },
+    {
+      "id": "temporal-glued-immutable",
+      "description": "timestamp:immutable keeps temporal type and immutable flag",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\ncreated_at = !timestamp:immutable",
+      "assert": {
+        "fields": {
+          "root.created_at": { "typeKind": "timestamp", "required": true, "immutable": true }
+        }
+      }
+    },
+    {
+      "id": "temporal-glued-computed",
+      "description": "date:computed keeps temporal type and computed flag",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nstamp = date:computed",
+      "assert": {
+        "fields": {
+          "root.stamp": { "typeKind": "date", "computed": true }
+        }
+      }
+    },
+    {
+      "id": "pattern-then-if",
+      "description": "A trailing :if after a pattern constraint is captured",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nfield = !:/^[a-z]+$/:if method = paypal",
+      "assert": {
+        "fields": {
+          "root.field": {
+            "required": true,
+            "constraints": [{ "kind": "pattern", "pattern": "^[a-z]+$" }],
+            "conditionals": [{ "field": "method", "operator": "=", "value": "paypal" }]
+          }
+        }
+      }
+    },
+    {
+      "id": "type-intersection-fields",
+      "description": "= @a & @b stores both intersection members",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@hasName}\nname = !\n\n{@hasAge}\nage = !##\n\n{customer}\n= @hasName & @hasAge",
+      "assert": {
+        "fields": {
+          "customer._composition": { "typeKind": "typeRef", "typeRefName": "hasName&hasAge" }
+        }
+      }
+    }
+  ]
+}

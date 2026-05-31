@@ -14,6 +14,12 @@
       "name": "Schema Validation Rules",
       "description": "V001-V013 validation error codes",
       "path": "schema-validation.json"
+    },
+    {
+      "id": "conformance",
+      "name": "Validator Conformance",
+      "description": "Intersections, temporal bounds, percent, unions, pattern conditionals, field typeRefs, invariant null operands",
+      "path": "conformance/validate-conformance.json"
     }
   ],
   "features_tested": [

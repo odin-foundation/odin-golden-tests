@@ -1,0 +1,170 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-conformance",
+  "description": "Validator conformance: intersections, temporal bounds, percent, unions, pattern conditionals, field typeRefs, invariant null operands",
+  "tests": [
+    {
+      "id": "intersection-all-present-valid",
+      "description": "Object intersection passes when all members' required fields present",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@hasName}\nname = !\n\n{@hasAge}\nage = !##\n\n{customer}\n= @hasName & @hasAge",
+      "input": "{customer}\nname = \"Bob\"\nage = ##5",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "intersection-missing-member-field",
+      "description": "Object intersection fails when a member's required field is missing",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@hasName}\nname = !\n\n{@hasAge}\nage = !##\n\n{customer}\n= @hasName & @hasAge",
+      "input": "{customer}\nname = \"Bob\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V001", "path": "customer.age" }]
+      }
+    },
+    {
+      "id": "intersection-unresolved-member",
+      "description": "Object intersection reports V013 for an unresolved member type",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@hasName}\nname = !\n\n{customer}\n= @hasName & @doesNotExist",
+      "input": "{customer}\nname = \"Bob\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V013" }]
+      }
+    },
+    {
+      "id": "temporal-bounds-in-range-valid",
+      "description": "Date within temporal range passes",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nd = date:(2020-06-15..2020-06-20)",
+      "input": "{root}\nd = 2020-06-17",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "temporal-bounds-below-min",
+      "description": "Date before temporal minimum fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nd = date:(2020-06-15..2020-06-20)",
+      "input": "{root}\nd = 2020-06-10",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V003", "path": "root.d" }]
+      }
+    },
+    {
+      "id": "temporal-bounds-above-max",
+      "description": "Date after temporal maximum fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nd = date:(2020-06-15..2020-06-20)",
+      "input": "{root}\nd = 2020-06-25",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V003", "path": "root.d" }]
+      }
+    },
+    {
+      "id": "percent-value-valid",
+      "description": "Percent value accepted by percent-typed field",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\ntax = #%",
+      "input": "{root}\ntax = #%0.15",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "percent-type-mismatch",
+      "description": "Non-percent value rejected by percent-typed field",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\ntax = #%",
+      "input": "{root}\ntax = \"fifteen\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V002", "path": "root.tax" }]
+      }
+    },
+    {
+      "id": "union-null-member-valid",
+      "description": "A union with a null member accepts a null value",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nn = #|~",
+      "input": "{root}\nn = ~",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "union-date-timestamp-valid",
+      "description": "A date|timestamp union accepts a timestamp value",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nu = date|timestamp",
+      "input": "{root}\nu = 2020-06-17T10:00:00Z",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "pattern-conditional-required-when-met",
+      "description": "Conditionally-required field after a pattern fails V010 when its condition holds",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nfield = !:/^[a-z]+$/:if method = paypal\nmethod = ",
+      "input": "{root}\nmethod = \"paypal\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V010", "path": "root.field" }]
+      }
+    },
+    {
+      "id": "pattern-conditional-not-required-when-unmet",
+      "description": "Conditionally-required field after a pattern is optional when its condition fails",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nfield = !:/^[a-z]+$/:if method = paypal\nmethod = ",
+      "input": "{root}\nmethod = \"stripe\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "pattern-conditional-pattern-enforced",
+      "description": "Pattern after a conditional is still enforced on present values",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nfield = !:/^[a-z]+$/:if method = paypal\nmethod = ",
+      "input": "{root}\nfield = \"ABC123\"\nmethod = \"paypal\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V004", "path": "root.field" }]
+      }
+    },
+    {
+      "id": "field-typeref-missing-nested-required",
+      "description": "A field typed @Address enforces the referenced type's required fields",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@address}\nstreet = !\ncity = !\n\n{customer}\nname = !\nbilling = @address",
+      "input": "{customer}\nname = \"X\"\nbilling.street = \"Main\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V001", "path": "customer.billing.city" }]
+      }
+    },
+    {
+      "id": "field-typeref-absent-optional",
+      "description": "An optional field typed @Address does not require nested fields when absent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@address}\nstreet = !\ncity = !\n\n{customer}\nname = !\nbilling = @address",
+      "input": "{customer}\nname = \"X\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "field-typeref-complete-valid",
+      "description": "A field typed @Address passes when all nested required fields present",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@address}\nstreet = !\ncity = !\n\n{customer}\nname = !\nbilling = @address",
+      "input": "{customer}\nname = \"X\"\nbilling.street = \"Main\"\nbilling.city = \"NYC\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "invariant-null-operand-fails",
+      "description": "An invariant with a null-valued operand fails V008",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{order}\ntotal = #$\nsubtotal = #$\ntax = ~#$\n:invariant total = subtotal + tax",
+      "input": "{order}\ntotal = #$10.00\nsubtotal = #$10.00\ntax = ~",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V008", "path": "order" }]
+      }
+    },
+    {
+      "id": "invariant-all-present-valid",
+      "description": "An arithmetic invariant passes when all operands are present and consistent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{order}\ntotal = #$\nsubtotal = #$\ntax = #$\n:invariant total = subtotal + tax",
+      "input": "{order}\ntotal = #$12.00\nsubtotal = #$10.00\ntax = #$2.00",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "invariant-comparison-null-operand-fails",
+      "description": "A comparison invariant with a null operand fails V008",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{range}\nstart = ~#\nend = ~#\n:invariant end >= start",
+      "input": "{range}\nend = #5\nstart = ~",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V008", "path": "range" }]
+      }
+    }
+  ]
+}

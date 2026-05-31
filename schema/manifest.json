@@ -8,6 +8,12 @@
       "name": "Schema Composition",
       "description": "Type definitions, inheritance, intersection, conditionals",
       "path": "composition/schema-composition.json"
+    },
+    {
+      "id": "conformance",
+      "name": "Schema Parser Conformance",
+      "description": "Percent type, typed defaults, unions, temporal bounds, glued directives, pattern conditionals, intersections",
+      "path": "conformance/schema-conformance.json"
     }
   ],
   "features_tested": [
@@ -25,6 +31,11 @@
     "computed_fields",
     "immutable_fields",
     "deprecated_types",
-    "multiple_inheritance"
+    "multiple_inheritance",
+    "percent_type",
+    "typed_defaults",
+    "temporal_bounds",
+    "glued_directives",
+    "pattern_conditionals"
   ]
 }
