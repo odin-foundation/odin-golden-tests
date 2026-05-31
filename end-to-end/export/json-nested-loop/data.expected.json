@@ -1,0 +1,19 @@
+{
+  "rows": [
+    {
+      "vehicle_vin": "VIN-A",
+      "coverage_code": "LIAB",
+      "coverage_limit": 100000
+    },
+    {
+      "vehicle_vin": "VIN-A",
+      "coverage_code": "COLL",
+      "coverage_limit": 50000
+    },
+    {
+      "vehicle_vin": "VIN-B",
+      "coverage_code": "COMP",
+      "coverage_limit": 25000
+    }
+  ]
+}

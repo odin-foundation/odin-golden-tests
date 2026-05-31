@@ -330,6 +330,30 @@
       "input": "json-interpolation-escape/data.input.odin",
       "transform": "json-interpolation-escape/data.transform.odin",
       "expected": "json-interpolation-escape/data.expected.json"
+    },
+    {
+      "id": "json-nested-loop",
+      "description": "Nested :loop iterates vehicles x coverages as a cross-product",
+      "direction": "odin->json",
+      "input": "json-nested-loop/data.input.odin",
+      "transform": "json-nested-loop/data.transform.odin",
+      "expected": "json-nested-loop/data.expected.json"
+    },
+    {
+      "id": "json-nested-loop-empty-inner",
+      "description": "Nested :loop skips outer items with no inner array and resets the counter per outer item",
+      "direction": "odin->json",
+      "input": "json-nested-loop-empty-inner/data.input.odin",
+      "transform": "json-nested-loop-empty-inner/data.transform.odin",
+      "expected": "json-nested-loop-empty-inner/data.expected.json"
+    },
+    {
+      "id": "json-nested-loop-three-level",
+      "description": "Three nested :loop directives iterate regions x stores x items",
+      "direction": "odin->json",
+      "input": "json-nested-loop-three-level/data.input.odin",
+      "transform": "json-nested-loop-three-level/data.transform.odin",
+      "expected": "json-nested-loop-three-level/data.expected.json"
     }
   ]
 }

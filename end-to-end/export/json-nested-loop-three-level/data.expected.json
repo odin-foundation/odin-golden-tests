@@ -1,0 +1,19 @@
+{
+  "rows": [
+    {
+      "region": "West",
+      "store": "S1",
+      "sku": "X"
+    },
+    {
+      "region": "West",
+      "store": "S1",
+      "sku": "Y"
+    },
+    {
+      "region": "East",
+      "store": "S2",
+      "sku": "Z"
+    }
+  ]
+}

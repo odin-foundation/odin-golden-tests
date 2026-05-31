@@ -1,0 +1,19 @@
+{
+  "rows": [
+    {
+      "vin": "V1",
+      "code": "A",
+      "cov_index": 0
+    },
+    {
+      "vin": "V1",
+      "code": "B",
+      "cov_index": 1
+    },
+    {
+      "vin": "V3",
+      "code": "C",
+      "cov_index": 0
+    }
+  ]
+}
