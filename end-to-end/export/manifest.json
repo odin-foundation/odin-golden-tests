@@ -170,6 +170,22 @@
       "input": "json-on-missing-default/data.input.odin",
       "transform": "json-on-missing-default/data.transform.odin",
       "expected": "json-on-missing-default/data.expected.json"
+    },
+    {
+      "id": "xml-namespaces",
+      "description": "Export ODIN to XML with target namespace declarations and :ns prefixed elements",
+      "direction": "odin->xml",
+      "input": "xml-namespaces/data.input.odin",
+      "transform": "xml-namespaces/data.transform.odin",
+      "expected": "xml-namespaces/data.expected.xml"
+    },
+    {
+      "id": "xml-plain",
+      "description": "Export ODIN to plain XML with emitTypeHints=false (no odin: attributes)",
+      "direction": "odin->xml",
+      "input": "xml-plain/data.input.odin",
+      "transform": "xml-plain/data.transform.odin",
+      "expected": "xml-plain/data.expected.xml"
     }
   ]
 }
