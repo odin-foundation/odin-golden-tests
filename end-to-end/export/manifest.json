@@ -28,6 +28,30 @@
       "expected": "conditional-section-omit/data.expected.json"
     },
     {
+      "id": "conditional-and-include",
+      "description": "Compound _if with AND of two comparisons (both true) includes the section",
+      "direction": "odin->json",
+      "input": "conditional-and-include/data.input.odin",
+      "transform": "conditional-and-include/data.transform.odin",
+      "expected": "conditional-and-include/data.expected.json"
+    },
+    {
+      "id": "conditional-and-omit",
+      "description": "Compound _if with AND (one comparison false) omits the section",
+      "direction": "odin->json",
+      "input": "conditional-and-omit/data.input.odin",
+      "transform": "conditional-and-omit/data.transform.odin",
+      "expected": "conditional-and-omit/data.expected.json"
+    },
+    {
+      "id": "conditional-or-not-include",
+      "description": "Compound _if with OR and a NOT factor includes the section",
+      "direction": "odin->json",
+      "input": "conditional-or-not-include/data.input.odin",
+      "transform": "conditional-or-not-include/data.transform.odin",
+      "expected": "conditional-or-not-include/data.expected.json"
+    },
+    {
       "id": "json-nulls-omit",
       "description": "Export ODIN to JSON with null values omitted",
       "direction": "odin->json",
