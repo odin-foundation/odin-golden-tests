@@ -1,0 +1,101 @@
+{
+  "$schema": "../forms-suite.schema.json",
+  "suite": "forms",
+  "description": "ODIN Forms 1.0 parse and render conformance",
+  "tests": [
+    {
+      "id": "page-template-parses",
+      "description": "{@tpl_*} page templates parse without error and expose continues/form-id",
+      "formFile": "fixtures/page-template.odin",
+      "expectParse": {
+        "pages": 1,
+        "templates": {
+          "tpl_vehicles_continued": {
+            "pageTemplate": true,
+            "continues": "region.vehicles",
+            "formId": "PA (Cont)",
+            "elementTypes": ["text", "region"]
+          }
+        },
+        "page0": {
+          "elementTypes": ["text", "region"],
+          "elements": {
+            "vehicles": {
+              "type": "region",
+              "bind": "@policy.vehicles",
+              "max": 3,
+              "overflow": "@tpl_vehicles_continued",
+              "childCount": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "region-overflow-render",
+      "description": "Region overflow generates a continuation page from the template; interpolation resolves",
+      "formFile": "fixtures/page-template.odin",
+      "renderData": "{policy}\n{.vehicles[0]}\nvin = \"V0\"\n{.vehicles[1]}\nvin = \"V1\"\n{.vehicles[2]}\nvin = \"V2\"\n{.vehicles[3]}\nvin = \"V3\"\n{.vehicles[4]}\nvin = \"V4\"",
+      "renderContains": [
+        "Page 1 of 2",
+        "Page 2 of 2",
+        "value=\"V0\"",
+        "value=\"V3\"",
+        "value=\"V4\""
+      ],
+      "renderNotContains": ["{@odin.page}", "{@odin.total_pages}"]
+    },
+    {
+      "id": "inline-values-parse",
+      "description": "Inline value/checked/selected and inputType parse onto field elements",
+      "formFile": "fixtures/inline-values.odin",
+      "expectParse": {
+        "page0": {
+          "elements": {
+            "name": { "type": "field.text", "value": "John Smith", "inputType": "email" },
+            "agree": { "type": "field.checkbox", "checked": true },
+            "dob": { "type": "field.date", "value": "1985-03-15", "min": "1900-01-01", "max": "2010-01-01" },
+            "state": { "type": "field.select", "selected": "TX", "options": ["AL", "CA", "NY", "TX"] }
+          }
+        }
+      }
+    },
+    {
+      "id": "inline-values-render",
+      "description": "Inline values render into HTML inputs without a bound data document",
+      "formFile": "fixtures/inline-values.odin",
+      "renderContains": [
+        "type=\"email\"",
+        "value=\"John Smith\"",
+        "value=\"1985-03-15\"",
+        "<option value=\"TX\" selected>"
+      ]
+    },
+    {
+      "id": "content-elements-parse",
+      "description": "img background, barcode type, per-side margins, and i18n label refs parse",
+      "formFile": "fixtures/content-elements.odin",
+      "expectParse": {
+        "margins": { "top": 0.5, "right": 0.25, "bottom": 0.6, "left": 0.75 },
+        "page0": {
+          "elements": {
+            "template": { "type": "img", "background": true },
+            "doc": { "type": "barcode", "barcodeType": "qr" },
+            "name": { "type": "field.text", "label": "Full Legal Name" }
+          }
+        }
+      }
+    },
+    {
+      "id": "content-elements-render",
+      "description": "background image gets lowest z-index; barcode carries type and content",
+      "formFile": "fixtures/content-elements.odin",
+      "renderContains": [
+        "z-index:0;",
+        "data:image/png;base64,",
+        "data-barcode-type=\"qr\"",
+        "Full Legal Name"
+      ]
+    }
+  ]
+}
