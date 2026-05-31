@@ -12,6 +12,22 @@
       "expected": "odin-to-json/data.expected.json"
     },
     {
+      "id": "conditional-section-include",
+      "description": "Header-inline :if includes a whole section when its condition is true",
+      "direction": "odin->json",
+      "input": "conditional-section-include/data.input.odin",
+      "transform": "conditional-section-include/data.transform.odin",
+      "expected": "conditional-section-include/data.expected.json"
+    },
+    {
+      "id": "conditional-section-omit",
+      "description": "Header-inline :if omits a whole section when its condition is false",
+      "direction": "odin->json",
+      "input": "conditional-section-omit/data.input.odin",
+      "transform": "conditional-section-omit/data.transform.odin",
+      "expected": "conditional-section-omit/data.expected.json"
+    },
+    {
       "id": "json-nulls-omit",
       "description": "Export ODIN to JSON with null values omitted",
       "direction": "odin->json",

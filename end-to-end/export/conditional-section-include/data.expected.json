@@ -1,0 +1,11 @@
+{
+  "Quote": {
+    "driverName": "Pat Lee",
+    "hasDui": true
+  },
+  "DuiDetails": {
+    "convictionDate": "2023-08-01",
+    "state": "TX",
+    "bacLevel": 0.12
+  }
+}
