@@ -298,6 +298,30 @@
       "input": "fwf-line-width/data.input.odin",
       "transform": "fwf-line-width/data.transform.odin",
       "expected": "fwf-line-width/data.expected.fwf"
+    },
+    {
+      "id": "verb-toObject-pairs",
+      "description": "%toObject rebuilds an object from nested-array [key, value] pairs produced by %chunk",
+      "direction": "json->json",
+      "input": "verb-toObject-pairs/data.input.json",
+      "transform": "verb-toObject-pairs/data.transform.odin",
+      "expected": "verb-toObject-pairs/data.expected.json"
+    },
+    {
+      "id": "verb-nextBusinessDay",
+      "description": "%nextBusinessDay returns the next Mon-Fri date strictly after the input, from a weekday and a weekend",
+      "direction": "json->json",
+      "input": "verb-nextBusinessDay/data.input.json",
+      "transform": "verb-nextBusinessDay/data.transform.odin",
+      "expected": "verb-nextBusinessDay/data.expected.json"
+    },
+    {
+      "id": "verb-formatDuration",
+      "description": "%formatDuration formats a number of seconds and an ISO 8601 duration string",
+      "direction": "json->json",
+      "input": "verb-formatDuration/data.input.json",
+      "transform": "verb-formatDuration/data.transform.odin",
+      "expected": "verb-formatDuration/data.expected.json"
     }
   ]
 }

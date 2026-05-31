@@ -1,0 +1,8 @@
+{
+  "result": {
+    "fromSeconds": "1 day, 1 hour, 1 minute, 1 second",
+    "fromSubDaySeconds": "1 hour, 1 minute, 1 second",
+    "fromIso": "2 hours, 30 minutes",
+    "fromIsoDay": "1 day, 6 hours"
+  }
+}
