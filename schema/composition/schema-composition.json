@@ -299,6 +299,36 @@
           }
         }
       }
+    },
+    {
+      "id": "relative-subsection-nests-into-type",
+      "description": "A {.sub} header inside a {@type} nests fields into that type, not the schema root",
+      "structural": true,
+      "schema": "{@policy}\nnumber = !\n{.term}\neffective = !date\nexpiration = !date",
+      "expected": {
+        "types": {
+          "policy": {
+            "fields": {
+              "number": { "required": true },
+              "term.effective": { "required": true, "type": "date" },
+              "term.expiration": { "required": true, "type": "date" }
+            }
+          }
+        },
+        "fields": {}
+      }
+    },
+    {
+      "id": "relative-subsection-in-object",
+      "description": "A {.sub} header after an object header nests under that object's path",
+      "structural": true,
+      "schema": "{customer}\nname = !\n{.billing}\ncity = !",
+      "expected": {
+        "fields": {
+          "customer.name": { "required": true },
+          "customer.billing.city": { "required": true }
+        }
+      }
     }
   ]
 }
