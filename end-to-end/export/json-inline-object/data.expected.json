@@ -1,0 +1,9 @@
+{
+  "Quote": {
+    "contact": {
+      "name": "John Doe",
+      "phone": "512-555-1234",
+      "email": "john@example.com"
+    }
+  }
+}

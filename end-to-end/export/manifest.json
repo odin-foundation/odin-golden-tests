@@ -226,6 +226,78 @@
       "input": "xml-plain/data.input.odin",
       "transform": "xml-plain/data.transform.odin",
       "expected": "xml-plain/data.expected.xml"
+    },
+    {
+      "id": "json-validate-warn",
+      "description": "Validation modifiers (:validate, :enum, :range) warn but still emit when onValidation=warn",
+      "direction": "odin->json",
+      "input": "json-validate-warn/data.input.odin",
+      "transform": "json-validate-warn/data.transform.odin",
+      "expected": "json-validate-warn/data.expected.json"
+    },
+    {
+      "id": "json-inline-object",
+      "description": ":object builds a nested object from an inline {key = @path} spec",
+      "direction": "odin->json",
+      "input": "json-inline-object/data.input.odin",
+      "transform": "json-inline-object/data.transform.odin",
+      "expected": "json-inline-object/data.expected.json"
+    },
+    {
+      "id": "json-raw-json",
+      "description": ":raw emits inline JSON structurally instead of an escaped string",
+      "direction": "odin->json",
+      "input": "json-raw-json/data.input.odin",
+      "transform": "json-raw-json/data.transform.odin",
+      "expected": "json-raw-json/data.expected.json"
+    },
+    {
+      "id": "json-array-wrap",
+      "description": ":array wraps the value in a single-element array",
+      "direction": "odin->json",
+      "input": "json-array-wrap/data.input.odin",
+      "transform": "json-array-wrap/data.transform.odin",
+      "expected": "json-array-wrap/data.expected.json"
+    },
+    {
+      "id": "json-field-if-compare",
+      "description": "Field :if path = value emits only when the comparison holds",
+      "direction": "odin->json",
+      "input": "json-field-if-compare/data.input.odin",
+      "transform": "json-field-if-compare/data.transform.odin",
+      "expected": "json-field-if-compare/data.expected.json"
+    },
+    {
+      "id": "json-loop-counter",
+      "description": ":counter is readable by name and via the accumulator reference",
+      "direction": "odin->json",
+      "input": "json-loop-counter/data.input.odin",
+      "transform": "json-loop-counter/data.transform.odin",
+      "expected": "json-loop-counter/data.expected.json"
+    },
+    {
+      "id": "json-computation-sink-omit",
+      "description": "A _-prefixed looping computation section runs for side effects but is omitted from output",
+      "direction": "odin->json",
+      "input": "json-computation-sink-omit/data.input.odin",
+      "transform": "json-computation-sink-omit/data.transform.odin",
+      "expected": "json-computation-sink-omit/data.expected.json"
+    },
+    {
+      "id": "xml-cdata",
+      "description": ":cdata wraps XML element text in a CDATA section instead of escaping",
+      "direction": "odin->xml",
+      "input": "xml-cdata/data.input.odin",
+      "transform": "xml-cdata/data.transform.odin",
+      "expected": "xml-cdata/data.expected.xml"
+    },
+    {
+      "id": "fwf-line-width",
+      "description": "Fixed-width records are padded to the configured lineWidth using padChar",
+      "direction": "odin->fixed-width",
+      "input": "fwf-line-width/data.input.odin",
+      "transform": "fwf-line-width/data.transform.odin",
+      "expected": "fwf-line-width/data.expected.fwf"
     }
   ]
 }
