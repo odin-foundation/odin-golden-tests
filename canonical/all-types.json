@@ -167,9 +167,9 @@
     },
     {
       "id": "canonical-modifiers-combined",
-      "description": "Combined modifiers preserved in canonical order (!*-)",
+      "description": "Combined modifiers preserved in canonical order (!-*)",
       "input": "important = !-*\"secret\"",
-      "expected": "important = !*-\"secret\"\n"
+      "expected": "important = !-*\"secret\"\n"
     }
   ]
 }

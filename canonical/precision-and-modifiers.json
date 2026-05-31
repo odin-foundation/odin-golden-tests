@@ -1,0 +1,55 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "canonical-precision-and-modifiers",
+  "description": "Canonical form preserves numeric precision beyond JS range and emits modifiers in !-* order",
+  "tests": [
+    {
+      "id": "canonical-integer-beyond-safe-range",
+      "description": "Integers beyond 2^53 are preserved exactly, not rounded",
+      "input": "big = ##9007199254740993",
+      "expected": "big = ##9007199254740993\n"
+    },
+    {
+      "id": "canonical-large-integer-20-digits",
+      "description": "20-digit integer is preserved exactly",
+      "input": "huge = ##12345678901234567890",
+      "expected": "huge = ##12345678901234567890\n"
+    },
+    {
+      "id": "canonical-number-high-precision-decimal",
+      "description": "High-precision 20-digit decimal is preserved exactly",
+      "input": "pi = #3.14159265358979323846",
+      "expected": "pi = #3.14159265358979323846\n"
+    },
+    {
+      "id": "canonical-currency-large-integer-part",
+      "description": "Currency with integer part beyond JS range is preserved exactly",
+      "input": "amt = #$12345678901234567890.50",
+      "expected": "amt = #$12345678901234567890.50\n"
+    },
+    {
+      "id": "canonical-currency-high-precision-fraction",
+      "description": "Currency with 18 decimal places is preserved exactly",
+      "input": "amt = #$123.450000000000000000",
+      "expected": "amt = #$123.450000000000000000\n"
+    },
+    {
+      "id": "canonical-modifier-order-all-three",
+      "description": "Modifiers are emitted in required-deprecated-confidential (!-*) order",
+      "input": "x = !-*\"secret\"",
+      "expected": "x = !-*\"secret\"\n"
+    },
+    {
+      "id": "canonical-modifier-order-required-confidential",
+      "description": "Required and confidential emit as !*",
+      "input": "x = !*\"secret\"",
+      "expected": "x = !*\"secret\"\n"
+    },
+    {
+      "id": "canonical-modifier-order-required-deprecated",
+      "description": "Required and deprecated emit as !-",
+      "input": "x = !-\"secret\"",
+      "expected": "x = !-\"secret\"\n"
+    }
+  ]
+}

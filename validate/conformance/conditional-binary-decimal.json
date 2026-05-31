@@ -1,0 +1,172 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-conditional-binary-decimal",
+  "description": "Conditional requirement (:if/:unless), :computed exclusion, binary byte-length bounds, and decimal place enforcement",
+  "tests": [
+    {
+      "id": "unless-condition-true-not-required",
+      "description": ":unless field is not required when the condition is TRUE",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{Person}\nstatus =\nphone = ! :unless status = \"inactive\"",
+      "input": "{Person}\nstatus = \"inactive\"",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "unless-condition-false-required",
+      "description": ":unless field is required when the condition is FALSE",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{Person}\nstatus =\nphone = ! :unless status = \"inactive\"",
+      "input": "{Person}\nstatus = \"active\"",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V010",
+            "path": "Person.phone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "unless-condition-absent-required",
+      "description": ":unless field is required when the condition field is absent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{Person}\nstatus =\nphone = ! :unless status = \"inactive\"",
+      "input": "{Person}\nname = \"x\"",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V010",
+            "path": "Person.phone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "if-condition-true-required",
+      "description": ":if field is required when the condition is TRUE",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{Person}\nstatus =\nphone = ! :if status = \"active\"",
+      "input": "{Person}\nstatus = \"active\"",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V010",
+            "path": "Person.phone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "if-condition-false-not-required",
+      "description": ":if field is not required when the condition is FALSE",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{Person}\nstatus =\nphone = ! :if status = \"active\"",
+      "input": "{Person}\nstatus = \"inactive\"",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "computed-absent-not-required",
+      "description": "A computed required field absent from input does not raise V001",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{Order}\ntotal = !# :computed",
+      "input": "{Order}\nname = \"x\"",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "binary-size-exact-valid",
+      "description": "Binary value matching exact byte length passes",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nhash = ^:(4)",
+      "input": "{R}\nhash = ^AAAAAA==",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "binary-size-too-small-fails",
+      "description": "Binary value below byte length minimum fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nhash = ^:(4)",
+      "input": "{R}\nhash = ^AAAA",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V003",
+            "path": "R.hash"
+          }
+        ]
+      }
+    },
+    {
+      "id": "binary-size-too-large-fails",
+      "description": "Binary value above byte length maximum fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nhash = ^:(4)",
+      "input": "{R}\nhash = ^AAAAAAA=",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V003",
+            "path": "R.hash"
+          }
+        ]
+      }
+    },
+    {
+      "id": "binary-sha256-size-wrong-fails",
+      "description": "Algorithm-tagged binary with wrong byte length fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nhash = ^sha256:(32)",
+      "input": "{R}\nhash = ^sha256:AAAAAAAAAAAAAAAAAAAAAA==",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V003",
+            "path": "R.hash"
+          }
+        ]
+      }
+    },
+    {
+      "id": "decimal-places-exact-valid",
+      "description": "Decimal value with exactly N places passes",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nrate = #.4",
+      "input": "{R}\nrate = #1.2345",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "decimal-places-too-few-fails",
+      "description": "Decimal value with fewer than N places fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nrate = #.4",
+      "input": "{R}\nrate = #1.23",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V003",
+            "path": "R.rate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "decimal-places-too-many-fails",
+      "description": "Decimal value with more than N places fails V003",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{R}\nrate = #.4",
+      "input": "{R}\nrate = #1.23456",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V003",
+            "path": "R.rate"
+          }
+        ]
+      }
+    }
+  ]
+}

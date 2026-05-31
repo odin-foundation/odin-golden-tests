@@ -165,11 +165,11 @@
     },
     {
       "id": "binary-modifier-combined",
-      "description": "Combined modifiers in canonical order (!*-)",
+      "description": "Combined modifiers in canonical order (!-*)",
       "input": "important = !-*\"secret\"",
       "expected": {
-        "hex": "696d706f7274616e74203d20212a2d22736563726574220a",
-        "sha256": "3b4fb6ffac267b0ccc785a9ef448f2bd8294f6cd735f16aaeffe780fcaf05607",
+        "hex": "696d706f7274616e74203d20212d2a22736563726574220a",
+        "sha256": "360aab112e1168d3a7fee9d8ab1cf9d6ee039c1f8a1bfde498bdec229dc70287",
         "byteLength": 24
       }
     },

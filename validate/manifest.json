@@ -20,6 +20,12 @@
       "name": "Validator Conformance",
       "description": "Intersections, temporal bounds, percent, unions, pattern conditionals, field typeRefs, invariant null operands",
       "path": "conformance/validate-conformance.json"
+    },
+    {
+      "id": "conditional-binary-decimal",
+      "name": "Conditional, Binary, and Decimal Conformance",
+      "description": ":if/:unless conditional requirement, :computed exclusion, binary byte-length bounds, decimal place enforcement",
+      "path": "conformance/conditional-binary-decimal.json"
     }
   ],
   "features_tested": [
