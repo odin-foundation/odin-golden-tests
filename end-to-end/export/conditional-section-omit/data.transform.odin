@@ -9,7 +9,7 @@ description = "Conditionally emit a whole section via header-inline :if"
 driverName = @driver.name
 hasDui = @driver.hasDui
 
-{DuiDetails :if "@driver.hasDui = true"}
+{DuiDetails :if @driver.hasDui}
 convictionDate = @driver.dui.convictionDate
 state = @driver.dui.state
 bacLevel = @driver.dui.bacLevel
