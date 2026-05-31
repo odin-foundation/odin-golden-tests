@@ -297,14 +297,14 @@ _ = %ifElse %not @actual %accumulate passed ##1 %accumulate failed ##1
 {_test_formatLocaleNumber_basic}
 _pass = ##10
 ; formatLocaleNumber should return a string
-actual = %formatLocaleNumber ##1234.56
+actual = %formatLocaleNumber #1234.56
 isStr = %isString @actual
 _ = %ifElse @isStr %accumulate passed ##1 %accumulate failed ##1
 
 {_test_formatLocaleNumber_en_US}
 _pass = ##10
 ; US locale uses comma for thousands, period for decimal
-actual = %formatLocaleNumber ##1234.56 "en-US"
+actual = %formatLocaleNumber #1234.56 "en-US"
 expected = "1,234.56"
 _ = %ifElse %eq @actual @expected %accumulate passed ##1 %accumulate failed ##1
 
