@@ -98,6 +98,14 @@
       "input": "xml-namespace/default-namespace.input.xml",
       "transform": "xml-namespace/default-namespace.transform.odin",
       "expected": "xml-namespace/default-namespace.expected.odin"
+    },
+    {
+      "id": "json-prefix-coercion",
+      "description": "Numeric type prefix on a reference (##@path, #$@path) coerces the copied value on output",
+      "direction": "json->odin",
+      "input": "json-prefix-coercion/data.input.json",
+      "transform": "json-prefix-coercion/data.transform.odin",
+      "expected": "json-prefix-coercion/data.expected.odin"
     }
   ]
 }

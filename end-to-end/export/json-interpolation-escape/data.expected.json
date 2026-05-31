@@ -1,0 +1,7 @@
+{
+  "Receipt": {
+    "price": "Total: $42.00",
+    "template": "Use ${@.field} for the value",
+    "name": "Alice"
+  }
+}

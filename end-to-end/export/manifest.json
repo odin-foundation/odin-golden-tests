@@ -322,6 +322,14 @@
       "input": "verb-formatDuration/data.input.json",
       "transform": "verb-formatDuration/data.transform.odin",
       "expected": "verb-formatDuration/data.expected.json"
+    },
+    {
+      "id": "json-interpolation-escape",
+      "description": "Escaped interpolation: \\$ emits a literal dollar and \\${ suppresses interpolation",
+      "direction": "odin->json",
+      "input": "json-interpolation-escape/data.input.odin",
+      "transform": "json-interpolation-escape/data.transform.odin",
+      "expected": "json-interpolation-escape/data.expected.json"
     }
   ]
 }
