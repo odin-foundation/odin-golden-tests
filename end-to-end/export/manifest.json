@@ -28,6 +28,30 @@
       "expected": "conditional-section-omit/data.expected.json"
     },
     {
+      "id": "conditional-chain-if",
+      "description": "Conditional chain emits the if branch when its condition holds",
+      "direction": "odin->json",
+      "input": "conditional-chain-if/data.input.odin",
+      "transform": "conditional-chain-if/data.transform.odin",
+      "expected": "conditional-chain-if/data.expected.json"
+    },
+    {
+      "id": "conditional-chain-elif",
+      "description": "Conditional chain falls through to a matching elif branch",
+      "direction": "odin->json",
+      "input": "conditional-chain-elif/data.input.odin",
+      "transform": "conditional-chain-elif/data.transform.odin",
+      "expected": "conditional-chain-elif/data.expected.json"
+    },
+    {
+      "id": "conditional-chain-else",
+      "description": "Conditional chain emits the else branch when no condition matches",
+      "direction": "odin->json",
+      "input": "conditional-chain-else/data.input.odin",
+      "transform": "conditional-chain-else/data.transform.odin",
+      "expected": "conditional-chain-else/data.expected.json"
+    },
+    {
       "id": "json-nulls-omit",
       "description": "Export ODIN to JSON with null values omitted",
       "direction": "odin->json",
