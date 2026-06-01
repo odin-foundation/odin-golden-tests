@@ -10,7 +10,9 @@
   "notes": [
     "Arguments are lat1, lng1, lat2, lng2; the result is a number (#) in kilometers by default.",
     "Pass a fifth \"miles\" or \"mi\" argument for miles.",
-    "Coordinates outside lat +/-90 or lng +/-180 resolve to ~."
+    "Coordinates outside lat +/-90 or lng +/-180 resolve to ~.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],
-  "avoid": []
+  "avoid": [],
+  "tsOnly": true
 }

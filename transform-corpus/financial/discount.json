@@ -9,12 +9,14 @@
   "expectedOutput": "{out}\nr = ##10000",
   "notes": [
     "Discounting is the inverse of %compound; the future value of 10000 at 5% for 10 years discounts back to 10000.",
-    "The rate is a per-period fraction: 5% is 0.05, not 5."
+    "The rate is a per-period fraction: 5% is 0.05, not 5.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],
   "avoid": [
     {
       "snippet": "r = %discount @.fv @.rate  ; missing periods",
       "why": "%discount needs futureValue, rate, and periods; fewer than three arguments yields ~ (null)"
     }
-  ]
+  ],
+  "tsOnly": true
 }

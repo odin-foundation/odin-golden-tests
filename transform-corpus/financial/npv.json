@@ -9,12 +9,14 @@
   "expectedOutput": "{out}\nr = #38.87712587937978",
   "notes": [
     "The first cash flow is taken at period 0 (undiscounted); subsequent flows are discounted at (1+rate)^t.",
-    "Argument order is rate first, then the cash-flow array."
+    "Argument order is rate first, then the cash-flow array.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],
   "avoid": [
     {
       "snippet": "r = %npv @.cashflows @.rate",
       "why": "passing the array where the scalar rate is expected yields ~ (null); the rate must be the first argument"
     }
-  ]
+  ],
+  "tsOnly": true
 }

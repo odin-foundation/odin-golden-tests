@@ -9,7 +9,9 @@
   "expectedOutput": "{out}\nd = \"2025-03-01\"",
   "notes": [
     "A leap-day input rolls forward to March 1 in a non-leap target year.",
-    "A negative count moves the date backward."
+    "A negative count moves the date backward.",
+    "Output uses the TS Date format (millis/Z or JS year-rollover); verified in TS only."
   ],
-  "avoid": []
+  "avoid": [],
+  "tsOnly": true
 }

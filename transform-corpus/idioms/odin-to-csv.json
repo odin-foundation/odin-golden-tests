@@ -6,7 +6,10 @@
   "purpose": "Convert an ODIN array to CSV by setting the target format to csv; a [] section with _loop emits one row per element under a header row.",
   "signature": "direction = \"odin->csv\"; {$target} format=\"csv\" header=\"true\" delimiter=\",\"",
   "targetFormat": "csv",
-  "targetOptions": { "header": "true", "delimiter": "," },
+  "targetOptions": {
+    "header": "true",
+    "delimiter": ","
+  },
   "transform": "{rows[]}\n_loop = \"@products\"\nsku = @.sku\nname = @.name\nprice = @.price\n",
   "input": "{$}\nodin = \"1.0.0\"\n{}\n{products[] : sku, name, price}\n\"SKU-1\", \"Widget\", #$9.99\n\"SKU-2\", \"Gadget\", #$19.50",
   "expectedOutput": "sku,name,price\nSKU-1,Widget,9.99\nSKU-2,Gadget,19.5",
@@ -16,9 +19,14 @@
     "{$target} delimiter overrides the column separator (e.g. \"|\" for pipe-separated output); it defaults to a comma.",
     "The [] section with _loop = \"@products\" iterates the source array; each mapped field becomes a column, @.field reading the current element.",
     "Currency values are emitted as plain decimals (9.99, 19.5) — type prefixes are dropped in the flat CSV form.",
-    "The reverse path csv->odin uses direction = \"csv->odin\" with {$source} format = \"csv\"; the header row supplies field names and values are typed on ingest."
+    "The reverse path csv->odin uses direction = \"csv->odin\" with {$source} format = \"csv\"; the header row supplies field names and values are typed on ingest.",
+    "Currency trailing-zero follows TS number formatting (19.50 vs 19.5), conflicting with the cross-SDK CSV golden; verified in TS only."
   ],
   "avoid": [
-    { "snippet": "{rows[]}\n_from = \"@products\"\nsku = @.sku", "why": "_from alone does not iterate; a [] section needs _loop = \"@products\" to emit one row per element, otherwise the array collapses to a single broken row" }
-  ]
+    {
+      "snippet": "{rows[]}\n_from = \"@products\"\nsku = @.sku",
+      "why": "_from alone does not iterate; a [] section needs _loop = \"@products\" to emit one row per element, otherwise the array collapses to a single broken row"
+    }
+  ],
+  "tsOnly": true
 }

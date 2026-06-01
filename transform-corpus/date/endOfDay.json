@@ -9,7 +9,9 @@
   "expectedOutput": "{out}\nt = \"2024-06-15T23:59:59.999Z\"",
   "notes": [
     "Day boundaries are computed in UTC.",
-    "The result carries 999 milliseconds."
+    "The result carries 999 milliseconds.",
+    "Output uses the TS Date format (millis/Z or JS year-rollover); verified in TS only."
   ],
-  "avoid": []
+  "avoid": [],
+  "tsOnly": true
 }

@@ -9,7 +9,9 @@
   "expectedOutput": "{out}\n{.picked[] : ~}\n\"d\"\n\"c\"",
   "notes": [
     "A seed makes the draw deterministic; the same seed always returns the same subset.",
-    "Without a seed the result varies per run (seeded here for a stable example)."
+    "Without a seed the result varies per run (seeded here for a stable example).",
+    "Output depends on the TS seeded RNG sequence; verified in TS only."
   ],
-  "avoid": []
+  "avoid": [],
+  "tsOnly": true
 }

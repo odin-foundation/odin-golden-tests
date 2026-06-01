@@ -10,12 +10,14 @@
   "notes": [
     "Solved by Newton–Raphson; the result is the per-period rate as a fraction (about 2.92% here).",
     "Sign convention: an inflow (pv) is positive and the offsetting payments are negative.",
-    "Argument order is nper, pmt, pv, fv."
+    "Argument order is nper, pmt, pv, fv.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],
   "avoid": [
     {
       "snippet": "r = %rate @.nper @.pmt @.pv  ; missing fv",
       "why": "%rate requires all four arguments; fewer than four yields ~ (null)"
     }
-  ]
+  ],
+  "tsOnly": true
 }

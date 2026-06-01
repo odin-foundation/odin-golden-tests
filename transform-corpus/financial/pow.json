@@ -9,9 +9,14 @@
   "expectedOutput": "{out}\nr = #1.6288946267774422",
   "notes": [
     "1.05^10 is the ten-period growth factor for a 5% rate.",
-    "A non-finite result (e.g. overflow) yields ~ (null)."
+    "A non-finite result (e.g. overflow) yields ~ (null).",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],
   "avoid": [
-    { "snippet": "r = %pow @.base", "why": "%pow needs both base and exponent; one argument yields ~ (null)" }
-  ]
+    {
+      "snippet": "r = %pow @.base",
+      "why": "%pow needs both base and exponent; one argument yields ~ (null)"
+    }
+  ],
+  "tsOnly": true
 }

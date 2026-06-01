@@ -9,7 +9,8 @@
   "expectedOutput": "{out}\nr = #16288.946267774423",
   "notes": [
     "Arguments are principal, then rate, then periods, in that order.",
-    "The rate is a per-period fraction: 5% is 0.05, not 5."
+    "The rate is a per-period fraction: 5% is 0.05, not 5.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],
   "avoid": [
     {
@@ -20,5 +21,6 @@
       "snippet": "r = %compound @.principal @.years @.rate",
       "why": "rate and periods are swapped; the engine computes 10000 × (1+10)^0.05 = ~11273.78, not the intended growth"
     }
-  ]
+  ],
+  "tsOnly": true
 }

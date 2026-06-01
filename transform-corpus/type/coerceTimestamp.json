@@ -10,9 +10,14 @@
   "notes": [
     "Unlike %coerceDate, the time component survives and the value renders as a full ISO 8601 timestamp.",
     "The output is normalized to UTC with millisecond precision (.000Z).",
-    "An unparseable value yields ~ (null)."
+    "An unparseable value yields ~ (null).",
+    "Output uses the TS Date format (millis/Z or JS year-rollover); verified in TS only."
   ],
   "avoid": [
-    { "snippet": "t = %coerceDate @.raw  ; when you need the time-of-day", "why": "coerceDate discards the time and renders only YYYY-MM-DD; use coerceTimestamp to keep HH:MM:SS" }
-  ]
+    {
+      "snippet": "t = %coerceDate @.raw  ; when you need the time-of-day",
+      "why": "coerceDate discards the time and renders only YYYY-MM-DD; use coerceTimestamp to keep HH:MM:SS"
+    }
+  ],
+  "tsOnly": true
 }

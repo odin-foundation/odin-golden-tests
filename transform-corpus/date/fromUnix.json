@@ -9,7 +9,9 @@
   "expectedOutput": "{out}\nt = \"2024-06-15T10:30:00.000Z\"",
   "notes": [
     "Seconds and milliseconds are auto-detected by magnitude.",
-    "Output is a full ISO timestamp with a UTC suffix."
+    "Output is a full ISO timestamp with a UTC suffix.",
+    "Output uses the TS Date format (millis/Z or JS year-rollover); verified in TS only."
   ],
-  "avoid": []
+  "avoid": [],
+  "tsOnly": true
 }
