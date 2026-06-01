@@ -9,11 +9,12 @@
   "targetFormat": "odin",
   "targetOptions": { "onMissing": "fail" },
   "surfaces": "result",
-  "enforced": false,
+  "enforced": true,
   "trigger": "GHOST is not a declared {$table.GHOST[...]} table.",
   "fix": "Declare the table (e.g. {$table.GHOST[name, code]} with rows) before the lookup, or correct the table name.",
   "notes": [
     "Requires onMissing = \"fail\" in the {$target} header; the default policy is silent (returns null, no error).",
-    "The engine currently reports a missing table through the same path as a missing key, emitting code T004 ('Lookup key '...' not found in table 'GHOST''); a distinct T003 code is not yet emitted."
+    "A missing table emits T003, distinct from a missing key (T004): the referenced table was never declared.",
+    "Setting onMissing = \"warn\" demotes the same T003 to a warning instead."
   ]
 }

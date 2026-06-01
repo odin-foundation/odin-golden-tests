@@ -8,12 +8,12 @@
   "input": "a = ##1",
   "targetFormat": "odin",
   "surfaces": "result",
-  "enforced": false,
+  "enforced": true,
   "trigger": "The path does.not.exist is absent from the source and the field is :required.",
   "fix": "Provide the source path, drop :required, or supply a default with %coalesce / %ifNull.",
   "notes": [
-    "Without :required a missing path yields null silently; the :required modifier is what raises the error.",
-    "The transform fails and an error is reported for the field.",
-    "The engine currently reports this as code SOURCE_MISSING with the message 'Required field 'x' is missing or null'; the stable T005 code is not yet emitted."
+    "A :required field whose source path is absent always fails with T005, regardless of onMissing.",
+    "Without :required, an absent path honors onMissing: fail raises T005, warn demotes it to a warning, skip (the default) and default keep the silent null.",
+    "A path that is present but null is not 'missing': a required null surfaces SOURCE_MISSING instead."
   ]
 }

@@ -8,11 +8,11 @@
   "input": "a = ##1",
   "targetFormat": "notaformat",
   "surfaces": "result",
-  "enforced": false,
+  "enforced": true,
   "trigger": "format = \"notaformat\" in {$target} is not a registered output formatter.",
   "fix": "Set {$target} format to a supported value: odin, json, xml, csv, or fixed-width.",
   "notes": [
-    "An unknown target format is not rejected. The engine currently falls back to JSON-serializing the canonical form and reports success with no errors or warnings; the stable T006 code is not yet emitted.",
-    "Use a supported output format to get predictable results."
+    "An unknown target format fails with T006; the engine no longer falls back to JSON-serializing the canonical form.",
+    "The known formats (odin, json, xml, csv, fixed-width) and any registered custom &ns.fmt formatter still produce output."
   ]
 }

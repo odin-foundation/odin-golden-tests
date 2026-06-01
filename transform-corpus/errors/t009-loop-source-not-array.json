@@ -8,11 +8,12 @@
   "input": "notArr = \"scalar\"",
   "targetFormat": "odin",
   "surfaces": "result",
-  "enforced": false,
+  "enforced": true,
   "trigger": "notArr resolves to the string \"scalar\", not an array, under :loop.",
   "fix": "Point :loop at an array path, or wrap the scalar in an array before looping.",
   "notes": [
-    "When the loop source is not an array the engine currently skips iteration and emits an empty result; it reports success and the stable T009 code is not yet emitted.",
+    "A :loop over a present non-array, non-null scalar fails with T009.",
+    "Only a present scalar is an error: an absent loop source or an empty array yields zero rows with no error.",
     "Ensure the :loop path resolves to an array so each element is iterated."
   ]
 }

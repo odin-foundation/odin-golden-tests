@@ -106,6 +106,14 @@
       "input": "json-prefix-coercion/data.input.json",
       "transform": "json-prefix-coercion/data.transform.odin",
       "expected": "json-prefix-coercion/data.expected.odin"
+    },
+    {
+      "id": "onmissing-skip",
+      "description": "An absent source path under onMissing = skip yields null without an error",
+      "direction": "odin->odin",
+      "input": "onmissing-skip/onmissing.input.odin",
+      "transform": "onmissing-skip/onmissing.transform.odin",
+      "expected": "onmissing-skip/onmissing.expected.odin"
     }
   ]
 }

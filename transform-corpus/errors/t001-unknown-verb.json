@@ -8,12 +8,11 @@
   "input": "a = ##1",
   "targetFormat": "odin",
   "surfaces": "result",
-  "enforced": false,
+  "enforced": true,
   "trigger": "%notAVerb is not a known built-in verb.",
   "fix": "Use a registered verb name, or define it as a custom verb (%&namespace.verb).",
   "notes": [
-    "The transform fails and an error is reported for the field.",
-    "The engine currently reports this as code TRANSFORM_ERROR with the message 'Unknown verb: notAVerb'; the stable T001 code is not yet emitted.",
+    "The transform fails and a T001 error is reported for the field.",
     "An unregistered %& custom verb does not raise this — it echoes its first argument as an extension point."
   ]
 }
