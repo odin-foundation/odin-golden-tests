@@ -1,0 +1,18 @@
+{
+  "id": "formatDate",
+  "family": "date",
+  "title": "%formatDate — render a date with a pattern",
+  "purpose": "Format an ISO date string using a display pattern.",
+  "signature": "%formatDate <date> <string:pattern> -> string",
+  "transform": "{out}\ndate = %formatDate @.date \"MM/DD/YYYY\"",
+  "input": "date = \"2024-06-15\"",
+  "expectedOutput": "{out}\ndate = \"06/15/2024\"",
+  "notes": [
+    "The pattern is a quoted literal (tokens MM, DD, YYYY).",
+    "An unparseable input date yields ~ (null) rather than an error."
+  ],
+  "avoid": [
+    { "snippet": "date = %formatDate @.date", "why": "the pattern argument is required; omitting it raises a verb-arity error" },
+    { "snippet": "date = %formatDate @.date MM/DD/YYYY", "why": "the pattern must be quoted; an unquoted pattern is not a single string token" }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "add",
+  "family": "numeric",
+  "title": "%add — add two numbers",
+  "purpose": "Add two numeric values and return the sum.",
+  "signature": "%add <number> <number> -> number",
+  "transform": "{out}\ntotal = %add @.base @.fee",
+  "input": "base = ##500\nfee = ##75",
+  "expectedOutput": "{out}\ntotal = ##575",
+  "notes": [
+    "Both integer inputs produce an integer (##) result.",
+    "Numeric-looking strings are coerced before adding."
+  ],
+  "avoid": [
+    { "snippet": "total = %add @.base", "why": "%add needs exactly two arguments; one argument raises a verb-arity error" }
+  ]
+}

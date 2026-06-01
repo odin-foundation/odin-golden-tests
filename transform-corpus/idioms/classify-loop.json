@@ -1,0 +1,18 @@
+{
+  "id": "classify-loop",
+  "family": "idiom",
+  "title": "Classify each element of an array via a lookup table",
+  "purpose": "Iterate an array, mapping a code on each element through a lookup table, and emit one output row per element.",
+  "signature": "{Section[]} + _loop/_from + %lookup",
+  "transform": "{$table.STATUS[code, label]}\n\"A\", \"Active\"\n\"P\", \"Pending\"\n\"C\", \"Cancelled\"\n\n{policies[]}\n_loop = \"@\"\n_from = \"policies\"\nnumber = @.number\nstatus = %lookup \"STATUS.label\" @.statusCode",
+  "input": "{policies[] : number, statusCode}\n\"POL-1\", \"A\"\n\"POL-2\", \"P\"\n\"POL-3\", \"C\"",
+  "expectedOutput": "{policies[] : number, status}\n\"POL-1\", \"Active\"\n\"POL-2\", \"Pending\"\n\"POL-3\", \"Cancelled\"",
+  "notes": [
+    "An output section ending in [] becomes a loop: _loop = \"@\" with _from = \"policies\" iterates that source array.",
+    "Inside the loop, @.field reads the current element (here @.number and @.statusCode).",
+    "Uniform rows are emitted as a compact tabular block ({policies[] : number, status})."
+  ],
+  "avoid": [
+    { "snippet": "number = @policies.number", "why": "inside a loop use @.field for the current element; @policies.number reads the source root, not the element" }
+  ]
+}

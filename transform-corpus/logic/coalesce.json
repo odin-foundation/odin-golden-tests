@@ -1,0 +1,17 @@
+{
+  "id": "coalesce",
+  "family": "logic",
+  "title": "%coalesce — first non-null value",
+  "purpose": "Return the first argument that is not null or empty.",
+  "signature": "%coalesce <value> [<value>...] -> value",
+  "transform": "{out}\ndisplayName = %coalesce @.nickname @.firstName \"Guest\"",
+  "input": "nickname = ~\nfirstName = \"Alice\"",
+  "expectedOutput": "{out}\ndisplayName = \"Alice\"",
+  "notes": [
+    "Arguments are tried left-to-right; the first non-null wins (here nickname is ~, so firstName is used).",
+    "End with a quoted literal default so the result is never null."
+  ],
+  "avoid": [
+    { "snippet": "displayName = %coalesce @.nickname @.firstName", "why": "with no literal fallback the result is ~ when every field is null" }
+  ]
+}

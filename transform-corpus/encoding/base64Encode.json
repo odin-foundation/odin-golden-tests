@@ -1,0 +1,17 @@
+{
+  "id": "base64Encode",
+  "family": "encoding",
+  "title": "%base64Encode — Base64-encode a string",
+  "purpose": "Encode a UTF-8 string as Base64 text.",
+  "signature": "%base64Encode <string> -> string",
+  "transform": "{out}\nencoded = %base64Encode @.content",
+  "input": "content = \"Hello, World!\"",
+  "expectedOutput": "{out}\nencoded = \"SGVsbG8sIFdvcmxkIQ==\"",
+  "notes": [
+    "The input is treated as UTF-8 before encoding, so non-ASCII text encodes its byte sequence.",
+    "The result is a plain string, not an ODIN binary (^) value."
+  ],
+  "avoid": [
+    { "snippet": "encoded = %base64Encode content", "why": "a bare word encodes the literal text \"content\", not the field; use @.content" }
+  ]
+}

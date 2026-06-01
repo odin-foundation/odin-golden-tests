@@ -1,0 +1,22 @@
+{
+  "id": "odin-to-xml",
+  "family": "idiom",
+  "group": "format-conversion",
+  "title": "odin->xml — emit XML from an ODIN source",
+  "purpose": "Convert an ODIN document to XML by setting the target format to xml. The source stays ODIN; verbs and type coercion still apply on the way out.",
+  "signature": "direction = \"odin->xml\"; {$target} format=\"xml\" root=\"invoice\"",
+  "targetFormat": "xml",
+  "targetOptions": { "root": "invoice" },
+  "transform": "{invoice}\nnumber = @.number\ncustomer = %upper @.customer\ntotal = #$@.total",
+  "input": "number = \"INV-100\"\ncustomer = \"acme corp\"\ntotal = #$1250.00",
+  "expectedOutput": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<invoice xmlns:odin=\"https://odin.foundation/ns\">\n  <number>INV-100</number>\n  <customer>ACME CORP</customer>\n  <total odin:type=\"currency\">1250.00</total>\n</invoice>",
+  "notes": [
+    "Only the header changes versus odin->odin: direction = \"odin->xml\" and {$target} format = \"xml\".",
+    "{$target} root = \"invoice\" names the XML root element.",
+    "ODIN types survive the conversion: the currency field carries odin:type=\"currency\" so the value round-trips.",
+    "The reverse path xml->odin uses direction = \"xml->odin\" with {$source} format = \"xml\"; the odin:type attributes are read back to restore ODIN types."
+  ],
+  "avoid": [
+    { "snippet": "{$target}\nformat = \"xml\"   ; no root", "why": "without root the element name falls back to the section header; set root explicitly for a stable document element" }
+  ]
+}

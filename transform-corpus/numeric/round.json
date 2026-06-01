@@ -1,0 +1,17 @@
+{
+  "id": "round",
+  "family": "numeric",
+  "title": "%round — round to N decimal places",
+  "purpose": "Round a number to a fixed number of decimal places.",
+  "signature": "%round <number> <integer:places> -> number",
+  "transform": "{out}\namount = %round @.amount ##2",
+  "input": "amount = #123.456789",
+  "expectedOutput": "{out}\namount = #123.46",
+  "notes": [
+    "The second argument is the decimal-place count and must be an integer literal (##2).",
+    "A fractional input stays a number (#) in the output."
+  ],
+  "avoid": [
+    { "snippet": "amount = %round @.amount", "why": "the decimal-places argument is required; omitting it raises a verb-arity error" }
+  ]
+}

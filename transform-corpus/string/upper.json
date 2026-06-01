@@ -1,0 +1,18 @@
+{
+  "id": "upper",
+  "family": "string",
+  "title": "%upper — uppercase a string",
+  "purpose": "Uppercase every character of a string value.",
+  "signature": "%upper <string> -> string",
+  "transform": "{out}\nupper = %upper @.name",
+  "input": "name = \"honda\"",
+  "expectedOutput": "{out}\nupper = \"HONDA\"",
+  "notes": [
+    "First and only argument is the string to uppercase.",
+    "The argument must be a reference (@.name) or a quoted literal — a bare word is read as a literal string, not a path."
+  ],
+  "avoid": [
+    { "snippet": "upper = %upper", "why": "missing the source argument — the engine raises a verb-arity error" },
+    { "snippet": "upper = %upper name", "why": "bare word name is read as the literal string \"name\", producing \"NAME\"; use @.name to read the field" }
+  ]
+}
