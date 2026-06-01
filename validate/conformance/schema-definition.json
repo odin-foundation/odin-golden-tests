@@ -1,0 +1,227 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-schema-definition",
+  "description": "Schema-definition enforcement: invariant evaluation, currency/percent bounds, override restrictiveness, intersection conflicts, tabular columns, default-value rules",
+  "tests": [
+    {
+      "id": "invariant-three-term-sum-valid",
+      "description": "A three-term additive invariant passes when consistent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{order}\nsubtotal = #$\ntax = #$\nshipping = #$\ntotal = #$\n:invariant total = subtotal + tax + shipping",
+      "input": "{order}\nsubtotal = #$10.00\ntax = #$1.00\nshipping = #$2.00\ntotal = #$13.00",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "invariant-three-term-sum-violation",
+      "description": "A three-term additive invariant fails V008 when inconsistent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{order}\nsubtotal = #$\ntax = #$\nshipping = #$\ntotal = #$\n:invariant total = subtotal + tax + shipping",
+      "input": "{order}\nsubtotal = #$10.00\ntax = #$1.00\nshipping = #$2.00\ntotal = #$99.00",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V008", "path": "order" }]
+      }
+    },
+    {
+      "id": "invariant-parenthesized-discount-valid",
+      "description": "A parenthesized multi-operator invariant passes when consistent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{discount}\nsubtotal = #$\npercentage = #\nfixed_amount = #$\ntotal = #$\n:invariant total = subtotal - (subtotal * percentage / 100) - fixed_amount",
+      "input": "{discount}\nsubtotal = #$100.00\npercentage = #10\nfixed_amount = #$5.00\ntotal = #$85.00",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "invariant-parenthesized-discount-violation",
+      "description": "A parenthesized multi-operator invariant fails V008 when inconsistent",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{discount}\nsubtotal = #$\npercentage = #\nfixed_amount = #$\ntotal = #$\n:invariant total = subtotal - (subtotal * percentage / 100) - fixed_amount",
+      "input": "{discount}\nsubtotal = #$100.00\npercentage = #10\nfixed_amount = #$5.00\ntotal = #$80.00",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V008", "path": "discount" }]
+      }
+    },
+    {
+      "id": "invariant-logical-or-valid",
+      "description": "A logical-or invariant passes when one side holds",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{discount}\npercentage = #\nfixed_amount = #$\n:invariant percentage == 0 || fixed_amount == 0",
+      "input": "{discount}\npercentage = #0\nfixed_amount = #$5.00",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "invariant-logical-or-violation",
+      "description": "A logical-or invariant fails V008 when neither side holds",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{discount}\npercentage = #\nfixed_amount = #$\n:invariant percentage == 0 || fixed_amount == 0",
+      "input": "{discount}\npercentage = #10\nfixed_amount = #$5.00",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V008", "path": "discount" }]
+      }
+    },
+    {
+      "id": "invariant-modulo-valid",
+      "description": "A modulo invariant passes for an even value",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{n}\nx = ##\n:invariant x % 2 == 0",
+      "input": "{n}\nx = ##4",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "invariant-modulo-violation",
+      "description": "A modulo invariant fails V008 for an odd value",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{n}\nx = ##\n:invariant x % 2 == 0",
+      "input": "{n}\nx = ##5",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V008", "path": "n" }]
+      }
+    },
+    {
+      "id": "currency-places-valid",
+      "description": "An 8-decimal currency field accepts a value with 8 places",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{wallet}\nbtc = #$.8",
+      "input": "{wallet}\nbtc = #$1.00000000",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "currency-places-violation",
+      "description": "An 8-decimal currency field rejects a 2-place value (V003)",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{wallet}\nbtc = #$.8",
+      "input": "{wallet}\nbtc = #$1.00",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V003", "path": "wallet.btc" }]
+      }
+    },
+    {
+      "id": "percent-bounds-valid",
+      "description": "A bounded percent field accepts an in-range value",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{rates}\nrate = #%:(0..1)",
+      "input": "{rates}\nrate = #%0.5",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "percent-bounds-violation",
+      "description": "A bounded percent field rejects an out-of-range value (V003)",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{rates}\nrate = #%:(0..1)",
+      "input": "{rates}\nrate = #%1.5",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V003", "path": "rates.rate" }]
+      }
+    },
+    {
+      "id": "override-narrow-valid",
+      "description": "An override that narrows bounds is accepted",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@base}\namount = #$:(0..1000)\n\n{@narrow}\n= @base :override\namount = #$:(0..100)",
+      "input": "{root}\nx = \"\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "override-widen-bounds-violation",
+      "description": "An override that widens bounds fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@base}\namount = #$:(0..100)\n\n{@wide}\n= @base :override\namount = #$:(0..1000)",
+      "input": "{root}\nx = \"\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "@wide.amount" }]
+      }
+    },
+    {
+      "id": "override-relax-required-violation",
+      "description": "An override that relaxes required to optional fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@base}\nname = !\n\n{@loose}\n= @base :override\nname =",
+      "input": "{root}\nx = \"\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "@loose.name" }]
+      }
+    },
+    {
+      "id": "override-add-nullable-violation",
+      "description": "An override that adds nullability fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@base}\nx = #\n\n{@nullable}\n= @base :override\nx = ~#",
+      "input": "{root}\nx = \"\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "@nullable.x" }]
+      }
+    },
+    {
+      "id": "override-change-type-violation",
+      "description": "An override that changes the base type fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@base}\nx = #\n\n{@retyped}\n= @base :override\nx =",
+      "input": "{root}\nx = \"\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "@retyped.x" }]
+      }
+    },
+    {
+      "id": "intersection-conflict-violation",
+      "description": "Intersection members defining the same field differently fail V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@a}\nx = !\n\n{@b}\nx = !##\n\n{cust}\n= @a & @b",
+      "input": "{cust}\nx = ##5",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "@cust.x" }]
+      }
+    },
+    {
+      "id": "intersection-no-conflict-valid",
+      "description": "Intersection members with disjoint or identical fields are accepted",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@a}\nx = !\nname = !\n\n{@b}\nx = !\nage = !##\n\n{cust}\n= @a & @b",
+      "input": "{cust}\nx = \"hi\"\nname = \"n\"\nage = ##5",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "tabular-primitive-columns-valid",
+      "description": "A tabular array with primitive columns is accepted",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{contacts[] : name, email}\nname = !\nemail = !",
+      "input": "{contacts[0]}\nname = \"a\"\nemail = \"b\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "tabular-typeref-column-violation",
+      "description": "A tabular column referencing a defined type fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{@addr}\nline1 = !\n\n{customers[] : name, address}\nname = !\naddress = @addr",
+      "input": "{customers[0]}\nname = \"a\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "customers[].address" }]
+      }
+    },
+    {
+      "id": "default-optional-valid",
+      "description": "A default on an optional field within constraints is accepted",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\npriority = ##:(1..5) ##3",
+      "input": "{root}\nx = \"\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "default-on-required-violation",
+      "description": "A default on a required field fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nstatus = !(\"a\", \"b\") \"a\"",
+      "input": "{root}\nstatus = \"a\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "root.status" }]
+      }
+    },
+    {
+      "id": "default-violates-bounds-violation",
+      "description": "A default that violates bounds fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\npriority = ##:(1..5) ##9",
+      "input": "{root}\nx = \"\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "root.priority" }]
+      }
+    },
+    {
+      "id": "default-violates-enum-violation",
+      "description": "A default outside the enum fails V017",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\n\n{root}\nstatus = (\"a\", \"b\") \"c\"",
+      "input": "{root}\nx = \"\"",
+      "expected": {
+        "valid": false,
+        "errors": [{ "code": "V017", "path": "root.status" }]
+      }
+    }
+  ]
+}

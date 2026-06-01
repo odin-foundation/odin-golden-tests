@@ -26,6 +26,12 @@
       "name": "Conditional, Binary, and Decimal Conformance",
       "description": ":if/:unless conditional requirement, :computed exclusion, binary byte-length bounds, decimal place enforcement",
       "path": "conformance/conditional-binary-decimal.json"
+    },
+    {
+      "id": "schema-definition",
+      "name": "Schema Definition Enforcement",
+      "description": "Invariant evaluation, currency/percent bounds, override restrictiveness, intersection conflicts, tabular columns, default-value rules",
+      "path": "conformance/schema-definition.json"
     }
   ],
   "features_tested": [
