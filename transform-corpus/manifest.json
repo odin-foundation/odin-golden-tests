@@ -7,36 +7,106 @@
     "note": "The standard odin->odin header ({$} + {$source} format=odin + {$target} format=odin) is prepended to each fixture's transform by the runner and generator; fixtures store only the mapping block(s)."
   },
   "fixtures": [
-    { "id": "upper", "family": "string", "path": "string/upper.json" },
-    { "id": "concat", "family": "string", "path": "string/concat.json" },
-    { "id": "add", "family": "numeric", "path": "numeric/add.json" },
-    { "id": "round", "family": "numeric", "path": "numeric/round.json" },
-    { "id": "formatDate", "family": "date", "path": "date/formatDate.json" },
-    { "id": "join", "family": "array", "path": "array/join.json" },
-    { "id": "filter", "family": "array", "path": "array/filter.json" },
-    { "id": "ifElse", "family": "logic", "path": "logic/ifElse.json" },
-    { "id": "coalesce", "family": "logic", "path": "logic/coalesce.json" },
-    { "id": "lookup", "family": "lookup", "path": "lookup/lookup.json" },
-    { "id": "coerceInteger", "family": "type", "path": "type/coerceInteger.json" },
-    { "id": "base64Encode", "family": "encoding", "path": "encoding/base64Encode.json" }
+    {
+      "id": "filter",
+      "family": "array",
+      "path": "array/filter.json"
+    },
+    {
+      "id": "join",
+      "family": "array",
+      "path": "array/join.json"
+    },
+    {
+      "id": "formatDate",
+      "family": "date",
+      "path": "date/formatDate.json"
+    },
+    {
+      "id": "base64Encode",
+      "family": "encoding",
+      "path": "encoding/base64Encode.json"
+    },
+    {
+      "id": "coalesce",
+      "family": "logic",
+      "path": "logic/coalesce.json"
+    },
+    {
+      "id": "ifElse",
+      "family": "logic",
+      "path": "logic/ifElse.json"
+    },
+    {
+      "id": "lookup",
+      "family": "lookup",
+      "path": "lookup/lookup.json"
+    },
+    {
+      "id": "add",
+      "family": "numeric",
+      "path": "numeric/add.json"
+    },
+    {
+      "id": "round",
+      "family": "numeric",
+      "path": "numeric/round.json"
+    },
+    {
+      "id": "concat",
+      "family": "string",
+      "path": "string/concat.json"
+    },
+    {
+      "id": "upper",
+      "family": "string",
+      "path": "string/upper.json"
+    },
+    {
+      "id": "coerceInteger",
+      "family": "type",
+      "path": "type/coerceInteger.json"
+    }
   ],
   "idioms": [
-    { "id": "classify-loop", "family": "idiom", "path": "idioms/classify-loop.json" },
-    { "id": "odin-to-xml", "family": "idiom", "group": "format-conversion", "path": "idioms/odin-to-xml.json" }
+    {
+      "id": "classify-loop",
+      "family": "idiom",
+      "path": "idioms/classify-loop.json"
+    },
+    {
+      "id": "odin-to-xml",
+      "family": "idiom",
+      "group": "format-conversion",
+      "path": "idioms/odin-to-xml.json"
+    }
   ],
   "idiomGroups": [
     {
       "id": "format-conversion",
       "name": "Format conversion",
       "description": "ODIN is the canonical model; odin<->json, odin<->xml, odin<->csv, and odin<->fixed-width are all common paths. Seeded: odin->xml. Placeholders remain for the others.",
-      "seeded": ["odin-to-xml"]
+      "seeded": [
+        "odin-to-xml"
+      ]
     },
     {
       "id": "patterns",
       "name": "Patterns",
       "description": "Multi-verb mapping patterns.",
-      "seeded": ["classify-loop"]
+      "seeded": [
+        "classify-loop"
+      ]
     }
   ],
-  "familyOrder": ["string", "numeric", "date", "array", "logic", "lookup", "type", "encoding"]
+  "familyOrder": [
+    "string",
+    "numeric",
+    "date",
+    "array",
+    "logic",
+    "lookup",
+    "type",
+    "encoding"
+  ]
 }
