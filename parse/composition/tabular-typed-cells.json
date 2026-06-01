@@ -1,0 +1,85 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-tabular-typed-cells",
+  "description": "Typed tabular cells in every column position — guards against column drop on non-string cells",
+  "tests": [
+    {
+      "id": "tabular-integer-first-column",
+      "description": "Integer (##) cell as the first column does not drop the trailing column",
+      "input": "{rows[] : qty, name}\n##5, \"widget\"\n##12, \"gadget\"",
+      "expected": {
+        "assignments": {
+          "rows[0].qty": { "type": "integer", "value": 5 },
+          "rows[0].name": { "type": "string", "value": "widget" },
+          "rows[1].qty": { "type": "integer", "value": 12 },
+          "rows[1].name": { "type": "string", "value": "gadget" }
+        }
+      }
+    },
+    {
+      "id": "tabular-negative-integer-cell",
+      "description": "Negative integer cell keeps its sign and column",
+      "input": "{temps[] : label, value}\n\"low\", ##-5\n\"high\", ##42",
+      "expected": {
+        "assignments": {
+          "temps[0].label": { "type": "string", "value": "low" },
+          "temps[0].value": { "type": "integer", "value": -5 },
+          "temps[1].label": { "type": "string", "value": "high" },
+          "temps[1].value": { "type": "integer", "value": 42 }
+        }
+      }
+    },
+    {
+      "id": "tabular-all-typed-row",
+      "description": "Consecutive typed cells with no string cell present keep every column",
+      "input": "{points[] : x, y, z}\n##1, ##2, ##3\n##-4, ##5, ##-6",
+      "expected": {
+        "assignments": {
+          "points[0].x": { "type": "integer", "value": 1 },
+          "points[0].y": { "type": "integer", "value": 2 },
+          "points[0].z": { "type": "integer", "value": 3 },
+          "points[1].x": { "type": "integer", "value": -4 },
+          "points[1].y": { "type": "integer", "value": 5 },
+          "points[1].z": { "type": "integer", "value": -6 }
+        }
+      }
+    },
+    {
+      "id": "tabular-single-integer-object-column",
+      "description": "Single named integer column produces an object array, not a primitive array",
+      "input": "{counts[] : value}\n##42\n##0",
+      "expected": {
+        "assignments": {
+          "counts[0].value": { "type": "integer", "value": 42 },
+          "counts[1].value": { "type": "integer", "value": 0 }
+        }
+      }
+    },
+    {
+      "id": "tabular-mixed-typed-order",
+      "description": "Integer, string, and currency interleaved across columns",
+      "input": "{items[] : qty, name, price}\n##10, \"Widget\", #$5.99\n##5, \"Gadget\", #$12.50",
+      "expected": {
+        "assignments": {
+          "items[0].qty": { "type": "integer", "value": 10 },
+          "items[0].name": { "type": "string", "value": "Widget" },
+          "items[0].price": { "type": "currency", "value": 5.99 },
+          "items[1].qty": { "type": "integer", "value": 5 },
+          "items[1].name": { "type": "string", "value": "Gadget" },
+          "items[1].price": { "type": "currency", "value": 12.50 }
+        }
+      }
+    },
+    {
+      "id": "tabular-large-integer-cell",
+      "description": "Large integer cell retains full precision",
+      "input": "{big[] : label, n}\n\"max\", ##9007199254740991",
+      "expected": {
+        "assignments": {
+          "big[0].label": { "type": "string", "value": "max" },
+          "big[0].n": { "type": "integer", "value": 9007199254740991 }
+        }
+      }
+    }
+  ]
+}

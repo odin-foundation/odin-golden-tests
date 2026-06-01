@@ -82,6 +82,12 @@
       "path": "composition/document-chaining.json"
     },
     {
+      "id": "tabular-typed-cells",
+      "name": "Tabular Typed Cells",
+      "description": "Typed cells in every column position guard against column drop",
+      "path": "composition/tabular-typed-cells.json"
+    },
+    {
       "id": "array-index-normalization",
       "name": "Array Index Normalization",
       "description": "Leading zeros in array indices normalized in paths and references",
