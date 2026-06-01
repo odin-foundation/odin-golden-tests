@@ -1265,9 +1265,51 @@
   ],
   "idioms": [
     {
+      "id": "accumulator-running-total",
+      "family": "idiom",
+      "group": "patterns",
+      "path": "idioms/accumulator-running-total.json"
+    },
+    {
       "id": "classify-loop",
       "family": "idiom",
       "path": "idioms/classify-loop.json"
+    },
+    {
+      "id": "conditional-chain",
+      "family": "idiom",
+      "group": "patterns",
+      "path": "idioms/conditional-chain.json"
+    },
+    {
+      "id": "literal-block",
+      "family": "idiom",
+      "group": "patterns",
+      "path": "idioms/literal-block.json"
+    },
+    {
+      "id": "nested-loops",
+      "family": "idiom",
+      "group": "patterns",
+      "path": "idioms/nested-loops.json"
+    },
+    {
+      "id": "odin-to-csv",
+      "family": "idiom",
+      "group": "format-conversion",
+      "path": "idioms/odin-to-csv.json"
+    },
+    {
+      "id": "odin-to-fixed-width",
+      "family": "idiom",
+      "group": "format-conversion",
+      "path": "idioms/odin-to-fixed-width.json"
+    },
+    {
+      "id": "odin-to-json",
+      "family": "idiom",
+      "group": "format-conversion",
+      "path": "idioms/odin-to-json.json"
     },
     {
       "id": "odin-to-xml",
@@ -1308,5 +1350,91 @@
     "generation",
     "geo",
     "object"
+  ],
+  "errors": [
+    {
+      "id": "t001-unknown-verb",
+      "family": "error",
+      "code": "T001",
+      "path": "errors/t001-unknown-verb.json"
+    },
+    {
+      "id": "t002-invalid-verb-arguments",
+      "family": "error",
+      "code": "T002",
+      "path": "errors/t002-invalid-verb-arguments.json"
+    },
+    {
+      "id": "t003-lookup-table-not-found",
+      "family": "error",
+      "code": "T003",
+      "path": "errors/t003-lookup-table-not-found.json"
+    },
+    {
+      "id": "t004-lookup-key-not-found",
+      "family": "error",
+      "code": "T004",
+      "path": "errors/t004-lookup-key-not-found.json"
+    },
+    {
+      "id": "t005-source-path-not-found",
+      "family": "error",
+      "code": "T005",
+      "path": "errors/t005-source-path-not-found.json"
+    },
+    {
+      "id": "t006-invalid-output-format",
+      "family": "error",
+      "code": "T006",
+      "path": "errors/t006-invalid-output-format.json"
+    },
+    {
+      "id": "t007-invalid-modifier-for-format",
+      "family": "error",
+      "code": "T007",
+      "path": "errors/t007-invalid-modifier-for-format.json"
+    },
+    {
+      "id": "t008-accumulator-overflow",
+      "family": "error",
+      "code": "T008",
+      "path": "errors/t008-accumulator-overflow.json"
+    },
+    {
+      "id": "t009-loop-source-not-array",
+      "family": "error",
+      "code": "T009",
+      "path": "errors/t009-loop-source-not-array.json"
+    },
+    {
+      "id": "t010-position-overflow",
+      "family": "error",
+      "code": "T010",
+      "path": "errors/t010-position-overflow.json"
+    },
+    {
+      "id": "t011-incompatible-conversion",
+      "family": "error",
+      "code": "T011",
+      "path": "errors/t011-incompatible-conversion.json"
+    },
+    {
+      "id": "t012-dangling-branch",
+      "family": "error",
+      "code": "T012",
+      "path": "errors/t012-dangling-branch.json"
+    },
+    {
+      "id": "t013-validation-failure",
+      "family": "error",
+      "code": "T013",
+      "path": "errors/t013-validation-failure.json"
+    },
+    {
+      "id": "t014-nested-interpolation",
+      "family": "error",
+      "code": "T014",
+      "path": "errors/t014-nested-interpolation.json"
+    }
   ]
 }

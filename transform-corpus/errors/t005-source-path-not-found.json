@@ -1,0 +1,19 @@
+{
+  "id": "t005-source-path-not-found",
+  "family": "error",
+  "code": "T005",
+  "title": "T005 — source path not found",
+  "purpose": "A field marked :required whose source path resolves to nothing fails the transform.",
+  "transform": "{out}\nx = @.does.not.exist :required",
+  "input": "a = ##1",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "enforced": false,
+  "trigger": "The path does.not.exist is absent from the source and the field is :required.",
+  "fix": "Provide the source path, drop :required, or supply a default with %coalesce / %ifNull.",
+  "notes": [
+    "Without :required a missing path yields null silently; the :required modifier is what raises the error.",
+    "The transform fails and an error is reported for the field.",
+    "The engine currently reports this as code SOURCE_MISSING with the message 'Required field 'x' is missing or null'; the stable T005 code is not yet emitted."
+  ]
+}

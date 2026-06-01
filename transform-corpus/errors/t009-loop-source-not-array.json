@@ -1,0 +1,18 @@
+{
+  "id": "t009-loop-source-not-array",
+  "family": "error",
+  "code": "T009",
+  "title": "T009 — loop source not array",
+  "purpose": "A :loop whose source path resolves to a scalar instead of an array should fail.",
+  "transform": "{out[]}\n:loop notArr\nx = @.a",
+  "input": "notArr = \"scalar\"",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "enforced": false,
+  "trigger": "notArr resolves to the string \"scalar\", not an array, under :loop.",
+  "fix": "Point :loop at an array path, or wrap the scalar in an array before looping.",
+  "notes": [
+    "When the loop source is not an array the engine currently skips iteration and emits an empty result; it reports success and the stable T009 code is not yet emitted.",
+    "Ensure the :loop path resolves to an array so each element is iterated."
+  ]
+}

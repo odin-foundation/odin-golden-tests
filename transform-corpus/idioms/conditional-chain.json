@@ -1,0 +1,21 @@
+{
+  "id": "conditional-chain",
+  "family": "idiom",
+  "group": "patterns",
+  "title": "Select one of several sections with an :if / :elif / :else chain",
+  "purpose": "Emit exactly one branch from a mutually exclusive chain of sections guarded by verb-expression conditions.",
+  "signature": "{A :if <cond>} / {B :elif <cond>} / {C :else}",
+  "targetFormat": "json",
+  "targetOptions": { "indent": "2" },
+  "transform": "{Driver}\nname = @driver.name\n\n{HighRisk :if %eq @driver.tier \"dui\"}\nband = \"high-risk\"\n\n{YoungDriver :elif %lt @driver.age ##25}\nband = \"young-driver\"\n\n{Standard :else}\nband = \"standard\"\n",
+  "input": "{$}\nodin = \"1.0.0\"\n{}\n{driver}\nname = \"Sam Cruz\"\ntier = \"standard\"\nage = ##40",
+  "expectedOutput": "{\n  \"Driver\": {\n    \"name\": \"Sam Cruz\"\n  },\n  \"Standard\": {\n    \"band\": \"standard\"\n  }\n}",
+  "notes": [
+    "The :if / :elif / :else sections form one mutually exclusive chain; the engine emits the first section whose condition is true and skips the rest.",
+    "Conditions are verb expressions: %eq @driver.tier \"dui\" and %lt @driver.age ##25 evaluate against the source.",
+    "Here tier is \"standard\" (not \"dui\") and age 40 is not < 25, so both guards fail and the :else branch (Standard) is emitted.",
+    "Unguarded sections like {Driver} always emit; only the :if/:elif/:else chain is conditional.",
+    "A non-matching branch produces no key at all in the output, not an empty object."
+  ],
+  "avoid": []
+}

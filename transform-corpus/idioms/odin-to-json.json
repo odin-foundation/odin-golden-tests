@@ -1,0 +1,23 @@
+{
+  "id": "odin-to-json",
+  "family": "idiom",
+  "group": "format-conversion",
+  "title": "odin->json — emit JSON from an ODIN source",
+  "purpose": "Convert an ODIN document to JSON by setting the target format to json, showing a nested object alongside a :loop array.",
+  "signature": "direction = \"odin->json\"; {$target} format=\"json\" indent=\"2\"",
+  "targetFormat": "json",
+  "targetOptions": { "indent": "2" },
+  "transform": "{order}\nid = @order.id\ncustomer = %upper @order.customer\n\n{lines[]}\n_loop = \"@lines\"\nsku = @.sku\nqty = @.qty\n",
+  "input": "{$}\nodin = \"1.0.0\"\n{}\n{order}\nid = \"ORD-7\"\ncustomer = \"acme\"\n{lines[] : sku, qty}\n\"A1\", ##2\n\"B2\", ##5",
+  "expectedOutput": "{\n  \"order\": {\n    \"id\": \"ORD-7\",\n    \"customer\": \"ACME\"\n  },\n  \"lines\": [\n    {\n      \"sku\": \"A1\",\n      \"qty\": 2\n    },\n    {\n      \"sku\": \"B2\",\n      \"qty\": 5\n    }\n  ]\n}",
+  "notes": [
+    "Only the header changes versus odin->odin: direction = \"odin->json\" and {$target} format = \"json\".",
+    "{$target} indent = \"2\" pretty-prints with two-space indentation; omit it for compact JSON.",
+    "A scalar section like {order} reads the source with full paths (@order.id); a section ending in [] with _loop iterates an array and emits a JSON array.",
+    "Verbs and type coercion still apply on the way out (here %upper uppercases the customer name).",
+    "The reverse path json->odin uses direction = \"json->odin\" with {$source} format = \"json\"; JSON types are inferred into ODIN types on ingest."
+  ],
+  "avoid": [
+    { "snippet": "{order}\nid = @.id", "why": "outside a :loop there is no current element, so @.id resolves to null; use the full source path @order.id in scalar sections" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "t002-invalid-verb-arguments",
+  "family": "error",
+  "code": "T002",
+  "title": "T002 — invalid verb arguments",
+  "purpose": "Passing an argument of the wrong type to a verb under strict type checking fails the transform.",
+  "transform": "{out}\nx = %sqrt \"notanumber\"",
+  "input": "a = ##1",
+  "targetFormat": "odin",
+  "headerFields": {
+    "strictTypes": "?true"
+  },
+  "surfaces": "throw",
+  "enforced": true,
+  "trigger": "%sqrt receives a string where a number is required, with strictTypes enabled.",
+  "fix": "Pass a numeric argument (e.g. %sqrt @.value where value is a number), or coerce first with %coerceNumber.",
+  "notes": [
+    "Requires strictTypes = ?true in the {$} header — without strict mode the wrong-typed argument is coerced instead of rejected.",
+    "With strict mode the transform throws a type error carrying the T002 code on the thrown error; the message reads 'Type error in %sqrt: Arg 1: expected number, got string'.",
+    "Because the thrown message text does not contain the literal string T002, the catalog documents this case rather than asserting on the message; the stable T002 code is present on the error object but not in its message.",
+    "Supplying the wrong NUMBER of arguments is caught earlier at parse time with a distinct message, not as a coded T002."
+  ]
+}

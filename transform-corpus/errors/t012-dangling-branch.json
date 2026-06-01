@@ -1,0 +1,17 @@
+{
+  "id": "t012-dangling-branch",
+  "family": "error",
+  "code": "T012",
+  "title": "T012 — dangling :elif / :else",
+  "purpose": "An :elif or :else conditional segment with no preceding :if segment is a dangling branch.",
+  "transform": "{out}\n:else\nx = @.a",
+  "input": "a = ##1",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "trigger": "The {out} segment carries :else but no :if segment precedes it.",
+  "fix": "Add a preceding :if segment to open the conditional chain, or remove the :else.",
+  "notes": [
+    "Reported as a T012 error: ''else' segment has no preceding 'if''.",
+    "A dangling :elif raises the same T012 ('elif' segment has no preceding 'if')."
+  ]
+}

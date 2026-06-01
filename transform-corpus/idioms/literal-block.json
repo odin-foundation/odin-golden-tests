@@ -1,0 +1,20 @@
+{
+  "id": "literal-block",
+  "family": "idiom",
+  "group": "patterns",
+  "title": "Emit verbatim lines from a :literal block with ${...} interpolation",
+  "purpose": "Use a :literal section with a triple-quoted body to write fixed text, interpolating fields and verb results via ${...}.",
+  "signature": "{Section} :literal + \"\"\"...\"\"\" body with ${...} interpolation",
+  "targetFormat": "fixed-width",
+  "transform": "{HDR}\n:literal\n\"\"\"\nHDR|${@policy.number}|${%upper @policy.code}\n\"\"\"\n\n{DET[]}\n:loop @items\n:literal\n\"\"\"\nDET|${@.sku}|${@.qty}\n\"\"\"\n",
+  "input": "{$}\nodin = \"1.0.0\"\n{}\n{policy}\nnumber = \"P-100\"\ncode = \"abc\"\n{items[] : sku, qty}\n\"A1\", \"2\"\n\"B2\", \"5\"",
+  "expectedOutput": "HDR|P-100|ABC\nDET|A1|2\nDET|B2|5",
+  "notes": [
+    "A :literal section emits its triple-quoted body verbatim instead of building structured fields.",
+    "${...} interpolates an expression into the line: ${@policy.number} reads a field, ${%upper @policy.code} runs a verb (abc -> ABC).",
+    "A :literal section can also :loop; here {DET[]} :loop @items repeats the body once per item with @.sku / @.qty bound to the current element.",
+    "Escape a literal dollar-brace with a backslash (\\${...}) to emit ${...} as text rather than interpolating it.",
+    "Literal blocks suit delimited or templated line formats where exact characters matter, such as fixed-width or EDI-style records."
+  ],
+  "avoid": []
+}

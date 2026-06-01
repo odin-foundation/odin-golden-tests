@@ -1,0 +1,17 @@
+{
+  "id": "t007-invalid-modifier-for-format",
+  "family": "error",
+  "code": "T007",
+  "title": "T007 — invalid modifier for format",
+  "purpose": "Applying a format-specific modifier (e.g. fixed-width :pos / :len) to a target that does not support it.",
+  "transform": "{out}\nx = @.a :pos 0 :len 5",
+  "input": "a = \"hi\"",
+  "targetFormat": "json",
+  "surfaces": "result",
+  "trigger": ":pos and :len are fixed-width positioning modifiers but the target format is json.",
+  "fix": "Drop the fixed-width modifiers for JSON output, or switch the target format to fixed-width.",
+  "notes": [
+    "Reported as a T007 warning, one per incompatible modifier: 'Modifier ':pos' is not applicable to format 'json' and will be ignored'.",
+    "The transform still succeeds; the offending modifiers are dropped from the output."
+  ]
+}

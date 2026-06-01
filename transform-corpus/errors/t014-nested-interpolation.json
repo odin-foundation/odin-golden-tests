@@ -1,0 +1,17 @@
+{
+  "id": "t014-nested-interpolation",
+  "family": "error",
+  "code": "T014",
+  "title": "T014 — nested interpolation",
+  "purpose": "A ${...} interpolation whose expression itself contains another ${ inside a :literal block is rejected.",
+  "transform": "{X}\n:literal\n\"\"\"\n${@a.${@b}}\n\"\"\"\n",
+  "input": "a.b = \"x\"\nb = \"k\"",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "trigger": "The literal-block interpolation ${@a.${@b}} nests a second ${ inside the first.",
+  "fix": "Flatten the expression so each ${...} stands alone; compute the inner value in a prior field if needed.",
+  "notes": [
+    "Only :literal segment blocks (triple-quoted body) enforce the no-nesting rule.",
+    "Reported as a T014 error: 'Nested interpolation is not allowed: ${@a.${@b}'."
+  ]
+}

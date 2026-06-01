@@ -1,0 +1,19 @@
+{
+  "id": "t004-lookup-key-not-found",
+  "family": "error",
+  "code": "T004",
+  "title": "T004 — lookup key not found",
+  "purpose": "A %lookup whose match value has no matching row in the table fails when onMissing is fail.",
+  "transform": "{$table.STATUS[name, code]}\n\"active\", \"A\"\n\n{out}\nx = %lookup \"STATUS.code\" @.k",
+  "input": "k = \"nope\"",
+  "targetFormat": "odin",
+  "targetOptions": { "onMissing": "fail" },
+  "surfaces": "result",
+  "trigger": "'nope' is not present in the STATUS table's name column.",
+  "fix": "Add the missing row to the table, use %lookupDefault to supply a fallback, or set onMissing = \"warn\".",
+  "notes": [
+    "Requires onMissing = \"fail\" in the {$target} header; the default policy is silent (returns null, no error).",
+    "Reported as a T004 error: 'Lookup key 'nope' not found in table 'STATUS''.",
+    "Setting onMissing = \"warn\" demotes the same T004 to a warning instead."
+  ]
+}

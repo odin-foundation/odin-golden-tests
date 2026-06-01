@@ -1,0 +1,20 @@
+{
+  "id": "accumulator-running-total",
+  "family": "idiom",
+  "group": "patterns",
+  "title": "Maintain a running total across loop iterations with an accumulator",
+  "purpose": "Declare a {$accumulator}, add each element's value inside a :loop with %accumulate, then read the final sum back via @$accumulator.*.",
+  "signature": "{$accumulator} + %accumulate inside a [] _loop + @$accumulator.* read-back",
+  "targetFormat": "json",
+  "targetOptions": { "indent": "2" },
+  "transform": "{$accumulator}\nrunningTotal = ##0\nrunningTotal._persist = true\n\n{lines[]}\n_loop = \"@items\"\nname = @.name\namount = @.amount\n_ = %accumulate runningTotal @.amount\n\n{summary}\ntotal = \"@$accumulator.runningTotal\"\n",
+  "input": "{$}\nodin = \"1.0.0\"\n{}\n{items[] : name, amount}\n\"Widget\", #$10.00\n\"Gadget\", #$25.00\n\"Tool\", #$5.00",
+  "expectedOutput": "{\n  \"lines\": [\n    {\n      \"name\": \"Widget\",\n      \"amount\": 10\n    },\n    {\n      \"name\": \"Gadget\",\n      \"amount\": 25\n    },\n    {\n      \"name\": \"Tool\",\n      \"amount\": 5\n    }\n  ],\n  \"summary\": {\n    \"total\": 40\n  }\n}",
+  "notes": [
+    "{$accumulator} declares the variable and its seed; runningTotal._persist = true keeps the value across the whole document so a later section can read it.",
+    "Inside the loop, _ = %accumulate runningTotal @.amount adds the current element's amount; the _ target discards the verb's own return while the accumulator updates.",
+    "After the loop, @$accumulator.runningTotal reads the final total (10 + 25 + 5 = 40) into the summary section.",
+    "The summary section is declared after the loop section so it runs once the accumulation is complete."
+  ],
+  "avoid": []
+}

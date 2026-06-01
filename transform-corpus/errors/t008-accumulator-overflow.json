@@ -1,0 +1,18 @@
+{
+  "id": "t008-accumulator-overflow",
+  "family": "error",
+  "code": "T008",
+  "title": "T008 — accumulator overflow",
+  "purpose": "An accumulator whose running value exceeds engine limits should fail the transform.",
+  "transform": "{$accumulator}\ntotal = ##0\n\n{out}\nx = %accumulate \"total\" @.a",
+  "input": "a = ##1",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "enforced": false,
+  "trigger": "Accumulating values past the accumulator's numeric capacity.",
+  "fix": "Reduce the magnitude of accumulated values or use a wider numeric representation.",
+  "notes": [
+    "The engine currently enforces no overflow bound on %accumulate; the transform succeeds and the stable T008 code is not yet emitted.",
+    "Documented for completeness so the catalog covers every defined transform error code."
+  ]
+}

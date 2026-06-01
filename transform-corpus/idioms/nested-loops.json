@@ -1,0 +1,20 @@
+{
+  "id": "nested-loops",
+  "family": "idiom",
+  "group": "patterns",
+  "title": "Produce a cross-product with two nested :loop directives",
+  "purpose": "Iterate an outer array and, for each element, an inner array, emitting one flattened row per (outer, inner) pair.",
+  "signature": "{rows[]} + :loop <outer> :as a + :loop .inner :as b",
+  "targetFormat": "json",
+  "targetOptions": { "indent": "2" },
+  "transform": "{rows[]}\n:loop policy.vehicles :as veh\n:loop .coverages :as cov\nvehicle_vin = \"@veh.vin\"\ncoverage_code = \"@cov.code\"\ncoverage_limit = \"@cov.limit\"\n",
+  "input": "{$}\nodin = \"1.0.0\"\n{}\n{policy}\nnumber = \"POL-100\"\n{policy.vehicles[0]}\nvin = \"VIN-A\"\n{policy.vehicles[0].coverages[] : code, limit}\n\"LIAB\", #$100000.00\n\"COLL\", #$50000.00\n{policy.vehicles[1]}\nvin = \"VIN-B\"\n{policy.vehicles[1].coverages[] : code, limit}\n\"COMP\", #$25000.00",
+  "expectedOutput": "{\n  \"rows\": [\n    {\n      \"vehicle_vin\": \"VIN-A\",\n      \"coverage_code\": \"LIAB\",\n      \"coverage_limit\": 100000\n    },\n    {\n      \"vehicle_vin\": \"VIN-A\",\n      \"coverage_code\": \"COLL\",\n      \"coverage_limit\": 50000\n    },\n    {\n      \"vehicle_vin\": \"VIN-B\",\n      \"coverage_code\": \"COMP\",\n      \"coverage_limit\": 25000\n    }\n  ]\n}",
+  "notes": [
+    "The first :loop names the outer array (policy.vehicles :as veh); the second :loop is relative (.coverages) to the current outer element and binds :as cov.",
+    "Each :as alias is read with its own @alias.field — @veh.vin for the outer element, @cov.code / @cov.limit for the inner.",
+    "The result is the cross-product: VIN-A has two coverages (two rows), VIN-B has one (one row), for three rows total.",
+    "A relative inner path (.coverages) resolves against the current outer element, so each vehicle contributes only its own coverages."
+  ],
+  "avoid": []
+}

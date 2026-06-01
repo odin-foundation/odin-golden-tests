@@ -1,0 +1,18 @@
+{
+  "id": "t013-validation-failure",
+  "family": "error",
+  "code": "T013",
+  "title": "T013 — field validation failure",
+  "purpose": "A field value that violates an :enum / :validate / :range constraint fails validation.",
+  "transform": "{out}\nx = @.a :enum \"red,green\"",
+  "input": "a = \"blue\"",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "trigger": "The value \"blue\" is not in the allowed :enum set red,green.",
+  "fix": "Supply a value within the constraint, widen the :enum/:range, or set onValidation = \"warn\"/\"skip\".",
+  "notes": [
+    "Reported as a T013 error under the default onValidation = fail policy: 'Validation failed for 'x': value 'blue' is not one of [red, green]'.",
+    ":range uses the dotted form (e.g. :range 1..10) and :validate takes a regex; all three raise T013 the same way.",
+    "onValidation = \"warn\" demotes the T013 to a warning; \"skip\" drops the field silently."
+  ]
+}

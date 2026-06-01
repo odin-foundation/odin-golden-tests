@@ -1,0 +1,21 @@
+{
+  "id": "odin-to-fixed-width",
+  "family": "idiom",
+  "group": "format-conversion",
+  "title": "odin->fixed-width — emit fixed-width records from an ODIN source",
+  "purpose": "Convert an ODIN array to fixed-width text by placing each field at an explicit column with :pos/:len and a pad direction.",
+  "signature": "direction = \"odin->fixed-width\"; {$target} format=\"fixed-width\"",
+  "targetFormat": "fixed-width",
+  "transform": "{rows[]}\n_loop = \"@employees\"\nid = %formatInteger @.id :pos 0 :len 5 :leftPad \"0\"\nname = @.name :pos 5 :len 10 :rightPad \" \"\ndept = @.dept :pos 15 :len 3\n",
+  "input": "{$}\nodin = \"1.0.0\"\n{}\n{employees[] : id, name, dept}\n##101, \"SMITH\", \"ENG\"\n##102, \"DOE\", \"MKT\"",
+  "expectedOutput": "00101SMITH     ENG\n00102DOE       MKT",
+  "notes": [
+    "Only the header changes versus odin->odin: direction = \"odin->fixed-width\" and {$target} format = \"fixed-width\".",
+    "Each field carries :pos (start column, 0-based) and :len (width); the field is placed at that fixed window in every record.",
+    ":leftPad \"0\" pads numbers on the left (right-justified, e.g. id 101 -> 00101); :rightPad \" \" pads strings on the right (left-justified, e.g. SMITH -> 'SMITH     ').",
+    "%formatInteger renders the numeric value as digits before padding so it fills the column cleanly.",
+    "The [] section with _loop emits one fixed-width line per source element; @.field reads the current element.",
+    "The reverse path fixed-width->odin uses direction = \"fixed-width->odin\" with {$source} format = \"fixed-width\"; each field's :pos/:len slices the input columns back into typed values."
+  ],
+  "avoid": []
+}

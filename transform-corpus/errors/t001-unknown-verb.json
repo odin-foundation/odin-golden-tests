@@ -1,0 +1,19 @@
+{
+  "id": "t001-unknown-verb",
+  "family": "error",
+  "code": "T001",
+  "title": "T001 — unknown verb",
+  "purpose": "Calling a verb name that is not a registered built-in (and not a %& custom verb) fails the field.",
+  "transform": "{out}\nx = %notAVerb @.a",
+  "input": "a = ##1",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "enforced": false,
+  "trigger": "%notAVerb is not a known built-in verb.",
+  "fix": "Use a registered verb name, or define it as a custom verb (%&namespace.verb).",
+  "notes": [
+    "The transform fails and an error is reported for the field.",
+    "The engine currently reports this as code TRANSFORM_ERROR with the message 'Unknown verb: notAVerb'; the stable T001 code is not yet emitted.",
+    "An unregistered %& custom verb does not raise this — it echoes its first argument as an extension point."
+  ]
+}

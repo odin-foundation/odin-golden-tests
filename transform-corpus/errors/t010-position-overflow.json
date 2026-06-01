@@ -1,0 +1,19 @@
+{
+  "id": "t010-position-overflow",
+  "family": "error",
+  "code": "T010",
+  "title": "T010 — fixed-width position overflow",
+  "purpose": "A fixed-width field whose :pos + :len extends past the declared lineWidth overflows the line.",
+  "transform": "{segment.HDR}\nrec = @.a :pos 78 :len 10",
+  "input": "a = \"verylongvalue\"",
+  "targetFormat": "fixed-width",
+  "targetOptions": { "lineWidth": 80 },
+  "surfaces": "result",
+  "trigger": ":pos 78 plus :len 10 = 88 exceeds the lineWidth of 80.",
+  "fix": "Lower :pos or :len so :pos + :len <= lineWidth, or widen lineWidth.",
+  "notes": [
+    "Requires a fixed-width target with lineWidth set in {$target}.",
+    "Reported as a T010 warning: 'Field at position 78 with length 10 exceeds line width 80'.",
+    "The transform still succeeds; behavior is governed by the onOverflow policy, which warns by default."
+  ]
+}

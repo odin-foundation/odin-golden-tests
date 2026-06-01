@@ -1,0 +1,17 @@
+{
+  "id": "t011-incompatible-conversion",
+  "family": "error",
+  "code": "T011",
+  "title": "T011 — incompatible or unknown conversion target",
+  "purpose": "Passing an unrecognized unit to a conversion verb fails the field.",
+  "transform": "{out}\nx = %distance ##0 ##0 ##1 ##1 \"parsecs\"",
+  "input": "a = ##1",
+  "targetFormat": "odin",
+  "surfaces": "result",
+  "trigger": "%distance is given the unit \"parsecs\", which is not a supported distance unit.",
+  "fix": "Use a supported unit: \"km\", \"mi\", or \"miles\".",
+  "notes": [
+    "Reported as a T011 error: 'Incompatible conversion in 'distance': unknown unit 'parsecs' (expected 'km', 'mi', or 'miles')'.",
+    "%dateDiff with an unknown unit (e.g. \"fortnights\") raises the same T011."
+  ]
+}

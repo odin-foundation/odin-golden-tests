@@ -1,0 +1,18 @@
+{
+  "id": "t006-invalid-output-format",
+  "family": "error",
+  "code": "T006",
+  "title": "T006 — invalid output format",
+  "purpose": "Declaring a target format the engine does not recognize should fail the transform.",
+  "transform": "{out}\nx = @.a",
+  "input": "a = ##1",
+  "targetFormat": "notaformat",
+  "surfaces": "result",
+  "enforced": false,
+  "trigger": "format = \"notaformat\" in {$target} is not a registered output formatter.",
+  "fix": "Set {$target} format to a supported value: odin, json, xml, csv, or fixed-width.",
+  "notes": [
+    "An unknown target format is not rejected. The engine currently falls back to JSON-serializing the canonical form and reports success with no errors or warnings; the stable T006 code is not yet emitted.",
+    "Use a supported output format to get predictable results."
+  ]
+}
