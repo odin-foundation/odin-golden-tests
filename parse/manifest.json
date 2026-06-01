@@ -10,6 +10,12 @@
       "path": "basic/simple-assignments.json"
     },
     {
+      "id": "multiline-strings",
+      "name": "Multiline Strings",
+      "description": "Triple-quoted multiline string literals",
+      "path": "basic/multiline-strings.json"
+    },
+    {
       "id": "types",
       "name": "All Types",
       "description": "All ODIN value types and prefixes",

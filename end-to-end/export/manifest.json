@@ -124,6 +124,14 @@
       "expected": "odin-to-fwf/payroll.expected.fwf"
     },
     {
+      "id": "fwf-literal-block",
+      "description": "Literal blocks with interpolation, escapes, loop, and verb",
+      "direction": "odin->fixed-width",
+      "input": "fwf-literal-block/data.input.odin",
+      "transform": "fwf-literal-block/data.transform.odin",
+      "expected": "fwf-literal-block/data.expected.fwf"
+    },
+    {
       "id": "odin-to-csv",
       "description": "Export ODIN product catalog to CSV format",
       "direction": "odin->csv",

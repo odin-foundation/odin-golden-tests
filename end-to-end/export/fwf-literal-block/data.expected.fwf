@@ -1,0 +1,4 @@
+HDR|P-100|ABC
+DET|A1|2
+DET|B2|5
+NOTE|literal:${@policy.number} dollar:$ value:P-100

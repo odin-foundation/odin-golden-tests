@@ -1,0 +1,65 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-multiline-strings",
+  "description": "Triple-quoted multiline string literals",
+  "tests": [
+    {
+      "id": "multiline-spanning-newlines",
+      "description": "Content spans newlines until the closing triple quote",
+      "input": "field = \"\"\"hello\nworld\"\"\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "hello\nworld" }
+        }
+      }
+    },
+    {
+      "id": "multiline-single-line",
+      "description": "Triple quotes on a single line",
+      "input": "field = \"\"\"one line\"\"\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "one line" }
+        }
+      }
+    },
+    {
+      "id": "multiline-leading-trailing-newline",
+      "description": "Leading and trailing newlines are retained verbatim",
+      "input": "field = \"\"\"\ninner\n\"\"\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "\ninner\n" }
+        }
+      }
+    },
+    {
+      "id": "multiline-empty",
+      "description": "Empty triple-quoted string",
+      "input": "field = \"\"\"\"\"\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "" }
+        }
+      }
+    },
+    {
+      "id": "multiline-verbatim-backslash-and-quotes",
+      "description": "Backslashes and embedded quotes are kept verbatim",
+      "input": "field = \"\"\"C:\\path say \"hi\" done\"\"\"",
+      "expected": {
+        "assignments": {
+          "field": { "type": "string", "value": "C:\\path say \"hi\" done" }
+        }
+      }
+    },
+    {
+      "id": "multiline-unterminated",
+      "description": "Unterminated triple-quoted block is a parse error",
+      "input": "field = \"\"\"never closed\n",
+      "expectError": {
+        "code": "P004"
+      }
+    }
+  ]
+}
