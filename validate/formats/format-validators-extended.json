@@ -1,0 +1,343 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-format-validators-extended",
+  "description": "Extended format constraint validation tests",
+  "tests": [
+    {
+      "id": "uri-valid-urn",
+      "description": "Valid URN URI",
+      "schema": "ref = :format uri",
+      "input": "ref = \"urn:isbn:0451450523\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "uri-valid-mailto",
+      "description": "Valid mailto URI",
+      "schema": "ref = :format uri",
+      "input": "ref = \"mailto:user@example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "uri-invalid-no-scheme",
+      "description": "URI missing scheme",
+      "schema": "ref = :format uri",
+      "input": "ref = \"/relative/path\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "ref" }] }
+    },
+    {
+      "id": "hostname-valid",
+      "description": "Valid hostname",
+      "schema": "host = :format hostname",
+      "input": "host = \"example.com\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "hostname-valid-subdomain",
+      "description": "Valid multi-label hostname",
+      "schema": "host = :format hostname",
+      "input": "host = \"sub.example.co.uk\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "hostname-invalid-leading-hyphen",
+      "description": "Hostname label cannot start with hyphen",
+      "schema": "host = :format hostname",
+      "input": "host = \"-bad.example.com\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "host" }] }
+    },
+    {
+      "id": "hostname-invalid-underscore",
+      "description": "Hostname cannot contain underscore",
+      "schema": "host = :format hostname",
+      "input": "host = \"bad_underscore.com\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "host" }] }
+    },
+    {
+      "id": "datetime-valid",
+      "description": "Valid ISO 8601 datetime",
+      "schema": "ts = :format datetime",
+      "input": "ts = \"2024-06-15T10:30:00\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "datetime-valid-zulu",
+      "description": "Valid ISO 8601 datetime with Z suffix",
+      "schema": "ts = :format datetime",
+      "input": "ts = \"2024-06-15T10:30:00Z\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "datetime-invalid-space-separator",
+      "description": "Datetime with space instead of T separator",
+      "schema": "ts = :format datetime",
+      "input": "ts = \"2024-06-15 10:30:00\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "ts" }] }
+    },
+    {
+      "id": "datetime-invalid-date-only",
+      "description": "Date without time component",
+      "schema": "ts = :format datetime",
+      "input": "ts = \"2024-06-15\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "ts" }] }
+    },
+    {
+      "id": "date-time-valid-zulu",
+      "description": "Valid date-time alias with Z suffix",
+      "schema": "ts = :format date-time",
+      "input": "ts = \"2024-06-15T10:30:00Z\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "date-time-invalid-slashes",
+      "description": "date-time alias rejects slash date",
+      "schema": "ts = :format date-time",
+      "input": "ts = \"06/15/2024\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "ts" }] }
+    },
+    {
+      "id": "credit-card-valid-visa",
+      "description": "Valid Visa number passes Luhn",
+      "schema": "card = :format credit-card",
+      "input": "card = \"4111111111111111\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "credit-card-invalid-checksum",
+      "description": "Correct shape but failing Luhn checksum",
+      "schema": "card = :format credit-card",
+      "input": "card = \"4111111111111112\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "card" }] }
+    },
+    {
+      "id": "credit-card-invalid-too-short",
+      "description": "Fewer than 13 digits",
+      "schema": "card = :format credit-card",
+      "input": "card = \"411111111111\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "card" }] }
+    },
+    {
+      "id": "iban-valid-gb",
+      "description": "Valid IBAN shape (GB)",
+      "schema": "iban = :format iban",
+      "input": "iban = \"GB82WEST12345698765432\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "iban-valid-de",
+      "description": "Valid IBAN shape (DE)",
+      "schema": "iban = :format iban",
+      "input": "iban = \"DE89370400440532013000\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "iban-invalid-no-country",
+      "description": "IBAN missing leading country letters",
+      "schema": "iban = :format iban",
+      "input": "iban = \"1234WEST\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "iban" }] }
+    },
+    {
+      "id": "bic-valid-8",
+      "description": "Valid 8-character BIC",
+      "schema": "bic = :format bic",
+      "input": "bic = \"DEUTDEFF\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "bic-valid-11",
+      "description": "Valid 11-character BIC with branch code",
+      "schema": "bic = :format bic",
+      "input": "bic = \"DEUTDEFF500\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "bic-invalid-9-chars",
+      "description": "BIC must be 8 or 11 characters, not 9",
+      "schema": "bic = :format bic",
+      "input": "bic = \"DEUTDEFF5\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "bic" }] }
+    },
+    {
+      "id": "swift-valid",
+      "description": "Valid SWIFT code (BIC alias)",
+      "schema": "swift = :format swift",
+      "input": "swift = \"BOFAUS3N\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "swift-invalid-too-short",
+      "description": "SWIFT code too short",
+      "schema": "swift = :format swift",
+      "input": "swift = \"BOFAUS3\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "swift" }] }
+    },
+    {
+      "id": "routing-valid",
+      "description": "Valid 9-digit ABA routing number",
+      "schema": "routing = :format routing",
+      "input": "routing = \"021000021\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "routing-invalid-8-digits",
+      "description": "Routing number must be 9 digits",
+      "schema": "routing = :format routing",
+      "input": "routing = \"12345678\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "routing" }] }
+    },
+    {
+      "id": "cusip-valid",
+      "description": "Valid 9-character CUSIP shape",
+      "schema": "cusip = :format cusip",
+      "input": "cusip = \"037833100\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "cusip-invalid-too-short",
+      "description": "CUSIP must be 9 characters",
+      "schema": "cusip = :format cusip",
+      "input": "cusip = \"03783310\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "cusip" }] }
+    },
+    {
+      "id": "cusip-invalid-symbol",
+      "description": "CUSIP cannot contain symbols",
+      "schema": "cusip = :format cusip",
+      "input": "cusip = \"037833$00\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "cusip" }] }
+    },
+    {
+      "id": "isin-valid",
+      "description": "Valid ISIN shape",
+      "schema": "isin = :format isin",
+      "input": "isin = \"US0378331005\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "isin-invalid-too-short",
+      "description": "ISIN must be 12 characters",
+      "schema": "isin = :format isin",
+      "input": "isin = \"US037833100\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "isin" }] }
+    },
+    {
+      "id": "isin-invalid-non-digit-check",
+      "description": "ISIN final character must be a digit",
+      "schema": "isin = :format isin",
+      "input": "isin = \"US037833100X\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "isin" }] }
+    },
+    {
+      "id": "lei-valid",
+      "description": "Valid 20-character LEI shape",
+      "schema": "lei = :format lei",
+      "input": "lei = \"529900T8BM49AURSDO55\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "lei-invalid-too-short",
+      "description": "LEI must be 20 characters",
+      "schema": "lei = :format lei",
+      "input": "lei = \"529900T8BM49AURSDO5\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "lei" }] }
+    },
+    {
+      "id": "lei-invalid-symbol",
+      "description": "LEI cannot contain symbols",
+      "schema": "lei = :format lei",
+      "input": "lei = \"529900T8BM49AURSDO5$\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "lei" }] }
+    },
+    {
+      "id": "npi-valid",
+      "description": "Valid 10-digit NPI shape",
+      "schema": "npi = :format npi",
+      "input": "npi = \"1234567890\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "npi-invalid-too-short",
+      "description": "NPI must be 10 digits",
+      "schema": "npi = :format npi",
+      "input": "npi = \"123456789\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "npi" }] }
+    },
+    {
+      "id": "npi-invalid-too-long",
+      "description": "NPI cannot exceed 10 digits",
+      "schema": "npi = :format npi",
+      "input": "npi = \"12345678901\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "npi" }] }
+    },
+    {
+      "id": "dea-valid",
+      "description": "Valid DEA number",
+      "schema": "dea = :format dea",
+      "input": "dea = \"AB1234567\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "dea-invalid-one-letter",
+      "description": "DEA requires two leading letters",
+      "schema": "dea = :format dea",
+      "input": "dea = \"A1234567\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "dea" }] }
+    },
+    {
+      "id": "dea-invalid-short-digits",
+      "description": "DEA requires seven digits",
+      "schema": "dea = :format dea",
+      "input": "dea = \"AB123456\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "dea" }] }
+    },
+    {
+      "id": "imei-valid",
+      "description": "Valid 15-digit IMEI shape",
+      "schema": "imei = :format imei",
+      "input": "imei = \"490154203237518\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "imei-invalid-too-short",
+      "description": "IMEI must be 15 digits",
+      "schema": "imei = :format imei",
+      "input": "imei = \"49015420323751\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "imei" }] }
+    },
+    {
+      "id": "imei-invalid-too-long",
+      "description": "IMEI cannot exceed 15 digits",
+      "schema": "imei = :format imei",
+      "input": "imei = \"4901542032375189\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "imei" }] }
+    },
+    {
+      "id": "iccid-valid-19",
+      "description": "Valid 19-digit ICCID",
+      "schema": "iccid = :format iccid",
+      "input": "iccid = \"8901234567890123456\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "iccid-valid-20",
+      "description": "Valid 20-digit ICCID",
+      "schema": "iccid = :format iccid",
+      "input": "iccid = \"89012345678901234567\"",
+      "expected": { "valid": true }
+    },
+    {
+      "id": "iccid-invalid-too-short",
+      "description": "ICCID must be 19-20 digits",
+      "schema": "iccid = :format iccid",
+      "input": "iccid = \"890123456789012345\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "iccid" }] }
+    },
+    {
+      "id": "iccid-invalid-letter",
+      "description": "ICCID cannot contain letters",
+      "schema": "iccid = :format iccid",
+      "input": "iccid = \"8901234567890123456X\"",
+      "expected": { "valid": false, "errors": [{ "code": "V004", "path": "iccid" }] }
+    }
+  ]
+}

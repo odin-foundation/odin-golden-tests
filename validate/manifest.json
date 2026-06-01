@@ -10,6 +10,12 @@
       "path": "formats/format-validators.json"
     },
     {
+      "id": "formats-extended",
+      "name": "Extended Format Validators",
+      "description": "uri, hostname, datetime/date-time, credit-card, iban, bic/swift, routing, cusip, isin, lei, npi, dea, imei, iccid",
+      "path": "formats/format-validators-extended.json"
+    },
+    {
       "id": "schema-rules",
       "name": "Schema Validation Rules",
       "description": "V001-V013 validation error codes",
@@ -49,6 +55,22 @@
     "format_fein",
     "format_currency_code",
     "format_country_code",
-    "format_state_code"
+    "format_state_code",
+    "format_uri",
+    "format_hostname",
+    "format_datetime",
+    "format_date_time",
+    "format_credit_card",
+    "format_iban",
+    "format_bic",
+    "format_swift",
+    "format_routing",
+    "format_cusip",
+    "format_isin",
+    "format_lei",
+    "format_npi",
+    "format_dea",
+    "format_imei",
+    "format_iccid"
   ]
 }
