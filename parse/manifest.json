@@ -46,6 +46,12 @@
       "path": "temporal/temporal-edge-cases.json"
     },
     {
+      "id": "temporal-validation",
+      "name": "Temporal Validation",
+      "description": "Semantic validation of timestamp and time components",
+      "path": "temporal/temporal-validation.json"
+    },
+    {
       "id": "unicode-edge-cases",
       "name": "Unicode Edge Cases",
       "description": "Emoji, RTL, CJK, combining characters",
@@ -80,6 +86,12 @@
       "name": "Document Composition",
       "description": "Document chaining, overlay, and composition",
       "path": "composition/document-chaining.json"
+    },
+    {
+      "id": "chain-overlay",
+      "name": "Chain Overlay",
+      "description": "Computed current state of chained documents via overlay semantics",
+      "path": "composition/chain-overlay.json"
     },
     {
       "id": "tabular-typed-cells",
@@ -135,6 +147,10 @@
     "leap_seconds",
     "document_chaining",
     "overlay_semantics",
-    "null_field_removal"
+    "null_field_removal",
+    "timestamp_component_validation",
+    "time_component_validation",
+    "chain_current_state",
+    "array_clear"
   ]
 }

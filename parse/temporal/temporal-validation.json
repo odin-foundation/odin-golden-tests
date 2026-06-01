@@ -1,0 +1,147 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-temporal-validation",
+  "description": "Semantic validation of timestamp and time components",
+  "tests": [
+    {
+      "id": "timestamp-valid-components",
+      "description": "Timestamp with valid date and time components",
+      "input": "ts = 2024-06-15T23:59:59Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2024-06-15T23:59:59Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-leap-second-allowed",
+      "description": "Timestamp leap second (:60) is accepted per ISO 8601",
+      "input": "ts = 2016-12-31T23:59:60Z",
+      "expected": {
+        "assignments": {
+          "ts": { "type": "timestamp", "value": "2016-12-31T23:59:60Z" }
+        }
+      }
+    },
+    {
+      "id": "timestamp-bad-date-portion",
+      "description": "Timestamp with invalid month in date portion errors",
+      "input": "ts = 2024-13-40T10:30:00Z",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "timestamp-bad-hour",
+      "description": "Timestamp with hour > 23 errors",
+      "input": "ts = 2024-06-15T25:30:00Z",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "timestamp-bad-minute",
+      "description": "Timestamp with minute > 59 errors",
+      "input": "ts = 2024-06-15T10:61:00Z",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "timestamp-bad-second",
+      "description": "Timestamp with second > 60 errors",
+      "input": "ts = 2024-06-15T10:30:61Z",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "timestamp-bad-offset",
+      "description": "Timestamp with out-of-range timezone offset errors",
+      "input": "ts = 2024-06-15T10:30:00+25:00",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "timestamp-fully-malformed",
+      "description": "Wholly malformed timestamp components error",
+      "input": "ts = 2024-13-40T99:99:99Z",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "time-valid",
+      "description": "Valid time-only value",
+      "input": "t = T14:30:00",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T14:30:00" }
+        }
+      }
+    },
+    {
+      "id": "time-valid-no-seconds",
+      "description": "Valid time-only value without seconds",
+      "input": "t = T14:30",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T14:30" }
+        }
+      }
+    },
+    {
+      "id": "time-end-of-day-midnight",
+      "description": "Hour 24 accepted only as end-of-day midnight",
+      "input": "t = T24:00:00",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T24:00:00" }
+        }
+      }
+    },
+    {
+      "id": "time-leap-second",
+      "description": "Time leap second (:60) is accepted",
+      "input": "t = T23:59:60",
+      "expected": {
+        "assignments": {
+          "t": { "type": "time", "value": "T23:59:60" }
+        }
+      }
+    },
+    {
+      "id": "time-bad-hour",
+      "description": "Time with hour > 23 (non-midnight) errors",
+      "input": "t = T25:00:00",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "time-bad-hour-24-nonzero",
+      "description": "Hour 24 with non-zero minutes errors",
+      "input": "t = T24:30:00",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "time-bad-minute",
+      "description": "Time with minute > 59 errors",
+      "input": "t = T14:61:00",
+      "expectError": {
+        "code": "P001"
+      }
+    },
+    {
+      "id": "time-bad-second",
+      "description": "Time with second > 60 errors",
+      "input": "t = T14:30:61",
+      "expectError": {
+        "code": "P001"
+      }
+    }
+  ]
+}

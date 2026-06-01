@@ -1,0 +1,102 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "parse-chain-overlay",
+  "description": "Computed current state of chained documents via overlay semantics",
+  "tests": [
+    {
+      "id": "overlay-replace",
+      "description": "Later document replaces a repeated path and keeps untouched paths",
+      "input": "{person}\nname = \"John\"\nage = ##30\ncity = \"Austin\"\n\n---\n\n{person}\nage = ##31\nstate = \"TX\"",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "person.name": { "type": "string", "value": "John" },
+            "person.age": { "type": "integer", "value": 31 },
+            "person.city": { "type": "string", "value": "Austin" },
+            "person.state": { "type": "string", "value": "TX" }
+          }
+        }
+      }
+    },
+    {
+      "id": "overlay-null-removes-field",
+      "description": "field = ~ removes the field from current state",
+      "input": "{person}\nname = \"John\"\ntemporary = \"gone\"\n\n---\n\n{person}\ntemporary = ~",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "person.name": { "type": "string", "value": "John" }
+          },
+          "absent": ["person.temporary"]
+        }
+      }
+    },
+    {
+      "id": "overlay-null-removes-subtree",
+      "description": "Null on a parent path removes nested descendants",
+      "input": "{p}\na.b = \"x\"\na.c = \"y\"\nkeep = \"z\"\n\n---\n\n{p}\na = ~",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "p.keep": { "type": "string", "value": "z" }
+          },
+          "absent": ["p.a.b", "p.a.c"]
+        }
+      }
+    },
+    {
+      "id": "overlay-array-clear",
+      "description": "field[] = ~ clears all elements of the array",
+      "input": "{p}\ntags[0] = \"x\"\ntags[1] = \"y\"\nkeep = \"z\"\n\n---\n\n{p}\ntags[] = ~",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "p.keep": { "type": "string", "value": "z" }
+          },
+          "absent": ["p.tags[0]", "p.tags[1]"]
+        }
+      }
+    },
+    {
+      "id": "overlay-metadata-isolation",
+      "description": "Current state carries only the final document's metadata",
+      "input": "{$}\nid = \"first\"\nrole = \"base\"\n\n{p}\nn = \"A\"\n\n---\n\n{$}\nid = \"second\"\n\n{p}\nn = \"B\"",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "p.n": { "type": "string", "value": "B" }
+          },
+          "metadata": {
+            "id": "second"
+          },
+          "absent": ["$.role"]
+        }
+      }
+    },
+    {
+      "id": "overlay-three-document-chain",
+      "description": "Three-document chain resolves to last assigned value",
+      "input": "{p}\nv = \"1\"\nstable = \"keep\"\n\n---\n\n{p}\nv = \"2\"\n\n---\n\n{p}\nv = \"3\"",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "p.v": { "type": "string", "value": "3" },
+            "p.stable": { "type": "string", "value": "keep" }
+          }
+        }
+      }
+    },
+    {
+      "id": "overlay-reassign-after-removal",
+      "description": "A removed field can be reassigned by a later document",
+      "input": "{p}\nx = \"old\"\n\n---\n\n{p}\nx = ~\n\n---\n\n{p}\nx = \"new\"",
+      "expected": {
+        "currentState": {
+          "assignments": {
+            "p.x": { "type": "string", "value": "new" }
+          }
+        }
+      }
+    }
+  ]
+}
