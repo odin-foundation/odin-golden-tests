@@ -96,6 +96,67 @@
         "data-barcode-type=\"qr\"",
         "Full Legal Name"
       ]
+    },
+    {
+      "id": "geometric-elements-parse",
+      "description": "circle, ellipse, polygon, polyline, and path elements parse with stroke/fill",
+      "formFile": "fixtures/geometric-elements.odin",
+      "expectParse": {
+        "page0": {
+          "elementTypes": ["circle", "ellipse", "polygon", "polyline", "path"],
+          "elements": {
+            "seal": { "type": "circle" },
+            "stamp": { "type": "ellipse" },
+            "badge": { "type": "polygon" },
+            "trend": { "type": "polyline" },
+            "arrow": { "type": "path" }
+          }
+        }
+      }
+    },
+    {
+      "id": "geometric-elements-render",
+      "description": "geometric elements render as positioned SVG shapes with converted coordinates",
+      "formFile": "fixtures/geometric-elements.odin",
+      "renderContains": [
+        "<circle cx=\"192\" cy=\"192\" r=\"72\" stroke=\"#003366\"",
+        "<ellipse cx=\"480\" cy=\"192\" rx=\"96\" ry=\"48\" stroke=\"#660000\"",
+        "<polygon points=\"96,384 192,384 240,480 144,528 48,480\" stroke=\"#000000\"",
+        "<polyline points=\"288,384 336,441.6 384,403.2 432,480 480,412.8\" stroke=\"#006600\" stroke-width=\"1.92\" fill=\"none\"/>",
+        "<path d=\"M 6,4 L 7,4 L 6.5,5 Z\" stroke=\"#333333\""
+      ]
+    },
+    {
+      "id": "signature-radio-parse",
+      "description": "radio fields carry group/value; signature carries inline value and date_field",
+      "formFile": "fixtures/signature-radio.odin",
+      "expectParse": {
+        "page0": {
+          "elements": {
+            "gender_m": { "type": "field.radio", "value": "M" },
+            "gender_f": { "type": "field.radio", "value": "F" },
+            "gender_x": { "type": "field.radio", "value": "X" },
+            "applicant_sig": { "type": "field.signature", "value": "^png:iVBORw0KGgo=" },
+            "sig_date": { "type": "field.date", "value": "2026-01-15" }
+          }
+        }
+      }
+    },
+    {
+      "id": "signature-radio-render",
+      "description": "radio group renders name=/type=radio with the bound option checked; signature renders its capture area",
+      "formFile": "fixtures/signature-radio.odin",
+      "renderData": "{applicant}\ngender = \"F\"",
+      "renderContains": [
+        "<input type=\"radio\" class=\"odin-form-radio\" id=\"odin-field-0-gender_m\" name=\"gender\" value=\"M\"",
+        "name=\"gender\" value=\"F\" aria-label=\"Female\" checked>",
+        "name=\"gender\" value=\"X\" aria-label=\"Nonbinary\">",
+        "<div class=\"odin-form-signature\" id=\"odin-field-0-applicant_sig\" aria-label=\"Applicant Signature\" aria-required=\"true\" role=\"img\" tabindex=\"0\"",
+        "value=\"2026-01-15\""
+      ],
+      "renderNotContains": [
+        "name=\"gender\" value=\"M\" aria-label=\"Male\" checked"
+      ]
     }
   ]
 }
