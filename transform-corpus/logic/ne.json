@@ -1,0 +1,15 @@
+{
+  "id": "ne",
+  "family": "logic",
+  "title": "%ne — inequality test",
+  "purpose": "Return true when two values are not equal.",
+  "signature": "%ne <a:value> <b:value> -> boolean",
+  "transform": "{out}\nchanged = %ne @.status \"active\"",
+  "input": "status = \"closed\"",
+  "expectedOutput": "{out}\nchanged = ?true",
+  "notes": [
+    "The exact negation of %eq: same coercion rules apply.",
+    "Use as a condition directly, e.g. %ifElse %ne @.status \"active\" \"flag\" \"ok\"."
+  ],
+  "avoid": []
+}

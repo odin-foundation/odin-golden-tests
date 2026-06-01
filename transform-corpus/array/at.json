@@ -1,0 +1,15 @@
+{
+  "id": "at",
+  "family": "array",
+  "title": "%at — element at an index",
+  "purpose": "Read a single array element by index, supporting negative indices.",
+  "signature": "%at <array> <integer:index> -> value",
+  "transform": "{out}\nlast = %at @.items ##-1",
+  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"",
+  "expectedOutput": "{out}\nlast = \"c\"",
+  "notes": [
+    "Negative indices count from the end (##-1 is the last element).",
+    "Out-of-range indices return null (~)."
+  ],
+  "avoid": []
+}

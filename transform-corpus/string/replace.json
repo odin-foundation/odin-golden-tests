@@ -1,0 +1,17 @@
+{
+  "id": "replace",
+  "family": "string",
+  "title": "%replace — replace all literal occurrences",
+  "purpose": "Replace every literal occurrence of a substring with a replacement.",
+  "signature": "%replace <string> <find:string> <replacement:string> -> string",
+  "transform": "{out}\nout = %replace @.name \"o\" \"0\"",
+  "input": "name = \"Honda\"",
+  "expectedOutput": "{out}\nout = \"H0nda\"",
+  "notes": [
+    "Three required arguments: string, literal find, literal replacement.",
+    "Matching is literal (not regex) and replaces all occurrences. Use %replaceRegex for pattern matching."
+  ],
+  "avoid": [
+    { "snippet": "out = %replace @.name \"o\"", "why": "missing the replacement argument — the engine raises a 3-argument arity error" }
+  ]
+}

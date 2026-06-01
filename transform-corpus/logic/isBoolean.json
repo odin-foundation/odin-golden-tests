@@ -1,0 +1,15 @@
+{
+  "id": "isBoolean",
+  "family": "logic",
+  "title": "%isBoolean — boolean-type test",
+  "purpose": "Return true when a value is of boolean type.",
+  "signature": "%isBoolean <value> -> boolean",
+  "transform": "{out}\nisBool = %isBoolean @.active",
+  "input": "active = ?true",
+  "expectedOutput": "{out}\nisBool = ?true",
+  "notes": [
+    "Tests the type only; the string \"true\" is a string, not a boolean.",
+    "Use %coerceBoolean to turn truthy strings into real booleans."
+  ],
+  "avoid": []
+}

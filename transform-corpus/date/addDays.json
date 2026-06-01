@@ -1,0 +1,17 @@
+{
+  "id": "addDays",
+  "family": "date",
+  "title": "%addDays — shift a date by whole days",
+  "purpose": "Add (or subtract) a number of days to a date, returning an ISO date.",
+  "signature": "%addDays <date> <integer:days> -> string",
+  "transform": "{out}\nd = %addDays @.start ##7",
+  "input": "start = 2024-06-15",
+  "expectedOutput": "{out}\nd = \"2024-06-22\"",
+  "notes": [
+    "The day count is a fractional value floored to a whole number of days.",
+    "A negative count moves the date backward."
+  ],
+  "avoid": [
+    { "snippet": "d = %addDays @.start \"7\"", "why": "the count should be a numeric token; a quoted string is coerced but obscures intent" }
+  ]
+}

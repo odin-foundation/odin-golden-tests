@@ -1,0 +1,15 @@
+{
+  "id": "repeat",
+  "family": "string",
+  "title": "%repeat — repeat a string N times",
+  "purpose": "Concatenate a string with itself a given number of times.",
+  "signature": "%repeat <string> <count:integer> -> string",
+  "transform": "{out}\nout = %repeat @.ab ##3",
+  "input": "ab = \"ab\"",
+  "expectedOutput": "{out}\nout = \"ababab\"",
+  "notes": [
+    "Two required arguments: the string and a non-negative repeat count.",
+    "A count of 0 returns an empty string; a negative count returns null. The total length is capped by an internal limit."
+  ],
+  "avoid": []
+}

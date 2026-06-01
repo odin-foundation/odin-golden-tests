@@ -1,0 +1,15 @@
+{
+  "id": "soundex",
+  "family": "string",
+  "title": "%soundex — phonetic code",
+  "purpose": "Return the 4-character Soundex code for a word.",
+  "signature": "%soundex <string> -> string",
+  "transform": "{out}\nout = %soundex @.name",
+  "input": "name = \"Robert\"",
+  "expectedOutput": "{out}\nout = \"R163\"",
+  "notes": [
+    "Single argument. Keeps the first letter, encodes the rest, and pads to four characters.",
+    "Similar-sounding names share a code (Robert and Rupert both yield R163)."
+  ],
+  "avoid": []
+}

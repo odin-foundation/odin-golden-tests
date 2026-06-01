@@ -1,0 +1,14 @@
+{
+  "id": "limit",
+  "family": "array",
+  "title": "%limit — first N items",
+  "purpose": "Return the first count items (alias of %take).",
+  "signature": "%limit <array> <integer:count> -> array",
+  "transform": "{out}\ntop2 = %limit @.results ##2",
+  "input": "{results[] : ~}\n\"a\"\n\"b\"\n\"c\"",
+  "expectedOutput": "{out}\n{.top2[] : ~}\n\"a\"\n\"b\"",
+  "notes": [
+    "Alias for %take; useful for pagination or capping result sets."
+  ],
+  "avoid": []
+}

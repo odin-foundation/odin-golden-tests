@@ -1,0 +1,15 @@
+{
+  "id": "isNumber",
+  "family": "logic",
+  "title": "%isNumber — numeric-type test",
+  "purpose": "Return true when a value is integer, number, or currency.",
+  "signature": "%isNumber <value> -> boolean",
+  "transform": "{out}\nisNum = %isNumber @.amount",
+  "input": "amount = ##42",
+  "expectedOutput": "{out}\nisNum = ?true",
+  "notes": [
+    "True for integer (##), number (#), and currency (#$) values alike.",
+    "A numeric string like \"42\" is a string, not a number — coerce with %coerceNumber first if needed."
+  ],
+  "avoid": []
+}

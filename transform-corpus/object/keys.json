@@ -1,0 +1,16 @@
+{
+  "id": "keys",
+  "family": "object",
+  "title": "%keys — property names of an object",
+  "purpose": "Return the own enumerable property names of an object as an array.",
+  "signature": "%keys <object> -> array",
+  "transform": "{out}\nk = %keys @.obj",
+  "input": "{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\n{.k[] : ~}\n\"name\"\n\"role\"\n\"active\"",
+  "notes": [
+    "The single argument is an object; the result is an array of key strings serialized as a {.k[] : ~} block.",
+    "Keys preserve source order; prototype-pollution keys (__proto__, constructor, prototype) are excluded.",
+    "A non-object argument resolves to ~."
+  ],
+  "avoid": []
+}

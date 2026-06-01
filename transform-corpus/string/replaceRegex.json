@@ -1,0 +1,15 @@
+{
+  "id": "replaceRegex",
+  "family": "string",
+  "title": "%replaceRegex — regex replace all",
+  "purpose": "Replace every match of a regular expression with a replacement string.",
+  "signature": "%replaceRegex <string> <pattern:string> <replacement:string> -> string",
+  "transform": "{out}\nout = %replaceRegex @.text \"[0-9]+\" \"#\"",
+  "input": "text = \"a1b22c333\"",
+  "expectedOutput": "{out}\nout = \"a#b#c#\"",
+  "notes": [
+    "Three required arguments: string, regex pattern, replacement. The pattern is applied globally.",
+    "Invalid or unsafe (ReDoS-prone) patterns return null rather than throwing. Use %replace for literal replacement."
+  ],
+  "avoid": []
+}

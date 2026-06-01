@@ -1,0 +1,15 @@
+{
+  "id": "partition",
+  "family": "array",
+  "title": "%partition — split by a condition",
+  "purpose": "Divide an array into [matching, non-matching] by a field condition.",
+  "signature": "%partition <array> <string:field> <string:op> <value> -> array",
+  "transform": "{out}\nsplit = %partition @.coverages \"status\" \"=\" \"active\"",
+  "input": "{coverages[] : type, status}\n\"liability\", \"active\"\n\"collision\", \"cancelled\"",
+  "expectedOutput": "{out}\n{.split[] : [0].type, .status}\n\"liability\", \"active\"\n\"collision\", \"cancelled\"",
+  "notes": [
+    "Returns a two-element array: index 0 is matches, index 1 is the rest.",
+    "Field, operator, and value are three separate quoted arguments."
+  ],
+  "avoid": []
+}

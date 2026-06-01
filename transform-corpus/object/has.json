@@ -1,0 +1,16 @@
+{
+  "id": "has",
+  "family": "object",
+  "title": "%has — test for a property",
+  "purpose": "Return true when an object contains a key, with dot notation for nested paths.",
+  "signature": "%has <object> <string:key> -> boolean",
+  "transform": "{out}\nh = %has @.obj \"role\"",
+  "input": "{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\nh = ?true",
+  "notes": [
+    "The second argument is a quoted key; the result is a boolean (?).",
+    "Dot notation walks nested objects (\"a.b.c\"); missing keys and prototype-pollution keys yield ?false.",
+    "A non-object first argument yields ?false."
+  ],
+  "avoid": []
+}

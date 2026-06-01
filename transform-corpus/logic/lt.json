@@ -1,0 +1,15 @@
+{
+  "id": "lt",
+  "family": "logic",
+  "title": "%lt — less than",
+  "purpose": "Return true when the first value is strictly less than the second.",
+  "signature": "%lt <a:value> <b:value> -> boolean",
+  "transform": "{out}\nsmall = %lt @.amount ##1000",
+  "input": "amount = ##250",
+  "expectedOutput": "{out}\nsmall = ?true",
+  "notes": [
+    "Mirror of %gt; numbers compare numerically and two strings compare lexically.",
+    "Pair with %gte to build half-open ranges."
+  ],
+  "avoid": []
+}

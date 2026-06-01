@@ -1,0 +1,15 @@
+{
+  "id": "bearing",
+  "family": "geo",
+  "title": "%bearing — initial heading between two points",
+  "purpose": "Compute the initial bearing (forward azimuth) in degrees from one point to another.",
+  "signature": "%bearing <number:lat1> <number:lng1> <number:lat2> <number:lng2> -> number",
+  "transform": "{out}\nheading = %bearing @.lat1 @.lng1 @.lat2 @.lng2",
+  "input": "lat1 = #40.7128\nlng1 = #-74.006\nlat2 = #34.0522\nlng2 = #-118.2437",
+  "expectedOutput": "{out}\nheading = #273.6871323393308",
+  "notes": [
+    "Arguments are lat1, lng1, lat2, lng2; the result is degrees normalized to 0-360 (0 = North, 90 = East).",
+    "Coordinates outside lat +/-90 or lng +/-180 resolve to ~."
+  ],
+  "avoid": []
+}

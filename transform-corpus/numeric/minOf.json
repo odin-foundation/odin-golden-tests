@@ -1,0 +1,17 @@
+{
+  "id": "minOf",
+  "family": "numeric",
+  "title": "%minOf — minimum of scalar arguments",
+  "purpose": "Return the smallest of two or more scalar numeric arguments.",
+  "signature": "%minOf <number> <number> ... -> number",
+  "transform": "{out}\nv = %minOf @.a @.b @.c",
+  "input": "a = #9\nb = #4\nc = #7",
+  "expectedOutput": "{out}\nv = ##4",
+  "notes": [
+    "Variadic: pass each operand as a separate scalar argument.",
+    "This is not an array-reducing verb — to take the minimum of an array, fan its elements out as individual references."
+  ],
+  "avoid": [
+    { "snippet": "v = %minOf @.list", "why": "%minOf compares its scalar arguments; passing a single array reference coerces the array to its length, not its minimum element" }
+  ]
+}

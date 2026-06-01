@@ -1,0 +1,15 @@
+{
+  "id": "formatTime",
+  "family": "date",
+  "title": "%formatTime — render the time portion of a timestamp",
+  "purpose": "Format the clock portion of a timestamp using a display pattern.",
+  "signature": "%formatTime <timestamp> <string:pattern> -> string",
+  "transform": "{out}\nt = %formatTime @.ts \"HH:mm:ss\"",
+  "input": "ts = 2024-06-15T14:30:45Z",
+  "expectedOutput": "{out}\nt = \"14:30:45\"",
+  "notes": [
+    "HH is 24-hour; use hh with A for a 12-hour clock.",
+    "Time components are read in UTC."
+  ],
+  "avoid": []
+}

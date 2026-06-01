@@ -1,0 +1,17 @@
+{
+  "id": "ageFromDate",
+  "family": "date",
+  "title": "%ageFromDate — completed years between two dates",
+  "purpose": "Compute age in complete years from a birth date as of a reference date.",
+  "signature": "%ageFromDate <date:birth> <date:asOf> -> integer",
+  "transform": "{out}\nn = %ageFromDate @.birth @.asOf",
+  "input": "birth = 1990-06-15\nasOf = 2024-06-15",
+  "expectedOutput": "{out}\nn = ##34",
+  "notes": [
+    "Only complete years are counted; a birthday not yet reached this year is excluded.",
+    "Provide the as-of date explicitly for a deterministic result; omitting it uses the current date."
+  ],
+  "avoid": [
+    { "snippet": "n = %ageFromDate @.birth", "why": "without an as-of date the result depends on the current clock and is not reproducible" }
+  ]
+}

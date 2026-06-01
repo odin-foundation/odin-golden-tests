@@ -1,0 +1,15 @@
+{
+  "id": "formatTimestamp",
+  "family": "date",
+  "title": "%formatTimestamp — render a full timestamp with a pattern",
+  "purpose": "Format both date and time portions of a timestamp using a display pattern.",
+  "signature": "%formatTimestamp <timestamp> <string:pattern> -> string",
+  "transform": "{out}\nt = %formatTimestamp @.ts \"YYYY-MM-DD HH:mm:ss\"",
+  "input": "ts = 2024-06-15T14:30:45Z",
+  "expectedOutput": "{out}\nt = \"2024-06-15 14:30:45\"",
+  "notes": [
+    "Combines date tokens (YYYY, MM, DD) and time tokens (HH, mm, ss) in one pattern.",
+    "A timestamp without a zone offset is interpreted as UTC."
+  ],
+  "avoid": []
+}

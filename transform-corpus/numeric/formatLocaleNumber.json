@@ -1,0 +1,18 @@
+{
+  "id": "formatLocaleNumber",
+  "family": "numeric",
+  "title": "%formatLocaleNumber — locale-grouped number string",
+  "purpose": "Format a number using locale-specific grouping and decimal separators.",
+  "signature": "%formatLocaleNumber <number> [string:locale] -> string",
+  "transform": "{out}\nv = %formatLocaleNumber @.a \"en-US\"",
+  "input": "a = #1234.56",
+  "expectedOutput": "{out}\nv = \"1,234.56\"",
+  "notes": [
+    "Pass an explicit locale (e.g. \"en-US\", \"de-DE\") for deterministic grouping; \"en-US\" groups thousands with commas.",
+    "Omitting the locale uses the host system default, so always supply one for reproducible output.",
+    "The result is a string."
+  ],
+  "avoid": [
+    { "snippet": "v = %formatLocaleNumber @.a", "why": "without an explicit locale the host default locale is used, making the grouping/separator output environment-dependent" }
+  ]
+}

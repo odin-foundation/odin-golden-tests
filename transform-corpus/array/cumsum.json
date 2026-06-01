@@ -1,0 +1,14 @@
+{
+  "id": "cumsum",
+  "family": "array",
+  "title": "%cumsum — running total",
+  "purpose": "Return the cumulative sum at each position.",
+  "signature": "%cumsum <array> -> array",
+  "transform": "{out}\nrunning = %cumsum @.values",
+  "input": "{values[] : ~}\n##10\n##20\n##30",
+  "expectedOutput": "{out}\n{.running[] : ~}\n##10\n##30\n##60",
+  "notes": [
+    "Each element is the sum of all values up to and including that position."
+  ],
+  "avoid": []
+}

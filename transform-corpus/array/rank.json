@@ -1,0 +1,20 @@
+{
+  "id": "rank",
+  "family": "array",
+  "title": "%rank — assign ranks to values",
+  "purpose": "Tag each element with a _rank field (ties share a rank).",
+  "signature": "%rank <array> [<string:field>] [<string:direction>] -> array",
+  "transform": "{out}\nranked = %rank @.scores",
+  "input": "scores = \"[10, 30, 20]\"",
+  "expectedOutput": "{out}\n{.ranked[] : _rank, value}\n##3, ##10\n##1, ##30\n##2, ##20",
+  "notes": [
+    "Default direction is descending, so the largest value is rank 1.",
+    "The array is supplied as a JSON-array string so the added _rank field surfaces in the output."
+  ],
+  "avoid": [
+    {
+      "snippet": "{scores[] : ~}\n##10\n##30\n##20",
+      "why": "a typed ODIN array block wraps each element, so the added _rank field is dropped from the serialized output; supply the array as a JSON-array string literal instead"
+    }
+  ]
+}

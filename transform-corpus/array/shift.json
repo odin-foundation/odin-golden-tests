@@ -1,0 +1,15 @@
+{
+  "id": "shift",
+  "family": "array",
+  "title": "%shift — offset elements by N positions",
+  "purpose": "Move elements forward (or backward) filling gaps with null.",
+  "signature": "%shift <array> [<integer:periods>] [<value:fill>] -> array",
+  "transform": "{out}\nlagged = %shift @.prices ##1",
+  "input": "{prices[] : ~}\n##10\n##20\n##30",
+  "expectedOutput": "{out}\n{.lagged[] : ~}\n~\n##10\n##20",
+  "notes": [
+    "Positive periods shift toward later indices; leading gaps become null (~).",
+    "A negative period shifts backward; an optional third argument sets the fill value."
+  ],
+  "avoid": []
+}

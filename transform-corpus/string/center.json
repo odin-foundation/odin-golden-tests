@@ -1,0 +1,15 @@
+{
+  "id": "center",
+  "family": "string",
+  "title": "%center — center-pad to a width",
+  "purpose": "Pad both sides of a string to center it within a target width.",
+  "signature": "%center <string> <width:integer> [char:string] -> string",
+  "transform": "{out}\nout = %center @.hi ##6 \"-\"",
+  "input": "hi = \"hi\"",
+  "expectedOutput": "{out}\nout = \"--hi--\"",
+  "notes": [
+    "Two required arguments plus an optional fill character (default space). When the padding is odd, the extra character goes on the right.",
+    "A string already at or above the width is returned unchanged."
+  ],
+  "avoid": []
+}

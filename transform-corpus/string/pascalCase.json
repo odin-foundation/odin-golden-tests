@@ -1,0 +1,14 @@
+{
+  "id": "pascalCase",
+  "family": "string",
+  "title": "%pascalCase — convert to PascalCase",
+  "purpose": "Re-case a delimited or mixed-case string into PascalCase.",
+  "signature": "%pascalCase <string> -> string",
+  "transform": "{out}\nout = %pascalCase @.name",
+  "input": "name = \"hello-world\"",
+  "expectedOutput": "{out}\nout = \"HelloWorld\"",
+  "notes": [
+    "Splits on case boundaries and common delimiters, then joins the words with each first letter capitalized and no separator."
+  ],
+  "avoid": []
+}

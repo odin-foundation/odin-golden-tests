@@ -1,0 +1,15 @@
+{
+  "id": "pad",
+  "family": "string",
+  "title": "%pad — pad to a width (right side)",
+  "purpose": "Pad the end of a string with a fill character until it reaches a target length.",
+  "signature": "%pad <string> <length:integer> <char:string> -> string",
+  "transform": "{out}\nout = %pad @.code ##6 \".\"",
+  "input": "code = \"42\"",
+  "expectedOutput": "{out}\nout = \"42....\"",
+  "notes": [
+    "Pads on the right, behaving like %padRight.",
+    "Three required arguments: string, target length, fill character; only the first character of the fill is used."
+  ],
+  "avoid": []
+}

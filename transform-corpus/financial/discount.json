@@ -1,0 +1,20 @@
+{
+  "id": "discount",
+  "family": "financial",
+  "title": "%discount — present value of a future amount",
+  "purpose": "Discount a future value back to today: FV / (1 + r)^n.",
+  "signature": "%discount <number:futureValue> <number:rate> <number:periods> -> number",
+  "transform": "{out}\nr = %discount @.fv @.rate @.years",
+  "input": "fv = #16288.946267774423\nrate = #0.05\nyears = ##10",
+  "expectedOutput": "{out}\nr = ##10000",
+  "notes": [
+    "Discounting is the inverse of %compound; the future value of 10000 at 5% for 10 years discounts back to 10000.",
+    "The rate is a per-period fraction: 5% is 0.05, not 5."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %discount @.fv @.rate  ; missing periods",
+      "why": "%discount needs futureValue, rate, and periods; fewer than three arguments yields ~ (null)"
+    }
+  ]
+}

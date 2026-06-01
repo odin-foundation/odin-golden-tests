@@ -1,0 +1,14 @@
+{
+  "id": "snakeCase",
+  "family": "string",
+  "title": "%snakeCase — convert to snake_case",
+  "purpose": "Re-case a delimited or mixed-case string into snake_case.",
+  "signature": "%snakeCase <string> -> string",
+  "transform": "{out}\nout = %snakeCase @.name",
+  "input": "name = \"helloWorld\"",
+  "expectedOutput": "{out}\nout = \"hello_world\"",
+  "notes": [
+    "Splits on case boundaries and common delimiters, then joins the lowercased words with underscores."
+  ],
+  "avoid": []
+}

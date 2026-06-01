@@ -1,0 +1,15 @@
+{
+  "id": "sha256",
+  "family": "encoding",
+  "title": "%sha256 — SHA-256 hash of a string",
+  "purpose": "Compute the SHA-256 digest of a string as lowercase hex.",
+  "signature": "%sha256 <string> -> string",
+  "transform": "{out}\nh = %sha256 @.data",
+  "input": "data = \"hello\"",
+  "expectedOutput": "{out}\nh = \"2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824\"",
+  "notes": [
+    "The digest is deterministic: the same input always yields the same 64-character lowercase hex string.",
+    "The input is hashed as UTF-8 bytes."
+  ],
+  "avoid": []
+}

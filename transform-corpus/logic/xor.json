@@ -1,0 +1,15 @@
+{
+  "id": "xor",
+  "family": "logic",
+  "title": "%xor — exclusive OR",
+  "purpose": "Return true when exactly one of two conditions is truthy.",
+  "signature": "%xor <a:boolean> <b:boolean> -> boolean",
+  "transform": "{out}\nexactlyOne = %xor @.hasEmail @.hasPhone",
+  "input": "hasEmail = ?true\nhasPhone = ?false",
+  "expectedOutput": "{out}\nexactlyOne = ?true",
+  "notes": [
+    "True when the operands differ; false when both are true or both are false.",
+    "Two operands, both coerced to booleans."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "cumprod",
+  "family": "array",
+  "title": "%cumprod — running product",
+  "purpose": "Return the cumulative product at each position.",
+  "signature": "%cumprod <array> -> array",
+  "transform": "{out}\ngrowth = %cumprod @.factors",
+  "input": "{factors[] : ~}\n#2\n#3\n#4",
+  "expectedOutput": "{out}\n{.growth[] : ~}\n##2\n##6\n##24",
+  "notes": [
+    "Each element is the product of all values up to and including that position."
+  ],
+  "avoid": []
+}

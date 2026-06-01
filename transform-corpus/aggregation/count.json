@@ -1,0 +1,17 @@
+{
+  "id": "count",
+  "family": "aggregation",
+  "title": "%count — number of elements in an array",
+  "purpose": "Return the element count of an array reference as an integer.",
+  "signature": "%count <array> -> integer",
+  "transform": "{out}\nn = %count @.amounts",
+  "input": "{amounts[] : ~}\n##10\n##20\n##30",
+  "expectedOutput": "{out}\nn = ##3",
+  "notes": [
+    "Counts elements regardless of their type; the array need not be numeric.",
+    "Reference an object-field array (@.lines) to count records."
+  ],
+  "avoid": [
+    { "snippet": "n = %count @.x  (where x is a scalar)", "why": "a scalar reference is not an array, so %count silently returns ##0 instead of 1 or an error" }
+  ]
+}

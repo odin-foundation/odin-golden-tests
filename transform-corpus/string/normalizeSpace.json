@@ -1,0 +1,14 @@
+{
+  "id": "normalizeSpace",
+  "family": "string",
+  "title": "%normalizeSpace — collapse and trim whitespace",
+  "purpose": "Collapse runs of whitespace to single spaces and trim the ends.",
+  "signature": "%normalizeSpace <string> -> string",
+  "transform": "{out}\nout = %normalizeSpace @.raw",
+  "input": "raw = \"  a   b  \"",
+  "expectedOutput": "{out}\nout = \"a b\"",
+  "notes": [
+    "Single argument. Interior whitespace runs become one space and leading/trailing whitespace is removed."
+  ],
+  "avoid": []
+}

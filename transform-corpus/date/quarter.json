@@ -1,0 +1,15 @@
+{
+  "id": "quarter",
+  "family": "date",
+  "title": "%quarter — calendar quarter of a date",
+  "purpose": "Return the calendar quarter (1-4) that a date falls in.",
+  "signature": "%quarter <date> -> integer",
+  "transform": "{out}\nn = %quarter @.date",
+  "input": "date = 2024-06-15",
+  "expectedOutput": "{out}\nn = ##2",
+  "notes": [
+    "Q1 is Jan-Mar, Q2 Apr-Jun, Q3 Jul-Sep, Q4 Oct-Dec.",
+    "June falls in Q2."
+  ],
+  "avoid": []
+}

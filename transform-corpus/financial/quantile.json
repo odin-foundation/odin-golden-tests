@@ -1,0 +1,20 @@
+{
+  "id": "quantile",
+  "family": "financial",
+  "title": "%quantile — quantile (0–1)",
+  "purpose": "Return the value at a given quantile of a numeric array using linear interpolation.",
+  "signature": "%quantile <array:values> <number:q> -> number",
+  "transform": "{out}\nr = %quantile @.values @.q",
+  "input": "{values[] : ~}\n##10\n##20\n##30\n##40\n##50\n\nq = #0.25",
+  "expectedOutput": "{out}\nr = ##20",
+  "notes": [
+    "The quantile is expressed on a 0–1 scale; 0.25 is the first quartile.",
+    "Same interpolation as %percentile but with a 0–1 argument instead of 0–100."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %quantile @.values @.q  ; q = ##25",
+      "why": "%quantile expects 0–1, so 25 is out of range and yields ~ (null); use %percentile for a 0–100 scale"
+    }
+  ]
+}

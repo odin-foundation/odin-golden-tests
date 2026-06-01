@@ -1,0 +1,15 @@
+{
+  "id": "floor",
+  "family": "numeric",
+  "title": "%floor — round down to integer",
+  "purpose": "Round a number down toward negative infinity, returning an integer.",
+  "signature": "%floor <number> -> integer",
+  "transform": "{out}\nv = %floor @.a",
+  "input": "a = #3.7",
+  "expectedOutput": "{out}\nv = ##3",
+  "notes": [
+    "Always returns an integer (##), even for a fractional input.",
+    "Rounds toward negative infinity, so -3.2 would floor to -4 (use %trunc to round toward zero)."
+  ],
+  "avoid": []
+}

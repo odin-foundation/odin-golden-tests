@@ -1,0 +1,15 @@
+{
+  "id": "addMonths",
+  "family": "date",
+  "title": "%addMonths — shift a date by whole months",
+  "purpose": "Add (or subtract) a number of months to a date, returning an ISO date.",
+  "signature": "%addMonths <date> <integer:months> -> string",
+  "transform": "{out}\nd = %addMonths @.start ##2",
+  "input": "start = 2024-01-31",
+  "expectedOutput": "{out}\nd = \"2024-03-31\"",
+  "notes": [
+    "Month arithmetic uses calendar-month stepping, not a fixed day count.",
+    "A negative count moves the date backward."
+  ],
+  "avoid": []
+}

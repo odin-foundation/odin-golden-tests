@@ -1,0 +1,14 @@
+{
+  "id": "kebabCase",
+  "family": "string",
+  "title": "%kebabCase — convert to kebab-case",
+  "purpose": "Re-case a delimited or mixed-case string into kebab-case.",
+  "signature": "%kebabCase <string> -> string",
+  "transform": "{out}\nout = %kebabCase @.name",
+  "input": "name = \"helloWorld\"",
+  "expectedOutput": "{out}\nout = \"hello-world\"",
+  "notes": [
+    "Splits on case boundaries and common delimiters, then joins the lowercased words with hyphens."
+  ],
+  "avoid": []
+}

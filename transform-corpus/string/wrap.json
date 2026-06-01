@@ -1,0 +1,15 @@
+{
+  "id": "wrap",
+  "family": "string",
+  "title": "%wrap — word-wrap to a width",
+  "purpose": "Insert newlines at word boundaries so each line fits within a width.",
+  "signature": "%wrap <string> <width:integer> -> string",
+  "transform": "{out}\nout = %wrap @.text ##10",
+  "input": "text = \"the quick brown fox\"",
+  "expectedOutput": "{out}\nout = \"the quick\\nbrown fox\"",
+  "notes": [
+    "Two required arguments: the string and the line width. Wrapping happens at whitespace; lines are joined with newline characters.",
+    "A width of zero or less returns null; a string already within the width is returned unchanged."
+  ],
+  "avoid": []
+}

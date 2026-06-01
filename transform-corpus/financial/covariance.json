@@ -1,0 +1,15 @@
+{
+  "id": "covariance",
+  "family": "financial",
+  "title": "%covariance — population covariance of two series",
+  "purpose": "Measure how two numeric series vary together.",
+  "signature": "%covariance <array:x> <array:y> -> number",
+  "transform": "{out}\nr = %covariance @.x @.y",
+  "input": "{x[] : ~}\n##1\n##2\n##3\n##4\n##5\n\n{y[] : ~}\n##2\n##4\n##5\n##4\n##6",
+  "expectedOutput": "{out}\nr = #1.6",
+  "notes": [
+    "Uses the population convention (divides by n) over the overlapping length of the two arrays.",
+    "Both arguments must be arrays; if lengths differ the shorter length is used."
+  ],
+  "avoid": []
+}

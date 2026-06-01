@@ -1,0 +1,15 @@
+{
+  "id": "varianceSample",
+  "family": "financial",
+  "title": "%varianceSample — sample variance",
+  "purpose": "Compute the sample variance (n−1 denominator) of a numeric array.",
+  "signature": "%varianceSample <array:values> -> number",
+  "transform": "{out}\nr = %varianceSample @.returns",
+  "input": "{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01",
+  "expectedOutput": "{out}\nr = #0.0005000000000000001",
+  "notes": [
+    "Divides the summed squared deviations by n−1 (Bessel's correction); it is the square of %stdSample.",
+    "Requires at least two elements; a shorter array yields ~ (null)."
+  ],
+  "avoid": []
+}

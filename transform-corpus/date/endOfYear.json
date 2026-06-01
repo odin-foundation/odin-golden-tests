@@ -1,0 +1,15 @@
+{
+  "id": "endOfYear",
+  "family": "date",
+  "title": "%endOfYear — December 31 of the year",
+  "purpose": "Advance a date to the last day of its calendar year.",
+  "signature": "%endOfYear <date> -> string",
+  "transform": "{out}\nd = %endOfYear @.date",
+  "input": "date = 2024-06-15",
+  "expectedOutput": "{out}\nd = \"2024-12-31\"",
+  "notes": [
+    "Returns an ISO date string (month and day set to 12-31).",
+    "Year boundaries are computed in UTC."
+  ],
+  "avoid": []
+}

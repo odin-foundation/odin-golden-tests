@@ -1,0 +1,15 @@
+{
+  "id": "lte",
+  "family": "logic",
+  "title": "%lte — less than or equal",
+  "purpose": "Return true when the first value is less than or equal to the second.",
+  "signature": "%lte <a:value> <b:value> -> boolean",
+  "transform": "{out}\nok = %lte @.score ##100",
+  "input": "score = ##100",
+  "expectedOutput": "{out}\nok = ?true",
+  "notes": [
+    "Inclusive at the boundary: 100 <= 100 is true.",
+    "Mirror of %gte."
+  ],
+  "avoid": []
+}

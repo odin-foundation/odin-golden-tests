@@ -1,0 +1,15 @@
+{
+  "id": "lag",
+  "family": "array",
+  "title": "%lag — previous value at each position",
+  "purpose": "Shift values forward so each row sees the earlier value.",
+  "signature": "%lag <array> [<integer:periods>] [<value:default>] -> array",
+  "transform": "{out}\nprev = %lag @.prices",
+  "input": "{prices[] : ~}\n##10\n##20\n##30",
+  "expectedOutput": "{out}\n{.prev[] : ~}\n~\n##10\n##20",
+  "notes": [
+    "Leading positions use the default (null unless a third argument is given).",
+    "Equivalent to looking back one position by default."
+  ],
+  "avoid": []
+}

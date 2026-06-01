@@ -1,0 +1,15 @@
+{
+  "id": "addMinutes",
+  "family": "date",
+  "title": "%addMinutes — shift a timestamp by minutes",
+  "purpose": "Add (or subtract) minutes to a timestamp, returning an ISO date-time.",
+  "signature": "%addMinutes <timestamp> <number:minutes> -> string",
+  "transform": "{out}\nt = %addMinutes @.ts ##90",
+  "input": "ts = 2024-06-15T10:30:00Z",
+  "expectedOutput": "{out}\nt = \"2024-06-15T12:00:00.000Z\"",
+  "notes": [
+    "Output is a full ISO timestamp with milliseconds and a UTC suffix.",
+    "A negative count moves the timestamp earlier."
+  ],
+  "avoid": []
+}

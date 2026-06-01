@@ -1,0 +1,21 @@
+{
+  "id": "rate",
+  "family": "financial",
+  "title": "%rate — interest rate per period",
+  "purpose": "Solve for the per-period rate given the number of periods, payment, present value, and future value.",
+  "signature": "%rate <number:nper> <number:pmt> <number:pv> <number:fv> -> number",
+  "transform": "{out}\nr = %rate @.nper @.pmt @.pv @.fv",
+  "input": "nper = ##12\npmt = #-1000\npv = #10000\nfv = #0",
+  "expectedOutput": "{out}\nr = #0.02922854076913369",
+  "notes": [
+    "Solved by Newton–Raphson; the result is the per-period rate as a fraction (about 2.92% here).",
+    "Sign convention: an inflow (pv) is positive and the offsetting payments are negative.",
+    "Argument order is nper, pmt, pv, fv."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %rate @.nper @.pmt @.pv  ; missing fv",
+      "why": "%rate requires all four arguments; fewer than four yields ~ (null)"
+    }
+  ]
+}

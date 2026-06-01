@@ -1,0 +1,15 @@
+{
+  "id": "isNaN",
+  "family": "numeric",
+  "title": "%isNaN — NaN test",
+  "purpose": "Test whether a numeric value is NaN.",
+  "signature": "%isNaN <number> -> boolean",
+  "transform": "{out}\nv = %isNaN @.a",
+  "input": "a = #3.5",
+  "expectedOutput": "{out}\nv = ?false",
+  "notes": [
+    "Returns a boolean (?).",
+    "Non-numeric input types yield false rather than an error."
+  ],
+  "avoid": []
+}

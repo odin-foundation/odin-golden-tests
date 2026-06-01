@@ -1,0 +1,15 @@
+{
+  "id": "isValidDate",
+  "family": "date",
+  "title": "%isValidDate — strict format-and-value check",
+  "purpose": "Validate that a string matches a date format and names a real calendar date.",
+  "signature": "%isValidDate <string:value> <string:format> -> boolean",
+  "transform": "{out}\nb = %isValidDate @.raw \"YYYY-MM-DD\"",
+  "input": "raw = \"2024-02-29\"",
+  "expectedOutput": "{out}\nb = ?true",
+  "notes": [
+    "Checks both the literal format and that the day exists — Feb 29 is valid only in leap years.",
+    "Supported formats are YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, and YYYY/MM/DD."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sqrt",
+  "family": "financial",
+  "title": "%sqrt — square root",
+  "purpose": "Take the square root of a non-negative value.",
+  "signature": "%sqrt <number:value> -> number",
+  "transform": "{out}\nr = %sqrt @.x",
+  "input": "x = #2",
+  "expectedOutput": "{out}\nr = #1.4142135623730951",
+  "notes": [
+    "The full-precision float is preserved in the output.",
+    "A negative value yields ~ (null)."
+  ],
+  "avoid": [
+    { "snippet": "r = %sqrt @.x  ; x = #-4", "why": "a negative radicand yields ~ (null), not a complex or NaN result" }
+  ]
+}

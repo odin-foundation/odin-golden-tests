@@ -1,0 +1,17 @@
+{
+  "id": "eq",
+  "family": "logic",
+  "title": "%eq — equality test",
+  "purpose": "Return true when two values are equal, as a boolean usable as a condition.",
+  "signature": "%eq <a:value> <b:value> -> boolean",
+  "transform": "{out}\nsame = %eq @.status \"active\"",
+  "input": "status = \"active\"",
+  "expectedOutput": "{out}\nsame = ?true",
+  "notes": [
+    "Both arguments are verb-expressions or paths/literals — never a quoted infix like \"@.status == 'active'\".",
+    "The boolean result drops straight into a condition slot, e.g. %ifElse %eq @.status \"active\" ... ."
+  ],
+  "avoid": [
+    { "snippet": "match = %eq @.code \"200\"", "why": "an integer source code (##200) compares equal to the string \"200\": cross-type numeric/string operands are coerced before comparison, so this fires even though one side is text. Quote only when both sides are genuinely strings." }
+  ]
+}

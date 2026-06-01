@@ -1,0 +1,20 @@
+{
+  "id": "depreciation",
+  "family": "financial",
+  "title": "%depreciation — straight-line depreciation per period",
+  "purpose": "Compute the constant per-period depreciation: (cost − salvage) / life.",
+  "signature": "%depreciation <number:cost> <number:salvage> <number:life> -> number",
+  "transform": "{out}\nr = %depreciation @.cost @.salvage @.life",
+  "input": "cost = #10000\nsalvage = #2000\nlife = ##5",
+  "expectedOutput": "{out}\nr = ##1600",
+  "notes": [
+    "An asset costing 10000 with 2000 salvage over a 5-year life depreciates 1600 per year.",
+    "A life <= 0, or a salvage greater than cost, yields ~ (null)."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %depreciation @.cost @.salvage @.life  ; salvage = #10000, cost = #2000",
+      "why": "when salvage exceeds cost the result is ~ (null), not a negative depreciation"
+    }
+  ]
+}

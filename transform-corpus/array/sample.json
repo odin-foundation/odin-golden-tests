@@ -1,0 +1,15 @@
+{
+  "id": "sample",
+  "family": "array",
+  "title": "%sample — random subset",
+  "purpose": "Draw N elements at random, optionally seeded for reproducibility.",
+  "signature": "%sample <array> <integer:count> [<integer:seed>] -> array",
+  "transform": "{out}\npicked = %sample @.items ##2 ##42",
+  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"\n\"e\"",
+  "expectedOutput": "{out}\n{.picked[] : ~}\n\"d\"\n\"c\"",
+  "notes": [
+    "A seed makes the draw deterministic; the same seed always returns the same subset.",
+    "Without a seed the result varies per run (seeded here for a stable example)."
+  ],
+  "avoid": []
+}

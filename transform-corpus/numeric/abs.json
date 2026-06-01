@@ -1,0 +1,16 @@
+{
+  "id": "abs",
+  "family": "numeric",
+  "title": "%abs — absolute value",
+  "purpose": "Return the absolute value of a number.",
+  "signature": "%abs <number> -> number",
+  "transform": "{out}\nv = %abs @.a",
+  "input": "a = #-7.25",
+  "expectedOutput": "{out}\nv = #7.25",
+  "notes": [
+    "A fractional input stays a number (#); a whole-valued result would emit as an integer (##)."
+  ],
+  "avoid": [
+    { "snippet": "v = %abs", "why": "the value argument is required; omitting it raises a verb-arity error" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "isString",
+  "family": "logic",
+  "title": "%isString — string-type test",
+  "purpose": "Return true when a value is of string type.",
+  "signature": "%isString <value> -> boolean",
+  "transform": "{out}\nisText = %isString @.name",
+  "input": "name = \"Ada\"",
+  "expectedOutput": "{out}\nisText = ?true",
+  "notes": [
+    "Tests the value's type, not its content; a numeric ##5 returns ?false.",
+    "Pair with %typeOf when you need the type name rather than a yes/no answer."
+  ],
+  "avoid": []
+}

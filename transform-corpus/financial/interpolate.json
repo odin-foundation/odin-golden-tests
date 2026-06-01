@@ -1,0 +1,20 @@
+{
+  "id": "interpolate",
+  "family": "financial",
+  "title": "%interpolate — linear interpolation between two points",
+  "purpose": "Estimate y at x along the line through (x1, y1) and (x2, y2).",
+  "signature": "%interpolate <number:x> <number:x1> <number:y1> <number:x2> <number:y2> -> number",
+  "transform": "{out}\nr = %interpolate @.x @.x1 @.y1 @.x2 @.y2",
+  "input": "x = #5\nx1 = #0\ny1 = #100\nx2 = #10\ny2 = #200",
+  "expectedOutput": "{out}\nr = ##150",
+  "notes": [
+    "x = 5 is halfway between x1 = 0 and x2 = 10, so y is halfway between 100 and 200.",
+    "Argument order is x, x1, y1, x2, y2; when x2 equals x1 the result is y1."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %interpolate @.x @.x1 @.y1 @.x2",
+      "why": "%interpolate requires all five arguments; fewer raises a verb-arity error"
+    }
+  ]
+}

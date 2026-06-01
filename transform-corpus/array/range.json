@@ -1,0 +1,15 @@
+{
+  "id": "range",
+  "family": "array",
+  "title": "%range — generate a numeric sequence",
+  "purpose": "Produce an array of integers from start to end (exclusive).",
+  "signature": "%range <integer:start> <integer:end> [<integer:step>] -> array",
+  "transform": "{out}\nnums = %range ##1 ##5",
+  "input": "{doc}\nx = \"y\"",
+  "expectedOutput": "{out}\n{.nums[] : ~}\n##1\n##2\n##3\n##4",
+  "notes": [
+    "End is exclusive: range ##1 ##5 yields 1,2,3,4.",
+    "Takes literal numeric arguments rather than a source array; an optional third argument is the step."
+  ],
+  "avoid": []
+}

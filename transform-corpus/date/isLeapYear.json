@@ -1,0 +1,15 @@
+{
+  "id": "isLeapYear",
+  "family": "date",
+  "title": "%isLeapYear — leap-year test",
+  "purpose": "Report whether the year of a date is a leap year.",
+  "signature": "%isLeapYear <date> -> boolean",
+  "transform": "{out}\nb = %isLeapYear @.date",
+  "input": "date = 2024-06-15",
+  "expectedOutput": "{out}\nb = ?true",
+  "notes": [
+    "Applies the full Gregorian rule (divisible by 4, except centuries not divisible by 400).",
+    "2024 is a leap year."
+  ],
+  "avoid": []
+}

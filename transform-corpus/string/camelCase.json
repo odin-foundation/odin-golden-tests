@@ -1,0 +1,14 @@
+{
+  "id": "camelCase",
+  "family": "string",
+  "title": "%camelCase — convert to camelCase",
+  "purpose": "Re-case a delimited or mixed-case string into camelCase.",
+  "signature": "%camelCase <string> -> string",
+  "transform": "{out}\nout = %camelCase @.name",
+  "input": "name = \"hello-world\"",
+  "expectedOutput": "{out}\nout = \"helloWorld\"",
+  "notes": [
+    "Splits on hyphens, underscores, spaces, and case boundaries, then joins with the first word lowercased and the rest capitalized."
+  ],
+  "avoid": []
+}

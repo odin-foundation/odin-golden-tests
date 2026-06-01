@@ -1,0 +1,18 @@
+{
+  "id": "divide",
+  "family": "numeric",
+  "title": "%divide — quotient of two numbers",
+  "purpose": "Divide the first number by the second.",
+  "signature": "%divide <number:a> <number:b> -> number",
+  "transform": "{out}\nv = %divide @.a @.b",
+  "input": "a = #7\nb = #2",
+  "expectedOutput": "{out}\nv = #3.5",
+  "notes": [
+    "Argument order is a ÷ b.",
+    "Division always yields a number type (#), reflecting the possibility of a decimal result.",
+    "A zero divisor yields null (~) rather than an error; use %safeDivide to supply a fallback."
+  ],
+  "avoid": [
+    { "snippet": "v = %divide @.a", "why": "two operands are required; one operand raises a verb-arity error" }
+  ]
+}

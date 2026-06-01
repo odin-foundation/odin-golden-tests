@@ -1,0 +1,15 @@
+{
+  "id": "toRadians",
+  "family": "geo",
+  "title": "%toRadians — degrees to radians",
+  "purpose": "Convert an angle in degrees to radians.",
+  "signature": "%toRadians <number:degrees> -> number",
+  "transform": "{out}\nrad = %toRadians @.deg",
+  "input": "deg = #180",
+  "expectedOutput": "{out}\nrad = #3.141592653589793",
+  "notes": [
+    "Single numeric argument in degrees; 180 degrees maps to pi radians.",
+    "The result is a number (#)."
+  ],
+  "avoid": []
+}

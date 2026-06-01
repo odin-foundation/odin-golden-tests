@@ -1,0 +1,15 @@
+{
+  "id": "groupBy",
+  "family": "array",
+  "title": "%groupBy — group records by a field",
+  "purpose": "Bucket an object array into { key, items } groups by a field value.",
+  "signature": "%groupBy <array> <string:field> -> array",
+  "transform": "{out}\ngroups = %groupBy @.orders \"status\"",
+  "input": "{orders[] : id, status}\n\"o1\", \"active\"\n\"o2\", \"pending\"\n\"o3\", \"active\"",
+  "expectedOutput": "{out}\n{out.groups[0]}\nkey = \"active\"\n{.items[] : id, status}\n\"o1\", \"active\"\n\"o3\", \"active\"\n{out.groups[1]}\nkey = \"pending\"\n{.items[] : id, status}\n\"o2\", \"pending\"",
+  "notes": [
+    "Each group is an object with a key and an items array.",
+    "Groups appear in first-seen key order."
+  ],
+  "avoid": []
+}

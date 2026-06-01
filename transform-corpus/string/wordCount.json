@@ -1,0 +1,14 @@
+{
+  "id": "wordCount",
+  "family": "string",
+  "title": "%wordCount — count words",
+  "purpose": "Count the whitespace-separated words in a string.",
+  "signature": "%wordCount <string> -> integer",
+  "transform": "{out}\nout = %wordCount @.text",
+  "input": "text = \"the quick brown fox\"",
+  "expectedOutput": "{out}\nout = ##4",
+  "notes": [
+    "Single argument. Returns an integer (## prefix). Empty or whitespace-only input yields 0."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "length",
+  "family": "string",
+  "title": "%length — character count of a string",
+  "purpose": "Return the number of characters in a string.",
+  "signature": "%length <string> -> integer",
+  "transform": "{out}\nout = %length @.name",
+  "input": "name = \"Honda\"",
+  "expectedOutput": "{out}\nout = ##5",
+  "notes": [
+    "Returns an integer (## prefix in ODIN output).",
+    "Counts UTF-16 code units, matching the underlying string length."
+  ],
+  "avoid": []
+}

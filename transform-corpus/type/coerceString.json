@@ -1,0 +1,15 @@
+{
+  "id": "coerceString",
+  "family": "type",
+  "title": "%coerceString — convert any value to a string",
+  "purpose": "Force a value to a quoted string regardless of its source type.",
+  "signature": "%coerceString <value> -> string",
+  "transform": "{out}\ns = %coerceString @.raw",
+  "input": "raw = ##42",
+  "expectedOutput": "{out}\ns = \"42\"",
+  "notes": [
+    "The typed integer ##42 loses its # prefix and becomes the quoted string \"42\".",
+    "A null input coerces to the empty string \"\" rather than passing ~ through."
+  ],
+  "avoid": []
+}

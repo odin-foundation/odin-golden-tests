@@ -1,0 +1,14 @@
+{
+  "id": "stripAccents",
+  "family": "string",
+  "title": "%stripAccents — remove diacritics",
+  "purpose": "Strip accents and combining marks, leaving base ASCII letters.",
+  "signature": "%stripAccents <string> -> string",
+  "transform": "{out}\nout = %stripAccents @.name",
+  "input": "name = \"café\"",
+  "expectedOutput": "{out}\nout = \"cafe\"",
+  "notes": [
+    "Single argument. Uses Unicode NFD decomposition, then removes combining diacritical marks."
+  ],
+  "avoid": []
+}

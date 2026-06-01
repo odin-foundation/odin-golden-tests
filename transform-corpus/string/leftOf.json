@@ -1,0 +1,15 @@
+{
+  "id": "leftOf",
+  "family": "string",
+  "title": "%leftOf — text before a delimiter",
+  "purpose": "Return the portion of a string before the first occurrence of a delimiter.",
+  "signature": "%leftOf <string> <delim:string> -> string",
+  "transform": "{out}\nout = %leftOf @.path \".\"",
+  "input": "path = \"a.b.c\"",
+  "expectedOutput": "{out}\nout = \"a\"",
+  "notes": [
+    "Two required arguments: the string and the delimiter.",
+    "If the delimiter is not found, the original string is returned unchanged."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "variance",
+  "family": "financial",
+  "title": "%variance — population variance",
+  "purpose": "Compute the population variance of a numeric array.",
+  "signature": "%variance <array:values> -> number",
+  "transform": "{out}\nr = %variance @.returns",
+  "input": "{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01",
+  "expectedOutput": "{out}\nr = #0.0004000000000000001",
+  "notes": [
+    "Divides the summed squared deviations by n (population); it is the square of %std.",
+    "The full-precision float, including floating-point noise, is preserved in the output."
+  ],
+  "avoid": []
+}

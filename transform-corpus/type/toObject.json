@@ -1,0 +1,18 @@
+{
+  "id": "toObject",
+  "family": "type",
+  "title": "%toObject — build an object from key/value pairs",
+  "purpose": "Fold an array of [key, value] pairs into a single object keyed by the first element.",
+  "signature": "%toObject <array> -> object",
+  "transform": "{out}\nobj = %toObject @.pairs",
+  "input": "pairs[0][0] = \"a\"\npairs[0][1] = ##1\npairs[1][0] = \"b\"\npairs[1][1] = ##2",
+  "expectedOutput": "{out}\n{.obj}\na = ##1\nb = ##2",
+  "notes": [
+    "Each [key, value] pair becomes a field, rendered as the {.obj} sub-block.",
+    "Pairs may also be {key, value} or {k, v} objects; the key is stringified.",
+    "A non-array input yields ~ (null)."
+  ],
+  "avoid": [
+    { "snippet": "obj = %toObject @.raw  ; input is a plain string", "why": "toObject only accepts arrays; any non-array input silently produces ~ (null)" }
+  ]
+}

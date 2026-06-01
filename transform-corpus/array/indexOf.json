@@ -1,0 +1,20 @@
+{
+  "id": "indexOf",
+  "family": "array",
+  "title": "%indexOf — first index of a value",
+  "purpose": "Return the position of a value in an array, or -1 if absent.",
+  "signature": "%indexOf <array> <value> -> integer",
+  "transform": "{out}\npos = %indexOf @.nums ##20",
+  "input": "nums = \"[10, 20, 30]\"",
+  "expectedOutput": "{out}\npos = ##1",
+  "notes": [
+    "Indices are zero-based; a missing value yields ##-1.",
+    "The array is given as a JSON-array string so its elements compare as plain values."
+  ],
+  "avoid": [
+    {
+      "snippet": "{nums[] : ~}\n##10\n##20\n##30",
+      "why": "a typed ODIN array block wraps each element, so equality never matches and %indexOf always returns ##-1; supply the array as a JSON-array string literal instead"
+    }
+  ]
+}

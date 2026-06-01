@@ -1,0 +1,15 @@
+{
+  "id": "toUnix",
+  "family": "date",
+  "title": "%toUnix — timestamp to epoch seconds",
+  "purpose": "Convert a timestamp to whole seconds since the Unix epoch.",
+  "signature": "%toUnix <timestamp> -> integer",
+  "transform": "{out}\nn = %toUnix @.ts",
+  "input": "ts = 2024-06-15T10:30:00Z",
+  "expectedOutput": "{out}\nn = ##1718447400",
+  "notes": [
+    "Result is seconds (not milliseconds) since 1970-01-01T00:00:00Z, floored.",
+    "Pairs with %fromUnix for the reverse conversion."
+  ],
+  "avoid": []
+}

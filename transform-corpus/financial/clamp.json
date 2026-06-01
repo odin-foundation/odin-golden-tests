@@ -1,0 +1,20 @@
+{
+  "id": "clamp",
+  "family": "financial",
+  "title": "%clamp — constrain a value to a range",
+  "purpose": "Bound a value between a minimum and a maximum.",
+  "signature": "%clamp <number:value> <number:min> <number:max> -> number",
+  "transform": "{out}\nr = %clamp @.value @.min @.max",
+  "input": "value = #150\nmin = #0\nmax = #100",
+  "expectedOutput": "{out}\nr = ##100",
+  "notes": [
+    "A value above max is pulled down to max; a value below min is raised to min.",
+    "Arguments are value, then min, then max, in that order."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %clamp @.value @.min",
+      "why": "%clamp requires value, min, and max; fewer than three arguments raises a verb-arity error"
+    }
+  ]
+}

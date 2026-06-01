@@ -1,0 +1,15 @@
+{
+  "id": "every",
+  "family": "array",
+  "title": "%every — do all items match a condition",
+  "purpose": "Return true when every record satisfies a field condition.",
+  "signature": "%every <array> <string:field> <string:op> <value> -> boolean",
+  "transform": "{out}\nallActive = %every @.coverages \"status\" \"=\" \"active\"",
+  "input": "{coverages[] : type, status}\n\"liability\", \"active\"\n\"collision\", \"active\"",
+  "expectedOutput": "{out}\nallActive = ?true",
+  "notes": [
+    "Field, operator, and value are three separate quoted arguments.",
+    "An empty array returns ?true (vacuous truth)."
+  ],
+  "avoid": []
+}

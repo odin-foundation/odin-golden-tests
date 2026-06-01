@@ -1,0 +1,15 @@
+{
+  "id": "midpoint",
+  "family": "geo",
+  "title": "%midpoint — geographic midpoint of two points",
+  "purpose": "Compute the great-circle midpoint between two lat/lng coordinates.",
+  "signature": "%midpoint <number:lat1> <number:lng1> <number:lat2> <number:lng2> -> object",
+  "transform": "{out}\nmid = %midpoint @.lat1 @.lng1 @.lat2 @.lng2",
+  "input": "lat1 = #40.7128\nlng1 = #-74.006\nlat2 = #34.0522\nlng2 = #-118.2437",
+  "expectedOutput": "{out}\n{.mid}\nlat = #39.510307565757\nlon = #-97.16013188872247",
+  "notes": [
+    "Arguments are lat1, lng1, lat2, lng2; the result is an object with lat and lon members, serialized as a {.mid} sub-section.",
+    "The object keys are lat and lon (not lng)."
+  ],
+  "avoid": []
+}

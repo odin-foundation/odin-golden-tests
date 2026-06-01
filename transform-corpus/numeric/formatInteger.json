@@ -1,0 +1,15 @@
+{
+  "id": "formatInteger",
+  "family": "numeric",
+  "title": "%formatInteger — floor to integer string",
+  "purpose": "Format a number as an integer string by flooring it.",
+  "signature": "%formatInteger <number> -> string",
+  "transform": "{out}\nv = %formatInteger @.a",
+  "input": "a = #42.9",
+  "expectedOutput": "{out}\nv = \"42\"",
+  "notes": [
+    "Flooring discards the fraction (42.9 → 42), it does not round.",
+    "The result is a string, not a number type."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "min",
+  "family": "aggregation",
+  "title": "%min — smallest numeric value in an array",
+  "purpose": "Reduce an array reference to its minimum numeric element.",
+  "signature": "%min <array> -> number",
+  "transform": "{out}\nlo = %min @.amounts",
+  "input": "{amounts[] : ~}\n##10\n##20\n##5",
+  "expectedOutput": "{out}\nlo = ##5",
+  "notes": [
+    "Folds the whole array; it is not the scalar comparator (that is %minOf in the numeric family).",
+    "A whole-number minimum is emitted as an integer (##); a fractional one stays a number (#).",
+    "An empty array yields ~ (null)."
+  ],
+  "avoid": [
+    { "snippet": "lo = %min @.x  (where x is a scalar)", "why": "%min reduces an array; a scalar reference resolves to no array and returns ~ instead of the value" }
+  ]
+}

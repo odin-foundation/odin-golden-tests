@@ -1,0 +1,18 @@
+{
+  "id": "accumulate",
+  "family": "aggregation",
+  "title": "%accumulate — running total across loop records",
+  "purpose": "Add a value to a named accumulator on each loop pass, building a running total.",
+  "signature": "%accumulate <name> <number> -> number",
+  "transform": "{$accumulator}\nrunningTotal = ##0\nrunningTotal._persist = true\n\n{lines[]}\n_loop = \"@items\"\namount = @.amount\n_ = %accumulate runningTotal @.amount\n\n{summary}\ntotal = \"@$accumulator.runningTotal\"",
+  "input": "{}\n{items[] : amount}\n##10\n##20\n##30",
+  "expectedOutput": "summary.total = ##60\n{lines[] : amount}\n##10\n##20\n##30",
+  "notes": [
+    "The accumulator must be declared in {$accumulator} with _persist = true so it survives across loop records; the first argument names it.",
+    "Each loop pass adds the second argument to the current value; read the result back with @$accumulator.<name>.",
+    "The verb runs as a side effect, conventionally sunk into a throwaway field (_); its return value is the new running total."
+  ],
+  "avoid": [
+    { "snippet": "_ = %accumulate runningTotal @.amount  (no {$accumulator} block declaring runningTotal)", "why": "an undeclared accumulator makes %accumulate return ~ on every pass, so the total reads as ~ instead of the sum" }
+  ]
+}

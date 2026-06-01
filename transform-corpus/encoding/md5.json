@@ -1,0 +1,15 @@
+{
+  "id": "md5",
+  "family": "encoding",
+  "title": "%md5 — MD5 hash of a string",
+  "purpose": "Compute the MD5 digest of a string as lowercase hex.",
+  "signature": "%md5 <string> -> string",
+  "transform": "{out}\nh = %md5 @.data",
+  "input": "data = \"hello\"",
+  "expectedOutput": "{out}\nh = \"5d41402abc4b2a76b9719d911017c592\"",
+  "notes": [
+    "The digest is deterministic and 32 lowercase hex characters long.",
+    "MD5 is suitable for checksums and cache keys only, not for security."
+  ],
+  "avoid": []
+}

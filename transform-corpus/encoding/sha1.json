@@ -1,0 +1,15 @@
+{
+  "id": "sha1",
+  "family": "encoding",
+  "title": "%sha1 — SHA-1 hash of a string",
+  "purpose": "Compute the SHA-1 digest of a string as lowercase hex.",
+  "signature": "%sha1 <string> -> string",
+  "transform": "{out}\nh = %sha1 @.data",
+  "input": "data = \"hello\"",
+  "expectedOutput": "{out}\nh = \"aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d\"",
+  "notes": [
+    "The digest is deterministic and 40 lowercase hex characters long.",
+    "SHA-1 is acceptable for content addressing but is deprecated for security."
+  ],
+  "avoid": []
+}

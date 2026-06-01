@@ -1,0 +1,17 @@
+{
+  "id": "first",
+  "family": "aggregation",
+  "title": "%first — first element of an array",
+  "purpose": "Return the first element of an array reference, preserving its type.",
+  "signature": "%first <array> -> any",
+  "transform": "{out}\nf = %first @.names",
+  "input": "{names[] : ~}\n\"alice\"\n\"bob\"",
+  "expectedOutput": "{out}\nf = \"alice\"",
+  "notes": [
+    "Type-preserving: a string element comes back a string, a number stays a number.",
+    "An empty or missing array yields ~ (null)."
+  ],
+  "avoid": [
+    { "snippet": "f = %first @.x  (where x is a scalar)", "why": "%first indexes into an array; a scalar reference resolves to no array and returns ~ instead of the value" }
+  ]
+}

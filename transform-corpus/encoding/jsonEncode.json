@@ -1,0 +1,15 @@
+{
+  "id": "jsonEncode",
+  "family": "encoding",
+  "title": "%jsonEncode — Serialize a value to JSON text",
+  "purpose": "Serialize an object or array into a compact JSON string.",
+  "signature": "%jsonEncode <value> -> string",
+  "transform": "{out}\nj = %jsonEncode @.data",
+  "input": "data.name = \"John\"\ndata.age = ##42",
+  "expectedOutput": "{out}\nj = \"{\\\"name\\\":\\\"John\\\",\\\"age\\\":42}\"",
+  "notes": [
+    "Objects and arrays produce their full JSON serialization as a single string.",
+    "For a scalar string, the result is the JSON-escaped body without the surrounding quotes."
+  ],
+  "avoid": []
+}

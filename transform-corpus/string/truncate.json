@@ -1,0 +1,15 @@
+{
+  "id": "truncate",
+  "family": "string",
+  "title": "%truncate — cut a string to a max length",
+  "purpose": "Return at most the first N characters of a string.",
+  "signature": "%truncate <string> <length:integer> -> string",
+  "transform": "{out}\nout = %truncate @.name ##3",
+  "input": "name = \"Honda\"",
+  "expectedOutput": "{out}\nout = \"Hon\"",
+  "notes": [
+    "Two required arguments: string and max length.",
+    "No ellipsis is appended — the result is a plain slice of the first N characters."
+  ],
+  "avoid": []
+}

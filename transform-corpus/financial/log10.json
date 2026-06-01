@@ -1,0 +1,15 @@
+{
+  "id": "log10",
+  "family": "financial",
+  "title": "%log10 — base-10 logarithm",
+  "purpose": "Take the base-10 logarithm of a value.",
+  "signature": "%log10 <number:value> -> number",
+  "transform": "{out}\nr = %log10 @.x",
+  "input": "x = #1000",
+  "expectedOutput": "{out}\nr = ##3",
+  "notes": [
+    "log10(1000) is 3.",
+    "A value <= 0 yields ~ (null)."
+  ],
+  "avoid": []
+}

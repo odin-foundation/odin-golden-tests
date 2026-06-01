@@ -1,0 +1,14 @@
+{
+  "id": "take",
+  "family": "array",
+  "title": "%take — first N elements",
+  "purpose": "Return the first count elements of an array.",
+  "signature": "%take <array> <integer:count> -> array",
+  "transform": "{out}\nfirst2 = %take @.items ##2",
+  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"",
+  "expectedOutput": "{out}\n{.first2[] : ~}\n\"a\"\n\"b\"",
+  "notes": [
+    "A count larger than the array returns the whole array."
+  ],
+  "avoid": []
+}

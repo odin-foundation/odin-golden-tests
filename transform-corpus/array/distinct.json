@@ -1,0 +1,15 @@
+{
+  "id": "distinct",
+  "family": "array",
+  "title": "%distinct — remove duplicate values",
+  "purpose": "Drop repeated values from a primitive array, keeping first occurrence.",
+  "signature": "%distinct <array> [<string:field>] -> array",
+  "transform": "{out}\nuniq = %distinct @.tags",
+  "input": "{tags[] : ~}\n\"auto\"\n\"home\"\n\"auto\"",
+  "expectedOutput": "{out}\n{.uniq[] : ~}\n\"auto\"\n\"home\"",
+  "notes": [
+    "With no field argument it deduplicates primitive values.",
+    "A second quoted field argument deduplicates an object array by that field."
+  ],
+  "avoid": []
+}

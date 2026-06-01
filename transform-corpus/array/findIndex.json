@@ -1,0 +1,14 @@
+{
+  "id": "findIndex",
+  "family": "array",
+  "title": "%findIndex — index of first matching record",
+  "purpose": "Return the index of the first record matching a condition, or -1.",
+  "signature": "%findIndex <array> <string:field> <string:op> <value> -> integer",
+  "transform": "{out}\nidx = %findIndex @.coverages \"status\" \"=\" \"active\"",
+  "input": "{coverages[] : type, status}\n\"liability\", \"cancelled\"\n\"collision\", \"active\"",
+  "expectedOutput": "{out}\nidx = ##1",
+  "notes": [
+    "Indices are zero-based; no match returns ##-1."
+  ],
+  "avoid": []
+}

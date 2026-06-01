@@ -1,0 +1,15 @@
+{
+  "id": "isObject",
+  "family": "logic",
+  "title": "%isObject — object-type test",
+  "purpose": "Return true when a value is a nested object.",
+  "signature": "%isObject <value> -> boolean",
+  "transform": "{out}\nisObj = %isObject @.address",
+  "input": "{address}\ncity = \"Reno\"",
+  "expectedOutput": "{out}\nisObj = ?true",
+  "notes": [
+    "The source nests fields under an {address} section, producing an object value.",
+    "Complements %isArray for telling structured values apart."
+  ],
+  "avoid": []
+}

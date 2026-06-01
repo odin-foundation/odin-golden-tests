@@ -1,0 +1,15 @@
+{
+  "id": "gte",
+  "family": "logic",
+  "title": "%gte — greater than or equal",
+  "purpose": "Return true when the first value is greater than or equal to the second.",
+  "signature": "%gte <a:value> <b:value> -> boolean",
+  "transform": "{out}\nok = %gte @.score ##60",
+  "input": "score = ##60",
+  "expectedOutput": "{out}\nok = ?true",
+  "notes": [
+    "Inclusive at the boundary: 60 >= 60 is true.",
+    "Combine with %lt for inclusive-lower, exclusive-upper bands."
+  ],
+  "avoid": []
+}

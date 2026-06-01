@@ -1,0 +1,14 @@
+{
+  "id": "includes",
+  "family": "array",
+  "title": "%includes — membership test",
+  "purpose": "Return true when an array contains a value.",
+  "signature": "%includes <array> <value> -> boolean",
+  "transform": "{out}\nhasCA = %includes @.states \"CA\"",
+  "input": "{states[] : ~}\n\"NY\"\n\"CA\"\n\"TX\"",
+  "expectedOutput": "{out}\nhasCA = ?true",
+  "notes": [
+    "Compares by string value, so it works on typed primitive arrays."
+  ],
+  "avoid": []
+}

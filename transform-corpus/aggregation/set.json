@@ -1,0 +1,18 @@
+{
+  "id": "set",
+  "family": "aggregation",
+  "title": "%set — overwrite an accumulator with a value",
+  "purpose": "Replace a named accumulator's current value on each loop pass, ending with the last record's value.",
+  "signature": "%set <name> <value> -> value",
+  "transform": "{$accumulator}\nlastSeen = ##0\nlastSeen._persist = true\n\n{lines[]}\n_loop = \"@items\"\nval = @.v\n_ = %set lastSeen @.v\n\n{summary}\nfinal = \"@$accumulator.lastSeen\"",
+  "input": "{}\n{items[] : v}\n##10\n##20\n##30",
+  "expectedOutput": "summary.final = ##30\n{lines[] : val}\n##10\n##20\n##30",
+  "notes": [
+    "Unlike %accumulate, %set replaces rather than adds; after a loop the accumulator holds the last record's value.",
+    "Supports any value type (string or number), not just numerics.",
+    "The accumulator must be declared in {$accumulator} with _persist = true; the first argument names it."
+  ],
+  "avoid": [
+    { "snippet": "_ = %set lastSeen @.v  (no {$accumulator} block declaring lastSeen)", "why": "%set is a no-op on an undeclared accumulator and returns ~, so the read-back yields ~ instead of the value" }
+  ]
+}

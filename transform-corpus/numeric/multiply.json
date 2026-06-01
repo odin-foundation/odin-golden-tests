@@ -1,0 +1,16 @@
+{
+  "id": "multiply",
+  "family": "numeric",
+  "title": "%multiply — product of two numbers",
+  "purpose": "Multiply two numbers.",
+  "signature": "%multiply <number:a> <number:b> -> number",
+  "transform": "{out}\nv = %multiply @.a @.b",
+  "input": "a = #6\nb = #7",
+  "expectedOutput": "{out}\nv = ##42",
+  "notes": [
+    "A whole-valued product emits as an integer (##); a fractional product emits as a number (#)."
+  ],
+  "avoid": [
+    { "snippet": "v = %multiply @.a", "why": "two operands are required; one operand raises a verb-arity error" }
+  ]
+}

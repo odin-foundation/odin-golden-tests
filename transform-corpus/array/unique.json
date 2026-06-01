@@ -1,0 +1,14 @@
+{
+  "id": "unique",
+  "family": "array",
+  "title": "%unique — remove duplicate values",
+  "purpose": "Drop repeated values from an array (alias of %distinct).",
+  "signature": "%unique <array> [<string:field>] -> array",
+  "transform": "{out}\nuniq = %unique @.tags",
+  "input": "{tags[] : ~}\n\"auto\"\n\"home\"\n\"auto\"",
+  "expectedOutput": "{out}\n{.uniq[] : ~}\n\"auto\"\n\"home\"",
+  "notes": [
+    "Alias for %distinct; keeps the first occurrence of each value."
+  ],
+  "avoid": []
+}

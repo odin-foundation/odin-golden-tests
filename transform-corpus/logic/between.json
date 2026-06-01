@@ -1,0 +1,17 @@
+{
+  "id": "between",
+  "family": "logic",
+  "title": "%between — inclusive range test",
+  "purpose": "Return true when a value falls within [min, max] inclusive.",
+  "signature": "%between <value:number> <min:number> <max:number> -> boolean",
+  "transform": "{out}\ninRange = %between @.age ##18 ##65",
+  "input": "age = ##42",
+  "expectedOutput": "{out}\ninRange = ?true",
+  "notes": [
+    "Takes three arguments: value, lower bound, upper bound — both bounds inclusive.",
+    "Operands are coerced to numbers before comparison."
+  ],
+  "avoid": [
+    { "snippet": "inRange = %between @.age ##18", "why": "%between requires all three arguments (value, min, max); supplying only two fails with a 'requires 3 arguments' error rather than defaulting the upper bound." }
+  ]
+}

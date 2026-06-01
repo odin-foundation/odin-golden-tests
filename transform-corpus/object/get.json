@@ -1,0 +1,16 @@
+{
+  "id": "get",
+  "family": "object",
+  "title": "%get — read a property with an optional default",
+  "purpose": "Read a value at a key path from an object, falling back to a default when absent.",
+  "signature": "%get <object> <string:path> [<default>] -> value",
+  "transform": "{out}\ng = %get @.obj \"role\"",
+  "input": "{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\ng = \"admin\"",
+  "notes": [
+    "The second argument is a quoted key or dot path (\"a.b.c\"); the resolved value keeps its type.",
+    "An optional third argument is returned when the path is missing or references an unsafe property; with no default a miss yields ~.",
+    "A non-object first argument returns the default (or ~)."
+  ],
+  "avoid": []
+}

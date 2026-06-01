@@ -1,0 +1,14 @@
+{
+  "id": "sign",
+  "family": "numeric",
+  "title": "%sign — sign of a number",
+  "purpose": "Return -1, 0, or 1 according to the sign of a number.",
+  "signature": "%sign <number> -> integer",
+  "transform": "{out}\nv = %sign @.a",
+  "input": "a = #-3.5",
+  "expectedOutput": "{out}\nv = ##-1",
+  "notes": [
+    "Returns an integer (##): -1 for negatives, 1 for positives, 0 for zero."
+  ],
+  "avoid": []
+}

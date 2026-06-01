@@ -1,0 +1,15 @@
+{
+  "id": "exp",
+  "family": "financial",
+  "title": "%exp — exponential (e^x)",
+  "purpose": "Raise Euler's number e to the given power.",
+  "signature": "%exp <number:value> -> number",
+  "transform": "{out}\nr = %exp @.x",
+  "input": "x = #1",
+  "expectedOutput": "{out}\nr = #2.718281828459045",
+  "notes": [
+    "exp(1) is e, the base of the natural logarithm.",
+    "The full-precision float is preserved in the output."
+  ],
+  "avoid": []
+}

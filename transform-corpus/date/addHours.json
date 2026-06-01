@@ -1,0 +1,15 @@
+{
+  "id": "addHours",
+  "family": "date",
+  "title": "%addHours — shift a timestamp by hours",
+  "purpose": "Add (or subtract) hours to a timestamp, returning an ISO date-time.",
+  "signature": "%addHours <timestamp> <number:hours> -> string",
+  "transform": "{out}\nt = %addHours @.ts ##5",
+  "input": "ts = 2024-06-15T10:30:00Z",
+  "expectedOutput": "{out}\nt = \"2024-06-15T15:30:00.000Z\"",
+  "notes": [
+    "Output is a full ISO timestamp with milliseconds and a UTC suffix.",
+    "A negative count moves the timestamp earlier."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "reverseString",
+  "family": "string",
+  "title": "%reverseString — reverse the characters",
+  "purpose": "Return the string with its characters in reverse order.",
+  "signature": "%reverseString <string> -> string",
+  "transform": "{out}\nout = %reverseString @.name",
+  "input": "name = \"Honda\"",
+  "expectedOutput": "{out}\nout = \"adnoH\"",
+  "notes": [
+    "Single argument. Reversal is Unicode-aware (code points, not UTF-16 units)."
+  ],
+  "avoid": []
+}

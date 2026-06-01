@@ -1,0 +1,16 @@
+{
+  "id": "merge",
+  "family": "object",
+  "title": "%merge — shallow merge of two objects",
+  "purpose": "Combine two objects, with the second object's properties overriding the first.",
+  "signature": "%merge <object> <object> -> object",
+  "transform": "{out}\nm = %merge @.a @.b",
+  "input": "{a}\nname = \"Ada\"\nrole = \"user\"\n\n{b}\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\n{.m}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "notes": [
+    "Both arguments are objects; the result is a new object serialized as a {.m} sub-section.",
+    "Keys in the second object override matching keys in the first (role becomes \"admin\"); the originals are untouched.",
+    "The merge is shallow — nested objects are replaced, not deep-merged."
+  ],
+  "avoid": []
+}

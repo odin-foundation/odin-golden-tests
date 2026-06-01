@@ -1,0 +1,15 @@
+{
+  "id": "ln",
+  "family": "financial",
+  "title": "%ln — natural logarithm",
+  "purpose": "Take the natural logarithm (base e) of a value.",
+  "signature": "%ln <number:value> -> number",
+  "transform": "{out}\nr = %ln @.x",
+  "input": "x = #2.718281828459045",
+  "expectedOutput": "{out}\nr = ##1",
+  "notes": [
+    "ln(e) is 1; passing Euler's number returns the integer 1.",
+    "A value <= 0 yields ~ (null)."
+  ],
+  "avoid": []
+}

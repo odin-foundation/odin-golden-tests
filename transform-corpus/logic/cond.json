@@ -1,0 +1,17 @@
+{
+  "id": "cond",
+  "family": "logic",
+  "title": "%cond — multi-branch conditional",
+  "purpose": "Evaluate condition/value pairs and return the value of the first true condition, else a default.",
+  "signature": "%cond <cond1:boolean> <val1> [<cond2:boolean> <val2> ...] <default> -> value",
+  "transform": "{out}\ncode = %cond %eq @.status \"active\" \"A\" %eq @.status \"pending\" \"P\" \"X\"",
+  "input": "status = \"pending\"",
+  "expectedOutput": "{out}\ncode = \"P\"",
+  "notes": [
+    "Arguments are read as condition/value pairs left-to-right; the first truthy condition wins.",
+    "A trailing odd argument is the default returned when no condition matches."
+  ],
+  "avoid": [
+    { "snippet": "code = %cond %eq @.status \"active\" \"A\"", "why": "with an even argument count there is no trailing default, so when the single condition is false %cond returns null (~) instead of a fallback. Always append a default value." }
+  ]
+}

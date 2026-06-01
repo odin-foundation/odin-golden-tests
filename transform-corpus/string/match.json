@@ -1,0 +1,15 @@
+{
+  "id": "match",
+  "family": "string",
+  "title": "%match — regex test",
+  "purpose": "Return true when a string matches a regular expression.",
+  "signature": "%match <string> <pattern:string> -> boolean",
+  "transform": "{out}\nout = %match @.code \"^[A-Z]{3}$\"",
+  "input": "code = \"ABC\"",
+  "expectedOutput": "{out}\nout = ?true",
+  "notes": [
+    "Two required arguments: the string and the regex pattern. The pattern is tested (not anchored automatically).",
+    "Returns a boolean (? prefix). Invalid or unsafe patterns return null."
+  ],
+  "avoid": []
+}

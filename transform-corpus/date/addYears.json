@@ -1,0 +1,15 @@
+{
+  "id": "addYears",
+  "family": "date",
+  "title": "%addYears — shift a date by whole years",
+  "purpose": "Add (or subtract) a number of years to a date, returning an ISO date.",
+  "signature": "%addYears <date> <integer:years> -> string",
+  "transform": "{out}\nd = %addYears @.start ##1",
+  "input": "start = 2024-02-29",
+  "expectedOutput": "{out}\nd = \"2025-03-01\"",
+  "notes": [
+    "A leap-day input rolls forward to March 1 in a non-leap target year.",
+    "A negative count moves the date backward."
+  ],
+  "avoid": []
+}

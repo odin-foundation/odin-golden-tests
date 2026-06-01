@@ -1,0 +1,15 @@
+{
+  "id": "pctChange",
+  "family": "array",
+  "title": "%pctChange — consecutive percentage change",
+  "purpose": "Return the fractional change between each element and the prior one.",
+  "signature": "%pctChange <array> [<integer:periods>] -> array",
+  "transform": "{out}\nreturns = %pctChange @.prices",
+  "input": "{prices[] : ~}\n##100\n##110\n##99",
+  "expectedOutput": "{out}\n{.returns[] : ~}\n~\n#0.1\n#-0.1",
+  "notes": [
+    "The first element is null; results are fractions (0.1 = +10%).",
+    "A prior value of zero yields null to avoid division by zero."
+  ],
+  "avoid": []
+}

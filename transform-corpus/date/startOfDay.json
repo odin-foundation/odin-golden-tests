@@ -1,0 +1,15 @@
+{
+  "id": "startOfDay",
+  "family": "date",
+  "title": "%startOfDay — floor a timestamp to midnight",
+  "purpose": "Reset a timestamp to the very start of its day (00:00:00.000).",
+  "signature": "%startOfDay <timestamp> -> string",
+  "transform": "{out}\nt = %startOfDay @.ts",
+  "input": "ts = 2024-06-15T14:30:45Z",
+  "expectedOutput": "{out}\nt = \"2024-06-15T00:00:00.000Z\"",
+  "notes": [
+    "Day boundaries are computed in UTC.",
+    "Output is a full ISO timestamp."
+  ],
+  "avoid": []
+}

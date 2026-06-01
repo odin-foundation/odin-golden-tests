@@ -1,0 +1,16 @@
+{
+  "id": "fv",
+  "family": "financial",
+  "title": "%fv — future value of an annuity",
+  "purpose": "Accumulate a stream of equal payments at a per-period rate: PMT × ((1+r)^n − 1) / r.",
+  "signature": "%fv <number:payment> <number:rate> <number:periods> -> number",
+  "transform": "{out}\nr = %fv @.payment @.rate @.periods",
+  "input": "payment = #500\nrate = #0.005\nperiods = ##120",
+  "expectedOutput": "{out}\nr = #81939.67340322901",
+  "notes": [
+    "Saving 500 per period at 0.5% per period for 120 periods accumulates to about 81939.67.",
+    "First argument is the periodic payment, not a present lump sum (use %compound for a lump sum).",
+    "A zero rate falls back to payment × periods."
+  ],
+  "avoid": []
+}

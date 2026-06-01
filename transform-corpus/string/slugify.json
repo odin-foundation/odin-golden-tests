@@ -1,0 +1,14 @@
+{
+  "id": "slugify",
+  "family": "string",
+  "title": "%slugify — make a URL-safe slug",
+  "purpose": "Lowercase a string, strip punctuation, and join words with hyphens.",
+  "signature": "%slugify <string> -> string",
+  "transform": "{out}\nout = %slugify @.title",
+  "input": "title = \"Hello World!\"",
+  "expectedOutput": "{out}\nout = \"hello-world\"",
+  "notes": [
+    "Non-word characters are removed, spaces and underscores become hyphens, repeated hyphens collapse, and leading/trailing hyphens are trimmed."
+  ],
+  "avoid": []
+}

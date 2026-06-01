@@ -1,0 +1,15 @@
+{
+  "id": "formatCurrency",
+  "family": "numeric",
+  "title": "%formatCurrency — two-decimal currency string",
+  "purpose": "Format a number as a currency string with exactly two decimal places.",
+  "signature": "%formatCurrency <number> -> string",
+  "transform": "{out}\nv = %formatCurrency @.a",
+  "input": "a = #19.5",
+  "expectedOutput": "{out}\nv = \"19.50\"",
+  "notes": [
+    "Always emits two decimals (19.5 → \"19.50\") and produces a plain string with no currency symbol.",
+    "The output is a string, not the #$ currency value type."
+  ],
+  "avoid": []
+}

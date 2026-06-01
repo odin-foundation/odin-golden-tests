@@ -1,0 +1,14 @@
+{
+  "id": "compact",
+  "family": "array",
+  "title": "%compact — drop empty values",
+  "purpose": "Remove null and empty-string elements from an array.",
+  "signature": "%compact <array> -> array",
+  "transform": "{out}\nclean = %compact @.values",
+  "input": "{values[] : ~}\n##1\n~\n##2",
+  "expectedOutput": "{out}\n{.clean[] : ~}\n##1\n##2",
+  "notes": [
+    "Removes null (~) and empty-string elements; zero and false are kept."
+  ],
+  "avoid": []
+}

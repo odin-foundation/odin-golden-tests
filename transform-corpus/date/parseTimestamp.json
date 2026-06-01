@@ -1,0 +1,15 @@
+{
+  "id": "parseTimestamp",
+  "family": "date",
+  "title": "%parseTimestamp — parse a string into an ISO timestamp",
+  "purpose": "Read a timestamp from a formatted string and normalize it to ISO date-time.",
+  "signature": "%parseTimestamp <string:value> <string:pattern> -> string",
+  "transform": "{out}\nt = %parseTimestamp @.raw \"YYYY-MM-DD HH:mm:ss\"",
+  "input": "raw = \"2024-06-15 14:30:45\"",
+  "expectedOutput": "{out}\nt = \"2024-06-15T14:30:45\"",
+  "notes": [
+    "Each component is located by its position in the pattern.",
+    "Output is an ISO date-time string without a zone suffix."
+  ],
+  "avoid": []
+}

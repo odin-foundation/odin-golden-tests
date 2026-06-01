@@ -1,0 +1,14 @@
+{
+  "id": "drop",
+  "family": "array",
+  "title": "%drop — skip first N elements",
+  "purpose": "Return the array with the first count elements removed.",
+  "signature": "%drop <array> <integer:count> -> array",
+  "transform": "{out}\nrest = %drop @.items ##2",
+  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"",
+  "expectedOutput": "{out}\n{.rest[] : ~}\n\"c\"\n\"d\"",
+  "notes": [
+    "The complement of %take: drops the leading count elements."
+  ],
+  "avoid": []
+}

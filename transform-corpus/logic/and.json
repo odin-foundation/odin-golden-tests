@@ -1,0 +1,17 @@
+{
+  "id": "and",
+  "family": "logic",
+  "title": "%and — boolean AND",
+  "purpose": "Return true only when both conditions are truthy.",
+  "signature": "%and <a:boolean> <b:boolean> -> boolean",
+  "transform": "{out}\nboth = %and %gte @.age ##18 %lt @.age ##65",
+  "input": "age = ##30",
+  "expectedOutput": "{out}\nboth = ?true",
+  "notes": [
+    "Each operand is itself a verb-expression that yields a boolean (%gte …, %lt …).",
+    "Exactly two operands; nest %and inside %and for three or more conditions."
+  ],
+  "avoid": [
+    { "snippet": "both = %and \"@.a\" \"@.b\"", "why": "quoted operands are plain strings, and a string is only truthy when it spells \"true\"/\"yes\"/\"y\"/\"1\"; an arbitrary string like \"@.a\" is falsy, so this returns ?false regardless of @.a. Pass real boolean verb-expressions, not quoted paths." }
+  ]
+}

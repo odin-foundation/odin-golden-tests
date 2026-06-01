@@ -1,0 +1,20 @@
+{
+  "id": "weightedAvg",
+  "family": "financial",
+  "title": "%weightedAvg — weighted average of two arrays",
+  "purpose": "Average values weighted by a parallel array of weights.",
+  "signature": "%weightedAvg <array:values> <array:weights> -> number",
+  "transform": "{out}\nr = %weightedAvg @.values @.weights",
+  "input": "{values[] : ~}\n#90\n#80\n#70\n\n{weights[] : ~}\n#3\n#2\n#1",
+  "expectedOutput": "{out}\nr = #83.33333333333333",
+  "notes": [
+    "Computes sum(value × weight) / sum(weight); here (90·3 + 80·2 + 70·1) / 6.",
+    "First argument is the values array, second is the weights array — order matters."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %weightedAvg @.weights @.values",
+      "why": "swapping values and weights changes the result (here to ~2.083); the values array must come first"
+    }
+  ]
+}

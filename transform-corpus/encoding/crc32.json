@@ -1,0 +1,15 @@
+{
+  "id": "crc32",
+  "family": "encoding",
+  "title": "%crc32 — CRC-32 checksum of a string",
+  "purpose": "Compute the CRC-32 (IEEE) checksum of a string as lowercase hex.",
+  "signature": "%crc32 <string> -> string",
+  "transform": "{out}\nh = %crc32 @.data",
+  "input": "data = \"hello\"",
+  "expectedOutput": "{out}\nh = \"3610a686\"",
+  "notes": [
+    "The checksum is deterministic and 8 lowercase hex characters long.",
+    "CRC-32 is for data-integrity checks only, not cryptographic use."
+  ],
+  "avoid": []
+}

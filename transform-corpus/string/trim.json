@@ -1,0 +1,17 @@
+{
+  "id": "trim",
+  "family": "string",
+  "title": "%trim — strip leading and trailing whitespace",
+  "purpose": "Remove whitespace from both ends of a string.",
+  "signature": "%trim <string> -> string",
+  "transform": "{out}\nout = %trim @.raw",
+  "input": "raw = \"  hello  \"",
+  "expectedOutput": "{out}\nout = \"hello\"",
+  "notes": [
+    "Trims both ends; interior whitespace is left untouched.",
+    "The argument must be a reference (@.raw) or a quoted literal."
+  ],
+  "avoid": [
+    { "snippet": "out = %trim", "why": "missing the source argument — the engine raises a verb-arity error" }
+  ]
+}

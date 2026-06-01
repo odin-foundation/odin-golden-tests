@@ -8,9 +8,144 @@
   },
   "fixtures": [
     {
+      "id": "accumulate",
+      "family": "aggregation",
+      "path": "aggregation/accumulate.json"
+    },
+    {
+      "id": "avg",
+      "family": "aggregation",
+      "path": "aggregation/avg.json"
+    },
+    {
+      "id": "count",
+      "family": "aggregation",
+      "path": "aggregation/count.json"
+    },
+    {
+      "id": "first",
+      "family": "aggregation",
+      "path": "aggregation/first.json"
+    },
+    {
+      "id": "last",
+      "family": "aggregation",
+      "path": "aggregation/last.json"
+    },
+    {
+      "id": "max",
+      "family": "aggregation",
+      "path": "aggregation/max.json"
+    },
+    {
+      "id": "min",
+      "family": "aggregation",
+      "path": "aggregation/min.json"
+    },
+    {
+      "id": "set",
+      "family": "aggregation",
+      "path": "aggregation/set.json"
+    },
+    {
+      "id": "sum",
+      "family": "aggregation",
+      "path": "aggregation/sum.json"
+    },
+    {
+      "id": "at",
+      "family": "array",
+      "path": "array/at.json"
+    },
+    {
+      "id": "chunk",
+      "family": "array",
+      "path": "array/chunk.json"
+    },
+    {
+      "id": "compact",
+      "family": "array",
+      "path": "array/compact.json"
+    },
+    {
+      "id": "concatArrays",
+      "family": "array",
+      "path": "array/concatArrays.json"
+    },
+    {
+      "id": "cumprod",
+      "family": "array",
+      "path": "array/cumprod.json"
+    },
+    {
+      "id": "cumsum",
+      "family": "array",
+      "path": "array/cumsum.json"
+    },
+    {
+      "id": "dedupe",
+      "family": "array",
+      "path": "array/dedupe.json"
+    },
+    {
+      "id": "diff",
+      "family": "array",
+      "path": "array/diff.json"
+    },
+    {
+      "id": "distinct",
+      "family": "array",
+      "path": "array/distinct.json"
+    },
+    {
+      "id": "drop",
+      "family": "array",
+      "path": "array/drop.json"
+    },
+    {
+      "id": "every",
+      "family": "array",
+      "path": "array/every.json"
+    },
+    {
+      "id": "fillMissing",
+      "family": "array",
+      "path": "array/fillMissing.json"
+    },
+    {
       "id": "filter",
       "family": "array",
       "path": "array/filter.json"
+    },
+    {
+      "id": "find",
+      "family": "array",
+      "path": "array/find.json"
+    },
+    {
+      "id": "findIndex",
+      "family": "array",
+      "path": "array/findIndex.json"
+    },
+    {
+      "id": "flatten",
+      "family": "array",
+      "path": "array/flatten.json"
+    },
+    {
+      "id": "groupBy",
+      "family": "array",
+      "path": "array/groupBy.json"
+    },
+    {
+      "id": "includes",
+      "family": "array",
+      "path": "array/includes.json"
+    },
+    {
+      "id": "indexOf",
+      "family": "array",
+      "path": "array/indexOf.json"
     },
     {
       "id": "join",
@@ -18,9 +153,294 @@
       "path": "array/join.json"
     },
     {
+      "id": "lag",
+      "family": "array",
+      "path": "array/lag.json"
+    },
+    {
+      "id": "lead",
+      "family": "array",
+      "path": "array/lead.json"
+    },
+    {
+      "id": "limit",
+      "family": "array",
+      "path": "array/limit.json"
+    },
+    {
+      "id": "map",
+      "family": "array",
+      "path": "array/map.json"
+    },
+    {
+      "id": "partition",
+      "family": "array",
+      "path": "array/partition.json"
+    },
+    {
+      "id": "pctChange",
+      "family": "array",
+      "path": "array/pctChange.json"
+    },
+    {
+      "id": "pivot",
+      "family": "array",
+      "path": "array/pivot.json"
+    },
+    {
+      "id": "pluck",
+      "family": "array",
+      "path": "array/pluck.json"
+    },
+    {
+      "id": "range",
+      "family": "array",
+      "path": "array/range.json"
+    },
+    {
+      "id": "rank",
+      "family": "array",
+      "path": "array/rank.json"
+    },
+    {
+      "id": "reduce",
+      "family": "array",
+      "path": "array/reduce.json"
+    },
+    {
+      "id": "reverse",
+      "family": "array",
+      "path": "array/reverse.json"
+    },
+    {
+      "id": "rowNumber",
+      "family": "array",
+      "path": "array/rowNumber.json"
+    },
+    {
+      "id": "sample",
+      "family": "array",
+      "path": "array/sample.json"
+    },
+    {
+      "id": "shift",
+      "family": "array",
+      "path": "array/shift.json"
+    },
+    {
+      "id": "slice",
+      "family": "array",
+      "path": "array/slice.json"
+    },
+    {
+      "id": "some",
+      "family": "array",
+      "path": "array/some.json"
+    },
+    {
+      "id": "sort",
+      "family": "array",
+      "path": "array/sort.json"
+    },
+    {
+      "id": "sortBy",
+      "family": "array",
+      "path": "array/sortBy.json"
+    },
+    {
+      "id": "sortDesc",
+      "family": "array",
+      "path": "array/sortDesc.json"
+    },
+    {
+      "id": "take",
+      "family": "array",
+      "path": "array/take.json"
+    },
+    {
+      "id": "unique",
+      "family": "array",
+      "path": "array/unique.json"
+    },
+    {
+      "id": "unpivot",
+      "family": "array",
+      "path": "array/unpivot.json"
+    },
+    {
+      "id": "zip",
+      "family": "array",
+      "path": "array/zip.json"
+    },
+    {
+      "id": "addDays",
+      "family": "date",
+      "path": "date/addDays.json"
+    },
+    {
+      "id": "addHours",
+      "family": "date",
+      "path": "date/addHours.json"
+    },
+    {
+      "id": "addMinutes",
+      "family": "date",
+      "path": "date/addMinutes.json"
+    },
+    {
+      "id": "addMonths",
+      "family": "date",
+      "path": "date/addMonths.json"
+    },
+    {
+      "id": "addSeconds",
+      "family": "date",
+      "path": "date/addSeconds.json"
+    },
+    {
+      "id": "addYears",
+      "family": "date",
+      "path": "date/addYears.json"
+    },
+    {
+      "id": "ageFromDate",
+      "family": "date",
+      "path": "date/ageFromDate.json"
+    },
+    {
+      "id": "businessDays",
+      "family": "date",
+      "path": "date/businessDays.json"
+    },
+    {
+      "id": "dateDiff",
+      "family": "date",
+      "path": "date/dateDiff.json"
+    },
+    {
+      "id": "dayOfWeek",
+      "family": "date",
+      "path": "date/dayOfWeek.json"
+    },
+    {
+      "id": "daysBetweenDates",
+      "family": "date",
+      "path": "date/daysBetweenDates.json"
+    },
+    {
+      "id": "endOfDay",
+      "family": "date",
+      "path": "date/endOfDay.json"
+    },
+    {
+      "id": "endOfMonth",
+      "family": "date",
+      "path": "date/endOfMonth.json"
+    },
+    {
+      "id": "endOfYear",
+      "family": "date",
+      "path": "date/endOfYear.json"
+    },
+    {
       "id": "formatDate",
       "family": "date",
       "path": "date/formatDate.json"
+    },
+    {
+      "id": "formatDuration",
+      "family": "date",
+      "path": "date/formatDuration.json"
+    },
+    {
+      "id": "formatTime",
+      "family": "date",
+      "path": "date/formatTime.json"
+    },
+    {
+      "id": "formatTimestamp",
+      "family": "date",
+      "path": "date/formatTimestamp.json"
+    },
+    {
+      "id": "fromUnix",
+      "family": "date",
+      "path": "date/fromUnix.json"
+    },
+    {
+      "id": "isAfter",
+      "family": "date",
+      "path": "date/isAfter.json"
+    },
+    {
+      "id": "isBefore",
+      "family": "date",
+      "path": "date/isBefore.json"
+    },
+    {
+      "id": "isBetween",
+      "family": "date",
+      "path": "date/isBetween.json"
+    },
+    {
+      "id": "isLeapYear",
+      "family": "date",
+      "path": "date/isLeapYear.json"
+    },
+    {
+      "id": "isValidDate",
+      "family": "date",
+      "path": "date/isValidDate.json"
+    },
+    {
+      "id": "nextBusinessDay",
+      "family": "date",
+      "path": "date/nextBusinessDay.json"
+    },
+    {
+      "id": "parseDate",
+      "family": "date",
+      "path": "date/parseDate.json"
+    },
+    {
+      "id": "parseTimestamp",
+      "family": "date",
+      "path": "date/parseTimestamp.json"
+    },
+    {
+      "id": "quarter",
+      "family": "date",
+      "path": "date/quarter.json"
+    },
+    {
+      "id": "startOfDay",
+      "family": "date",
+      "path": "date/startOfDay.json"
+    },
+    {
+      "id": "startOfMonth",
+      "family": "date",
+      "path": "date/startOfMonth.json"
+    },
+    {
+      "id": "startOfYear",
+      "family": "date",
+      "path": "date/startOfYear.json"
+    },
+    {
+      "id": "toUnix",
+      "family": "date",
+      "path": "date/toUnix.json"
+    },
+    {
+      "id": "weekOfYear",
+      "family": "date",
+      "path": "date/weekOfYear.json"
+    },
+    {
+      "id": "base64Decode",
+      "family": "encoding",
+      "path": "encoding/base64Decode.json"
     },
     {
       "id": "base64Encode",
@@ -28,9 +448,299 @@
       "path": "encoding/base64Encode.json"
     },
     {
+      "id": "crc32",
+      "family": "encoding",
+      "path": "encoding/crc32.json"
+    },
+    {
+      "id": "hexDecode",
+      "family": "encoding",
+      "path": "encoding/hexDecode.json"
+    },
+    {
+      "id": "hexEncode",
+      "family": "encoding",
+      "path": "encoding/hexEncode.json"
+    },
+    {
+      "id": "jsonDecode",
+      "family": "encoding",
+      "path": "encoding/jsonDecode.json"
+    },
+    {
+      "id": "jsonEncode",
+      "family": "encoding",
+      "path": "encoding/jsonEncode.json"
+    },
+    {
+      "id": "jsonPath",
+      "family": "encoding",
+      "path": "encoding/jsonPath.json"
+    },
+    {
+      "id": "md5",
+      "family": "encoding",
+      "path": "encoding/md5.json"
+    },
+    {
+      "id": "sha1",
+      "family": "encoding",
+      "path": "encoding/sha1.json"
+    },
+    {
+      "id": "sha256",
+      "family": "encoding",
+      "path": "encoding/sha256.json"
+    },
+    {
+      "id": "sha512",
+      "family": "encoding",
+      "path": "encoding/sha512.json"
+    },
+    {
+      "id": "urlDecode",
+      "family": "encoding",
+      "path": "encoding/urlDecode.json"
+    },
+    {
+      "id": "urlEncode",
+      "family": "encoding",
+      "path": "encoding/urlEncode.json"
+    },
+    {
+      "id": "clamp",
+      "family": "financial",
+      "path": "financial/clamp.json"
+    },
+    {
+      "id": "compound",
+      "family": "financial",
+      "path": "financial/compound.json"
+    },
+    {
+      "id": "correlation",
+      "family": "financial",
+      "path": "financial/correlation.json"
+    },
+    {
+      "id": "covariance",
+      "family": "financial",
+      "path": "financial/covariance.json"
+    },
+    {
+      "id": "depreciation",
+      "family": "financial",
+      "path": "financial/depreciation.json"
+    },
+    {
+      "id": "discount",
+      "family": "financial",
+      "path": "financial/discount.json"
+    },
+    {
+      "id": "exp",
+      "family": "financial",
+      "path": "financial/exp.json"
+    },
+    {
+      "id": "fv",
+      "family": "financial",
+      "path": "financial/fv.json"
+    },
+    {
+      "id": "interpolate",
+      "family": "financial",
+      "path": "financial/interpolate.json"
+    },
+    {
+      "id": "irr",
+      "family": "financial",
+      "path": "financial/irr.json"
+    },
+    {
+      "id": "ln",
+      "family": "financial",
+      "path": "financial/ln.json"
+    },
+    {
+      "id": "log",
+      "family": "financial",
+      "path": "financial/log.json"
+    },
+    {
+      "id": "log10",
+      "family": "financial",
+      "path": "financial/log10.json"
+    },
+    {
+      "id": "median",
+      "family": "financial",
+      "path": "financial/median.json"
+    },
+    {
+      "id": "mode",
+      "family": "financial",
+      "path": "financial/mode.json"
+    },
+    {
+      "id": "movingAvg",
+      "family": "financial",
+      "path": "financial/movingAvg.json"
+    },
+    {
+      "id": "nper",
+      "family": "financial",
+      "path": "financial/nper.json"
+    },
+    {
+      "id": "npv",
+      "family": "financial",
+      "path": "financial/npv.json"
+    },
+    {
+      "id": "percentile",
+      "family": "financial",
+      "path": "financial/percentile.json"
+    },
+    {
+      "id": "pmt",
+      "family": "financial",
+      "path": "financial/pmt.json"
+    },
+    {
+      "id": "pow",
+      "family": "financial",
+      "path": "financial/pow.json"
+    },
+    {
+      "id": "pv",
+      "family": "financial",
+      "path": "financial/pv.json"
+    },
+    {
+      "id": "quantile",
+      "family": "financial",
+      "path": "financial/quantile.json"
+    },
+    {
+      "id": "rate",
+      "family": "financial",
+      "path": "financial/rate.json"
+    },
+    {
+      "id": "sqrt",
+      "family": "financial",
+      "path": "financial/sqrt.json"
+    },
+    {
+      "id": "std",
+      "family": "financial",
+      "path": "financial/std.json"
+    },
+    {
+      "id": "stdSample",
+      "family": "financial",
+      "path": "financial/stdSample.json"
+    },
+    {
+      "id": "variance",
+      "family": "financial",
+      "path": "financial/variance.json"
+    },
+    {
+      "id": "varianceSample",
+      "family": "financial",
+      "path": "financial/varianceSample.json"
+    },
+    {
+      "id": "weightedAvg",
+      "family": "financial",
+      "path": "financial/weightedAvg.json"
+    },
+    {
+      "id": "zscore",
+      "family": "financial",
+      "path": "financial/zscore.json"
+    },
+    {
+      "id": "resetSequence",
+      "family": "generation",
+      "path": "generation/resetSequence.json"
+    },
+    {
+      "id": "sequence",
+      "family": "generation",
+      "path": "generation/sequence.json"
+    },
+    {
+      "id": "bearing",
+      "family": "geo",
+      "path": "geo/bearing.json"
+    },
+    {
+      "id": "distance",
+      "family": "geo",
+      "path": "geo/distance.json"
+    },
+    {
+      "id": "inBoundingBox",
+      "family": "geo",
+      "path": "geo/inBoundingBox.json"
+    },
+    {
+      "id": "midpoint",
+      "family": "geo",
+      "path": "geo/midpoint.json"
+    },
+    {
+      "id": "toDegrees",
+      "family": "geo",
+      "path": "geo/toDegrees.json"
+    },
+    {
+      "id": "toRadians",
+      "family": "geo",
+      "path": "geo/toRadians.json"
+    },
+    {
+      "id": "and",
+      "family": "logic",
+      "path": "logic/and.json"
+    },
+    {
+      "id": "assert",
+      "family": "logic",
+      "path": "logic/assert.json"
+    },
+    {
+      "id": "between",
+      "family": "logic",
+      "path": "logic/between.json"
+    },
+    {
       "id": "coalesce",
       "family": "logic",
       "path": "logic/coalesce.json"
+    },
+    {
+      "id": "cond",
+      "family": "logic",
+      "path": "logic/cond.json"
+    },
+    {
+      "id": "eq",
+      "family": "logic",
+      "path": "logic/eq.json"
+    },
+    {
+      "id": "gt",
+      "family": "logic",
+      "path": "logic/gt.json"
+    },
+    {
+      "id": "gte",
+      "family": "logic",
+      "path": "logic/gte.json"
     },
     {
       "id": "ifElse",
@@ -38,9 +748,99 @@
       "path": "logic/ifElse.json"
     },
     {
+      "id": "ifEmpty",
+      "family": "logic",
+      "path": "logic/ifEmpty.json"
+    },
+    {
+      "id": "ifNull",
+      "family": "logic",
+      "path": "logic/ifNull.json"
+    },
+    {
+      "id": "isArray",
+      "family": "logic",
+      "path": "logic/isArray.json"
+    },
+    {
+      "id": "isBoolean",
+      "family": "logic",
+      "path": "logic/isBoolean.json"
+    },
+    {
+      "id": "isDate",
+      "family": "logic",
+      "path": "logic/isDate.json"
+    },
+    {
+      "id": "isNull",
+      "family": "logic",
+      "path": "logic/isNull.json"
+    },
+    {
+      "id": "isNumber",
+      "family": "logic",
+      "path": "logic/isNumber.json"
+    },
+    {
+      "id": "isObject",
+      "family": "logic",
+      "path": "logic/isObject.json"
+    },
+    {
+      "id": "isString",
+      "family": "logic",
+      "path": "logic/isString.json"
+    },
+    {
+      "id": "lt",
+      "family": "logic",
+      "path": "logic/lt.json"
+    },
+    {
+      "id": "lte",
+      "family": "logic",
+      "path": "logic/lte.json"
+    },
+    {
+      "id": "ne",
+      "family": "logic",
+      "path": "logic/ne.json"
+    },
+    {
+      "id": "not",
+      "family": "logic",
+      "path": "logic/not.json"
+    },
+    {
+      "id": "or",
+      "family": "logic",
+      "path": "logic/or.json"
+    },
+    {
+      "id": "typeOf",
+      "family": "logic",
+      "path": "logic/typeOf.json"
+    },
+    {
+      "id": "xor",
+      "family": "logic",
+      "path": "logic/xor.json"
+    },
+    {
       "id": "lookup",
       "family": "lookup",
       "path": "lookup/lookup.json"
+    },
+    {
+      "id": "lookupDefault",
+      "family": "lookup",
+      "path": "lookup/lookupDefault.json"
+    },
+    {
+      "id": "abs",
+      "family": "numeric",
+      "path": "numeric/abs.json"
     },
     {
       "id": "add",
@@ -48,9 +848,174 @@
       "path": "numeric/add.json"
     },
     {
+      "id": "ceil",
+      "family": "numeric",
+      "path": "numeric/ceil.json"
+    },
+    {
+      "id": "convertUnit",
+      "family": "numeric",
+      "path": "numeric/convertUnit.json"
+    },
+    {
+      "id": "divide",
+      "family": "numeric",
+      "path": "numeric/divide.json"
+    },
+    {
+      "id": "floor",
+      "family": "numeric",
+      "path": "numeric/floor.json"
+    },
+    {
+      "id": "formatCurrency",
+      "family": "numeric",
+      "path": "numeric/formatCurrency.json"
+    },
+    {
+      "id": "formatInteger",
+      "family": "numeric",
+      "path": "numeric/formatInteger.json"
+    },
+    {
+      "id": "formatLocaleNumber",
+      "family": "numeric",
+      "path": "numeric/formatLocaleNumber.json"
+    },
+    {
+      "id": "formatNumber",
+      "family": "numeric",
+      "path": "numeric/formatNumber.json"
+    },
+    {
+      "id": "formatPercent",
+      "family": "numeric",
+      "path": "numeric/formatPercent.json"
+    },
+    {
+      "id": "isFinite",
+      "family": "numeric",
+      "path": "numeric/isFinite.json"
+    },
+    {
+      "id": "isNaN",
+      "family": "numeric",
+      "path": "numeric/isNaN.json"
+    },
+    {
+      "id": "maxOf",
+      "family": "numeric",
+      "path": "numeric/maxOf.json"
+    },
+    {
+      "id": "minOf",
+      "family": "numeric",
+      "path": "numeric/minOf.json"
+    },
+    {
+      "id": "mod",
+      "family": "numeric",
+      "path": "numeric/mod.json"
+    },
+    {
+      "id": "multiply",
+      "family": "numeric",
+      "path": "numeric/multiply.json"
+    },
+    {
+      "id": "negate",
+      "family": "numeric",
+      "path": "numeric/negate.json"
+    },
+    {
+      "id": "parseInt",
+      "family": "numeric",
+      "path": "numeric/parseInt.json"
+    },
+    {
+      "id": "random",
+      "family": "numeric",
+      "path": "numeric/random.json"
+    },
+    {
       "id": "round",
       "family": "numeric",
       "path": "numeric/round.json"
+    },
+    {
+      "id": "safeDivide",
+      "family": "numeric",
+      "path": "numeric/safeDivide.json"
+    },
+    {
+      "id": "sign",
+      "family": "numeric",
+      "path": "numeric/sign.json"
+    },
+    {
+      "id": "subtract",
+      "family": "numeric",
+      "path": "numeric/subtract.json"
+    },
+    {
+      "id": "switch",
+      "family": "numeric",
+      "path": "numeric/switch.json"
+    },
+    {
+      "id": "trunc",
+      "family": "numeric",
+      "path": "numeric/trunc.json"
+    },
+    {
+      "id": "entries",
+      "family": "object",
+      "path": "object/entries.json"
+    },
+    {
+      "id": "get",
+      "family": "object",
+      "path": "object/get.json"
+    },
+    {
+      "id": "has",
+      "family": "object",
+      "path": "object/has.json"
+    },
+    {
+      "id": "keys",
+      "family": "object",
+      "path": "object/keys.json"
+    },
+    {
+      "id": "merge",
+      "family": "object",
+      "path": "object/merge.json"
+    },
+    {
+      "id": "values",
+      "family": "object",
+      "path": "object/values.json"
+    },
+    {
+      "id": "camelCase",
+      "family": "string",
+      "path": "string/camelCase.json"
+    },
+    {
+      "id": "capitalize",
+      "family": "string",
+      "path": "string/capitalize.json"
+    },
+    {
+      "id": "center",
+      "family": "string",
+      "path": "string/center.json"
+    },
+    {
+      "id": "clean",
+      "family": "string",
+      "path": "string/clean.json"
     },
     {
       "id": "concat",
@@ -58,14 +1023,244 @@
       "path": "string/concat.json"
     },
     {
+      "id": "contains",
+      "family": "string",
+      "path": "string/contains.json"
+    },
+    {
+      "id": "endsWith",
+      "family": "string",
+      "path": "string/endsWith.json"
+    },
+    {
+      "id": "extract",
+      "family": "string",
+      "path": "string/extract.json"
+    },
+    {
+      "id": "formatPhone",
+      "family": "string",
+      "path": "string/formatPhone.json"
+    },
+    {
+      "id": "join",
+      "family": "string",
+      "path": "string/join.json"
+    },
+    {
+      "id": "kebabCase",
+      "family": "string",
+      "path": "string/kebabCase.json"
+    },
+    {
+      "id": "leftOf",
+      "family": "string",
+      "path": "string/leftOf.json"
+    },
+    {
+      "id": "length",
+      "family": "string",
+      "path": "string/length.json"
+    },
+    {
+      "id": "levenshtein",
+      "family": "string",
+      "path": "string/levenshtein.json"
+    },
+    {
+      "id": "lower",
+      "family": "string",
+      "path": "string/lower.json"
+    },
+    {
+      "id": "mask",
+      "family": "string",
+      "path": "string/mask.json"
+    },
+    {
+      "id": "match",
+      "family": "string",
+      "path": "string/match.json"
+    },
+    {
+      "id": "matches",
+      "family": "string",
+      "path": "string/matches.json"
+    },
+    {
+      "id": "normalizeSpace",
+      "family": "string",
+      "path": "string/normalizeSpace.json"
+    },
+    {
+      "id": "pad",
+      "family": "string",
+      "path": "string/pad.json"
+    },
+    {
+      "id": "padLeft",
+      "family": "string",
+      "path": "string/padLeft.json"
+    },
+    {
+      "id": "padRight",
+      "family": "string",
+      "path": "string/padRight.json"
+    },
+    {
+      "id": "pascalCase",
+      "family": "string",
+      "path": "string/pascalCase.json"
+    },
+    {
+      "id": "repeat",
+      "family": "string",
+      "path": "string/repeat.json"
+    },
+    {
+      "id": "replace",
+      "family": "string",
+      "path": "string/replace.json"
+    },
+    {
+      "id": "replaceRegex",
+      "family": "string",
+      "path": "string/replaceRegex.json"
+    },
+    {
+      "id": "reverseString",
+      "family": "string",
+      "path": "string/reverseString.json"
+    },
+    {
+      "id": "rightOf",
+      "family": "string",
+      "path": "string/rightOf.json"
+    },
+    {
+      "id": "slugify",
+      "family": "string",
+      "path": "string/slugify.json"
+    },
+    {
+      "id": "snakeCase",
+      "family": "string",
+      "path": "string/snakeCase.json"
+    },
+    {
+      "id": "soundex",
+      "family": "string",
+      "path": "string/soundex.json"
+    },
+    {
+      "id": "split",
+      "family": "string",
+      "path": "string/split.json"
+    },
+    {
+      "id": "startsWith",
+      "family": "string",
+      "path": "string/startsWith.json"
+    },
+    {
+      "id": "stripAccents",
+      "family": "string",
+      "path": "string/stripAccents.json"
+    },
+    {
+      "id": "substring",
+      "family": "string",
+      "path": "string/substring.json"
+    },
+    {
+      "id": "titleCase",
+      "family": "string",
+      "path": "string/titleCase.json"
+    },
+    {
+      "id": "tokenize",
+      "family": "string",
+      "path": "string/tokenize.json"
+    },
+    {
+      "id": "trim",
+      "family": "string",
+      "path": "string/trim.json"
+    },
+    {
+      "id": "trimLeft",
+      "family": "string",
+      "path": "string/trimLeft.json"
+    },
+    {
+      "id": "trimRight",
+      "family": "string",
+      "path": "string/trimRight.json"
+    },
+    {
+      "id": "truncate",
+      "family": "string",
+      "path": "string/truncate.json"
+    },
+    {
       "id": "upper",
       "family": "string",
       "path": "string/upper.json"
     },
     {
+      "id": "wordCount",
+      "family": "string",
+      "path": "string/wordCount.json"
+    },
+    {
+      "id": "wrap",
+      "family": "string",
+      "path": "string/wrap.json"
+    },
+    {
+      "id": "coerceBoolean",
+      "family": "type",
+      "path": "type/coerceBoolean.json"
+    },
+    {
+      "id": "coerceDate",
+      "family": "type",
+      "path": "type/coerceDate.json"
+    },
+    {
       "id": "coerceInteger",
       "family": "type",
       "path": "type/coerceInteger.json"
+    },
+    {
+      "id": "coerceNumber",
+      "family": "type",
+      "path": "type/coerceNumber.json"
+    },
+    {
+      "id": "coerceString",
+      "family": "type",
+      "path": "type/coerceString.json"
+    },
+    {
+      "id": "coerceTimestamp",
+      "family": "type",
+      "path": "type/coerceTimestamp.json"
+    },
+    {
+      "id": "toArray",
+      "family": "type",
+      "path": "type/toArray.json"
+    },
+    {
+      "id": "toObject",
+      "family": "type",
+      "path": "type/toObject.json"
+    },
+    {
+      "id": "tryCoerce",
+      "family": "type",
+      "path": "type/tryCoerce.json"
     }
   ],
   "idioms": [
@@ -106,7 +1301,12 @@
     "array",
     "logic",
     "lookup",
+    "aggregation",
+    "financial",
     "type",
-    "encoding"
+    "encoding",
+    "generation",
+    "geo",
+    "object"
   ]
 }

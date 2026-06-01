@@ -1,0 +1,17 @@
+{
+  "id": "padLeft",
+  "family": "string",
+  "title": "%padLeft — left-pad to a width",
+  "purpose": "Pad the start of a string with a fill character until it reaches a target length.",
+  "signature": "%padLeft <string> <length:integer> <char:string> -> string",
+  "transform": "{out}\nout = %padLeft @.code ##6 \"0\"",
+  "input": "code = \"42\"",
+  "expectedOutput": "{out}\nout = \"000042\"",
+  "notes": [
+    "Three required arguments: string, target length, fill character.",
+    "Only the first character of the fill argument is used. A string already at or above the length is returned unchanged."
+  ],
+  "avoid": [
+    { "snippet": "out = %padLeft @.code ##6", "why": "omitting the fill-character argument fails the 3-argument requirement and yields null (~), not space-padding" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "ceil",
+  "family": "numeric",
+  "title": "%ceil — round up to integer",
+  "purpose": "Round a number up toward positive infinity, returning an integer.",
+  "signature": "%ceil <number> -> integer",
+  "transform": "{out}\nv = %ceil @.a",
+  "input": "a = #3.2",
+  "expectedOutput": "{out}\nv = ##4",
+  "notes": [
+    "Always returns an integer (##), even for a fractional input.",
+    "Rounds toward positive infinity, so -3.7 would ceil to -3."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "avg",
+  "family": "aggregation",
+  "title": "%avg — arithmetic mean of an array",
+  "purpose": "Reduce an array reference to the mean of its numeric elements.",
+  "signature": "%avg <array> -> number",
+  "transform": "{out}\nmean = %avg @.amounts",
+  "input": "{amounts[] : ~}\n##10\n##20\n##30",
+  "expectedOutput": "{out}\nmean = ##20",
+  "notes": [
+    "Sum divided by element count; a whole-number mean is emitted as an integer (##), otherwise as a number (#).",
+    "An empty-but-present array (a single ~ element) averages to ##0; a missing path yields ~."
+  ],
+  "avoid": [
+    { "snippet": "mean = %avg @.nope  (path does not resolve to an array)", "why": "no array resolves, so %avg returns ~ rather than a zero or an error" }
+  ]
+}

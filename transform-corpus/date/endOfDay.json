@@ -1,0 +1,15 @@
+{
+  "id": "endOfDay",
+  "family": "date",
+  "title": "%endOfDay — raise a timestamp to the last instant of its day",
+  "purpose": "Set a timestamp to the final moment of its day (23:59:59.999).",
+  "signature": "%endOfDay <timestamp> -> string",
+  "transform": "{out}\nt = %endOfDay @.ts",
+  "input": "ts = 2024-06-15T14:30:45Z",
+  "expectedOutput": "{out}\nt = \"2024-06-15T23:59:59.999Z\"",
+  "notes": [
+    "Day boundaries are computed in UTC.",
+    "The result carries 999 milliseconds."
+  ],
+  "avoid": []
+}

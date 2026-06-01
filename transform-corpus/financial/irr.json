@@ -1,0 +1,16 @@
+{
+  "id": "irr",
+  "family": "financial",
+  "title": "%irr — internal rate of return",
+  "purpose": "Find the discount rate that makes the net present value of a cash-flow series zero.",
+  "signature": "%irr <array:cashflows> <number:guess?> -> number",
+  "transform": "{out}\nr = %irr @.cashflows",
+  "input": "{cashflows[] : ~}\n#-100\n#30\n#40\n#50\n#60",
+  "expectedOutput": "{out}\nr = #0.24888335658556993",
+  "notes": [
+    "Solved by Newton–Raphson from a default 10% guess; the result is the per-period rate as a fraction.",
+    "Needs at least two cash flows; an optional second argument overrides the initial guess.",
+    "Series with no sign change, or that fail to converge, yield ~ (null)."
+  ],
+  "avoid": []
+}

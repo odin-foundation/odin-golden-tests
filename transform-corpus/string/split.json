@@ -1,0 +1,17 @@
+{
+  "id": "split",
+  "family": "string",
+  "title": "%split — split and select one element",
+  "purpose": "Split a string on a delimiter and return the element at a given index.",
+  "signature": "%split <string> <delim:string> <index:integer> -> string",
+  "transform": "{out}\nout = %split @.csv \",\" ##1",
+  "input": "csv = \"a,b,c\"",
+  "expectedOutput": "{out}\nout = \"b\"",
+  "notes": [
+    "Three required arguments: string, delimiter, then the zero-based index to select.",
+    "Negative indices count from the end. Out-of-range indices return null. Use %tokenize to get the whole array."
+  ],
+  "avoid": [
+    { "snippet": "out = %split @.csv \",\"", "why": "omitting the index argument fails the 3-argument requirement and yields null (~); %split returns a single element, not the array" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "nper",
+  "family": "financial",
+  "title": "%nper — number of periods",
+  "purpose": "Solve for how many periods are needed given a rate, payment, present value, and future value.",
+  "signature": "%nper <number:rate> <number:pmt> <number:pv> <number:fv> -> number",
+  "transform": "{out}\nr = %nper @.rate @.pmt @.pv @.fv",
+  "input": "rate = #0.05\npmt = #-1000\npv = #10000\nfv = #0",
+  "expectedOutput": "{out}\nr = #14.206699082890461",
+  "notes": [
+    "Closed-form: log((pmt − rate·fv) / (pmt + rate·pv)) / log(1 + rate).",
+    "Sign convention: the present value (pv) is positive and the payments are negative.",
+    "Argument order is rate, pmt, pv, fv; a zero rate falls back to −(pv + fv) / pmt."
+  ],
+  "avoid": []
+}
