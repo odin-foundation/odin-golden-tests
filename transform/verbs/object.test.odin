@@ -5,7 +5,8 @@ direction = "json->json"
 
 ; ============================================================
 ; OBJECT VERBS SELF-TEST
-; Tests: keys, values, entries, has, get, merge
+; Tests: keys, values, entries, has, get, merge, pick, omit,
+;        fromEntries, invert, defaults, renameKeys, compactObject
 ; ============================================================
 
 {$const}
@@ -179,6 +180,63 @@ hasB = %has @merged "b"
 hasC = %has @merged "c"
 allPresent = %and @hasA %and @hasB @hasC
 _ = %ifElse @allPresent %accumulate passed ##1 %accumulate failed ##1
+
+; ============================================================
+; PASS 7: PICK / OMIT / FROMENTRIES / INVERT / DEFAULTS / RENAMEKEYS / COMPACT
+; ============================================================
+
+{_test_pick}
+_pass = ##7
+src = "{\"a\": ##1, \"b\": ##2, \"c\": ##3}"
+picked = %pick @src "a" "b"
+count = %count %keys @picked
+_ = %ifElse %eq @count @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_omit}
+_pass = ##7
+src = "{\"a\": ##1, \"b\": ##2, \"c\": ##3}"
+trimmed = %omit @src "c"
+count = %count %keys @trimmed
+_ = %ifElse %eq @count @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_fromEntries}
+_pass = ##7
+pairs = "[[\"k1\", \"v1\"], [\"k2\", \"v2\"]]"
+built = %fromEntries @pairs
+val = %get @built "k1"
+_ = %ifElse %eq @val "v1" %accumulate passed ##1 %accumulate failed ##1
+
+{_test_invert}
+_pass = ##7
+src = "{\"a\": \"x\", \"b\": \"y\"}"
+inverted = %invert @src
+val = %get @inverted "x"
+_ = %ifElse %eq @val "a" %accumulate passed ##1 %accumulate failed ##1
+
+{_test_defaults}
+_pass = ##7
+src = "{\"a\": ##1}"
+dft = "{\"a\": ##9, \"b\": ##2}"
+filled = %defaults @src @dft
+va = %get @filled "a"
+vb = %get @filled "b"
+ok = %and %eq @va ##1 %eq @vb ##2
+_ = %ifElse @ok %accumulate passed ##1 %accumulate failed ##1
+
+{_test_renameKeys}
+_pass = ##7
+src = "{\"a\": ##1, \"b\": ##2}"
+mapping = "{\"a\": \"x\"}"
+renamed = %renameKeys @src @mapping
+ok = %and %has @renamed "x" %has @renamed "b"
+_ = %ifElse @ok %accumulate passed ##1 %accumulate failed ##1
+
+{_test_compactObject}
+_pass = ##7
+src = "{\"a\": ##1, \"b\": \"\"}"
+compacted = %compactObject @src
+count = %count %keys @compacted
+_ = %ifElse %eq @count @$const.num_1 %accumulate passed ##1 %accumulate failed ##1
 
 ; ============================================================
 ; TEST RESULT OUTPUT

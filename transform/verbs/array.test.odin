@@ -9,7 +9,9 @@ direction = "json->json"
 ;        map, indexOf, at, slice, reverse, every, some,
 ;        find, findIndex, includes, concatArrays, zip,
 ;        groupBy, partition, take, drop, chunk, range,
-;        compact, pluck, unique
+;        compact, pluck, unique, intersection, union,
+;        difference, symmetricDifference, countBy, keyBy,
+;        explode, window
 ; Note: count, sum, min, max, avg, first, last tested in
 ;       aggregation sections of other tests
 ; ============================================================
@@ -390,6 +392,69 @@ third = %at @actual ##2
 thirdId = %get @third "id" ##0
 ; Third item should have id=3 (Carol)
 _ = %ifElse %eq @thirdId ##3 %accumulate passed ##1 %accumulate failed ##1
+
+; ============================================================
+; SET OPS + COLLECTION
+; ============================================================
+
+{_test_intersection}
+_pass = ##9
+a = "[##1, ##2, ##3]"
+b = "[##2, ##3, ##4]"
+both = %intersection @a @b
+count = %count @both
+_ = %ifElse %eq @count @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_union}
+_pass = ##9
+a = "[##1, ##2]"
+b = "[##2, ##3]"
+all = %union @a @b
+count = %count @all
+_ = %ifElse %eq @count @$const.num_3 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_difference}
+_pass = ##9
+a = "[##1, ##2, ##3]"
+b = "[##2]"
+diff = %difference @a @b
+count = %count @diff
+_ = %ifElse %eq @count @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_symmetricDifference}
+_pass = ##9
+a = "[##1, ##2, ##3]"
+b = "[##2, ##3, ##4]"
+sym = %symmetricDifference @a @b
+count = %count @sym
+_ = %ifElse %eq @count @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_countBy}
+_pass = ##9
+items = "[\"a\", \"b\", \"a\"]"
+counts = %countBy @items
+ca = %get @counts "a"
+_ = %ifElse %eq @ca @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_keyBy}
+_pass = ##9
+rows = "[{\"id\": \"x\", \"n\": ##1}, {\"id\": \"y\", \"n\": ##2}]"
+byId = %keyBy @rows "id"
+_ = %ifElse %has @byId "x" %accumulate passed ##1 %accumulate failed ##1
+
+{_test_explode}
+_pass = ##9
+rows = "[{\"id\": ##1, \"tags\": [\"a\", \"b\"]}]"
+exploded = %explode @rows "tags"
+count = %count @exploded
+_ = %ifElse %eq @count @$const.num_2 %accumulate passed ##1 %accumulate failed ##1
+
+{_test_window}
+_pass = ##9
+nums = "[##1, ##2, ##3, ##4]"
+windows = %window @nums ##2
+count = %count @windows
+_ = %ifElse %eq @count @$const.num_3 %accumulate passed ##1 %accumulate failed ##1
 
 ; ============================================================
 ; TEST RESULT OUTPUT
