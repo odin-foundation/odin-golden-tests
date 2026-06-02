@@ -1,0 +1,15 @@
+{
+  "id": "buildUrl",
+  "family": "encoding",
+  "title": "%buildUrl — assemble a URL from parts",
+  "purpose": "Assemble a URL from an object of scheme, host, port, path, query, and fragment.",
+  "signature": "%buildUrl <object> -> string",
+  "transform": "{out}\nurl = %buildUrl @.parts",
+  "input": "{parts}\nscheme = \"https\"\nhost = \"example.com\"\nport = ##8080\npath = \"/a/b\"\n{parts.query}\nz = ##1\na = ##2\n{parts}\nfragment = \"frag\"",
+  "expectedOutput": "{out}\nurl = \"https://example.com:8080/a/b?a=2&z=1#frag\"",
+  "notes": [
+    "The inverse of %parseUrl; query keys are sorted for canonical output.",
+    "scheme and host are required; without them the result is ~."
+  ],
+  "avoid": []
+}

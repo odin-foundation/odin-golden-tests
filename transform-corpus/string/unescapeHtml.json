@@ -1,0 +1,14 @@
+{
+  "id": "unescapeHtml",
+  "family": "string",
+  "title": "%unescapeHtml — decode HTML entities",
+  "purpose": "Decode named and numeric HTML entities back to their characters.",
+  "signature": "%unescapeHtml <string> -> string",
+  "transform": "{out}\nout = %unescapeHtml @.raw",
+  "input": "raw = \"&lt;p&gt;1 &amp; 2&lt;/p&gt;\"",
+  "expectedOutput": "{out}\nout = \"<p>1 & 2</p>\"",
+  "notes": [
+    "Decodes &amp; &lt; &gt; &quot; &#39; &apos; plus numeric (&#65;) and hex (&#x41;) references."
+  ],
+  "avoid": []
+}

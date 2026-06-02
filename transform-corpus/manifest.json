@@ -508,6 +508,41 @@
       "path": "encoding/urlEncode.json"
     },
     {
+      "id": "base64urlEncode",
+      "family": "encoding",
+      "path": "encoding/base64urlEncode.json"
+    },
+    {
+      "id": "base64urlDecode",
+      "family": "encoding",
+      "path": "encoding/base64urlDecode.json"
+    },
+    {
+      "id": "hmac",
+      "family": "encoding",
+      "path": "encoding/hmac.json"
+    },
+    {
+      "id": "parseUrl",
+      "family": "encoding",
+      "path": "encoding/parseUrl.json"
+    },
+    {
+      "id": "parseQuery",
+      "family": "encoding",
+      "path": "encoding/parseQuery.json"
+    },
+    {
+      "id": "buildQuery",
+      "family": "encoding",
+      "path": "encoding/buildQuery.json"
+    },
+    {
+      "id": "buildUrl",
+      "family": "encoding",
+      "path": "encoding/buildUrl.json"
+    },
+    {
       "id": "clamp",
       "family": "financial",
       "path": "financial/clamp.json"
@@ -1216,6 +1251,31 @@
       "id": "wrap",
       "family": "string",
       "path": "string/wrap.json"
+    },
+    {
+      "id": "escapeHtml",
+      "family": "string",
+      "path": "string/escapeHtml.json"
+    },
+    {
+      "id": "unescapeHtml",
+      "family": "string",
+      "path": "string/unescapeHtml.json"
+    },
+    {
+      "id": "escapeXml",
+      "family": "string",
+      "path": "string/escapeXml.json"
+    },
+    {
+      "id": "stripTags",
+      "family": "string",
+      "path": "string/stripTags.json"
+    },
+    {
+      "id": "template",
+      "family": "string",
+      "path": "string/template.json"
     },
     {
       "id": "coerceBoolean",

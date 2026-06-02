@@ -1,0 +1,14 @@
+{
+  "id": "escapeHtml",
+  "family": "string",
+  "title": "%escapeHtml — escape HTML special characters",
+  "purpose": "Escape the five HTML special characters & < > \" and the apostrophe as entities.",
+  "signature": "%escapeHtml <string> -> string",
+  "transform": "{out}\nout = %escapeHtml @.raw",
+  "input": "raw = \"<p>1 & 2</p>\"",
+  "expectedOutput": "{out}\nout = \"&lt;p&gt;1 &amp; 2&lt;/p&gt;\"",
+  "notes": [
+    "The apostrophe is escaped as &#39;. Invert with %unescapeHtml."
+  ],
+  "avoid": []
+}

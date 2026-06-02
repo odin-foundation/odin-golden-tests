@@ -1,0 +1,20 @@
+{
+  "id": "base64urlEncode",
+  "family": "encoding",
+  "title": "%base64urlEncode — URL-safe Base64 without padding",
+  "purpose": "Encode a UTF-8 string as URL-safe Base64 (- and _ instead of + and /, no = padding).",
+  "signature": "%base64urlEncode <string> -> string",
+  "transform": "{out}\nencoded = %base64urlEncode @.content",
+  "input": "content = \"hello world?>>\"",
+  "expectedOutput": "{out}\nencoded = \"aGVsbG8gd29ybGQ_Pj4\"",
+  "notes": [
+    "The output uses the URL-safe alphabet and drops trailing = padding, so it is safe in query strings and path segments.",
+    "Pair with %base64urlDecode to round-trip."
+  ],
+  "avoid": [
+    {
+      "snippet": "encoded = %base64Encode @.content",
+      "why": "%base64Encode yields standard Base64 with +, / and = padding, which is not URL-safe"
+    }
+  ]
+}

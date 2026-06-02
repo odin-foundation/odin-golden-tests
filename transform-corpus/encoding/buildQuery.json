@@ -1,0 +1,15 @@
+{
+  "id": "buildQuery",
+  "family": "encoding",
+  "title": "%buildQuery — serialize an object to a query string",
+  "purpose": "Serialize an object into a query string with keys sorted; null values are skipped.",
+  "signature": "%buildQuery <object> -> string",
+  "transform": "{out}\nqs = %buildQuery @.params",
+  "input": "{params}\nz = ##1\na = ##2",
+  "expectedOutput": "{out}\nqs = \"a=2&z=1\"",
+  "notes": [
+    "Keys are sorted so the output is canonical regardless of source key order.",
+    "Values are coerced to strings; ~ values are omitted."
+  ],
+  "avoid": []
+}

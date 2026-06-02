@@ -1,0 +1,14 @@
+{
+  "id": "escapeXml",
+  "family": "string",
+  "title": "%escapeXml — escape XML special characters",
+  "purpose": "Escape & < > \" and the apostrophe as XML entities, using &apos; for the apostrophe.",
+  "signature": "%escapeXml <string> -> string",
+  "transform": "{out}\nout = %escapeXml @.raw",
+  "input": "raw = \"x = 'a' & b\"",
+  "expectedOutput": "{out}\nout = \"x = &apos;a&apos; &amp; b\"",
+  "notes": [
+    "Differs from %escapeHtml only in the apostrophe, which becomes &apos; (valid XML)."
+  ],
+  "avoid": []
+}
