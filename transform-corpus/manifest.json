@@ -1591,6 +1591,11 @@
       "family": "idiom",
       "group": "format-conversion",
       "path": "idioms/odin-to-xml.json"
+    },
+    {
+      "id": "short-circuit-eval",
+      "family": "idiom",
+      "path": "idioms/short-circuit-eval.json"
     }
   ],
   "idiomGroups": [

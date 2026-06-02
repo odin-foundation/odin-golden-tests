@@ -1,0 +1,16 @@
+{
+  "id": "short-circuit-eval",
+  "family": "idiom",
+  "title": "Control-flow verbs evaluate branches lazily",
+  "purpose": "Show that and/or short-circuit and ifElse evaluates only the selected branch, so unselected branch side effects do not fire.",
+  "signature": "%and / %or / %ifElse (lazy branches)",
+  "transform": "{$accumulator}\nandRhs = ##0\nandRhs._persist = true\norRhs = ##0\norRhs._persist = true\nchosen = ##0\nchosen._persist = true\nskipped = ##0\nskipped._persist = true\n\n{_eval}\n_a = %and ?false %accumulate andRhs ##1\n_b = %or ?true %accumulate orRhs ##1\n_c = %ifElse ?true %accumulate chosen ##1 %accumulate skipped ##1\n\n{out}\nandRhsRan = \"@$accumulator.andRhs\"\norRhsRan = \"@$accumulator.orRhs\"\nchosenRan = \"@$accumulator.chosen\"\nskippedRan = \"@$accumulator.skipped\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nandRhsRan = ##0\norRhsRan = ##0\nchosenRan = ##1\nskippedRan = ##0",
+  "notes": [
+    "and short-circuits on a false left operand and or on a true left operand, so the right-hand %accumulate never runs (andRhs and orRhs stay 0).",
+    "ifElse evaluates only the selected branch, so chosen advances to 1 while skipped stays 0; eager evaluation would have run both.",
+    "The three _-prefixed fields (_a, _b, _c) are all computation-only sinks that run in one pass."
+  ],
+  "avoid": []
+}
