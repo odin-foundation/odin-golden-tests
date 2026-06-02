@@ -4,14 +4,17 @@
   "title": "%formatPercent — fraction to percentage string",
   "purpose": "Format a fractional ratio as a percentage string with a fixed number of decimals.",
   "signature": "%formatPercent <number> <integer:decimals> -> string",
-  "transform": "{out}\nv = %formatPercent @.a ##1",
-  "input": "a = #0.1234",
-  "expectedOutput": "{out}\nv = \"12.3%\"",
+  "transform": "{out}\nv = %formatPercent @.a ##1\nzeroDecimals = %formatPercent @.a ##0\nwhole = %formatPercent @.b ##1\nnegative = %formatPercent @.c ##1",
+  "input": "a = #0.1234\nb = #1\nc = #-0.05",
+  "expectedOutput": "{out}\nv = \"12.3%\"\nzeroDecimals = \"12%\"\nwhole = \"100.0%\"\nnegative = \"-5.0%\"",
   "notes": [
     "Multiplies by 100 and appends a percent sign (0.1234 → \"12.3%\").",
     "The result is a string."
   ],
   "avoid": [
-    { "snippet": "v = %formatPercent @.a", "why": "the engine requires the decimals argument; omitting it raises a verb-arity error even though it reads like an optional parameter" }
+    {
+      "snippet": "v = %formatPercent @.a",
+      "why": "the engine requires the decimals argument; omitting it raises a verb-arity error even though it reads like an optional parameter"
+    }
   ]
 }

@@ -4,9 +4,9 @@
   "title": "%nextBusinessDay — next weekday after a date",
   "purpose": "Return the first Monday-Friday date strictly after the input.",
   "signature": "%nextBusinessDay <date> -> string",
-  "transform": "{out}\nd = %nextBusinessDay @.start",
-  "input": "start = 2024-01-19",
-  "expectedOutput": "{out}\nd = \"2024-01-22\"",
+  "transform": "{out}\nfriday = %nextBusinessDay @.friday\nsaturday = %nextBusinessDay @.saturday\nmidweek = %nextBusinessDay @.wednesday",
+  "input": "friday = 2024-01-19\nsaturday = 2024-01-20\nwednesday = 2024-01-17",
+  "expectedOutput": "{out}\nfriday = \"2024-01-22\"\nsaturday = \"2024-01-22\"\nmidweek = \"2024-01-18\"",
   "notes": [
     "Always advances at least one day; a Friday rolls forward to Monday.",
     "Weekends are skipped; there is no holiday calendar."

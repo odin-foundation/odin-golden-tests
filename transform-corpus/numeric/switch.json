@@ -4,14 +4,17 @@
   "title": "%switch — multi-way value mapping",
   "purpose": "Map an input to a result by matching value/result pairs, with a trailing default.",
   "signature": "%switch <value> <case> <result> ... [default] -> any",
-  "transform": "{out}\nv = %switch @.a \"1\" \"one\" \"2\" \"two\" \"other\"",
-  "input": "a = \"2\"",
-  "expectedOutput": "{out}\nv = \"two\"",
+  "transform": "{out}\nv = %switch @.a \"1\" \"one\" \"2\" \"two\" \"other\"\nfirstCase = %switch @.b \"1\" \"one\" \"2\" \"two\" \"other\"\nfallback = %switch @.c \"1\" \"one\" \"2\" \"two\" \"other\"",
+  "input": "a = \"2\"\nb = \"1\"\nc = \"9\"",
+  "expectedOutput": "{out}\nv = \"two\"\nfirstCase = \"one\"\nfallback = \"other\"",
   "notes": [
     "Arguments after the value are case/result pairs; an odd trailing argument is the default.",
     "Matching is done on the string form of the value."
   ],
   "avoid": [
-    { "snippet": "v = %switch @.a", "why": "at least one case/result pair (two args after the value) is required; the value alone raises a verb-arity error" }
+    {
+      "snippet": "v = %switch @.a",
+      "why": "at least one case/result pair (two args after the value) is required; the value alone raises a verb-arity error"
+    }
   ]
 }

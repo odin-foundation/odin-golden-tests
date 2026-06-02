@@ -4,9 +4,9 @@
   "title": "%isObject — object-type test",
   "purpose": "Return true when a value is a nested object.",
   "signature": "%isObject <value> -> boolean",
-  "transform": "{out}\nisObj = %isObject @.address",
-  "input": "{address}\ncity = \"Reno\"",
-  "expectedOutput": "{out}\nisObj = ?true",
+  "transform": "{out}\nplain = %isObject @.name\nnullVal = %isObject @.missing\nisObj = %isObject @.address",
+  "input": "name = \"Ada\"\nmissing = ~\n\n{address}\ncity = \"Reno\"",
+  "expectedOutput": "{out}\nplain = ?false\nnullVal = ?false\nisObj = ?true",
   "notes": [
     "The source nests fields under an {address} section, producing an object value.",
     "Complements %isArray for telling structured values apart."

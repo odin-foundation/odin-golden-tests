@@ -4,14 +4,17 @@
   "title": "%sqrt — square root",
   "purpose": "Take the square root of a non-negative value.",
   "signature": "%sqrt <number:value> -> number",
-  "transform": "{out}\nr = %sqrt @.x",
-  "input": "x = #2",
-  "expectedOutput": "{out}\nr = #1.4142135623730951",
+  "transform": "{out}\nr = %sqrt @.x\nperfect = %sqrt @.nine\nzero = %sqrt @.zero\nnegative = %sqrt @.neg",
+  "input": "x = #2\nnine = #9\nzero = #0\nneg = #-4",
+  "expectedOutput": "{out}\nr = #1.4142135623730951\nperfect = ##3\nzero = ##0\nnegative = ~",
   "notes": [
-    "The full-precision float is preserved in the output.",
+    "The full-precision float is preserved in the output; a perfect square (9) returns the exact integer 3, and 0 returns 0.",
     "A negative value yields ~ (null)."
   ],
   "avoid": [
-    { "snippet": "r = %sqrt @.x  ; x = #-4", "why": "a negative radicand yields ~ (null), not a complex or NaN result" }
+    {
+      "snippet": "r = %sqrt @.x  ; x = #-4",
+      "why": "a negative radicand yields ~ (null), not a complex or NaN result"
+    }
   ]
 }

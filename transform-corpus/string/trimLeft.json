@@ -4,14 +4,17 @@
   "title": "%trimLeft — strip leading whitespace",
   "purpose": "Remove whitespace from the start of a string only.",
   "signature": "%trimLeft <string> -> string",
-  "transform": "{out}\nout = %trimLeft @.raw",
-  "input": "raw = \"  hello  \"",
-  "expectedOutput": "{out}\nout = \"hello  \"",
+  "transform": "{out}\nout = %trimLeft @.raw\nleadingOnly = %trimLeft @.front\nnoLead = %trimLeft @.clean",
+  "input": "raw = \"  hello  \"\nfront = \"   abc\"\nclean = \"abc  \"",
+  "expectedOutput": "{out}\nout = \"hello  \"\nleadingOnly = \"abc\"\nnoLead = \"abc  \"",
   "notes": [
     "Only leading whitespace is removed; trailing whitespace is preserved.",
     "The argument must be a reference (@.raw) or a quoted literal."
   ],
   "avoid": [
-    { "snippet": "out = %trimLeft", "why": "missing the source argument — the engine raises a verb-arity error" }
+    {
+      "snippet": "out = %trimLeft",
+      "why": "missing the source argument — the engine raises a verb-arity error"
+    }
   ]
 }

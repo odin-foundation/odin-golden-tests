@@ -4,9 +4,9 @@
   "title": "%isBoolean — boolean-type test",
   "purpose": "Return true when a value is of boolean type.",
   "signature": "%isBoolean <value> -> boolean",
-  "transform": "{out}\nisBool = %isBoolean @.active",
-  "input": "active = ?true",
-  "expectedOutput": "{out}\nisBool = ?true",
+  "transform": "{out}\nisBool = %isBoolean @.active\nnotBool = %isBoolean @.label",
+  "input": "active = ?true\nlabel = \"true\"",
+  "expectedOutput": "{out}\nisBool = ?true\nnotBool = ?false",
   "notes": [
     "Tests the type only; the string \"true\" is a string, not a boolean.",
     "Use %coerceBoolean to turn truthy strings into real booleans."

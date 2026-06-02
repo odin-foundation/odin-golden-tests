@@ -4,14 +4,17 @@
   "title": "%join — join an array into a string",
   "purpose": "Concatenate array elements into one string with a separator.",
   "signature": "%join <array> <string:separator> -> string",
-  "transform": "{out}\ntags = %join @.tags \", \"",
-  "input": "{tags[] : ~}\n\"insurance\"\n\"auto\"\n\"policy\"",
-  "expectedOutput": "{out}\ntags = \"insurance, auto, policy\"",
+  "transform": "{out}\ntags = %join @.tags \", \"\nsingle = %join @.one \", \"",
+  "input": "{tags[] : ~}\n\"insurance\"\n\"auto\"\n\"policy\"\n\n{one[] : ~}\n\"solo\"",
+  "expectedOutput": "{out}\ntags = \"insurance, auto, policy\"\nsingle = \"solo\"",
   "notes": [
     "The source array is written as an ODIN primitive-array block: {tags[] : ~} with one value per line.",
     "The separator is a required quoted literal."
   ],
   "avoid": [
-    { "snippet": "tags = %join @.tags", "why": "the separator argument is required; omitting it raises a verb-arity error" }
+    {
+      "snippet": "tags = %join @.tags",
+      "why": "the separator argument is required; omitting it raises a verb-arity error"
+    }
   ]
 }

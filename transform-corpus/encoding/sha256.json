@@ -4,9 +4,9 @@
   "title": "%sha256 — SHA-256 hash of a string",
   "purpose": "Compute the SHA-256 digest of a string as lowercase hex.",
   "signature": "%sha256 <string> -> string",
-  "transform": "{out}\nh = %sha256 @.data",
-  "input": "data = \"hello\"",
-  "expectedOutput": "{out}\nh = \"2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824\"",
+  "transform": "{out}\nh = %sha256 @.data\nworld = %sha256 @.other\nempty = %sha256 @.blank",
+  "input": "data = \"hello\"\nother = \"world\"\nblank = \"\"",
+  "expectedOutput": "{out}\nh = \"2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824\"\nworld = \"486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7\"\nempty = \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"",
   "notes": [
     "The digest is deterministic: the same input always yields the same 64-character lowercase hex string.",
     "The input is hashed as UTF-8 bytes."

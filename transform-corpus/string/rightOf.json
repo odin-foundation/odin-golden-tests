@@ -4,9 +4,9 @@
   "title": "%rightOf — text after a delimiter",
   "purpose": "Return the portion of a string after the first occurrence of a delimiter.",
   "signature": "%rightOf <string> <delim:string> -> string",
-  "transform": "{out}\nout = %rightOf @.path \".\"",
-  "input": "path = \"a.b.c\"",
-  "expectedOutput": "{out}\nout = \"b.c\"",
+  "transform": "{out}\nout = %rightOf @.path \".\"\nnoMatch = %rightOf @.plain \".\"\nfirstOnly = %rightOf @.dotted \".\"",
+  "input": "path = \"a.b.c\"\nplain = \"abc\"\ndotted = \"x.y.z\"",
+  "expectedOutput": "{out}\nout = \"b.c\"\nnoMatch = \"\"\nfirstOnly = \"y.z\"",
   "notes": [
     "Two required arguments: the string and the delimiter. Only the first delimiter is split on, so the remainder may still contain it.",
     "If the delimiter is not found, an empty string is returned."

@@ -4,9 +4,9 @@
   "title": "%ln — natural logarithm",
   "purpose": "Take the natural logarithm (base e) of a value.",
   "signature": "%ln <number:value> -> number",
-  "transform": "{out}\nr = %ln @.x",
-  "input": "x = #2.718281828459045",
-  "expectedOutput": "{out}\nr = ##1",
+  "transform": "{out}\nr = %ln @.e\none = %ln @.one\nzero = %ln @.zero\nnegative = %ln @.neg",
+  "input": "e = #2.718281828459045\none = #1\nzero = #0\nneg = #-2",
+  "expectedOutput": "{out}\nr = ##1\none = ##0\nzero = ~\nnegative = ~",
   "notes": [
     "ln(e) is 1; passing Euler's number returns the integer 1.",
     "A value <= 0 yields ~ (null)."

@@ -4,9 +4,9 @@
   "title": "%urlEncode — Percent-encode a string",
   "purpose": "Percent-encode a string so it is safe inside a URL component.",
   "signature": "%urlEncode <string> -> string",
-  "transform": "{out}\nenc = %urlEncode @.q",
-  "input": "q = \"a b&c=d\"",
-  "expectedOutput": "{out}\nenc = \"a%20b%26c%3Dd\"",
+  "transform": "{out}\nenc = %urlEncode @.q\nunreserved = %urlEncode @.safe\nempty = %urlEncode @.blank",
+  "input": "q = \"a b&c=d\"\nsafe = \"a-b_c.d~e\"\nblank = \"\"",
+  "expectedOutput": "{out}\nenc = \"a%20b%26c%3Dd\"\nunreserved = \"a-b_c.d~e\"\nempty = \"\"",
   "notes": [
     "Encodes a single URI component: spaces become %20 and reserved characters such as & and = are escaped.",
     "Unreserved characters (letters, digits, - _ . ! ~ * ' ( )) pass through unchanged."

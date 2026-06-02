@@ -4,9 +4,9 @@
   "title": "%reverse — reverse array order",
   "purpose": "Return the array with element order reversed.",
   "signature": "%reverse <array> -> array",
-  "transform": "{out}\nrev = %reverse @.items",
-  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"",
-  "expectedOutput": "{out}\n{.rev[] : ~}\n\"c\"\n\"b\"\n\"a\"",
+  "transform": "{out}\nrev = %reverse @.items\nsingle = %reverse @.one",
+  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\n{one[] : ~}\n\"only\"",
+  "expectedOutput": "{out}\n{.rev[] : ~}\n\"c\"\n\"b\"\n\"a\"\n{.single[] : ~}\n\"only\"",
   "notes": [
     "Reverses in place order; the original array is not mutated."
   ],

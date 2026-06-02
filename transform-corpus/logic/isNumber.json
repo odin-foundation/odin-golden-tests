@@ -4,9 +4,9 @@
   "title": "%isNumber — numeric-type test",
   "purpose": "Return true when a value is integer, number, or currency.",
   "signature": "%isNumber <value> -> boolean",
-  "transform": "{out}\nisNum = %isNumber @.amount",
-  "input": "amount = ##42",
-  "expectedOutput": "{out}\nisNum = ?true",
+  "transform": "{out}\nisNum = %isNumber @.amount\nisFloat = %isNumber @.rate\nnumericText = %isNumber @.code\nnullVal = %isNumber @.missing",
+  "input": "amount = ##42\nrate = #3.14\ncode = \"42\"\nmissing = ~",
+  "expectedOutput": "{out}\nisNum = ?true\nisFloat = ?true\nnumericText = ?false\nnullVal = ?false",
   "notes": [
     "True for integer (##), number (#), and currency (#$) values alike.",
     "A numeric string like \"42\" is a string, not a number — coerce with %coerceNumber first if needed."

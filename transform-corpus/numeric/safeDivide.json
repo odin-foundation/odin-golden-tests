@@ -4,14 +4,17 @@
   "title": "%safeDivide — division with zero fallback",
   "purpose": "Divide two numbers, returning a supplied default when the divisor is zero or invalid.",
   "signature": "%safeDivide <number:numerator> <number:denominator> <default> -> number",
-  "transform": "{out}\nv = %safeDivide @.a @.b ##0",
-  "input": "a = #10\nb = #0",
-  "expectedOutput": "{out}\nv = ##0",
+  "transform": "{out}\nv = %safeDivide @.a @.b ##0\nnormal = %safeDivide @.c @.d ##0\nstringDefault = %safeDivide @.e @.f \"N/A\"",
+  "input": "a = #10\nb = #0\nc = #10\nd = #4\ne = #7\nf = #0",
+  "expectedOutput": "{out}\nv = ##0\nnormal = #2.5\nstringDefault = \"N/A\"",
   "notes": [
     "When the denominator is 0, NaN, or Infinity, the third argument (the default) is returned as-is.",
     "Avoids the verbose %ifElse %eq ... %divide pattern."
   ],
   "avoid": [
-    { "snippet": "v = %safeDivide @.a @.b", "why": "the default value is a required third argument; omitting it raises a verb-arity error" }
+    {
+      "snippet": "v = %safeDivide @.a @.b",
+      "why": "the default value is a required third argument; omitting it raises a verb-arity error"
+    }
   ]
 }

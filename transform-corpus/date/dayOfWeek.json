@@ -4,9 +4,9 @@
   "title": "%dayOfWeek — ISO weekday number",
   "purpose": "Return the ISO 8601 weekday of a date (Monday=1 through Sunday=7).",
   "signature": "%dayOfWeek <date> -> integer",
-  "transform": "{out}\nn = %dayOfWeek @.date",
-  "input": "date = 2024-06-15",
-  "expectedOutput": "{out}\nn = ##6",
+  "transform": "{out}\nn = %dayOfWeek @.sat\nmon = %dayOfWeek @.mon\nsun = %dayOfWeek @.sun\nbad = %dayOfWeek @.notDate",
+  "input": "sat = 2024-06-15\nmon = 2024-06-17\nsun = 2024-06-16\nnotDate = \"nope\"",
+  "expectedOutput": "{out}\nn = ##6\nmon = ##1\nsun = ##7\nbad = ~",
   "notes": [
     "Uses ISO numbering: Monday is 1 and Sunday is 7.",
     "June 15, 2024 is a Saturday, hence 6."

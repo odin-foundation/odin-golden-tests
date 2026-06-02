@@ -4,9 +4,9 @@
   "title": "%diff — consecutive differences",
   "purpose": "Return the difference between each element and the prior one.",
   "signature": "%diff <array> [<integer:periods>] -> array",
-  "transform": "{out}\nchanges = %diff @.values",
-  "input": "{values[] : ~}\n##10\n##15\n##12",
-  "expectedOutput": "{out}\n{.changes[] : ~}\n~\n##5\n##-3",
+  "transform": "{out}\nchanges = %diff @.values\nperiods2 = %diff @.values ##2\nnonArray = %diff @.notArr",
+  "input": "notArr = \"x\"\n\n{values[] : ~}\n##10\n##15\n##12\n##18",
+  "expectedOutput": "{out}\n{.changes[] : ~}\n~\n##5\n##-3\n##6\n{.periods2[] : ~}\n~\n~\n##2\n##3\nnonArray = ~",
   "notes": [
     "The first element is null; later elements are value minus the prior value.",
     "An optional periods argument compares against N positions back."

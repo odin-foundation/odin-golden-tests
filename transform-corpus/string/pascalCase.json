@@ -4,9 +4,9 @@
   "title": "%pascalCase — convert to PascalCase",
   "purpose": "Re-case a delimited or mixed-case string into PascalCase.",
   "signature": "%pascalCase <string> -> string",
-  "transform": "{out}\nout = %pascalCase @.name",
-  "input": "name = \"hello-world\"",
-  "expectedOutput": "{out}\nout = \"HelloWorld\"",
+  "transform": "{out}\nhyphen = %pascalCase @.name\nspaced = %pascalCase @.spaced\nsnake = %pascalCase @.snake",
+  "input": "name = \"hello-world\"\nspaced = \"hello world\"\nsnake = \"foo_bar_baz\"",
+  "expectedOutput": "{out}\nhyphen = \"HelloWorld\"\nspaced = \"HelloWorld\"\nsnake = \"FooBarBaz\"",
   "notes": [
     "Splits on case boundaries and common delimiters, then joins the words with each first letter capitalized and no separator."
   ],

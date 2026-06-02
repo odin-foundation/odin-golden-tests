@@ -4,14 +4,17 @@
   "title": "%hexDecode — Decode a hexadecimal string",
   "purpose": "Decode a hexadecimal string back into its original text.",
   "signature": "%hexDecode <string> -> string",
-  "transform": "{out}\nd = %hexDecode @.h",
-  "input": "h = \"48656C6C6F\"",
-  "expectedOutput": "{out}\nd = \"Hello\"",
+  "transform": "{out}\nd = %hexDecode @.h\nlower = %hexDecode @.low\nodd = %hexDecode @.bad",
+  "input": "h = \"48656C6C6F\"\nlow = \"776f726c64\"\nbad = \"48656\"",
+  "expectedOutput": "{out}\nd = \"Hello\"\nlower = \"world\"\nodd = ~",
   "notes": [
     "Upper- and lower-case hex digits are both accepted.",
     "An odd-length or non-hex string decodes to ~ (null) rather than raising an error."
   ],
   "avoid": [
-    { "snippet": "d = %hexDecode @.h   ; with h = \"48656\"", "why": "an odd number of hex digits is invalid and yields ~" }
+    {
+      "snippet": "d = %hexDecode @.h   ; with h = \"48656\"",
+      "why": "an odd number of hex digits is invalid and yields ~"
+    }
   ]
 }

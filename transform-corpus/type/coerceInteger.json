@@ -4,14 +4,17 @@
   "title": "%coerceInteger — parse a value to an integer",
   "purpose": "Convert a string (or number) to a typed integer.",
   "signature": "%coerceInteger <value> -> integer",
-  "transform": "{out}\ncount = %coerceInteger @.countText",
-  "input": "countText = \"42\"",
-  "expectedOutput": "{out}\ncount = ##42",
+  "transform": "{out}\ncount = %coerceInteger @.countText\nfloat = %coerceInteger @.float\nneg = %coerceInteger @.neg\nbad = %coerceInteger @.bad",
+  "input": "countText = \"42\"\nfloat = #3.9\nneg = \"-7\"\nbad = \"not-a-number\"",
+  "expectedOutput": "{out}\ncount = ##42\nfloat = ##3\nneg = ##-7\nbad = ##0",
   "notes": [
     "The output is a true integer (##), so downstream numeric verbs treat it as a number.",
     "A non-numeric input coerces to ##0 rather than raising an error — validate upstream if that matters."
   ],
   "avoid": [
-    { "snippet": "count = %coerceInteger @.countText  ; input \"not-a-number\"", "why": "unparseable input silently becomes ##0; there is no error to catch" }
+    {
+      "snippet": "count = %coerceInteger @.countText  ; input \"not-a-number\"",
+      "why": "unparseable input silently becomes ##0; there is no error to catch"
+    }
   ]
 }

@@ -4,9 +4,9 @@
   "title": "%dedupe — remove duplicate records by key",
   "purpose": "Drop later records that repeat a key-field value, keeping the first.",
   "signature": "%dedupe <array> <string:keyField> -> array",
-  "transform": "{out}\nuniq = %dedupe @.records \"id\"",
-  "input": "records = \"[{\\\"id\\\": \\\"r1\\\", \\\"name\\\": \\\"first\\\"}, {\\\"id\\\": \\\"r1\\\", \\\"name\\\": \\\"dup\\\"}, {\\\"id\\\": \\\"r2\\\", \\\"name\\\": \\\"second\\\"}]\"",
-  "expectedOutput": "{out}\n{.uniq[] : id, name}\n\"r1\", \"first\"\n\"r2\", \"second\"",
+  "transform": "{out}\nuniq = %dedupe @.records \"id\"\nnoMatch = %dedupe @.distinctRecs \"id\"\nnonArray = %dedupe @.notArr \"id\"",
+  "input": "notArr = \"x\"\nrecords = \"[{\\\"id\\\": \\\"r1\\\", \\\"name\\\": \\\"first\\\"}, {\\\"id\\\": \\\"r1\\\", \\\"name\\\": \\\"dup\\\"}, {\\\"id\\\": \\\"r2\\\", \\\"name\\\": \\\"second\\\"}]\"\ndistinctRecs = \"[{\\\"id\\\": \\\"a\\\", \\\"name\\\": \\\"one\\\"}, {\\\"id\\\": \\\"b\\\", \\\"name\\\": \\\"two\\\"}]\"",
+  "expectedOutput": "{out}\n{.uniq[] : id, name}\n\"r1\", \"first\"\n\"r2\", \"second\"\n{.noMatch[] : id, name}\n\"a\", \"one\"\n\"b\", \"two\"\nnonArray = ~",
   "notes": [
     "Unlike %distinct, it compares one key field, not the whole value.",
     "The record array is supplied as a JSON-array string so the key field reads as a plain value."

@@ -4,13 +4,16 @@
   "title": "%abs — absolute value",
   "purpose": "Return the absolute value of a number.",
   "signature": "%abs <number> -> number",
-  "transform": "{out}\nv = %abs @.a",
-  "input": "a = #-7.25",
-  "expectedOutput": "{out}\nv = #7.25",
+  "transform": "{out}\nv = %abs @.a\nwholeNeg = %abs @.b\nfromString = %abs @.c\nofNull = %abs @.d",
+  "input": "a = #-7.25\nb = ##-8\nc = \"-12.5\"\nd = ~",
+  "expectedOutput": "{out}\nv = #7.25\nwholeNeg = ##8\nfromString = #12.5\nofNull = ##0",
   "notes": [
     "A fractional input stays a number (#); a whole-valued result would emit as an integer (##)."
   ],
   "avoid": [
-    { "snippet": "v = %abs", "why": "the value argument is required; omitting it raises a verb-arity error" }
+    {
+      "snippet": "v = %abs",
+      "why": "the value argument is required; omitting it raises a verb-arity error"
+    }
   ]
 }

@@ -4,9 +4,9 @@
   "title": "%isBefore — chronological less-than",
   "purpose": "Test whether the first date precedes the second.",
   "signature": "%isBefore <date> <date> -> boolean",
-  "transform": "{out}\nb = %isBefore @.a @.b",
+  "transform": "{out}\nbefore = %isBefore @.a @.b\nequal = %isBefore @.b @.b\nafter = %isBefore @.b @.a",
   "input": "a = 2024-01-01\nb = 2024-06-15",
-  "expectedOutput": "{out}\nb = ?true",
+  "expectedOutput": "{out}\nbefore = ?true\nequal = ?false\nafter = ?false",
   "notes": [
     "Comparison is strict; equal dates yield false.",
     "Both arguments are interpreted in UTC."

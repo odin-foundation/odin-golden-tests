@@ -4,14 +4,17 @@
   "title": "%jsonPath — Query a value with a JSONPath expression",
   "purpose": "Extract a nested value from an object using a JSONPath-style expression.",
   "signature": "%jsonPath <value> <path:string> -> value",
-  "transform": "{out}\nname = %jsonPath @.data \"$.user.name\"",
-  "input": "data.user.name = \"Ada\"\ndata.user.id = ##7",
-  "expectedOutput": "{out}\nname = \"Ada\"",
+  "transform": "{out}\nname = %jsonPath @.data \"$.user.name\"\nfirst = %jsonPath @.data \"$.items[0]\"\nmissing = %jsonPath @.data \"$.user.email\"",
+  "input": "{data.user}\nname = \"Ada\"\nid = ##7\n\n{data.items[] : ~}\n\"x\"\n\"y\"\n\"z\"",
+  "expectedOutput": "{out}\nname = \"Ada\"\nfirst = \"x\"\nmissing = ~",
   "notes": [
     "Supports dot notation, [n] array indices, [*] wildcards, and ..field recursive descent.",
     "The path is a required second argument; a missing path yields ~ (null)."
   ],
   "avoid": [
-    { "snippet": "name = %jsonPath @.data", "why": "the path argument is required; without it the verb yields ~" }
+    {
+      "snippet": "name = %jsonPath @.data",
+      "why": "the path argument is required; without it the verb yields ~"
+    }
   ]
 }

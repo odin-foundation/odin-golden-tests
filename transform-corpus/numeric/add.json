@@ -4,14 +4,17 @@
   "title": "%add — add two numbers",
   "purpose": "Add two numeric values and return the sum.",
   "signature": "%add <number> <number> -> number",
-  "transform": "{out}\ntotal = %add @.base @.fee",
-  "input": "base = ##500\nfee = ##75",
-  "expectedOutput": "{out}\ntotal = ##575",
+  "transform": "{out}\ntotal = %add @.base @.fee\nwithString = %add @.base @.strFee\nwithNull = %add @.base @.nul\nmixed = %add @.flt @.fee",
+  "input": "base = ##500\nfee = ##75\nstrFee = \"25\"\nnul = ~\nflt = #1.5",
+  "expectedOutput": "{out}\ntotal = ##575\nwithString = ##525\nwithNull = ##500\nmixed = #76.5",
   "notes": [
     "Both integer inputs produce an integer (##) result.",
     "Numeric-looking strings are coerced before adding."
   ],
   "avoid": [
-    { "snippet": "total = %add @.base", "why": "%add needs exactly two arguments; one argument raises a verb-arity error" }
+    {
+      "snippet": "total = %add @.base",
+      "why": "%add needs exactly two arguments; one argument raises a verb-arity error"
+    }
   ]
 }

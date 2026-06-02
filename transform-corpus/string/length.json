@@ -4,9 +4,9 @@
   "title": "%length — character count of a string",
   "purpose": "Return the number of characters in a string.",
   "signature": "%length <string> -> integer",
-  "transform": "{out}\nout = %length @.name",
-  "input": "name = \"Honda\"",
-  "expectedOutput": "{out}\nout = ##5",
+  "transform": "{out}\nout = %length @.name\nempty = %length @.empty\nspaces = %length @.spaces",
+  "input": "name = \"Honda\"\nempty = \"\"\nspaces = \"a b c\"",
+  "expectedOutput": "{out}\nout = ##5\nempty = ##0\nspaces = ##5",
   "notes": [
     "Returns an integer (## prefix in ODIN output).",
     "Counts UTF-16 code units, matching the underlying string length."

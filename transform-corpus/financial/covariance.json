@@ -4,9 +4,9 @@
   "title": "%covariance — population covariance of two series",
   "purpose": "Measure how two numeric series vary together.",
   "signature": "%covariance <array:x> <array:y> -> number",
-  "transform": "{out}\nr = %covariance @.x @.y",
-  "input": "{x[] : ~}\n##1\n##2\n##3\n##4\n##5\n\n{y[] : ~}\n##2\n##4\n##5\n##4\n##6",
-  "expectedOutput": "{out}\nr = #1.6",
+  "transform": "{out}\nr = %covariance @.x @.y\nuneven = %covariance @.x @.shortY\nconstant = %covariance @.x @.flat",
+  "input": "{x[] : ~}\n##1\n##2\n##3\n##4\n##5\n\n{y[] : ~}\n##2\n##4\n##5\n##4\n##6\n\n{shortY[] : ~}\n##2\n##4\n##5\n\n{flat[] : ~}\n##7\n##7\n##7\n##7\n##7",
+  "expectedOutput": "{out}\nr = #1.6\nuneven = ##1\nconstant = ##0",
   "notes": [
     "Uses the population convention (divides by n) over the overlapping length of the two arrays.",
     "Both arguments must be arrays; if lengths differ the shorter length is used."

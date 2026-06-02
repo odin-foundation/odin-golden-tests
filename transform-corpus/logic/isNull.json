@@ -4,9 +4,9 @@
   "title": "%isNull — null test",
   "purpose": "Return true when a value is null (~).",
   "signature": "%isNull <value> -> boolean",
-  "transform": "{out}\nmissing = %isNull @.middleName",
-  "input": "middleName = ~",
-  "expectedOutput": "{out}\nmissing = ?true",
+  "transform": "{out}\nmissing = %isNull @.middleName\npresent = %isNull @.name\nemptyStr = %isNull @.blank",
+  "input": "middleName = ~\nname = \"Ada\"\nblank = \"\"",
+  "expectedOutput": "{out}\nmissing = ?true\npresent = ?false\nemptyStr = ?false",
   "notes": [
     "Only the null type (~) is null; an empty string \"\" is not null — use %ifEmpty for that.",
     "Useful as a guard condition before defaulting with %ifNull."

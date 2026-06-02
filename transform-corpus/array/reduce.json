@@ -4,9 +4,9 @@
   "title": "%reduce — fold an array with a verb",
   "purpose": "Combine all elements into one value using a named verb and a seed.",
   "signature": "%reduce <array> <string:verb> <value:initial> -> value",
-  "transform": "{out}\ntotal = %reduce @.prices \"add\" ##0",
-  "input": "{prices[] : ~}\n##10\n##20\n##30",
-  "expectedOutput": "{out}\ntotal = ##60",
+  "transform": "{out}\ntotal = %reduce @.prices \"add\" ##0\nproduct = %reduce @.factors \"multiply\" ##1\nseeded = %reduce @.prices \"add\" ##100",
+  "input": "{prices[] : ~}\n##10\n##20\n##30\n\n{factors[] : ~}\n##2\n##3\n##4",
+  "expectedOutput": "{out}\ntotal = ##60\nproduct = ##24\nseeded = ##160",
   "notes": [
     "The verb name is a quoted string; it is applied as verb(accumulator, element).",
     "The third argument is the initial accumulator and the result for an empty array."

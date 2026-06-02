@@ -4,9 +4,9 @@
   "title": "%difference — elements only in the first array",
   "purpose": "Return the distinct elements of the first array that are not in the second.",
   "signature": "%difference <array> <array> -> array",
-  "transform": "{out}\nonly = %difference @.a @.b",
-  "input": "{a[] : ~}\n##1\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4",
-  "expectedOutput": "{out.only[] : ~}\n##1",
+  "transform": "{out}\nonly = %difference @.a @.b\nnoOverlap = %difference @.a @.c",
+  "input": "{a[] : ~}\n##1\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4\n\n{c[] : ~}\n##9\n##8",
+  "expectedOutput": "{out}\n{.only[] : ~}\n##1\n{.noOverlap[] : ~}\n##1\n##2\n##3",
   "notes": [
     "Order follows the first array; the result is distinct."
   ],

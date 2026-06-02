@@ -4,15 +4,18 @@
   "title": "%toArray — wrap a value in an array",
   "purpose": "Normalize a scalar (or existing array) into an array so downstream array verbs always have a collection.",
   "signature": "%toArray <value> -> array",
-  "transform": "{out}\narr = %toArray @.raw",
-  "input": "raw = \"single\"",
-  "expectedOutput": "{out.arr[] : ~}\n\"single\"",
+  "transform": "{out}\narr = %toArray @.raw\nfromNum = %toArray @.num",
+  "input": "raw = \"single\"\nnum = ##7",
+  "expectedOutput": "{out}\n{.arr[] : ~}\n\"single\"\n{.fromNum[] : ~}\n##7",
   "notes": [
     "A scalar becomes a single-element array, rendered as an array sub-block headed by {out.arr[] : ~}.",
     "A value that is already an array passes through unchanged.",
     "A null input becomes an empty array, which the serializer elides entirely (no output line)."
   ],
   "avoid": [
-    { "snippet": "arr = %toArray @.raw  ; input ~ then expecting an empty [] line", "why": "a null coerces to an empty array that the serializer omits, so no array block appears at all" }
+    {
+      "snippet": "arr = %toArray @.raw  ; input ~ then expecting an empty [] line",
+      "why": "a null coerces to an empty array that the serializer omits, so no array block appears at all"
+    }
   ]
 }

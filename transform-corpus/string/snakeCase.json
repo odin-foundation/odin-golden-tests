@@ -4,9 +4,9 @@
   "title": "%snakeCase — convert to snake_case",
   "purpose": "Re-case a delimited or mixed-case string into snake_case.",
   "signature": "%snakeCase <string> -> string",
-  "transform": "{out}\nout = %snakeCase @.name",
-  "input": "name = \"helloWorld\"",
-  "expectedOutput": "{out}\nout = \"hello_world\"",
+  "transform": "{out}\nout = %snakeCase @.name\npascal = %snakeCase @.pascal\nkebab = %snakeCase @.kebab",
+  "input": "name = \"helloWorld\"\npascal = \"HelloWorld\"\nkebab = \"hello-world-foo\"",
+  "expectedOutput": "{out}\nout = \"hello_world\"\npascal = \"hello_world\"\nkebab = \"hello_world_foo\"",
   "notes": [
     "Splits on case boundaries and common delimiters, then joins the lowercased words with underscores."
   ],

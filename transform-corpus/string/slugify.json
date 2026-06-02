@@ -4,9 +4,9 @@
   "title": "%slugify — make a URL-safe slug",
   "purpose": "Lowercase a string, strip punctuation, and join words with hyphens.",
   "signature": "%slugify <string> -> string",
-  "transform": "{out}\nout = %slugify @.title",
-  "input": "title = \"Hello World!\"",
-  "expectedOutput": "{out}\nout = \"hello-world\"",
+  "transform": "{out}\nout = %slugify @.title\npunct = %slugify @.messy\nunderscore = %slugify @.snake",
+  "input": "title = \"Hello World!\"\nmessy = \"  --Café & Tea--  \"\nsnake = \"hello_world_foo\"",
+  "expectedOutput": "{out}\nout = \"hello-world\"\npunct = \"caf-tea\"\nunderscore = \"hello-world-foo\"",
   "notes": [
     "Non-word characters are removed, spaces and underscores become hyphens, repeated hyphens collapse, and leading/trailing hyphens are trimmed."
   ],

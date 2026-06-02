@@ -4,9 +4,9 @@
   "title": "%lead — next value at each position",
   "purpose": "Shift values backward so each row sees the following value.",
   "signature": "%lead <array> [<integer:periods>] [<value:default>] -> array",
-  "transform": "{out}\nnext = %lead @.prices",
+  "transform": "{out}\nnext = %lead @.prices\nby2 = %lead @.prices ##2\nwithDefault = %lead @.prices ##1 ##0",
   "input": "{prices[] : ~}\n##10\n##20\n##30",
-  "expectedOutput": "{out}\n{.next[] : ~}\n##20\n##30\n~",
+  "expectedOutput": "{out}\n{.next[] : ~}\n##20\n##30\n~\n{.by2[] : ~}\n##30\n~\n~\n{.withDefault[] : ~}\n##20\n##30\n##0",
   "notes": [
     "Trailing positions use the default (null unless a third argument is given).",
     "Equivalent to looking ahead one position by default."

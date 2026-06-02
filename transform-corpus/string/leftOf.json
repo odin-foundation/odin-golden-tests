@@ -4,9 +4,9 @@
   "title": "%leftOf — text before a delimiter",
   "purpose": "Return the portion of a string before the first occurrence of a delimiter.",
   "signature": "%leftOf <string> <delim:string> -> string",
-  "transform": "{out}\nout = %leftOf @.path \".\"",
-  "input": "path = \"a.b.c\"",
-  "expectedOutput": "{out}\nout = \"a\"",
+  "transform": "{out}\nout = %leftOf @.path \".\"\nnoDelim = %leftOf @.path \"/\"\nleading = %leftOf @.lead \".\"\nmulti = %leftOf @.path \"b\"",
+  "input": "path = \"a.b.c\"\nlead = \".hidden\"",
+  "expectedOutput": "{out}\nout = \"a\"\nnoDelim = \"a.b.c\"\nleading = \"\"\nmulti = \"a.\"",
   "notes": [
     "Two required arguments: the string and the delimiter.",
     "If the delimiter is not found, the original string is returned unchanged."

@@ -4,9 +4,9 @@
   "title": "%isLeapYear — leap-year test",
   "purpose": "Report whether the year of a date is a leap year.",
   "signature": "%isLeapYear <date> -> boolean",
-  "transform": "{out}\nb = %isLeapYear @.date",
-  "input": "date = 2024-06-15",
-  "expectedOutput": "{out}\nb = ?true",
+  "transform": "{out}\nleap = %isLeapYear @.leap\ncommon = %isLeapYear @.common\ncentury = %isLeapYear @.century\ncentury400 = %isLeapYear @.century400",
+  "input": "leap = 2024-06-15\ncommon = 2023-06-15\ncentury = 1900-01-01\ncentury400 = 2000-01-01",
+  "expectedOutput": "{out}\nleap = ?true\ncommon = ?false\ncentury = ?false\ncentury400 = ?true",
   "notes": [
     "Applies the full Gregorian rule (divisible by 4, except centuries not divisible by 400).",
     "2024 is a leap year."

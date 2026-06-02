@@ -4,9 +4,9 @@
   "title": "%explode — one row per array element",
   "purpose": "Expand an array-valued field, emitting one row per element with that field replaced by the element.",
   "signature": "%explode <array> <field> -> array",
-  "transform": "{out}\nrows = %explode @.orders \"tags\"",
-  "input": "{orders[0]}\nid = \"o1\"\n{.tags[] : ~}\n\"red\"\n\"blue\"\n\n{orders[1]}\nid = \"o2\"\n{.tags[] : ~}",
-  "expectedOutput": "{out}\n{.rows[] : id, tags}\n\"o1\", \"red\"\n\"o1\", \"blue\"\n\"o2\",",
+  "transform": "{out}\nrows = %explode @.orders \"tags\"\nmissingField = %explode @.plain \"tags\"",
+  "input": "{orders[0]}\nid = \"o1\"\n{.tags[] : ~}\n\"red\"\n\"blue\"\n\n{orders[1]}\nid = \"o2\"\n{.tags[] : ~}\n\n{plain[0]}\nid = \"p1\"\n\n{plain[1]}\nid = \"p2\"",
+  "expectedOutput": "{out}\n{.rows[] : id, tags}\n\"o1\", \"red\"\n\"o1\", \"blue\"\n\"o2\", \n{.missingField[] : id}\n\"p1\"\n\"p2\"",
   "notes": [
     "Rows whose field is missing or empty are emitted once, unchanged."
   ],

@@ -4,9 +4,9 @@
   "title": "%isFinite — finite-number test",
   "purpose": "Test whether a numeric value is finite (not Infinity or NaN).",
   "signature": "%isFinite <number> -> boolean",
-  "transform": "{out}\nv = %isFinite @.a",
-  "input": "a = #3.5",
-  "expectedOutput": "{out}\nv = ?true",
+  "transform": "{out}\nv = %isFinite @.a\ninteger = %isFinite @.i\nnonNumeric = %isFinite @.s",
+  "input": "a = #3.5\ni = ##42\ns = \"hello\"",
+  "expectedOutput": "{out}\nv = ?true\ninteger = ?true\nnonNumeric = ?false",
   "notes": [
     "Returns a boolean (?).",
     "Non-numeric input types yield false rather than an error."

@@ -4,9 +4,9 @@
   "title": "%startOfMonth — first day of the month",
   "purpose": "Collapse a date to the first day of its calendar month.",
   "signature": "%startOfMonth <date> -> string",
-  "transform": "{out}\nd = %startOfMonth @.date",
-  "input": "date = 2024-06-15",
-  "expectedOutput": "{out}\nd = \"2024-06-01\"",
+  "transform": "{out}\nmid = %startOfMonth @.date\nalready = %startOfMonth @.first",
+  "input": "date = 2024-06-15\nfirst = 2024-06-01",
+  "expectedOutput": "{out}\nmid = \"2024-06-01\"\nalready = \"2024-06-01\"",
   "notes": [
     "Returns an ISO date string (day set to 01).",
     "Month boundaries are computed in UTC."

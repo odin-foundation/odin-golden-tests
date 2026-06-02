@@ -4,9 +4,9 @@
   "title": "%movingAvg — rolling window average",
   "purpose": "Smooth a numeric series with a simple moving average over a fixed window.",
   "signature": "%movingAvg <array:values> <integer:window> -> array",
-  "transform": "{out}\nr = %movingAvg @.prices @.w",
-  "input": "{prices[] : ~}\n##10\n##20\n##30\n##40\n##50\n\nw = ##3",
-  "expectedOutput": "{out}\n{.r[] : ~}\n##10\n##15\n##20\n##30\n##40",
+  "transform": "{out}\nr = %movingAvg @.prices @.w\nwindowOne = %movingAvg @.prices @.one\nwideWindow = %movingAvg @.prices @.big",
+  "input": "{prices[] : ~}\n##10\n##20\n##30\n##40\n##50\n\nw = ##3\none = ##1\nbig = ##10",
+  "expectedOutput": "{out}\n{.r[] : ~}\n##10\n##15\n##20\n##30\n##40\n{.windowOne[] : ~}\n##10\n##20\n##30\n##40\n##50\n{.wideWindow[] : ~}\n##10\n##15\n##20\n##25\n##30",
   "notes": [
     "Returns an array the same length as the input; leading positions use a partial window of the data available so far.",
     "The result is emitted as an array block ({.r[] : ~}) since each position has its own average.",

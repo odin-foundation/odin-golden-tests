@@ -4,9 +4,9 @@
   "title": "%quarter — calendar quarter of a date",
   "purpose": "Return the calendar quarter (1-4) that a date falls in.",
   "signature": "%quarter <date> -> integer",
-  "transform": "{out}\nn = %quarter @.date",
-  "input": "date = 2024-06-15",
-  "expectedOutput": "{out}\nn = ##2",
+  "transform": "{out}\nq2 = %quarter @.date\nq1 = %quarter @.jan\nq4 = %quarter @.dec",
+  "input": "date = 2024-06-15\njan = 2024-01-15\ndec = 2024-12-31",
+  "expectedOutput": "{out}\nq2 = ##2\nq1 = ##1\nq4 = ##4",
   "notes": [
     "Q1 is Jan-Mar, Q2 Apr-Jun, Q3 Jul-Sep, Q4 Oct-Dec.",
     "June falls in Q2."

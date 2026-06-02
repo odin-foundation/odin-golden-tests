@@ -4,14 +4,17 @@
   "title": "%mod — remainder of division",
   "purpose": "Return the remainder of dividing the first number by the second.",
   "signature": "%mod <number:a> <number:b> -> number",
-  "transform": "{out}\nv = %mod @.a @.b",
-  "input": "a = #17\nb = #5",
-  "expectedOutput": "{out}\nv = ##2",
+  "transform": "{out}\nv = %mod @.a @.b\nnegDividend = %mod @.c @.d\nzeroDivisor = %mod @.e @.f",
+  "input": "a = #17\nb = #5\nc = #-17\nd = #5\ne = #10\nf = #0",
+  "expectedOutput": "{out}\nv = ##2\nnegDividend = ##-2\nzeroDivisor = ~",
   "notes": [
     "Argument order is a mod b.",
     "A zero divisor yields null (~) rather than an error."
   ],
   "avoid": [
-    { "snippet": "v = %mod @.a", "why": "two operands are required; one operand raises a verb-arity error" }
+    {
+      "snippet": "v = %mod @.a",
+      "why": "two operands are required; one operand raises a verb-arity error"
+    }
   ]
 }

@@ -4,11 +4,12 @@
   "title": "%take — first N elements",
   "purpose": "Return the first count elements of an array.",
   "signature": "%take <array> <integer:count> -> array",
-  "transform": "{out}\nfirst2 = %take @.items ##2",
+  "transform": "{out}\nfirst2 = %take @.items ##2\nover = %take @.items ##9\nnegative = %take @.items ##-1",
   "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"",
-  "expectedOutput": "{out}\n{.first2[] : ~}\n\"a\"\n\"b\"",
+  "expectedOutput": "{out}\n{.first2[] : ~}\n\"a\"\n\"b\"\n{.over[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"\nnegative = ~",
   "notes": [
-    "A count larger than the array returns the whole array."
+    "A count larger than the array returns the whole array.",
+    "A negative count yields ~."
   ],
   "avoid": []
 }

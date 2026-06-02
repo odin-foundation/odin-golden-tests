@@ -4,14 +4,17 @@
   "title": "%contains — substring test",
   "purpose": "Return true when the string contains the given substring.",
   "signature": "%contains <string> <search:string> -> boolean",
-  "transform": "{out}\nout = %contains @.name \"ond\"",
+  "transform": "{out}\nout = %contains @.name \"ond\"\nmissing = %contains @.name \"xyz\"\ncaseDiff = %contains @.name \"HON\"\nempty = %contains @.name \"\"",
   "input": "name = \"Honda\"",
-  "expectedOutput": "{out}\nout = ?true",
+  "expectedOutput": "{out}\nout = ?true\nmissing = ?false\ncaseDiff = ?false\nempty = ?true",
   "notes": [
     "Two arguments: the haystack string then the quoted needle.",
     "Returns a boolean (? prefix in ODIN output). The match is case-sensitive."
   ],
   "avoid": [
-    { "snippet": "out = %contains @.name ond", "why": "bare word ond is not a quoted literal or path, so it is dropped and the engine raises a 2-argument arity error; quote the needle as \"ond\"" }
+    {
+      "snippet": "out = %contains @.name ond",
+      "why": "bare word ond is not a quoted literal or path, so it is dropped and the engine raises a 2-argument arity error; quote the needle as \"ond\""
+    }
   ]
 }

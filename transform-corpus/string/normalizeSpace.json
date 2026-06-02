@@ -4,9 +4,9 @@
   "title": "%normalizeSpace — collapse and trim whitespace",
   "purpose": "Collapse runs of whitespace to single spaces and trim the ends.",
   "signature": "%normalizeSpace <string> -> string",
-  "transform": "{out}\nout = %normalizeSpace @.raw",
-  "input": "raw = \"  a   b  \"",
-  "expectedOutput": "{out}\nout = \"a b\"",
+  "transform": "{out}\ncollapsed = %normalizeSpace @.raw\ntabs = %normalizeSpace @.tabs\nclean = %normalizeSpace @.clean",
+  "input": "raw = \"  a   b  \"\ntabs = \"a\\tb\\nc\"\nclean = \"already clean\"",
+  "expectedOutput": "{out}\ncollapsed = \"a b\"\ntabs = \"a b c\"\nclean = \"already clean\"",
   "notes": [
     "Single argument. Interior whitespace runs become one space and leading/trailing whitespace is removed."
   ],

@@ -4,9 +4,9 @@
   "title": "%fillMissing — replace null values",
   "purpose": "Substitute a value for null/missing array elements.",
   "signature": "%fillMissing <array> [<value:fill>] [<string:strategy>] -> array",
-  "transform": "{out}\nfilled = %fillMissing @.values ##0",
-  "input": "{values[] : ~}\n##1\n~\n##3",
-  "expectedOutput": "{out}\n{.filled[] : ~}\n##1\n##0\n##3",
+  "transform": "{out}\nfilled = %fillMissing @.values ##0\nforward = %fillMissing @.gaps ##0 \"forward\"\nnoNulls = %fillMissing @.full ##0",
+  "input": "{values[] : ~}\n##1\n~\n##3\n\n{gaps[] : ~}\n##1\n~\n~\n##4\n\n{full[] : ~}\n##5\n##6",
+  "expectedOutput": "{out}\n{.filled[] : ~}\n##1\n##0\n##3\n{.forward[] : ~}\n##1\n##1\n##1\n##4\n{.noNulls[] : ~}\n##5\n##6",
   "notes": [
     "The default strategy replaces each null with the supplied value.",
     "A third argument selects \"forward\", \"backward\", or \"mean\" filling instead."

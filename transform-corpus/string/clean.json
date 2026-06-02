@@ -4,9 +4,9 @@
   "title": "%clean — strip control chars and normalize whitespace",
   "purpose": "Remove control characters, normalize Unicode whitespace to spaces, collapse runs, and trim.",
   "signature": "%clean <string> -> string",
-  "transform": "{out}\nout = %clean @.raw",
-  "input": "raw = \"  hello   world  \"",
-  "expectedOutput": "{out}\nout = \"hello world\"",
+  "transform": "{out}\nout = %clean @.raw\ntabs = %clean @.tabs\nclean = %clean @.tidy",
+  "input": "raw = \"  hello   world  \"\ntabs = \"a\\t\\tb\\nc\"\ntidy = \"already clean\"",
+  "expectedOutput": "{out}\nout = \"hello world\"\ntabs = \"a b c\"\nclean = \"already clean\"",
   "notes": [
     "Single argument. Removes ASCII control characters, maps assorted Unicode spaces to a regular space, then collapses whitespace and trims.",
     "Use %normalizeSpace when only whitespace collapsing is needed."

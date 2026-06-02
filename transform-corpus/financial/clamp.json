@@ -4,9 +4,9 @@
   "title": "%clamp — constrain a value to a range",
   "purpose": "Bound a value between a minimum and a maximum.",
   "signature": "%clamp <number:value> <number:min> <number:max> -> number",
-  "transform": "{out}\nr = %clamp @.value @.min @.max",
-  "input": "value = #150\nmin = #0\nmax = #100",
-  "expectedOutput": "{out}\nr = ##100",
+  "transform": "{out}\nabove = %clamp @.high @.min @.max\nbelow = %clamp @.low @.min @.max\ninRange = %clamp @.mid @.min @.max",
+  "input": "high = #150\nlow = #-20\nmid = #42\nmin = #0\nmax = #100",
+  "expectedOutput": "{out}\nabove = ##100\nbelow = ##0\ninRange = ##42",
   "notes": [
     "A value above max is pulled down to max; a value below min is raised to min.",
     "Arguments are value, then min, then max, in that order."

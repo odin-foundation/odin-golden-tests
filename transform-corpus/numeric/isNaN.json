@@ -4,9 +4,9 @@
   "title": "%isNaN — NaN test",
   "purpose": "Test whether a numeric value is NaN.",
   "signature": "%isNaN <number> -> boolean",
-  "transform": "{out}\nv = %isNaN @.a",
-  "input": "a = #3.5",
-  "expectedOutput": "{out}\nv = ?false",
+  "transform": "{out}\nv = %isNaN @.a\nzero = %isNaN @.z\nnonNumeric = %isNaN @.s",
+  "input": "a = #3.5\nz = ##0\ns = \"hello\"",
+  "expectedOutput": "{out}\nv = ?false\nzero = ?false\nnonNumeric = ?false",
   "notes": [
     "Returns a boolean (?).",
     "Non-numeric input types yield false rather than an error."

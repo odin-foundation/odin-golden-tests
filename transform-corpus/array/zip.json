@@ -4,12 +4,13 @@
   "title": "%zip — pair two arrays element-wise",
   "purpose": "Combine two arrays into an array of positional pairs.",
   "signature": "%zip <array> <array> -> array",
-  "transform": "{out}\npaired = %zip @.names @.scores",
-  "input": "{names[] : ~}\n\"alice\"\n\"bob\"\n{scores[] : ~}\n##90\n##80",
-  "expectedOutput": "{out}\n{.paired[] : [0], [1]}\n\"alice\", ##90\n\"bob\", ##80",
+  "transform": "{out}\npaired = %zip @.names @.scores\nuneven = %zip @.names @.few\nnonArray = %zip @.names @.scalar",
+  "input": "scalar = \"x\"\n\n{names[] : ~}\n\"alice\"\n\"bob\"\n\n{scores[] : ~}\n##90\n##80\n\n{few[] : ~}\n##1",
+  "expectedOutput": "{out}\n{.paired[] : [0], [1]}\n\"alice\", ##90\n\"bob\", ##80\n{.uneven[] : [0], [1]}\n\"alice\", ##1\nnonArray = ~",
   "notes": [
     "Each result element is a [first, second] pair, emitted as a positional tabular block.",
-    "Stops at the length of the shorter array."
+    "Stops at the length of the shorter array.",
+    "A non-array argument yields ~."
   ],
   "avoid": []
 }

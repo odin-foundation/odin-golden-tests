@@ -4,9 +4,9 @@
   "title": "%pmt — level payment for a loan",
   "purpose": "Compute the constant per-period payment that amortizes a principal over n periods.",
   "signature": "%pmt <number:principal> <number:rate> <number:periods> -> number",
-  "transform": "{out}\nr = %pmt @.principal @.rate @.periods",
-  "input": "principal = #200000\nrate = #0.005\nperiods = ##360",
-  "expectedOutput": "{out}\nr = #1199.1010503055138",
+  "transform": "{out}\nr = %pmt @.principal @.rate @.periods\nzeroRate = %pmt @.principal @.zero @.periods\nzeroPeriods = %pmt @.principal @.rate @.noPeriods",
+  "input": "principal = #200000\nrate = #0.005\nperiods = ##360\nzero = #0\nnoPeriods = ##0",
+  "expectedOutput": "{out}\nr = #1199.1010503055138\nzeroRate = #555.5555555555555\nzeroPeriods = ~",
   "notes": [
     "A 200,000 loan at 0.5% per month over 360 months has a monthly payment near 1199.10.",
     "The rate is the per-period rate; for an annual rate divide by the number of periods per year.",

@@ -4,14 +4,17 @@
   "title": "%last — last element of an array",
   "purpose": "Return the last element of an array reference, preserving its type.",
   "signature": "%last <array> -> any",
-  "transform": "{out}\nl = %last @.names",
-  "input": "{names[] : ~}\n\"alice\"\n\"bob\"",
-  "expectedOutput": "{out}\nl = \"bob\"",
+  "transform": "{out}\nl = %last @.names\nnumeric = %last @.amounts\nsingle = %last @.one",
+  "input": "{names[] : ~}\n\"alice\"\n\"bob\"\n\n{amounts[] : ~}\n##10\n##20\n##30\n\n{one[] : ~}\n##42",
+  "expectedOutput": "{out}\nl = \"bob\"\nnumeric = ##30\nsingle = ##42",
   "notes": [
     "Type-preserving: a string element comes back a string, a number stays a number.",
     "An empty or missing array yields ~ (null)."
   ],
   "avoid": [
-    { "snippet": "l = %last @.x  (where x is a scalar)", "why": "%last indexes into an array; a scalar reference resolves to no array and returns ~ instead of the value" }
+    {
+      "snippet": "l = %last @.x  (where x is a scalar)",
+      "why": "%last indexes into an array; a scalar reference resolves to no array and returns ~ instead of the value"
+    }
   ]
 }

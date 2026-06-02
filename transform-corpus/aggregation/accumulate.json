@@ -13,6 +13,9 @@
     "The verb runs as a side effect, conventionally sunk into a throwaway field (_); its return value is the new running total."
   ],
   "avoid": [
-    { "snippet": "_ = %accumulate runningTotal @.amount  (no {$accumulator} block declaring runningTotal)", "why": "an undeclared accumulator makes %accumulate return ~ on every pass, so the total reads as ~ instead of the sum" }
+    {
+      "snippet": "_ = %accumulate runningTotal @.amount  (no {$accumulator} block declaring runningTotal)",
+      "why": "an undeclared accumulator makes %accumulate return ~ on every pass, so the total reads as ~ instead of the sum"
+    }
   ]
 }

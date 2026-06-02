@@ -4,11 +4,12 @@
   "title": "%std — population standard deviation",
   "purpose": "Compute the population standard deviation of a numeric array.",
   "signature": "%std <array:values> -> number",
-  "transform": "{out}\nr = %std @.returns",
-  "input": "{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01",
-  "expectedOutput": "{out}\nr = #0.02",
+  "transform": "{out}\nr = %std @.returns\nflat = %std @.flat\nscalar = %std @.x",
+  "input": "x = #5\n\n{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01\n\n{flat[] : ~}\n#3\n#3\n#3",
+  "expectedOutput": "{out}\nr = #0.02\nflat = ##0\nscalar = ~",
   "notes": [
     "Divides the summed squared deviations by n (population), not n−1.",
+    "Identical values have zero spread, so the result is 0.",
     "Provide the array as a typed array block ({returns[] : ~}); a scalar argument yields ~ (null)."
   ],
   "avoid": [

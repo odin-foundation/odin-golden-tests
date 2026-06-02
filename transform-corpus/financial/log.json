@@ -4,9 +4,9 @@
   "title": "%log — logarithm with optional base",
   "purpose": "Take the logarithm of a value, natural by default or in a given base.",
   "signature": "%log <number:value> <number:base?> -> number",
-  "transform": "{out}\nr = %log @.x @.b",
-  "input": "x = #8\nb = #2",
-  "expectedOutput": "{out}\nr = ##3",
+  "transform": "{out}\nr = %log @.x @.b\nnatural = %log @.e\nbaseOne = %log @.x @.one\nnonPositive = %log @.zero @.b",
+  "input": "x = #8\nb = #2\ne = #2.718281828459045\none = #1\nzero = #0",
+  "expectedOutput": "{out}\nr = ##3\nnatural = ##1\nbaseOne = ~\nnonPositive = ~",
   "notes": [
     "With a second argument the result is log(value) / log(base); here log base 2 of 8 is 3.",
     "Omit the base for the natural logarithm.",

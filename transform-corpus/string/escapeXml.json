@@ -4,9 +4,9 @@
   "title": "%escapeXml — escape XML special characters",
   "purpose": "Escape & < > \" and the apostrophe as XML entities, using &apos; for the apostrophe.",
   "signature": "%escapeXml <string> -> string",
-  "transform": "{out}\nescaped = %escapeXml @.raw",
-  "input": "raw = \"x = 'a' & b\"",
-  "expectedOutput": "{out}\nescaped = \"x = &apos;a&apos; &amp; b\"",
+  "transform": "{out}\nescaped = %escapeXml @.raw\nangles = %escapeXml @.tag\nplain = %escapeXml @.plain",
+  "input": "raw = \"x = 'a' & b\"\ntag = \"<a href=\\\"u\\\">\"\nplain = \"no specials\"",
+  "expectedOutput": "{out}\nescaped = \"x = &apos;a&apos; &amp; b\"\nangles = \"&lt;a href=&quot;u&quot;&gt;\"\nplain = \"no specials\"",
   "notes": [
     "Differs from %escapeHtml only in the apostrophe, which becomes &apos; (valid XML)."
   ],

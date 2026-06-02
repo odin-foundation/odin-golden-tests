@@ -4,15 +4,18 @@
   "title": "%coerceNumber — parse a value to a number",
   "purpose": "Convert a string (or other value) to a typed number, keeping the fractional part.",
   "signature": "%coerceNumber <value> -> number",
-  "transform": "{out}\nn = %coerceNumber @.raw",
-  "input": "raw = \"3.14\"",
-  "expectedOutput": "{out}\nn = #3.14",
+  "transform": "{out}\nn = %coerceNumber @.raw\nwhole = %coerceNumber @.whole\nneg = %coerceNumber @.neg\nbad = %coerceNumber @.bad",
+  "input": "raw = \"3.14\"\nwhole = \"42\"\nneg = \"-2.5\"\nbad = \"not-a-number\"",
+  "expectedOutput": "{out}\nn = #3.14\nwhole = ##42\nneg = #-2.5\nbad = ##0",
   "notes": [
     "The quoted string \"3.14\" becomes the typed number #3.14.",
     "A whole-number input like \"42\" emits as ##42 (integer prefix) because the value has no fractional part — coerceNumber preserves fractions but collapses whole values to integers.",
     "A non-numeric input coerces to ##0 rather than raising an error — validate upstream if that matters."
   ],
   "avoid": [
-    { "snippet": "n = %coerceNumber @.raw  ; input \"3.9\" expecting ##3", "why": "coerceNumber keeps the fraction (#3.9); use %coerceInteger to floor to ##3" }
+    {
+      "snippet": "n = %coerceNumber @.raw  ; input \"3.9\" expecting ##3",
+      "why": "coerceNumber keeps the fraction (#3.9); use %coerceInteger to floor to ##3"
+    }
   ]
 }

@@ -4,9 +4,9 @@
   "title": "%camelCase — convert to camelCase",
   "purpose": "Re-case a delimited or mixed-case string into camelCase.",
   "signature": "%camelCase <string> -> string",
-  "transform": "{out}\nout = %camelCase @.name",
-  "input": "name = \"hello-world\"",
-  "expectedOutput": "{out}\nout = \"helloWorld\"",
+  "transform": "{out}\nout = %camelCase @.name\nsnake = %camelCase @.snake\nspaced = %camelCase @.spaced\nallCaps = %camelCase @.allCaps",
+  "input": "name = \"hello-world\"\nsnake = \"first_name_field\"\nspaced = \"Two Words\"\nallCaps = \"HTTP\"",
+  "expectedOutput": "{out}\nout = \"helloWorld\"\nsnake = \"firstNameField\"\nspaced = \"twoWords\"\nallCaps = \"http\"",
   "notes": [
     "Splits on hyphens, underscores, spaces, and case boundaries, then joins with the first word lowercased and the rest capitalized."
   ],

@@ -4,14 +4,17 @@
   "title": "%capitalize — capitalize the first letter",
   "purpose": "Uppercase the first character and lowercase the rest.",
   "signature": "%capitalize <string> -> string",
-  "transform": "{out}\nout = %capitalize @.word",
-  "input": "word = \"hONDA\"",
-  "expectedOutput": "{out}\nout = \"Honda\"",
+  "transform": "{out}\nout = %capitalize @.word\nmixed = %capitalize @.mixed\nempty = %capitalize @.empty\nsingle = %capitalize @.single",
+  "input": "word = \"hONDA\"\nmixed = \"hELLO wORLD\"\nempty = \"\"\nsingle = \"x\"",
+  "expectedOutput": "{out}\nout = \"Honda\"\nmixed = \"Hello world\"\nempty = \"\"\nsingle = \"X\"",
   "notes": [
     "First character is uppercased and every following character is lowercased.",
     "Operates on the whole string as one word — use %titleCase for per-word capitalization."
   ],
   "avoid": [
-    { "snippet": "out = %capitalize honda", "why": "bare word honda is read as the literal string, capitalizing the literal instead of the field; use @.word" }
+    {
+      "snippet": "out = %capitalize honda",
+      "why": "bare word honda is read as the literal string, capitalizing the literal instead of the field; use @.word"
+    }
   ]
 }

@@ -4,9 +4,9 @@
   "title": "%rank — assign ranks to values",
   "purpose": "Tag each element with a _rank field (ties share a rank).",
   "signature": "%rank <array> [<string:field>] [<string:direction>] -> array",
-  "transform": "{out}\nranked = %rank @.scores",
-  "input": "scores = \"[10, 30, 20]\"",
-  "expectedOutput": "{out}\n{.ranked[] : _rank, value}\n##3, ##10\n##1, ##30\n##2, ##20",
+  "transform": "{out}\nranked = %rank @.scores\nascending = %rank @.scores2 \"\" \"asc\"",
+  "input": "scores = \"[10, 30, 20]\"\nscores2 = \"[10, 30, 20]\"",
+  "expectedOutput": "{out}\n{.ranked[] : _rank, value}\n##3, ##10\n##1, ##30\n##2, ##20\n{.ascending[] : _rank, value}\n##1, ##10\n##3, ##30\n##2, ##20",
   "notes": [
     "Default direction is descending, so the largest value is rank 1.",
     "The array is supplied as a JSON-array string so the added _rank field surfaces in the output."

@@ -4,9 +4,9 @@
   "title": "%some — does any item match a condition",
   "purpose": "Return true when at least one record satisfies a field condition.",
   "signature": "%some <array> <string:field> <string:op> <value> -> boolean",
-  "transform": "{out}\nhasCancelled = %some @.coverages \"status\" \"=\" \"cancelled\"",
+  "transform": "{out}\nhasCancelled = %some @.coverages \"status\" \"=\" \"cancelled\"\nhasPending = %some @.coverages \"status\" \"=\" \"pending\"",
   "input": "{coverages[] : type, status}\n\"liability\", \"active\"\n\"collision\", \"cancelled\"",
-  "expectedOutput": "{out}\nhasCancelled = ?true",
+  "expectedOutput": "{out}\nhasCancelled = ?true\nhasPending = ?false",
   "notes": [
     "Field, operator, and value are three separate quoted arguments.",
     "An empty array returns ?false."

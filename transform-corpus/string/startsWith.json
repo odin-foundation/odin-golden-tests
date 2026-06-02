@@ -4,9 +4,9 @@
   "title": "%startsWith — prefix test",
   "purpose": "Return true when the string begins with the given prefix.",
   "signature": "%startsWith <string> <prefix:string> -> boolean",
-  "transform": "{out}\nout = %startsWith @.name \"Hon\"",
+  "transform": "{out}\nout = %startsWith @.name \"Hon\"\nnoMatch = %startsWith @.name \"civ\"\nempty = %startsWith @.name \"\"",
   "input": "name = \"Honda\"",
-  "expectedOutput": "{out}\nout = ?true",
+  "expectedOutput": "{out}\nout = ?true\nnoMatch = ?false\nempty = ?true",
   "notes": [
     "Two arguments: the string then the quoted prefix.",
     "Returns a boolean (? prefix in ODIN output). The match is case-sensitive."

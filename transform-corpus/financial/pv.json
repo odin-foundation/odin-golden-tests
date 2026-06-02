@@ -4,9 +4,9 @@
   "title": "%pv — present value of an annuity",
   "purpose": "Discount a stream of equal payments to today: PMT × (1 − (1+r)^-n) / r.",
   "signature": "%pv <number:payment> <number:rate> <number:periods> -> number",
-  "transform": "{out}\nr = %pv @.payment @.rate @.periods",
-  "input": "payment = #1000\nrate = #0.005\nperiods = ##120",
-  "expectedOutput": "{out}\nr = #90073.45332716724",
+  "transform": "{out}\nr = %pv @.payment @.rate @.periods\nzeroRate = %pv @.payment @.zero @.periods",
+  "input": "payment = #1000\nrate = #0.005\nperiods = ##120\nzero = #0",
+  "expectedOutput": "{out}\nr = #90073.45332716724\nzeroRate = ##120000",
   "notes": [
     "Receiving 1000 per period at 0.5% per period for 120 periods is worth about 90073.45 today.",
     "First argument is the periodic payment; use %discount for a single future amount.",

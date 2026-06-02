@@ -4,9 +4,9 @@
   "title": "%weekOfYear — ISO week number",
   "purpose": "Return the ISO 8601 week number (1-53) for a date.",
   "signature": "%weekOfYear <date> -> integer",
-  "transform": "{out}\nn = %weekOfYear @.date",
-  "input": "date = 2024-06-15",
-  "expectedOutput": "{out}\nn = ##24",
+  "transform": "{out}\nmid = %weekOfYear @.date\nfirst = %weekOfYear @.jan\nyearEnd = %weekOfYear @.dec",
+  "input": "date = 2024-06-15\njan = 2024-01-04\ndec = 2024-12-31",
+  "expectedOutput": "{out}\nmid = ##24\nfirst = ##1\nyearEnd = ##1",
   "notes": [
     "Follows ISO 8601 week numbering, anchored on the Thursday of each week.",
     "Weeks near year boundaries may belong to the adjacent year."

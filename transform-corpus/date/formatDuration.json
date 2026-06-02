@@ -4,9 +4,9 @@
   "title": "%formatDuration — human-readable duration",
   "purpose": "Render a duration in seconds (or ISO 8601) as English components.",
   "signature": "%formatDuration <integer:seconds> -> string",
-  "transform": "{out}\ns = %formatDuration @.elapsed",
-  "input": "elapsed = ##90061",
-  "expectedOutput": "{out}\ns = \"1 day, 1 hour, 1 minute, 1 second\"",
+  "transform": "{out}\ns = %formatDuration @.elapsed\niso = %formatDuration @.isoDur\noneHour = %formatDuration @.hour\nseconds = %formatDuration @.secs",
+  "input": "elapsed = ##90061\nisoDur = \"PT2H30M\"\nhour = ##3600\nsecs = ##45",
+  "expectedOutput": "{out}\ns = \"1 day, 1 hour, 1 minute, 1 second\"\niso = \"2 hours, 30 minutes\"\noneHour = \"1 hour\"\nseconds = \"45 seconds\"",
   "notes": [
     "A numeric input is treated as seconds and expanded into days, hours, minutes, and seconds.",
     "An ISO 8601 duration string such as \"PT2H30M\" is also accepted; zero components are omitted."

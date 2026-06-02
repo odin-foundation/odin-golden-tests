@@ -4,9 +4,9 @@
   "title": "%sign — sign of a number",
   "purpose": "Return -1, 0, or 1 according to the sign of a number.",
   "signature": "%sign <number> -> integer",
-  "transform": "{out}\nv = %sign @.a",
-  "input": "a = #-3.5",
-  "expectedOutput": "{out}\nv = ##-1",
+  "transform": "{out}\nv = %sign @.a\npositive = %sign @.b\nzero = %sign @.c",
+  "input": "a = #-3.5\nb = #42\nc = #0",
+  "expectedOutput": "{out}\nv = ##-1\npositive = ##1\nzero = ##0",
   "notes": [
     "Returns an integer (##): -1 for negatives, 1 for positives, 0 for zero."
   ],

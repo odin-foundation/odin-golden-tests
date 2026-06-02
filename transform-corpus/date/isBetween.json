@@ -4,14 +4,17 @@
   "title": "%isBetween — inclusive range test",
   "purpose": "Test whether a date falls within a start/end range, inclusive of both ends.",
   "signature": "%isBetween <date> <date:start> <date:end> -> boolean",
-  "transform": "{out}\nb = %isBetween @.d @.start @.end",
-  "input": "d = 2024-06-15\nstart = 2024-01-01\nend = 2024-12-31",
-  "expectedOutput": "{out}\nb = ?true",
+  "transform": "{out}\ninside = %isBetween @.d @.start @.end\natStart = %isBetween @.start @.start @.end\nbefore = %isBetween @.early @.start @.end",
+  "input": "d = 2024-06-15\nstart = 2024-01-01\nend = 2024-12-31\nearly = 2023-06-15",
+  "expectedOutput": "{out}\ninside = ?true\natStart = ?true\nbefore = ?false",
   "notes": [
     "Both bounds are inclusive — a date equal to start or end returns true.",
     "Requires all three date arguments."
   ],
   "avoid": [
-    { "snippet": "b = %isBetween @.d @.start", "why": "the end bound is required; only two dates raises a verb-arity error" }
+    {
+      "snippet": "b = %isBetween @.d @.start",
+      "why": "the end bound is required; only two dates raises a verb-arity error"
+    }
   ]
 }

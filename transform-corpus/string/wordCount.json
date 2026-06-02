@@ -4,9 +4,9 @@
   "title": "%wordCount — count words",
   "purpose": "Count the whitespace-separated words in a string.",
   "signature": "%wordCount <string> -> integer",
-  "transform": "{out}\nout = %wordCount @.text",
-  "input": "text = \"the quick brown fox\"",
-  "expectedOutput": "{out}\nout = ##4",
+  "transform": "{out}\nout = %wordCount @.text\nsingle = %wordCount @.one\npadded = %wordCount @.spaced\nempty = %wordCount @.blank",
+  "input": "text = \"the quick brown fox\"\none = \"hello\"\nspaced = \"  a   b  \"\nblank = \"\"",
+  "expectedOutput": "{out}\nout = ##4\nsingle = ##1\npadded = ##2\nempty = ##0",
   "notes": [
     "Single argument. Returns an integer (## prefix). Empty or whitespace-only input yields 0."
   ],

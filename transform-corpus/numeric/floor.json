@@ -4,9 +4,9 @@
   "title": "%floor — round down to integer",
   "purpose": "Round a number down toward negative infinity, returning an integer.",
   "signature": "%floor <number> -> integer",
-  "transform": "{out}\nv = %floor @.a",
-  "input": "a = #3.7",
-  "expectedOutput": "{out}\nv = ##3",
+  "transform": "{out}\nv = %floor @.a\nnegative = %floor @.neg\nalready = %floor @.whole\nofNull = %floor @.nul",
+  "input": "a = #3.7\nneg = #-3.2\nwhole = ##5\nnul = ~",
+  "expectedOutput": "{out}\nv = ##3\nnegative = ##-4\nalready = ##5\nofNull = ##0",
   "notes": [
     "Always returns an integer (##), even for a fractional input.",
     "Rounds toward negative infinity, so -3.2 would floor to -4 (use %trunc to round toward zero)."

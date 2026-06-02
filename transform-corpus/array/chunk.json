@@ -4,9 +4,9 @@
   "title": "%chunk — split into fixed-size groups",
   "purpose": "Break an array into sub-arrays of a given size.",
   "signature": "%chunk <array> <integer:size> -> array",
-  "transform": "{out}\npages = %chunk @.items ##2",
-  "input": "{items[] : ~}\n##1\n##2\n##3\n##4\n##5",
-  "expectedOutput": "{out}\n{.pages[] : [0], [1]}\n##1, ##2\n##3, ##4\n##5,",
+  "transform": "{out}\npages = %chunk @.items ##2\nzeroSize = %chunk @.items ##0\nnonArray = %chunk @.notArr ##2",
+  "input": "notArr = \"x\"\n\n{items[] : ~}\n##1\n##2\n##3\n##4\n##5",
+  "expectedOutput": "{out}\n{.pages[] : [0], [1]}\n##1, ##2\n##3, ##4\n##5, \nzeroSize = ~\nnonArray = ~",
   "notes": [
     "Each chunk is a positional pair/tuple block; a trailing partial chunk keeps remaining elements.",
     "A size of zero or less returns null."

@@ -4,9 +4,9 @@
   "title": "%isValidDate — strict format-and-value check",
   "purpose": "Validate that a string matches a date format and names a real calendar date.",
   "signature": "%isValidDate <string:value> <string:format> -> boolean",
-  "transform": "{out}\nb = %isValidDate @.raw \"YYYY-MM-DD\"",
-  "input": "raw = \"2024-02-29\"",
-  "expectedOutput": "{out}\nb = ?true",
+  "transform": "{out}\nvalid = %isValidDate @.raw \"YYYY-MM-DD\"\nbadMonth = %isValidDate @.badMonth \"YYYY-MM-DD\"\nfeb29Common = %isValidDate @.feb29 \"YYYY-MM-DD\"\nslash = %isValidDate @.slash \"MM/DD/YYYY\"",
+  "input": "raw = \"2024-02-29\"\nbadMonth = \"2024-13-01\"\nfeb29 = \"2023-02-29\"\nslash = \"12/31/2024\"",
+  "expectedOutput": "{out}\nvalid = ?true\nbadMonth = ?false\nfeb29Common = ?false\nslash = ?true",
   "notes": [
     "Checks both the literal format and that the day exists — Feb 29 is valid only in leap years.",
     "Supported formats are YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, and YYYY/MM/DD."

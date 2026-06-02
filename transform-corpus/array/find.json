@@ -4,9 +4,9 @@
   "title": "%find — first record matching a condition",
   "purpose": "Return the first record where a field matches, or null.",
   "signature": "%find <array> <string:field> <string:op> <value> -> object",
-  "transform": "{out}\n{.first} = %find @.coverages \"status\" \"=\" \"active\"",
+  "transform": "{out}\nmissing = %find @.coverages \"status\" \"=\" \"void\"\n{.first} = %find @.coverages \"status\" \"=\" \"active\"",
   "input": "{coverages[] : type, status}\n\"liability\", \"cancelled\"\n\"collision\", \"active\"",
-  "expectedOutput": "{out}\n{.first}\ntype = \"collision\"\nstatus = \"active\"",
+  "expectedOutput": "{out}\nmissing = ~\n{.first}\ntype = \"collision\"\nstatus = \"active\"",
   "notes": [
     "Returns a single object, emitted as a relative sub-section ({.first}).",
     "No match returns null (~)."

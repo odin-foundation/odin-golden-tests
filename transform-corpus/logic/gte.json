@@ -4,9 +4,9 @@
   "title": "%gte — greater than or equal",
   "purpose": "Return true when the first value is greater than or equal to the second.",
   "signature": "%gte <a:value> <b:value> -> boolean",
-  "transform": "{out}\nok = %gte @.score ##60",
-  "input": "score = ##60",
-  "expectedOutput": "{out}\nok = ?true",
+  "transform": "{out}\nok = %gte @.score ##60\nbelow = %gte @.low ##60\nabove = %gte @.high ##60",
+  "input": "score = ##60\nlow = ##59\nhigh = ##90",
+  "expectedOutput": "{out}\nok = ?true\nbelow = ?false\nabove = ?true",
   "notes": [
     "Inclusive at the boundary: 60 >= 60 is true.",
     "Combine with %lt for inclusive-lower, exclusive-upper bands."

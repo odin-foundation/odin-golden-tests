@@ -4,9 +4,9 @@
   "title": "%drop — skip first N elements",
   "purpose": "Return the array with the first count elements removed.",
   "signature": "%drop <array> <integer:count> -> array",
-  "transform": "{out}\nrest = %drop @.items ##2",
-  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"",
-  "expectedOutput": "{out}\n{.rest[] : ~}\n\"c\"\n\"d\"",
+  "transform": "{out}\nrest = %drop @.items ##2\ndropNone = %drop @.items ##0\nnegative = %drop @.items ##-1\nnonArray = %drop @.notArr ##1",
+  "input": "notArr = \"x\"\n\n{items[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"",
+  "expectedOutput": "{out}\n{.rest[] : ~}\n\"c\"\n\"d\"\n{.dropNone[] : ~}\n\"a\"\n\"b\"\n\"c\"\n\"d\"\nnegative = ~\nnonArray = ~",
   "notes": [
     "The complement of %take: drops the leading count elements."
   ],

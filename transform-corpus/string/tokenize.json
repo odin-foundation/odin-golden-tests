@@ -4,9 +4,9 @@
   "title": "%tokenize — split text into tokens",
   "purpose": "Split text into an array of tokens, on whitespace by default.",
   "signature": "%tokenize <string> [delim:string] -> array",
-  "transform": "{out}\nout = %tokenize @.text",
-  "input": "text = \"the quick fox\"",
-  "expectedOutput": "{out}\n{.out[] : ~}\n\"the\"\n\"quick\"\n\"fox\"",
+  "transform": "{out}\nout = %tokenize @.text\ncomma = %tokenize @.csv \",\"\nspaced = %tokenize @.padded",
+  "input": "text = \"the quick fox\"\ncsv = \"a, b ,c\"\npadded = \"  one   two  \"",
+  "expectedOutput": "{out}\n{.out[] : ~}\n\"the\"\n\"quick\"\n\"fox\"\n{.comma[] : ~}\n\"a\"\n\"b\"\n\"c\"\n{.spaced[] : ~}\n\"one\"\n\"two\"",
   "notes": [
     "Returns an array, serialized as an ODIN array section. With no delimiter it splits on whitespace and drops empty tokens.",
     "Pass an optional delimiter to split on a specific character; tokens are trimmed when a delimiter is given."

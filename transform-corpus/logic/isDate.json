@@ -4,14 +4,17 @@
   "title": "%isDate — date-type test",
   "purpose": "Return true when a value is a date or timestamp type.",
   "signature": "%isDate <value> -> boolean",
-  "transform": "{out}\nisDt = %isDate %coerceDate @.born",
+  "transform": "{out}\nisDt = %isDate %coerceDate @.born\nnotDate = %isDate @.born",
   "input": "born = \"2020-01-15\"",
-  "expectedOutput": "{out}\nisDt = ?true",
+  "expectedOutput": "{out}\nisDt = ?true\nnotDate = ?false",
   "notes": [
     "True for both date and timestamp types.",
     "An ISO string arriving as text is a string, not a date — %coerceDate promotes it to a real date first."
   ],
   "avoid": [
-    { "snippet": "isDt = %isDate @.born", "why": "when born arrives as the plain string \"2020-01-15\" its type is string, so %isDate returns ?false despite looking date-like. Coerce with %coerceDate before testing." }
+    {
+      "snippet": "isDt = %isDate @.born",
+      "why": "when born arrives as the plain string \"2020-01-15\" its type is string, so %isDate returns ?false despite looking date-like. Coerce with %coerceDate before testing."
+    }
   ]
 }

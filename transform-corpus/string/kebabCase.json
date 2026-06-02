@@ -4,9 +4,9 @@
   "title": "%kebabCase — convert to kebab-case",
   "purpose": "Re-case a delimited or mixed-case string into kebab-case.",
   "signature": "%kebabCase <string> -> string",
-  "transform": "{out}\nout = %kebabCase @.name",
-  "input": "name = \"helloWorld\"",
-  "expectedOutput": "{out}\nout = \"hello-world\"",
+  "transform": "{out}\nout = %kebabCase @.name\nsnake = %kebabCase @.snake\nspaced = %kebabCase @.spaced\nallCaps = %kebabCase @.allCaps",
+  "input": "name = \"helloWorld\"\nsnake = \"first_name\"\nspaced = \"Two Words\"\nallCaps = \"HTTPServer\"",
+  "expectedOutput": "{out}\nout = \"hello-world\"\nsnake = \"first-name\"\nspaced = \"two-words\"\nallCaps = \"http-server\"",
   "notes": [
     "Splits on case boundaries and common delimiters, then joins the lowercased words with hyphens."
   ],

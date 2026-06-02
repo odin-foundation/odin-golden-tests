@@ -4,9 +4,9 @@
   "title": "%isArray — array-type test",
   "purpose": "Return true when a value is an array.",
   "signature": "%isArray <value> -> boolean",
-  "transform": "{out}\nisList = %isArray @.tags",
-  "input": "{tags[] : ~}\n\"a\"\n\"b\"",
-  "expectedOutput": "{out}\nisList = ?true",
+  "transform": "{out}\nisList = %isArray @.tags\nnotList = %isArray @.name",
+  "input": "name = \"Ada\"\n\n{tags[] : ~}\n\"a\"\n\"b\"",
+  "expectedOutput": "{out}\nisList = ?true\nnotList = ?false",
   "notes": [
     "The source declares the array with a {tags[] : ~} block of one value per line.",
     "Distinguishes arrays from objects; use %isObject for the latter."

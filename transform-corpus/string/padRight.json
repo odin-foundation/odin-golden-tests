@@ -4,14 +4,17 @@
   "title": "%padRight — right-pad to a width",
   "purpose": "Pad the end of a string with a fill character until it reaches a target length.",
   "signature": "%padRight <string> <length:integer> <char:string> -> string",
-  "transform": "{out}\nout = %padRight @.code ##6 \"0\"",
-  "input": "code = \"42\"",
-  "expectedOutput": "{out}\nout = \"420000\"",
+  "transform": "{out}\npadded = %padRight @.code ##6 \"0\"\nalready = %padRight @.long ##3 \"0\"\nexact = %padRight @.exact ##2 \"0\"",
+  "input": "code = \"42\"\nlong = \"123456\"\nexact = \"42\"",
+  "expectedOutput": "{out}\npadded = \"420000\"\nalready = \"123456\"\nexact = \"42\"",
   "notes": [
     "Three required arguments: string, target length, fill character.",
     "Only the first character of the fill argument is used. A string already at or above the length is returned unchanged."
   ],
   "avoid": [
-    { "snippet": "out = %padRight @.code ##6", "why": "omitting the fill-character argument fails the 3-argument requirement and yields null (~)" }
+    {
+      "snippet": "out = %padRight @.code ##6",
+      "why": "omitting the fill-character argument fails the 3-argument requirement and yields null (~)"
+    }
   ]
 }

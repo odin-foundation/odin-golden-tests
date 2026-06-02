@@ -4,9 +4,9 @@
   "title": "%mask — apply a formatting mask",
   "purpose": "Lay a string's characters into a template, inserting literal mask punctuation.",
   "signature": "%mask <string> <pattern:string> -> string",
-  "transform": "{out}\nout = %mask @.ssn \"###-##-####\"",
-  "input": "ssn = \"123456789\"",
-  "expectedOutput": "{out}\nout = \"123-45-6789\"",
+  "transform": "{out}\nssn = %mask @.ssn \"###-##-####\"\nshort = %mask @.short \"###-##-####\"\nphone = %mask @.phone \"(###) ###-####\"",
+  "input": "ssn = \"123456789\"\nshort = \"12\"\nphone = \"5551234567\"",
+  "expectedOutput": "{out}\nssn = \"123-45-6789\"\nshort = \"12\"\nphone = \"(555) 123-4567\"",
   "notes": [
     "In the mask, the characters # A and * each consume one source character; any other character is emitted literally.",
     "Two required arguments: the source string and the mask pattern."

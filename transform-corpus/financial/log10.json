@@ -4,9 +4,9 @@
   "title": "%log10 — base-10 logarithm",
   "purpose": "Take the base-10 logarithm of a value.",
   "signature": "%log10 <number:value> -> number",
-  "transform": "{out}\nr = %log10 @.x",
-  "input": "x = #1000",
-  "expectedOutput": "{out}\nr = ##3",
+  "transform": "{out}\nr = %log10 @.thousand\none = %log10 @.one\nzero = %log10 @.zero\nnegative = %log10 @.neg",
+  "input": "thousand = #1000\none = #1\nzero = #0\nneg = #-5",
+  "expectedOutput": "{out}\nr = ##3\none = ##0\nzero = ~\nnegative = ~",
   "notes": [
     "log10(1000) is 3.",
     "A value <= 0 yields ~ (null)."

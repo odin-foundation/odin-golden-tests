@@ -4,9 +4,9 @@
   "title": "%pivot — records to a keyed object",
   "purpose": "Reshape an array of records into one object keyed by a field.",
   "signature": "%pivot <array> <string:keyField> <string:valueField> -> object",
-  "transform": "{out}\n{.lookup} = %pivot @.items \"name\" \"value\"",
-  "input": "{items[] : name, value}\n\"a\", ##1\n\"b\", ##2",
-  "expectedOutput": "{out}\n{.lookup}\na = ##1\nb = ##2",
+  "transform": "{out}\n{.lookup} = %pivot @.items \"name\" \"value\"\n{.dupKeys} = %pivot @.dups \"name\" \"value\"",
+  "input": "{items[] : name, value}\n\"a\", ##1\n\"b\", ##2\n\n{dups[] : name, value}\n\"a\", ##1\n\"a\", ##9",
+  "expectedOutput": "{out}\ndupKeys.a = ##9\n{.lookup}\na = ##1\nb = ##2",
   "notes": [
     "Keys come from keyField and values from valueField; duplicate keys keep the last value.",
     "The result is an object, emitted as a relative sub-section ({.lookup})."

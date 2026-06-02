@@ -4,14 +4,17 @@
   "title": "%gt — greater than",
   "purpose": "Return true when the first value is strictly greater than the second.",
   "signature": "%gt <a:value> <b:value> -> boolean",
-  "transform": "{out}\nbig = %gt @.amount ##1000",
-  "input": "amount = ##2500",
-  "expectedOutput": "{out}\nbig = ?true",
+  "transform": "{out}\nbig = %gt @.amount ##1000\nequalNotGt = %gt @.edge ##1000\nsmall = %gt @.little ##1000",
+  "input": "amount = ##2500\nedge = ##1000\nlittle = ##50",
+  "expectedOutput": "{out}\nbig = ?true\nequalNotGt = ?false\nsmall = ?false",
   "notes": [
     "Numeric operands compare numerically; two strings compare lexically.",
     "This is the canonical condition builder for %ifElse, %and, %or, and %assert."
   ],
   "avoid": [
-    { "snippet": "big = %gt \"@.amount > 1000\"", "why": "%gt needs two separate operands; a single quoted infix string is just one argument, so the transform fails with a 'requires 2 arguments' error. Write %gt @.amount ##1000." }
+    {
+      "snippet": "big = %gt \"@.amount > 1000\"",
+      "why": "%gt needs two separate operands; a single quoted infix string is just one argument, so the transform fails with a 'requires 2 arguments' error. Write %gt @.amount ##1000."
+    }
   ]
 }

@@ -4,9 +4,9 @@
   "title": "%at — element at an index",
   "purpose": "Read a single array element by index, supporting negative indices.",
   "signature": "%at <array> <integer:index> -> value",
-  "transform": "{out}\nlast = %at @.items ##-1",
-  "input": "{items[] : ~}\n\"a\"\n\"b\"\n\"c\"",
-  "expectedOutput": "{out}\nlast = \"c\"",
+  "transform": "{out}\nlast = %at @.items ##-1\nfirst = %at @.items ##0\noutOfRange = %at @.items ##9\nbeyondNeg = %at @.items ##-9\nnonArray = %at @.notArr ##0",
+  "input": "notArr = \"x\"\n\n{items[] : ~}\n\"a\"\n\"b\"\n\"c\"",
+  "expectedOutput": "{out}\nlast = \"c\"\nfirst = \"a\"\noutOfRange = ~\nbeyondNeg = ~\nnonArray = ~",
   "notes": [
     "Negative indices count from the end (##-1 is the last element).",
     "Out-of-range indices return null (~)."

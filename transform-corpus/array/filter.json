@@ -4,14 +4,17 @@
   "title": "%filter — keep array elements matching a condition",
   "purpose": "Filter an array of objects to the rows where a field matches a value.",
   "signature": "%filter <array> <string:field> <string:op> <value> -> array",
-  "transform": "{out}\nactive = %filter @.coverages \"status\" \"=\" \"active\"",
-  "input": "{coverages[] : type, status}\n\"liability\", \"active\"\n\"collision\", \"cancelled\"\n\"comprehensive\", \"active\"",
-  "expectedOutput": "{out}\n{.active[] : type, status}\n\"liability\", \"active\"\n\"comprehensive\", \"active\"",
+  "transform": "{out}\nactive = %filter @.coverages \"status\" \"=\" \"active\"\ngreater = %filter @.coverages \"limit\" \">\" ##100\nnotActive = %filter @.coverages \"status\" \"!=\" \"active\"",
+  "input": "{coverages[] : type, status, limit}\n\"liability\", \"active\", ##50\n\"collision\", \"cancelled\", ##200\n\"comprehensive\", \"active\", ##300",
+  "expectedOutput": "{out}\n{.active[] : type, status, limit}\n\"liability\", \"active\", ##50\n\"comprehensive\", \"active\", ##300\n{.greater[] : type, status, limit}\n\"collision\", \"cancelled\", ##200\n\"comprehensive\", \"active\", ##300\n{.notActive[] : type, status, limit}\n\"collision\", \"cancelled\", ##200",
   "notes": [
     "The field, operator, and value are three separate quoted arguments — not one condition string.",
     "The kept rows are emitted as a relative tabular sub-block ({.active[] : ...}) under the output section."
   ],
   "avoid": [
-    { "snippet": "active = %filter @.coverages \"status = active\"", "why": "the condition is three arguments (field, op, value), not one quoted infix string; a single string raises a verb-arity error" }
+    {
+      "snippet": "active = %filter @.coverages \"status = active\"",
+      "why": "the condition is three arguments (field, op, value), not one quoted infix string; a single string raises a verb-arity error"
+    }
   ]
 }

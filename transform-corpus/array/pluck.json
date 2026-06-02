@@ -4,9 +4,9 @@
   "title": "%pluck — extract a field from each record",
   "purpose": "Collect one field value from every object into an array.",
   "signature": "%pluck <array> <string:field> -> array",
-  "transform": "{out}\nids = %pluck @.users \"id\"",
+  "transform": "{out}\nids = %pluck @.users \"id\"\nmissing = %pluck @.users \"email\"",
   "input": "{users[] : id, name}\n\"u1\", \"alice\"\n\"u2\", \"bob\"",
-  "expectedOutput": "{out}\n{.ids[] : ~}\n\"u1\"\n\"u2\"",
+  "expectedOutput": "{out}\n{.ids[] : ~}\n\"u1\"\n\"u2\"\n{.missing[] : ~}\n~\n~",
   "notes": [
     "Behaves like %map: projects the named field into a flat array."
   ],

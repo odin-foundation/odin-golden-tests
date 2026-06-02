@@ -4,9 +4,9 @@
   "title": "%ceil — round up to integer",
   "purpose": "Round a number up toward positive infinity, returning an integer.",
   "signature": "%ceil <number> -> integer",
-  "transform": "{out}\nv = %ceil @.a",
-  "input": "a = #3.2",
-  "expectedOutput": "{out}\nv = ##4",
+  "transform": "{out}\nv = %ceil @.a\nnegative = %ceil @.neg\nalready = %ceil @.whole\nofNull = %ceil @.nul",
+  "input": "a = #3.2\nneg = #-3.7\nwhole = ##5\nnul = ~",
+  "expectedOutput": "{out}\nv = ##4\nnegative = ##-3\nalready = ##5\nofNull = ##0",
   "notes": [
     "Always returns an integer (##), even for a fractional input.",
     "Rounds toward positive infinity, so -3.7 would ceil to -3."

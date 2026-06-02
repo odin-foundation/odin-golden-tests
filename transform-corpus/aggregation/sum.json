@@ -4,15 +4,18 @@
   "title": "%sum — total of an array's numeric values",
   "purpose": "Reduce an array reference to the sum of its numeric elements.",
   "signature": "%sum <array> -> number",
-  "transform": "{out}\ntotal = %sum @.amounts",
-  "input": "{amounts[] : ~}\n##10\n##20\n##30",
-  "expectedOutput": "{out}\ntotal = ##60",
+  "transform": "{out}\ntotal = %sum @.amounts\nfractional = %sum @.prices\nnegatives = %sum @.deltas\nsingle = %sum @.one",
+  "input": "{amounts[] : ~}\n##10\n##20\n##30\n\n{prices[] : ~}\n#1.5\n#2.25\n\n{deltas[] : ~}\n##-10\n##20\n##-40\n\n{one[] : ~}\n##42",
+  "expectedOutput": "{out}\ntotal = ##60\nfractional = #3.75\nnegatives = ##-30\nsingle = ##42",
   "notes": [
     "Takes a single array reference and folds its elements; it is not variadic over scalar arguments.",
     "A whole-number total is emitted as an integer (##); a fractional total stays a number (#).",
     "Point the reference at an object-field array (@.lines.amount) to sum one field across records."
   ],
   "avoid": [
-    { "snippet": "total = %sum @.x  (where x is a scalar number)", "why": "%sum expects an array; a scalar reference resolves to no array and silently returns #0 rather than the value or an error" }
+    {
+      "snippet": "total = %sum @.x  (where x is a scalar number)",
+      "why": "%sum expects an array; a scalar reference resolves to no array and silently returns #0 rather than the value or an error"
+    }
   ]
 }

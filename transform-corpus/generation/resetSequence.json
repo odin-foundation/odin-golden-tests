@@ -4,15 +4,18 @@
   "title": "%resetSequence — reset a named counter",
   "purpose": "Reset a named counter so a later %sequence on that name restarts.",
   "signature": "%resetSequence <string:name> -> integer",
-  "transform": "{out}\nresetTo = %resetSequence \"ctr\"",
+  "transform": "{out}\nresetTo = %resetSequence \"ctr\"\nadvanced = %sequence \"hits\"\nadvanced2 = %sequence \"hits\"\nresetAfterUse = %resetSequence \"hits\"\nnextAfterReset = %sequence \"hits\"\nresetUnused = %resetSequence \"fresh\"",
   "input": "x = \"a\"",
-  "expectedOutput": "{out}\nresetTo = ##0",
+  "expectedOutput": "{out}\nresetTo = ##0\nadvanced = ##1\nadvanced2 = ##2\nresetAfterUse = ##0\nnextAfterReset = ##1\nresetUnused = ##0",
   "notes": [
     "The single argument is the quoted counter name; resetting returns ##0, and the next %sequence on that name yields ##1.",
     "Counter state is scoped to one transform execution.",
     "Deterministic, so it is corpus-safe."
   ],
   "avoid": [
-    { "snippet": "r = %resetSequence \"ctr\" ##5", "why": "an inline reset value is rejected — a literal after the name raises a parse error (Unexpected content after value); the reset is always to 0" }
+    {
+      "snippet": "r = %resetSequence \"ctr\" ##5",
+      "why": "an inline reset value is rejected — a literal after the name raises a parse error (Unexpected content after value); the reset is always to 0"
+    }
   ]
 }

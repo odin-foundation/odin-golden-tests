@@ -4,9 +4,9 @@
   "title": "%formatTime — render the time portion of a timestamp",
   "purpose": "Format the clock portion of a timestamp using a display pattern.",
   "signature": "%formatTime <timestamp> <string:pattern> -> string",
-  "transform": "{out}\nt = %formatTime @.ts \"HH:mm:ss\"",
-  "input": "ts = 2024-06-15T14:30:45Z",
-  "expectedOutput": "{out}\nt = \"14:30:45\"",
+  "transform": "{out}\nt = %formatTime @.ts \"HH:mm:ss\"\nshort = %formatTime @.ts \"HH:mm\"\nmidnight = %formatTime @.mid \"HH:mm:ss\"",
+  "input": "ts = 2024-06-15T14:30:45Z\nmid = 2024-06-15T00:00:00Z",
+  "expectedOutput": "{out}\nt = \"14:30:45\"\nshort = \"14:30\"\nmidnight = \"00:00:00\"",
   "notes": [
     "HH is 24-hour; use hh with A for a 12-hour clock.",
     "Time components are read in UTC."

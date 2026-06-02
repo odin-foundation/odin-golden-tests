@@ -4,12 +4,13 @@
   "title": "%variance — population variance",
   "purpose": "Compute the population variance of a numeric array.",
   "signature": "%variance <array:values> -> number",
-  "transform": "{out}\nr = %variance @.returns",
-  "input": "{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01",
-  "expectedOutput": "{out}\nr = #0.0004000000000000001",
+  "transform": "{out}\nr = %variance @.returns\nflat = %variance @.flat\nscalar = %variance @.x",
+  "input": "x = #5\n\n{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01\n\n{flat[] : ~}\n#7\n#7\n#7",
+  "expectedOutput": "{out}\nr = #0.0004000000000000001\nflat = ##0\nscalar = ~",
   "notes": [
     "Divides the summed squared deviations by n (population); it is the square of %std.",
-    "The full-precision float, including floating-point noise, is preserved in the output."
+    "The full-precision float, including floating-point noise, is preserved in the output.",
+    "Identical values have zero spread, so the result is 0; a scalar argument yields ~ (null)."
   ],
   "avoid": []
 }

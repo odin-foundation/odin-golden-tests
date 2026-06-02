@@ -4,9 +4,9 @@
   "title": "%truncate — cut a string to a max length",
   "purpose": "Return at most the first N characters of a string.",
   "signature": "%truncate <string> <length:integer> -> string",
-  "transform": "{out}\nout = %truncate @.name ##3",
+  "transform": "{out}\nout = %truncate @.name ##3\nwhole = %truncate @.name ##99\nexact = %truncate @.name ##5",
   "input": "name = \"Honda\"",
-  "expectedOutput": "{out}\nout = \"Hon\"",
+  "expectedOutput": "{out}\nout = \"Hon\"\nwhole = \"Honda\"\nexact = \"Honda\"",
   "notes": [
     "Two required arguments: string and max length.",
     "No ellipsis is appended — the result is a plain slice of the first N characters."

@@ -4,15 +4,21 @@
   "title": "%lower — lowercase a string",
   "purpose": "Lowercase every character of a string value.",
   "signature": "%lower <string> -> string",
-  "transform": "{out}\nout = %lower @.name",
-  "input": "name = \"HONDA\"",
-  "expectedOutput": "{out}\nout = \"honda\"",
+  "transform": "{out}\nname = %lower @.name\nmixed = %lower @.mixed\nempty = %lower @.empty",
+  "input": "name = \"HONDA\"\nmixed = \"Honda CIVIC\"\nempty = \"\"",
+  "expectedOutput": "{out}\nname = \"honda\"\nmixed = \"honda civic\"\nempty = \"\"",
   "notes": [
     "First and only argument is the string to lowercase.",
     "The argument must be a reference (@.name) or a quoted literal — a bare word is read as a literal string, not a path."
   ],
   "avoid": [
-    { "snippet": "out = %lower", "why": "missing the source argument — the engine raises a verb-arity error" },
-    { "snippet": "out = %lower name", "why": "bare word name is read as the literal string \"name\", producing \"name\"; use @.name to read the field" }
+    {
+      "snippet": "out = %lower",
+      "why": "missing the source argument — the engine raises a verb-arity error"
+    },
+    {
+      "snippet": "out = %lower name",
+      "why": "bare word name is read as the literal string \"name\", producing \"name\"; use @.name to read the field"
+    }
   ]
 }

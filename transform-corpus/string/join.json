@@ -4,9 +4,9 @@
   "title": "%join — join array elements with a delimiter",
   "purpose": "Concatenate the elements of an array into a single string separated by a delimiter.",
   "signature": "%join <array> <delim:string> -> string",
-  "transform": "{out}\nout = %join @.tags \", \"",
-  "input": "tags[0] = \"a\"\ntags[1] = \"b\"\ntags[2] = \"c\"",
-  "expectedOutput": "{out}\nout = \"a, b, c\"",
+  "transform": "{out}\nout = %join @.tags \", \"\npipe = %join @.tags \"|\"\nsingle = %join @.one \", \"\nnums = %join @.nums \"-\"",
+  "input": "tags[0] = \"a\"\ntags[1] = \"b\"\ntags[2] = \"c\"\none[0] = \"solo\"\nnums[0] = ##1\nnums[1] = ##2",
+  "expectedOutput": "{out}\nout = \"a, b, c\"\npipe = \"a|b|c\"\nsingle = \"solo\"\nnums = \"1-2\"",
   "notes": [
     "First argument is an array reference; second is the quoted delimiter.",
     "An array source is supplied in ODIN with indexed assignments (tags[0], tags[1], ...)."

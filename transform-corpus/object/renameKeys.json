@@ -4,9 +4,9 @@
   "title": "%renameKeys — rename keys via a mapping",
   "purpose": "Rename object keys according to an old-to-new mapping object.",
   "signature": "%renameKeys <object> <mapping> -> object",
-  "transform": "{out}\nrenamed = %renameKeys @.rec @.mapping",
-  "input": "{rec}\nfn = \"Ada\"\nkeep = \"as-is\"\n\n{mapping}\nfn = \"firstName\"",
-  "expectedOutput": "{out}\n{.renamed}\nfirstName = \"Ada\"\nkeep = \"as-is\"",
+  "transform": "{out}\nrenamed = %renameKeys @.rec @.mapping\nnonObject = %renameKeys @.notObj @.mapping",
+  "input": "notObj = \"x\"\n\n{rec}\nfn = \"Ada\"\nkeep = \"as-is\"\n\n{mapping}\nfn = \"firstName\"",
+  "expectedOutput": "{out}\nnonObject = ~\n{.renamed}\nfirstName = \"Ada\"\nkeep = \"as-is\"",
   "notes": [
     "Keys absent from the mapping are passed through unchanged."
   ],

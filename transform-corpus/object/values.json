@@ -4,9 +4,9 @@
   "title": "%values — property values of an object",
   "purpose": "Return the own enumerable property values of an object as an array.",
   "signature": "%values <object> -> array",
-  "transform": "{out}\nv = %values @.obj",
-  "input": "{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
-  "expectedOutput": "{out}\n{.v[] : ~}\n\"Ada\"\n\"admin\"\n?true",
+  "transform": "{out}\nv = %values @.obj\nnonObject = %values @.notObj",
+  "input": "notObj = \"x\"\n\n{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\n{.v[] : ~}\n\"Ada\"\n\"admin\"\n?true\nnonObject = ~",
   "notes": [
     "The single argument is an object; the result is an array of values serialized as a {.v[] : ~} block, preserving each value's type.",
     "Values follow source key order; prototype-pollution keys are excluded.",

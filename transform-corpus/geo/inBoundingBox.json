@@ -4,14 +4,17 @@
   "title": "%inBoundingBox — test a point against a rectangle",
   "purpose": "Return true when a lat/lng point falls inside a min/max bounding box.",
   "signature": "%inBoundingBox <number:lat> <number:lng> <number:minLat> <number:minLng> <number:maxLat> <number:maxLng> -> boolean",
-  "transform": "{out}\ninside = %inBoundingBox @.lat @.lng #24.5 #-125 #49.5 #-66",
-  "input": "lat = #40.7128\nlng = #-74.006",
-  "expectedOutput": "{out}\ninside = ?true",
+  "transform": "{out}\ninside = %inBoundingBox @.lat @.lng #24.5 #-125 #49.5 #-66\noutside = %inBoundingBox @.farLat @.lng #24.5 #-125 #49.5 #-66\nonEdge = %inBoundingBox @.edgeLat @.edgeLng #24.5 #-125 #49.5 #-66",
+  "input": "lat = #40.7128\nlng = #-74.006\nfarLat = #60\nedgeLat = #24.5\nedgeLng = #-125",
+  "expectedOutput": "{out}\ninside = ?true\noutside = ?false\nonEdge = ?true",
   "notes": [
     "Argument order is lat, lng, minLat, minLng, maxLat, maxLng; the result is a boolean (?).",
     "Bounds are inclusive on every edge."
   ],
   "avoid": [
-    { "snippet": "inside = %inBoundingBox @.lat @.lng ##24.5 #-125 #49.5 #-66", "why": "fractional bounds must use the number prefix (#); ##24.5 raises a parse error because an integer (##) cannot have a fractional part" }
+    {
+      "snippet": "inside = %inBoundingBox @.lat @.lng ##24.5 #-125 #49.5 #-66",
+      "why": "fractional bounds must use the number prefix (#); ##24.5 raises a parse error because an integer (##) cannot have a fractional part"
+    }
   ]
 }

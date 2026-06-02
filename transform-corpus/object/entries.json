@@ -4,9 +4,9 @@
   "title": "%entries — key/value pairs of an object",
   "purpose": "Return an object as an array of [key, value] pairs.",
   "signature": "%entries <object> -> array",
-  "transform": "{out}\ne = %entries @.obj",
-  "input": "{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
-  "expectedOutput": "{out}\n{.e[] : [0], [1]}\n\"name\", \"Ada\"\n\"role\", \"admin\"\n\"active\", ?true",
+  "transform": "{out}\ne = %entries @.obj\nnonObject = %entries @.notObj",
+  "input": "notObj = \"x\"\n\n{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\n{.e[] : [0], [1]}\n\"name\", \"Ada\"\n\"role\", \"admin\"\n\"active\", ?true\nnonObject = ~",
   "notes": [
     "The single argument is an object; the result is an array of two-element pairs serialized as a {.e[] : [0], [1]} table.",
     "Each row is key then value, preserving the value's type and source key order.",

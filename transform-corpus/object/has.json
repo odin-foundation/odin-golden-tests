@@ -4,9 +4,9 @@
   "title": "%has — test for a property",
   "purpose": "Return true when an object contains a key, with dot notation for nested paths.",
   "signature": "%has <object> <string:key> -> boolean",
-  "transform": "{out}\nh = %has @.obj \"role\"",
-  "input": "{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
-  "expectedOutput": "{out}\nh = ?true",
+  "transform": "{out}\nh = %has @.obj \"role\"\nnested = %has @.obj \"addr.city\"\nmissing = %has @.obj \"zzz\"\nnonObject = %has @.notObj \"role\"",
+  "input": "notObj = \"x\"\n\n{obj}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true\n\n{obj.addr}\ncity = \"Reno\"",
+  "expectedOutput": "{out}\nh = ?true\nnested = ?true\nmissing = ?false\nnonObject = ?false",
   "notes": [
     "The second argument is a quoted key; the result is a boolean (?).",
     "Dot notation walks nested objects (\"a.b.c\"); missing keys and prototype-pollution keys yield ?false.",

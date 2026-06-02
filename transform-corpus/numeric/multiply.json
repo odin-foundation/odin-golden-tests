@@ -4,13 +4,16 @@
   "title": "%multiply — product of two numbers",
   "purpose": "Multiply two numbers.",
   "signature": "%multiply <number:a> <number:b> -> number",
-  "transform": "{out}\nv = %multiply @.a @.b",
-  "input": "a = #6\nb = #7",
-  "expectedOutput": "{out}\nv = ##42",
+  "transform": "{out}\nv = %multiply @.a @.b\nfractional = %multiply @.c @.d\nnegatives = %multiply @.e @.f",
+  "input": "a = #6\nb = #7\nc = #2.5\nd = #4\ne = #-3\nf = #-5",
+  "expectedOutput": "{out}\nv = ##42\nfractional = ##10\nnegatives = ##15",
   "notes": [
     "A whole-valued product emits as an integer (##); a fractional product emits as a number (#)."
   ],
   "avoid": [
-    { "snippet": "v = %multiply @.a", "why": "two operands are required; one operand raises a verb-arity error" }
+    {
+      "snippet": "v = %multiply @.a",
+      "why": "two operands are required; one operand raises a verb-arity error"
+    }
   ]
 }

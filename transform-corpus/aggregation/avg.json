@@ -4,14 +4,17 @@
   "title": "%avg — arithmetic mean of an array",
   "purpose": "Reduce an array reference to the mean of its numeric elements.",
   "signature": "%avg <array> -> number",
-  "transform": "{out}\nmean = %avg @.amounts",
-  "input": "{amounts[] : ~}\n##10\n##20\n##30",
-  "expectedOutput": "{out}\nmean = ##20",
+  "transform": "{out}\nmean = %avg @.amounts\nfractional = %avg @.thirds\nnegatives = %avg @.deltas\nsingle = %avg @.one",
+  "input": "{amounts[] : ~}\n##10\n##20\n##30\n\n{thirds[] : ~}\n##1\n##2\n##2\n\n{deltas[] : ~}\n##-10\n##20\n##-40\n\n{one[] : ~}\n##42",
+  "expectedOutput": "{out}\nmean = ##20\nfractional = #1.6666666666666667\nnegatives = ##-10\nsingle = ##42",
   "notes": [
     "Sum divided by element count; a whole-number mean is emitted as an integer (##), otherwise as a number (#).",
     "An empty-but-present array (a single ~ element) averages to ##0; a missing path yields ~."
   ],
   "avoid": [
-    { "snippet": "mean = %avg @.nope  (path does not resolve to an array)", "why": "no array resolves, so %avg returns ~ rather than a zero or an error" }
+    {
+      "snippet": "mean = %avg @.nope  (path does not resolve to an array)",
+      "why": "no array resolves, so %avg returns ~ rather than a zero or an error"
+    }
   ]
 }

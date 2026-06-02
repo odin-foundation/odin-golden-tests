@@ -4,14 +4,17 @@
   "title": "%or — boolean OR",
   "purpose": "Return true when either condition is truthy.",
   "signature": "%or <a:boolean> <b:boolean> -> boolean",
-  "transform": "{out}\neither = %or %eq @.role \"admin\" %eq @.role \"owner\"",
+  "transform": "{out}\neither = %or %eq @.role \"admin\" %eq @.role \"owner\"\nneither = %or %eq @.role \"admin\" %eq @.role \"editor\"",
   "input": "role = \"owner\"",
-  "expectedOutput": "{out}\neither = ?true",
+  "expectedOutput": "{out}\neither = ?true\nneither = ?false",
   "notes": [
     "Both operands are %eq verb-expressions producing booleans.",
     "Exactly two operands; nest %or for additional alternatives."
   ],
   "avoid": [
-    { "snippet": "either = %or \"@.role == 'admin'\" \"@.role == 'owner'\"", "why": "the quoted infix expressions are inert literal strings — not truthy — so %or returns ?false and the rule never fires. Build each side from a comparison verb like %eq @.role \"admin\"." }
+    {
+      "snippet": "either = %or \"@.role == 'admin'\" \"@.role == 'owner'\"",
+      "why": "the quoted infix expressions are inert literal strings — not truthy — so %or returns ?false and the rule never fires. Build each side from a comparison verb like %eq @.role \"admin\"."
+    }
   ]
 }

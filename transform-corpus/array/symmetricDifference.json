@@ -4,11 +4,12 @@
   "title": "%symmetricDifference — elements in exactly one array",
   "purpose": "Return the distinct elements that appear in exactly one of the two arrays.",
   "signature": "%symmetricDifference <array> <array> -> array",
-  "transform": "{out}\nxor = %symmetricDifference @.a @.b",
-  "input": "{a[] : ~}\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4",
-  "expectedOutput": "{out}\n{.xor[] : ~}\n##1\n##4",
+  "transform": "{out}\nxor = %symmetricDifference @.a @.b\ndisjoint = %symmetricDifference @.c @.d\ndeduped = %symmetricDifference @.e @.f",
+  "input": "{a[] : ~}\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4\n\n{c[] : ~}\n##1\n##2\n\n{d[] : ~}\n##3\n##4\n\n{e[] : ~}\n##1\n##1\n##2\n\n{f[] : ~}\n##2\n##3",
+  "expectedOutput": "{out}\n{.xor[] : ~}\n##1\n##4\n{.disjoint[] : ~}\n##1\n##2\n##3\n##4\n{.deduped[] : ~}\n##1\n##3",
   "notes": [
-    "First-array exclusives precede second-array exclusives; the result is distinct."
+    "First-array exclusives precede second-array exclusives; the result is distinct.",
+    "Disjoint arrays return every element; duplicates within an input are collapsed."
   ],
   "avoid": []
 }

@@ -4,9 +4,9 @@
   "title": "%concatArrays — join two arrays",
   "purpose": "Append the second array to the first, preserving order.",
   "signature": "%concatArrays <array> <array> -> array",
-  "transform": "{out}\ncombined = %concatArrays @.a @.b",
-  "input": "{a[] : ~}\n\"x\"\n\"y\"\n{b[] : ~}\n\"z\"",
-  "expectedOutput": "{out}\n{.combined[] : ~}\n\"x\"\n\"y\"\n\"z\"",
+  "transform": "{out}\ncombined = %concatArrays @.a @.b\noneEmpty = %concatArrays @.a @.empty\nbothNonArray = %concatArrays @.x @.y",
+  "input": "x = \"p\"\ny = \"q\"\n\n{a[] : ~}\n\"x\"\n\"y\"\n\n{b[] : ~}\n\"z\"\n\n{empty[] : ~}",
+  "expectedOutput": "{out}\n{.combined[] : ~}\n\"x\"\n\"y\"\n\"z\"\n{.oneEmpty[] : ~}\n\"x\"\n\"y\"\nbothNonArray = ~",
   "notes": [
     "Both arguments are arrays; the result is their concatenation."
   ],

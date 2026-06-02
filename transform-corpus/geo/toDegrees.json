@@ -4,9 +4,9 @@
   "title": "%toDegrees — radians to degrees",
   "purpose": "Convert an angle in radians to degrees.",
   "signature": "%toDegrees <number:radians> -> number",
-  "transform": "{out}\ndeg = %toDegrees @.rad",
-  "input": "rad = #3.141592653589793",
-  "expectedOutput": "{out}\ndeg = #180",
+  "transform": "{out}\ndeg = %toDegrees @.rad\nzero = %toDegrees @.zero\nnegative = %toDegrees @.negRad",
+  "input": "rad = #3.141592653589793\nzero = #0\nnegRad = #-1.5707963267948966",
+  "expectedOutput": "{out}\ndeg = #180\nzero = #0\nnegative = #-90",
   "notes": [
     "Single numeric argument in radians; pi radians maps to 180 degrees.",
     "The result is a number (#)."

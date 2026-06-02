@@ -4,9 +4,9 @@
   "title": "%compact — drop empty values",
   "purpose": "Remove null and empty-string elements from an array.",
   "signature": "%compact <array> -> array",
-  "transform": "{out}\nclean = %compact @.values",
-  "input": "{values[] : ~}\n##1\n~\n##2",
-  "expectedOutput": "{out}\n{.clean[] : ~}\n##1\n##2",
+  "transform": "{out}\nclean = %compact @.values\nkeepsFalsy = %compact @.falsy\nnonArray = %compact @.notArr",
+  "input": "notArr = \"x\"\n\n{values[] : ~}\n##1\n~\n##2\n\n{falsy[] : ~}\n##0\n?false\n~",
+  "expectedOutput": "{out}\n{.clean[] : ~}\n##1\n##2\n{.keepsFalsy[] : ~}\n##0\n?false\nnonArray = ~",
   "notes": [
     "Removes null (~) and empty-string elements; zero and false are kept."
   ],

@@ -4,13 +4,16 @@
   "title": "%negate — arithmetic negation",
   "purpose": "Return the additive inverse of a number.",
   "signature": "%negate <number> -> number",
-  "transform": "{out}\nv = %negate @.a",
-  "input": "a = #8",
-  "expectedOutput": "{out}\nv = ##-8",
+  "transform": "{out}\nv = %negate @.a\nofNegative = %negate @.b\nofZero = %negate @.c",
+  "input": "a = #8\nb = #-12\nc = #0",
+  "expectedOutput": "{out}\nv = ##-8\nofNegative = ##12\nofZero = ##0",
   "notes": [
     "A whole-valued result emits as an integer (##)."
   ],
   "avoid": [
-    { "snippet": "v = %negate", "why": "the value argument is required; omitting it raises a verb-arity error" }
+    {
+      "snippet": "v = %negate",
+      "why": "the value argument is required; omitting it raises a verb-arity error"
+    }
   ]
 }

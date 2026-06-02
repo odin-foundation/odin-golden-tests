@@ -4,9 +4,9 @@
   "title": "%crc32 — CRC-32 checksum of a string",
   "purpose": "Compute the CRC-32 (IEEE) checksum of a string as lowercase hex.",
   "signature": "%crc32 <string> -> string",
-  "transform": "{out}\nh = %crc32 @.data",
-  "input": "data = \"hello\"",
-  "expectedOutput": "{out}\nh = \"3610a686\"",
+  "transform": "{out}\nh = %crc32 @.data\ncheck = %crc32 @.digits\nempty = %crc32 @.blank",
+  "input": "data = \"hello\"\ndigits = \"123456789\"\nblank = \"\"",
+  "expectedOutput": "{out}\nh = \"3610a686\"\ncheck = \"cbf43926\"\nempty = \"00000000\"",
   "notes": [
     "The checksum is deterministic and 8 lowercase hex characters long.",
     "CRC-32 is for data-integrity checks only, not cryptographic use."

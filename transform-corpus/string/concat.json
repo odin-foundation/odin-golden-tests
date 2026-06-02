@@ -4,14 +4,17 @@
   "title": "%concat — join strings end to end",
   "purpose": "Concatenate two or more values into a single string.",
   "signature": "%concat <string> <string> [<string>...] -> string",
-  "transform": "{out}\nfullName = %concat @.firstName \" \" @.lastName",
-  "input": "firstName = \"John\"\nlastName = \"Smith\"",
-  "expectedOutput": "{out}\nfullName = \"John Smith\"",
+  "transform": "{out}\nfullName = %concat @.firstName \" \" @.lastName\nthree = %concat @.firstName \"-\" @.lastName\nnumeric = %concat \"id\" @.num",
+  "input": "firstName = \"John\"\nlastName = \"Smith\"\nnum = ##42",
+  "expectedOutput": "{out}\nfullName = \"John Smith\"\nthree = \"John-Smith\"\nnumeric = \"id42\"",
   "notes": [
     "Arguments are concatenated verbatim with no separator inserted.",
     "Provide any separator as its own literal argument (here the quoted space \" \")."
   ],
   "avoid": [
-    { "snippet": "fullName = %concat @.firstName @.lastName", "why": "no separator argument yields \"JohnSmith\"; pass \" \" between the fields" }
+    {
+      "snippet": "fullName = %concat @.firstName @.lastName",
+      "why": "no separator argument yields \"JohnSmith\"; pass \" \" between the fields"
+    }
   ]
 }

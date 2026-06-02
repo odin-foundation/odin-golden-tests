@@ -4,9 +4,9 @@
   "title": "%sort — sort a primitive array ascending",
   "purpose": "Order array values ascending (numeric when all numbers, else lexical).",
   "signature": "%sort <array> [<string:field>] [<string:direction>] -> array",
-  "transform": "{out}\nsorted = %sort @.scores",
-  "input": "{scores[] : ~}\n##30\n##10\n##20",
-  "expectedOutput": "{out}\n{.sorted[] : ~}\n##10\n##20\n##30",
+  "transform": "{out}\nsorted = %sort @.scores\nlexical = %sort @.words",
+  "input": "{scores[] : ~}\n##30\n##10\n##20\n\n{words[] : ~}\n\"banana\"\n\"apple\"\n\"cherry\"",
+  "expectedOutput": "{out}\n{.sorted[] : ~}\n##10\n##20\n##30\n{.lexical[] : ~}\n\"apple\"\n\"banana\"\n\"cherry\"",
   "notes": [
     "Numeric arrays sort numerically; mixed/string arrays sort lexically.",
     "Optional second/third args sort an object array by field and direction (\"asc\"/\"desc\")."

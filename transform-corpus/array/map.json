@@ -4,9 +4,9 @@
   "title": "%map — extract one field from each record",
   "purpose": "Project a single field out of every object into a flat array.",
   "signature": "%map <array> <string:field> -> array",
-  "transform": "{out}\ntypes = %map @.coverages \"type\"",
-  "input": "{coverages[] : type, premium}\n\"liability\", ##100\n\"collision\", ##300",
-  "expectedOutput": "{out}\n{.types[] : ~}\n\"liability\"\n\"collision\"",
+  "transform": "{out}\ntypes = %map @.coverages \"type\"\nmissing = %map @.coverages \"premium\"",
+  "input": "{coverages[] : type}\n\"liability\"\n\"collision\"",
+  "expectedOutput": "{out}\n{.types[] : ~}\n\"liability\"\n\"collision\"\n{.missing[] : ~}\n~\n~",
   "notes": [
     "Returns a primitive array of the chosen field values, in source order."
   ],

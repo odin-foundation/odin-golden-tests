@@ -13,6 +13,9 @@
     "The accumulator must be declared in {$accumulator} with _persist = true; the first argument names it."
   ],
   "avoid": [
-    { "snippet": "_ = %set lastSeen @.v  (no {$accumulator} block declaring lastSeen)", "why": "%set is a no-op on an undeclared accumulator and returns ~, so the read-back yields ~ instead of the value" }
+    {
+      "snippet": "_ = %set lastSeen @.v  (no {$accumulator} block declaring lastSeen)",
+      "why": "%set is a no-op on an undeclared accumulator and returns ~, so the read-back yields ~ instead of the value"
+    }
   ]
 }

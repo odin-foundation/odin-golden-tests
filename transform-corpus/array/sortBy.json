@@ -4,9 +4,9 @@
   "title": "%sortBy — sort an object array by a field",
   "purpose": "Order an array of records ascending by one named field.",
   "signature": "%sortBy <array> <string:field> -> array",
-  "transform": "{out}\nranked = %sortBy @.coverages \"premium\"",
-  "input": "{coverages[] : type, premium}\n\"collision\", ##300\n\"liability\", ##100\n\"comprehensive\", ##200",
-  "expectedOutput": "{out}\n{.ranked[] : type, premium}\n\"liability\", ##100\n\"comprehensive\", ##200\n\"collision\", ##300",
+  "transform": "{out}\nranked = %sortBy @.coverages \"premium\"\nbyType = %sortBy @.coverages \"type\"\nsingle = %sortBy @.solo \"premium\"",
+  "input": "{coverages[] : type, premium}\n\"collision\", ##300\n\"liability\", ##100\n\"comprehensive\", ##200\n\n{solo[] : type, premium}\n\"umbrella\", ##500",
+  "expectedOutput": "{out}\n{.ranked[] : type, premium}\n\"liability\", ##100\n\"comprehensive\", ##200\n\"collision\", ##300\n{.byType[] : type, premium}\n\"collision\", ##300\n\"comprehensive\", ##200\n\"liability\", ##100\n{.single[] : type, premium}\n\"umbrella\", ##500",
   "notes": [
     "The field name is a required quoted argument.",
     "Sorts ascending; use %sort with a \"desc\" third argument for descending order."

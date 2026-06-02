@@ -4,9 +4,9 @@
   "title": "%endsWith — suffix test",
   "purpose": "Return true when the string ends with the given suffix.",
   "signature": "%endsWith <string> <suffix:string> -> boolean",
-  "transform": "{out}\nout = %endsWith @.name \"da\"",
+  "transform": "{out}\nout = %endsWith @.name \"da\"\nno = %endsWith @.name \"Ho\"\ncaseDiff = %endsWith @.name \"DA\"\nfull = %endsWith @.name \"Honda\"",
   "input": "name = \"Honda\"",
-  "expectedOutput": "{out}\nout = ?true",
+  "expectedOutput": "{out}\nout = ?true\nno = ?false\ncaseDiff = ?false\nfull = ?true",
   "notes": [
     "Two arguments: the string then the quoted suffix.",
     "Returns a boolean (? prefix in ODIN output). The match is case-sensitive."

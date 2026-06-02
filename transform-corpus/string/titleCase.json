@@ -4,9 +4,9 @@
   "title": "%titleCase — capitalize each word",
   "purpose": "Lowercase the string, then uppercase the first letter of every whitespace-separated word.",
   "signature": "%titleCase <string> -> string",
-  "transform": "{out}\nout = %titleCase @.phrase",
-  "input": "phrase = \"honda civic type r\"",
-  "expectedOutput": "{out}\nout = \"Honda Civic Type R\"",
+  "transform": "{out}\nout = %titleCase @.phrase\nmixed = %titleCase @.shouty\nsingle = %titleCase @.word",
+  "input": "phrase = \"honda civic type r\"\nshouty = \"HELLO WORLD\"\nword = \"honda\"",
+  "expectedOutput": "{out}\nout = \"Honda Civic Type R\"\nmixed = \"Hello World\"\nsingle = \"Honda\"",
   "notes": [
     "Words are split on whitespace; each word's first character is uppercased and the remainder lowercased.",
     "Use %capitalize to title-case only the very first letter of the whole string."
