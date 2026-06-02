@@ -4,13 +4,14 @@
   "title": "%set - overwrite an accumulator with a value",
   "purpose": "Replace a named accumulator's current value on each loop pass, ending with the last record's value.",
   "signature": "%set <name> <value> -> value",
-  "transform": "{$accumulator}\nlastSeen = ##0\nlastSeen._persist = true\n\n{lines[]}\n_loop = \"@items\"\nval = @.v\n_ = %set lastSeen @.v\n\n{summary}\nfinal = \"@$accumulator.lastSeen\"",
-  "input": "{}\n{items[] : v}\n##10\n##20\n##30",
-  "expectedOutput": "summary.final = ##30\n{lines[] : val}\n##10\n##20\n##30",
+  "transform": "{$accumulator}\nlastVal = ##0\nlastVal._persist = true\nlastLabel = \"\"\nlastLabel._persist = true\n\n{lines[]}\n_loop = \"@items\"\nval = @.v\n_ = %set lastVal @.v\n_label = %set lastLabel @.label\n\n{summary}\nfinalVal = \"@$accumulator.lastVal\"\nfinalLabel = \"@$accumulator.lastLabel\"",
+  "input": "{}\n{items[] : v, label}\n##10, \"a\"\n##20, \"b\"\n##30, \"c\"",
+  "expectedOutput": "{lines[] : val}\n##10\n##20\n##30\n{summary}\nfinalVal = ##30\nfinalLabel = \"c\"",
   "notes": [
     "Unlike %accumulate, %set replaces rather than adds; after a loop the accumulator holds the last record's value.",
     "Supports any value type (string or number), not just numerics.",
-    "The accumulator must be declared in {$accumulator} with _persist = true; the first argument names it."
+    "The accumulator must be declared in {$accumulator} with _persist = true; the first argument names it.",
+    "Sink the call into a _-prefixed field (not emitted); multiple such fields run in one pass, here advancing both lastVal and lastLabel."
   ],
   "avoid": [
     {
