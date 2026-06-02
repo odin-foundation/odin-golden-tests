@@ -1,7 +1,7 @@
 {
   "id": "partition",
   "family": "array",
-  "title": "%partition — split by a condition",
+  "title": "%partition - split by a condition",
   "purpose": "Divide an array into [matching, non-matching] by a field condition.",
   "signature": "%partition <array> <string:field> <string:op> <value> -> array",
   "transform": "{out}\nsplit = %partition @.coverages \"status\" \"=\" \"active\"\nbyAmount = %partition @.coverages \"premium\" \"<\" \"150\"",

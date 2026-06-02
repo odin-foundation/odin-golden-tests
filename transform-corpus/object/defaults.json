@@ -1,7 +1,7 @@
 {
   "id": "defaults",
   "family": "object",
-  "title": "%defaults — fill missing keys",
+  "title": "%defaults - fill missing keys",
   "purpose": "Merge a defaults object under a base object, filling only keys the base lacks.",
   "signature": "%defaults <object> <defaults> -> object",
   "transform": "{out}\nmerged = %defaults @.rec @.fallback\nnonObject = %defaults @.notObj @.fallback",

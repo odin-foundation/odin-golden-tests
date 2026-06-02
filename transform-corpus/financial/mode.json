@@ -1,7 +1,7 @@
 {
   "id": "mode",
   "family": "financial",
-  "title": "%mode — most frequent value",
+  "title": "%mode - most frequent value",
   "purpose": "Return the most frequently occurring value in a numeric array.",
   "signature": "%mode <array:values> -> number",
   "transform": "{out}\nr = %mode @.values\ntie = %mode @.tied\nallDistinct = %mode @.distinct",

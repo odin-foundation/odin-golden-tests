@@ -1,7 +1,7 @@
 {
   "id": "pick",
   "family": "object",
-  "title": "%pick — keep only named keys",
+  "title": "%pick - keep only named keys",
   "purpose": "Return a copy of an object containing only the named keys.",
   "signature": "%pick <object> <key...> -> object",
   "transform": "{out}\nkept = %pick @.rec \"name\" \"role\"\nabsentKey = %pick @.rec \"name\" \"zzz\"\nnonObject = %pick @.notObj \"name\"",

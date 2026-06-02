@@ -1,7 +1,7 @@
 {
   "id": "nested-parens",
   "family": "expr",
-  "title": "%expr — nested parentheses",
+  "title": "%expr - nested parentheses",
   "purpose": "Parentheses group sub-expressions to any depth.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"((1 + 2) * 3)\"",

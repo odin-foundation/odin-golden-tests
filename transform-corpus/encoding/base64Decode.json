@@ -1,7 +1,7 @@
 {
   "id": "base64Decode",
   "family": "encoding",
-  "title": "%base64Decode — Decode a Base64 string",
+  "title": "%base64Decode - Decode a Base64 string",
   "purpose": "Decode Base64 text back into its original UTF-8 string.",
   "signature": "%base64Decode <string> -> string",
   "transform": "{out}\ndec = %base64Decode @.b\nurlsafe = %base64Decode @.u\ninvalid = %base64Decode @.bad",

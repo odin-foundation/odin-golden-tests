@@ -1,7 +1,7 @@
 {
   "id": "entries",
   "family": "object",
-  "title": "%entries — key/value pairs of an object",
+  "title": "%entries - key/value pairs of an object",
   "purpose": "Return an object as an array of [key, value] pairs.",
   "signature": "%entries <object> -> array",
   "transform": "{out}\ne = %entries @.obj\nnonObject = %entries @.notObj",

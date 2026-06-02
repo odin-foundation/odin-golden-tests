@@ -1,7 +1,7 @@
 {
   "id": "intersection",
   "family": "array",
-  "title": "%intersection — elements in both arrays",
+  "title": "%intersection - elements in both arrays",
   "purpose": "Return the distinct elements present in both arrays.",
   "signature": "%intersection <array> <array> -> array",
   "transform": "{out}\nboth = %intersection @.a @.b\nwithOne = %intersection @.a @.c",

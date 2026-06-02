@@ -1,7 +1,7 @@
 {
   "id": "precedence",
   "family": "expr",
-  "title": "%expr — operator precedence",
+  "title": "%expr - operator precedence",
   "purpose": "Multiplication binds tighter than addition.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"2 + 3 * 4\"",

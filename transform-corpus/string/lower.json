@@ -1,7 +1,7 @@
 {
   "id": "lower",
   "family": "string",
-  "title": "%lower — lowercase a string",
+  "title": "%lower - lowercase a string",
   "purpose": "Lowercase every character of a string value.",
   "signature": "%lower <string> -> string",
   "transform": "{out}\nname = %lower @.name\nmixed = %lower @.mixed\nempty = %lower @.empty",
@@ -9,12 +9,12 @@
   "expectedOutput": "{out}\nname = \"honda\"\nmixed = \"honda civic\"\nempty = \"\"",
   "notes": [
     "First and only argument is the string to lowercase.",
-    "The argument must be a reference (@.name) or a quoted literal — a bare word is read as a literal string, not a path."
+    "The argument must be a reference (@.name) or a quoted literal - a bare word is read as a literal string, not a path."
   ],
   "avoid": [
     {
       "snippet": "out = %lower",
-      "why": "missing the source argument — the engine raises a verb-arity error"
+      "why": "missing the source argument - the engine raises a verb-arity error"
     },
     {
       "snippet": "out = %lower name",

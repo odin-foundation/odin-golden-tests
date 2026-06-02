@@ -1,7 +1,7 @@
 {
   "id": "formatLocaleNumber",
   "family": "numeric",
-  "title": "%formatLocaleNumber — locale-grouped number string",
+  "title": "%formatLocaleNumber - locale-grouped number string",
   "purpose": "Format a number using locale-specific grouping and decimal separators.",
   "signature": "%formatLocaleNumber <number> [string:locale] -> string",
   "transform": "{out}\nv = %formatLocaleNumber @.a \"en-US\"\nmillions = %formatLocaleNumber @.b \"en-US\"\ngerman = %formatLocaleNumber @.a \"de-DE\"",

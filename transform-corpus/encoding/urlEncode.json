@@ -1,7 +1,7 @@
 {
   "id": "urlEncode",
   "family": "encoding",
-  "title": "%urlEncode — Percent-encode a string",
+  "title": "%urlEncode - Percent-encode a string",
   "purpose": "Percent-encode a string so it is safe inside a URL component.",
   "signature": "%urlEncode <string> -> string",
   "transform": "{out}\nenc = %urlEncode @.q\nunreserved = %urlEncode @.safe\nempty = %urlEncode @.blank",

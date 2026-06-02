@@ -1,7 +1,7 @@
 {
   "id": "capitalize",
   "family": "string",
-  "title": "%capitalize — capitalize the first letter",
+  "title": "%capitalize - capitalize the first letter",
   "purpose": "Uppercase the first character and lowercase the rest.",
   "signature": "%capitalize <string> -> string",
   "transform": "{out}\nout = %capitalize @.word\nmixed = %capitalize @.mixed\nempty = %capitalize @.empty\nsingle = %capitalize @.single",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\nout = \"Honda\"\nmixed = \"Hello world\"\nempty = \"\"\nsingle = \"X\"",
   "notes": [
     "First character is uppercased and every following character is lowercased.",
-    "Operates on the whole string as one word — use %titleCase for per-word capitalization."
+    "Operates on the whole string as one word - use %titleCase for per-word capitalization."
   ],
   "avoid": [
     {

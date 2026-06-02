@@ -1,7 +1,7 @@
 {
   "id": "coerceDate",
   "family": "type",
-  "title": "%coerceDate — convert a value to a date",
+  "title": "%coerceDate - convert a value to a date",
   "purpose": "Parse a string (or number/timestamp) into a typed date, dropping any time component.",
   "signature": "%coerceDate <value> -> date",
   "transform": "{out}\nd = %coerceDate @.raw\nslash = %coerceDate @.slash\nbad = %coerceDate @.bad",

@@ -1,7 +1,7 @@
 {
   "id": "set",
   "family": "aggregation",
-  "title": "%set — overwrite an accumulator with a value",
+  "title": "%set - overwrite an accumulator with a value",
   "purpose": "Replace a named accumulator's current value on each loop pass, ending with the last record's value.",
   "signature": "%set <name> <value> -> value",
   "transform": "{$accumulator}\nlastSeen = ##0\nlastSeen._persist = true\n\n{lines[]}\n_loop = \"@items\"\nval = @.v\n_ = %set lastSeen @.v\n\n{summary}\nfinal = \"@$accumulator.lastSeen\"",

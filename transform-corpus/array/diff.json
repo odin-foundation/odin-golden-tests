@@ -1,7 +1,7 @@
 {
   "id": "diff",
   "family": "array",
-  "title": "%diff — consecutive differences",
+  "title": "%diff - consecutive differences",
   "purpose": "Return the difference between each element and the prior one.",
   "signature": "%diff <array> [<integer:periods>] -> array",
   "transform": "{out}\nchanges = %diff @.values\nperiods2 = %diff @.values ##2\nnonArray = %diff @.notArr",

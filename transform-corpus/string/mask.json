@@ -1,7 +1,7 @@
 {
   "id": "mask",
   "family": "string",
-  "title": "%mask — apply a formatting mask",
+  "title": "%mask - apply a formatting mask",
   "purpose": "Lay a string's characters into a template, inserting literal mask punctuation.",
   "signature": "%mask <string> <pattern:string> -> string",
   "transform": "{out}\nssn = %mask @.ssn \"###-##-####\"\nshort = %mask @.short \"###-##-####\"\nphone = %mask @.phone \"(###) ###-####\"",

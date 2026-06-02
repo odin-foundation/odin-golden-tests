@@ -1,7 +1,7 @@
 {
   "id": "isLeapYear",
   "family": "date",
-  "title": "%isLeapYear — leap-year test",
+  "title": "%isLeapYear - leap-year test",
   "purpose": "Report whether the year of a date is a leap year.",
   "signature": "%isLeapYear <date> -> boolean",
   "transform": "{out}\nleap = %isLeapYear @.leap\ncommon = %isLeapYear @.common\ncentury = %isLeapYear @.century\ncentury400 = %isLeapYear @.century400",

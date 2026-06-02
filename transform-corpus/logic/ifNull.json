@@ -1,14 +1,14 @@
 {
   "id": "ifNull",
   "family": "logic",
-  "title": "%ifNull — fallback when null",
+  "title": "%ifNull - fallback when null",
   "purpose": "Return a fallback value when the input is null, otherwise the input.",
   "signature": "%ifNull <value> <fallback> -> value",
   "transform": "{out}\nname = %ifNull @.nickname \"Anonymous\"\nkept = %ifNull @.realName \"Anonymous\"\nemptyPasses = %ifNull @.blank \"Anonymous\"",
   "input": "nickname = ~\nrealName = \"Bob\"\nblank = \"\"",
   "expectedOutput": "{out}\nname = \"Anonymous\"\nkept = \"Bob\"\nemptyPasses = \"\"",
   "notes": [
-    "Only null (~) triggers the fallback; an empty string \"\" passes through unchanged — use %ifEmpty for that.",
+    "Only null (~) triggers the fallback; an empty string \"\" passes through unchanged - use %ifEmpty for that.",
     "Like %coalesce but with exactly one value and one fallback."
   ],
   "avoid": []

@@ -1,7 +1,7 @@
 {
   "id": "isBefore",
   "family": "date",
-  "title": "%isBefore — chronological less-than",
+  "title": "%isBefore - chronological less-than",
   "purpose": "Test whether the first date precedes the second.",
   "signature": "%isBefore <date> <date> -> boolean",
   "transform": "{out}\nbefore = %isBefore @.a @.b\nequal = %isBefore @.b @.b\nafter = %isBefore @.b @.a",

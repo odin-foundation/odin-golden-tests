@@ -1,7 +1,7 @@
 {
   "id": "log10",
   "family": "financial",
-  "title": "%log10 — base-10 logarithm",
+  "title": "%log10 - base-10 logarithm",
   "purpose": "Take the base-10 logarithm of a value.",
   "signature": "%log10 <number:value> -> number",
   "transform": "{out}\nr = %log10 @.thousand\none = %log10 @.one\nzero = %log10 @.zero\nnegative = %log10 @.neg",

@@ -1,7 +1,7 @@
 {
   "id": "compactObject",
   "family": "object",
-  "title": "%compactObject — drop empty entries",
+  "title": "%compactObject - drop empty entries",
   "purpose": "Return a copy of an object with null, empty-string, empty-array, and empty-object values removed.",
   "signature": "%compactObject <object> -> object",
   "transform": "{out}\ncleaned = %compactObject @.rec\nnonObject = %compactObject @.notObj",

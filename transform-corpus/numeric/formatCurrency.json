@@ -1,14 +1,14 @@
 {
   "id": "formatCurrency",
   "family": "numeric",
-  "title": "%formatCurrency — two-decimal currency string",
+  "title": "%formatCurrency - two-decimal currency string",
   "purpose": "Format a number as a currency string with exactly two decimal places.",
   "signature": "%formatCurrency <number> -> string",
   "transform": "{out}\nv = %formatCurrency @.a\nwhole = %formatCurrency @.b\nnegative = %formatCurrency @.c\nrounds = %formatCurrency @.d",
   "input": "a = #19.5\nb = ##42\nc = #-3.1\nd = #2.567",
   "expectedOutput": "{out}\nv = \"19.50\"\nwhole = \"42.00\"\nnegative = \"-3.10\"\nrounds = \"2.57\"",
   "notes": [
-    "Always emits two decimals (19.5 → \"19.50\") and produces a plain string with no currency symbol.",
+    "Always emits two decimals (19.5 -> \"19.50\") and produces a plain string with no currency symbol.",
     "The output is a string, not the #$ currency value type."
   ],
   "avoid": []

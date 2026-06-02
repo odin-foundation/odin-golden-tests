@@ -1,7 +1,7 @@
 {
   "id": "hexEncode",
   "family": "encoding",
-  "title": "%hexEncode — Encode a string as hexadecimal",
+  "title": "%hexEncode - Encode a string as hexadecimal",
   "purpose": "Encode a string as a lowercase hexadecimal byte sequence.",
   "signature": "%hexEncode <string> -> string",
   "transform": "{out}\nh = %hexEncode @.data\nworld = %hexEncode @.other\nempty = %hexEncode @.blank",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\nh = \"48656c6c6f\"\nworld = \"776f726c64\"\nempty = \"\"",
   "notes": [
     "Each byte is rendered as two lowercase hex digits.",
-    "Characters above U+007F are encoded as their UTF-8 byte sequence."
+    "Only ASCII input (<= U+007F) is supported; non-ASCII byte handling is not yet stable."
   ],
   "avoid": []
 }

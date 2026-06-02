@@ -1,7 +1,7 @@
 {
   "id": "xnpv",
   "family": "financial",
-  "title": "%xnpv — net present value of dated cash flows",
+  "title": "%xnpv - net present value of dated cash flows",
   "purpose": "Discount cash flows that occur on specific dates and sum them, on a 365-day basis.",
   "signature": "%xnpv <number:rate> <array:amounts> <array:dates> -> number",
   "transform": "{out}\nv = %xnpv @.rate @.amounts @.dates",

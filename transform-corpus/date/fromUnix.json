@@ -1,7 +1,7 @@
 {
   "id": "fromUnix",
   "family": "date",
-  "title": "%fromUnix — epoch seconds to ISO timestamp",
+  "title": "%fromUnix - epoch seconds to ISO timestamp",
   "purpose": "Convert a Unix epoch value to an ISO timestamp string.",
   "signature": "%fromUnix <integer:epoch> -> string",
   "transform": "{out}\nt = %fromUnix @.epoch",

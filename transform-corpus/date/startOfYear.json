@@ -1,7 +1,7 @@
 {
   "id": "startOfYear",
   "family": "date",
-  "title": "%startOfYear — January 1 of the year",
+  "title": "%startOfYear - January 1 of the year",
   "purpose": "Collapse a date to the first day of its calendar year.",
   "signature": "%startOfYear <date> -> string",
   "transform": "{out}\nmid = %startOfYear @.date\nalready = %startOfYear @.first",

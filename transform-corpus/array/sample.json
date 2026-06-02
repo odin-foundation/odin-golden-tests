@@ -1,7 +1,7 @@
 {
   "id": "sample",
   "family": "array",
-  "title": "%sample — random subset",
+  "title": "%sample - random subset",
   "purpose": "Draw N elements at random, optionally seeded for reproducibility.",
   "signature": "%sample <array> <integer:count> [<integer:seed>] -> array",
   "transform": "{out}\npicked = %sample @.items ##2 ##42",

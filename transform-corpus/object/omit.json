@@ -1,7 +1,7 @@
 {
   "id": "omit",
   "family": "object",
-  "title": "%omit — drop named keys",
+  "title": "%omit - drop named keys",
   "purpose": "Return a copy of an object with the named keys removed.",
   "signature": "%omit <object> <key...> -> object",
   "transform": "{out}\ndropped = %omit @.rec \"active\"\nabsentKey = %omit @.rec \"zzz\"\nnonObject = %omit @.notObj \"name\"",

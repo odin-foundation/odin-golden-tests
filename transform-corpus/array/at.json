@@ -1,7 +1,7 @@
 {
   "id": "at",
   "family": "array",
-  "title": "%at — element at an index",
+  "title": "%at - element at an index",
   "purpose": "Read a single array element by index, supporting negative indices.",
   "signature": "%at <array> <integer:index> -> value",
   "transform": "{out}\nlast = %at @.items ##-1\nfirst = %at @.items ##0\noutOfRange = %at @.items ##9\nbeyondNeg = %at @.items ##-9\nnonArray = %at @.notArr ##0",

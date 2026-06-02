@@ -1,7 +1,7 @@
 {
   "id": "hmac",
   "family": "encoding",
-  "title": "%hmac — keyed hash (HMAC)",
+  "title": "%hmac - keyed hash (HMAC)",
   "purpose": "Compute a hex HMAC of a message under a secret key; algorithm defaults to sha256.",
   "signature": "%hmac <message> <key> [<algorithm>] -> string",
   "transform": "{out}\nmac = %hmac @.message @.key\nsha1 = %hmac @.message @.key \"sha1\"",

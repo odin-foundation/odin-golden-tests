@@ -1,7 +1,7 @@
 {
   "id": "addDays",
   "family": "date",
-  "title": "%addDays — shift a date by whole days",
+  "title": "%addDays - shift a date by whole days",
   "purpose": "Add (or subtract) a number of days to a date, returning an ISO date.",
   "signature": "%addDays <date> <integer:days> -> string",
   "transform": "{out}\nd = %addDays @.start ##7\nback = %addDays @.start ##-10\nmonthRoll = %addDays @.eom ##1\nzero = %addDays @.start ##0\nbad = %addDays @.notDate ##7",

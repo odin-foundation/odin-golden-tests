@@ -1,7 +1,7 @@
 {
   "id": "normalizeSpace",
   "family": "string",
-  "title": "%normalizeSpace — collapse and trim whitespace",
+  "title": "%normalizeSpace - collapse and trim whitespace",
   "purpose": "Collapse runs of whitespace to single spaces and trim the ends.",
   "signature": "%normalizeSpace <string> -> string",
   "transform": "{out}\ncollapsed = %normalizeSpace @.raw\ntabs = %normalizeSpace @.tabs\nclean = %normalizeSpace @.clean",

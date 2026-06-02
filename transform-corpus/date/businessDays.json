@@ -1,7 +1,7 @@
 {
   "id": "businessDays",
   "family": "date",
-  "title": "%businessDays — add weekday-only days",
+  "title": "%businessDays - add weekday-only days",
   "purpose": "Shift a date by N business days, skipping Saturdays and Sundays.",
   "signature": "%businessDays <date> <integer:count> -> string",
   "transform": "{out}\nd = %businessDays @.start ##5\noverWeekend = %businessDays @.friday ##1\nback = %businessDays @.friday ##-5\nfromWeekend = %businessDays @.saturday ##1",

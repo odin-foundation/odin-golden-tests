@@ -1,7 +1,7 @@
 {
   "id": "clamp",
   "family": "financial",
-  "title": "%clamp — constrain a value to a range",
+  "title": "%clamp - constrain a value to a range",
   "purpose": "Bound a value between a minimum and a maximum.",
   "signature": "%clamp <number:value> <number:min> <number:max> -> number",
   "transform": "{out}\nabove = %clamp @.high @.min @.max\nbelow = %clamp @.low @.min @.max\ninRange = %clamp @.mid @.min @.max",

@@ -1,7 +1,7 @@
 {
   "id": "round-scale",
   "family": "expr",
-  "title": "%expr — round to a scale",
+  "title": "%expr - round to a scale",
   "purpose": "round with two arguments rounds to a number of decimals.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"round(3.14159, 2)\"",

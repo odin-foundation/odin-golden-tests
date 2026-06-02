@@ -1,7 +1,7 @@
 {
   "id": "abs",
   "family": "numeric",
-  "title": "%abs — absolute value",
+  "title": "%abs - absolute value",
   "purpose": "Return the absolute value of a number.",
   "signature": "%abs <number> -> number",
   "transform": "{out}\nv = %abs @.a\nwholeNeg = %abs @.b\nfromString = %abs @.c\nofNull = %abs @.d",

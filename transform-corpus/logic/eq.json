@@ -1,14 +1,14 @@
 {
   "id": "eq",
   "family": "logic",
-  "title": "%eq — equality test",
+  "title": "%eq - equality test",
   "purpose": "Return true when two values are equal, as a boolean usable as a condition.",
   "signature": "%eq <a:value> <b:value> -> boolean",
   "transform": "{out}\nsame = %eq @.status \"active\"\ndiffer = %eq @.other \"active\"\ncrossType = %eq @.code \"200\"",
   "input": "status = \"active\"\nother = \"closed\"\ncode = ##200",
   "expectedOutput": "{out}\nsame = ?true\ndiffer = ?false\ncrossType = ?true",
   "notes": [
-    "Both arguments are verb-expressions or paths/literals — never a quoted infix like \"@.status == 'active'\".",
+    "Both arguments are verb-expressions or paths/literals - never a quoted infix like \"@.status == 'active'\".",
     "The boolean result drops straight into a condition slot, e.g. %ifElse %eq @.status \"active\" ... ."
   ],
   "avoid": [

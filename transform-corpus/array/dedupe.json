@@ -1,7 +1,7 @@
 {
   "id": "dedupe",
   "family": "array",
-  "title": "%dedupe — remove duplicate records by key",
+  "title": "%dedupe - remove duplicate records by key",
   "purpose": "Drop later records that repeat a key-field value, keeping the first.",
   "signature": "%dedupe <array> <string:keyField> -> array",
   "transform": "{out}\nuniq = %dedupe @.records \"id\"\nnoMatch = %dedupe @.distinctRecs \"id\"\nnonArray = %dedupe @.notArr \"id\"",

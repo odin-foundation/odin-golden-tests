@@ -1,7 +1,7 @@
 {
   "id": "base64Encode",
   "family": "encoding",
-  "title": "%base64Encode — Base64-encode a string",
+  "title": "%base64Encode - Base64-encode a string",
   "purpose": "Encode a UTF-8 string as Base64 text.",
   "signature": "%base64Encode <string> -> string",
   "transform": "{out}\nencoded = %base64Encode @.content\nunicode = %base64Encode @.uni\nempty = %base64Encode @.blank",

@@ -1,7 +1,7 @@
 {
   "id": "unary-vs-power",
   "family": "expr",
-  "title": "%expr — unary minus binds looser than power",
+  "title": "%expr - unary minus binds looser than power",
   "purpose": "A leading minus applies to the whole power expression.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"-2^2\"",

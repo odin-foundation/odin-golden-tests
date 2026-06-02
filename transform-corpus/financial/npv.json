@@ -1,7 +1,7 @@
 {
   "id": "npv",
   "family": "financial",
-  "title": "%npv — net present value of cash flows",
+  "title": "%npv - net present value of cash flows",
   "purpose": "Discount a series of period cash flows at a rate and sum them, with the first flow at t=0.",
   "signature": "%npv <number:rate> <array:cashflows> -> number",
   "transform": "{out}\nr = %npv @.rate @.cashflows",

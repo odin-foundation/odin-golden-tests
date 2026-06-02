@@ -1,7 +1,7 @@
 {
   "id": "parseQuery",
   "family": "encoding",
-  "title": "%parseQuery — parse a query string",
+  "title": "%parseQuery - parse a query string",
   "purpose": "Parse a query string into an object; a leading ? is tolerated.",
   "signature": "%parseQuery <string> -> object",
   "transform": "{out}\nparsed = %parseQuery @.qs\nleadingQ = %parseQuery @.q2",

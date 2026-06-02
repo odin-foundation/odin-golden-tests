@@ -1,8 +1,8 @@
 {
   "id": "compound",
   "family": "financial",
-  "title": "%compound — future value of a lump sum",
-  "purpose": "Grow a principal at a per-period rate over n periods: P × (1 + r)^n.",
+  "title": "%compound - future value of a lump sum",
+  "purpose": "Grow a principal at a per-period rate over n periods: P x (1 + r)^n.",
   "signature": "%compound <number:principal> <number:rate> <number:periods> -> number",
   "transform": "{out}\nr = %compound @.principal @.rate @.years",
   "input": "principal = #10000\nrate = #0.05\nyears = ##10",
@@ -15,11 +15,11 @@
   "avoid": [
     {
       "snippet": "r = %compound @.principal @.rate @.years  ; rate = #5",
-      "why": "a rate given as 5 (meaning 500%) instead of 0.05 returns ~604661760000 — express the rate as a fraction"
+      "why": "a rate given as 5 (meaning 500%) instead of 0.05 returns ~604661760000 - express the rate as a fraction"
     },
     {
       "snippet": "r = %compound @.principal @.years @.rate",
-      "why": "rate and periods are swapped; the engine computes 10000 × (1+10)^0.05 = ~11273.78, not the intended growth"
+      "why": "rate and periods are swapped; the engine computes 10000 x (1+10)^0.05 = ~11273.78, not the intended growth"
     }
   ],
   "tsOnly": true

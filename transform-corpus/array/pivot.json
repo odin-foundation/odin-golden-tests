@@ -1,7 +1,7 @@
 {
   "id": "pivot",
   "family": "array",
-  "title": "%pivot — records to a keyed object",
+  "title": "%pivot - records to a keyed object",
   "purpose": "Reshape an array of records into one object keyed by a field.",
   "signature": "%pivot <array> <string:keyField> <string:valueField> -> object",
   "transform": "{out}\n{.lookup} = %pivot @.items \"name\" \"value\"\n{.dupKeys} = %pivot @.dups \"name\" \"value\"",

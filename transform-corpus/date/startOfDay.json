@@ -1,7 +1,7 @@
 {
   "id": "startOfDay",
   "family": "date",
-  "title": "%startOfDay — floor a timestamp to midnight",
+  "title": "%startOfDay - floor a timestamp to midnight",
   "purpose": "Reset a timestamp to the very start of its day (00:00:00.000).",
   "signature": "%startOfDay <timestamp> -> string",
   "transform": "{out}\nt = %startOfDay @.ts",

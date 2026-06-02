@@ -1,7 +1,7 @@
 {
   "id": "tryCoerce",
   "family": "type",
-  "title": "%tryCoerce — auto-detect and coerce a string to its natural type",
+  "title": "%tryCoerce - auto-detect and coerce a string to its natural type",
   "purpose": "Infer the type of a string value (integer, number, boolean, date) and coerce it, leaving plain text unchanged.",
   "signature": "%tryCoerce <value> -> value",
   "transform": "{out}\nv = %tryCoerce @.raw\nfloat = %tryCoerce @.float\nflag = %tryCoerce @.flag\nword = %tryCoerce @.word",

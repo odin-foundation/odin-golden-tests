@@ -1,7 +1,7 @@
 {
   "id": "log",
   "family": "financial",
-  "title": "%log — logarithm with optional base",
+  "title": "%log - logarithm with optional base",
   "purpose": "Take the logarithm of a value, natural by default or in a given base.",
   "signature": "%log <number:value> <number:base?> -> number",
   "transform": "{out}\nr = %log @.x @.b\nnatural = %log @.e\nbaseOne = %log @.x @.one\nnonPositive = %log @.zero @.b",

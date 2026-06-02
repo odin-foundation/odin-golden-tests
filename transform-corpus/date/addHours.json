@@ -1,7 +1,7 @@
 {
   "id": "addHours",
   "family": "date",
-  "title": "%addHours — shift a timestamp by hours",
+  "title": "%addHours - shift a timestamp by hours",
   "purpose": "Add (or subtract) hours to a timestamp, returning an ISO date-time.",
   "signature": "%addHours <timestamp> <number:hours> -> string",
   "transform": "{out}\nt = %addHours @.ts ##5",

@@ -1,7 +1,7 @@
 {
   "id": "template",
   "family": "string",
-  "title": "%template — fill {placeholders} from an object",
+  "title": "%template - fill {placeholders} from an object",
   "purpose": "Substitute {key} placeholders in a template string with values from an object.",
   "signature": "%template <template> <object> -> string",
   "transform": "{out}\nfilled = %template \"Hi {name}, you are {age}\" @.data\nmissingKey = %template \"a{missing}b\" @.data",

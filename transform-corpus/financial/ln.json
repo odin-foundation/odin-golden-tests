@@ -1,7 +1,7 @@
 {
   "id": "ln",
   "family": "financial",
-  "title": "%ln — natural logarithm",
+  "title": "%ln - natural logarithm",
   "purpose": "Take the natural logarithm (base e) of a value.",
   "signature": "%ln <number:value> -> number",
   "transform": "{out}\nr = %ln @.e\none = %ln @.one\nzero = %ln @.zero\nnegative = %ln @.neg",

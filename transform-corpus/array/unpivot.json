@@ -1,7 +1,7 @@
 {
   "id": "unpivot",
   "family": "array",
-  "title": "%unpivot — object to key/value records",
+  "title": "%unpivot - object to key/value records",
   "purpose": "Reshape an object into an array of { key, value } records.",
   "signature": "%unpivot <object> <string:keyName> <string:valueName> -> array",
   "transform": "{out}\nrows = %unpivot @.lookup \"key\" \"value\"\nsingle = %unpivot @.one \"key\" \"value\"\nnonObject = %unpivot @.scalar \"key\" \"value\"",

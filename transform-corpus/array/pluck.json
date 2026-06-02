@@ -1,7 +1,7 @@
 {
   "id": "pluck",
   "family": "array",
-  "title": "%pluck — extract a field from each record",
+  "title": "%pluck - extract a field from each record",
   "purpose": "Collect one field value from every object into an array.",
   "signature": "%pluck <array> <string:field> -> array",
   "transform": "{out}\nids = %pluck @.users \"id\"\nmissing = %pluck @.users \"email\"",

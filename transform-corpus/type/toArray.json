@@ -1,7 +1,7 @@
 {
   "id": "toArray",
   "family": "type",
-  "title": "%toArray — wrap a value in an array",
+  "title": "%toArray - wrap a value in an array",
   "purpose": "Normalize a scalar (or existing array) into an array so downstream array verbs always have a collection.",
   "signature": "%toArray <value> -> array",
   "transform": "{out}\narr = %toArray @.raw\nfromNum = %toArray @.num",

@@ -1,7 +1,7 @@
 {
   "id": "avg",
   "family": "aggregation",
-  "title": "%avg — arithmetic mean of an array",
+  "title": "%avg - arithmetic mean of an array",
   "purpose": "Reduce an array reference to the mean of its numeric elements.",
   "signature": "%avg <array> -> number",
   "transform": "{out}\nmean = %avg @.amounts\nfractional = %avg @.thirds\nnegatives = %avg @.deltas\nsingle = %avg @.one",

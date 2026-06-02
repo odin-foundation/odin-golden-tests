@@ -1,14 +1,14 @@
 {
   "id": "endOfMonth",
   "family": "date",
-  "title": "%endOfMonth — last day of the month",
+  "title": "%endOfMonth - last day of the month",
   "purpose": "Advance a date to the final day of its calendar month.",
   "signature": "%endOfMonth <date> -> string",
   "transform": "{out}\nd = %endOfMonth @.feb\nthirty = %endOfMonth @.apr\nlast = %endOfMonth @.dec\nbad = %endOfMonth @.notDate",
   "input": "feb = 2024-02-15\napr = 2024-04-10\ndec = 2024-12-01\nnotDate = \"nope\"",
   "expectedOutput": "{out}\nd = \"2024-02-29\"\nthirty = \"2024-04-30\"\nlast = \"2024-12-31\"\nbad = ~",
   "notes": [
-    "Leap years are honored — February 2024 ends on the 29th.",
+    "Leap years are honored - February 2024 ends on the 29th.",
     "Returns an ISO date string."
   ],
   "avoid": []

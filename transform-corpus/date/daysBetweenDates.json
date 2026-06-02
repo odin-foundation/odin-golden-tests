@@ -1,7 +1,7 @@
 {
   "id": "daysBetweenDates",
   "family": "date",
-  "title": "%daysBetweenDates — whole days from start to end",
+  "title": "%daysBetweenDates - whole days from start to end",
   "purpose": "Count the whole days between two dates, signed by direction.",
   "signature": "%daysBetweenDates <date:start> <date:end> -> integer",
   "transform": "{out}\nn = %daysBetweenDates @.a @.b\nreverse = %daysBetweenDates @.b @.a\nsame = %daysBetweenDates @.a @.a\nyearBoundary = %daysBetweenDates @.eve @.day",

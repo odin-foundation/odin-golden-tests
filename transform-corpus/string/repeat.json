@@ -1,7 +1,7 @@
 {
   "id": "repeat",
   "family": "string",
-  "title": "%repeat — repeat a string N times",
+  "title": "%repeat - repeat a string N times",
   "purpose": "Concatenate a string with itself a given number of times.",
   "signature": "%repeat <string> <count:integer> -> string",
   "transform": "{out}\nthrice = %repeat @.ab ##3\nzero = %repeat @.ab ##0\nnegative = %repeat @.ab ##-1",

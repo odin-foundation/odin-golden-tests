@@ -1,7 +1,7 @@
 {
   "id": "cond",
   "family": "logic",
-  "title": "%cond — multi-branch conditional",
+  "title": "%cond - multi-branch conditional",
   "purpose": "Evaluate condition/value pairs and return the value of the first true condition, else a default.",
   "signature": "%cond <cond1:boolean> <val1> [<cond2:boolean> <val2> ...] <default> -> value",
   "transform": "{out}\ncode = %cond %eq @.status \"active\" \"A\" %eq @.status \"pending\" \"P\" \"X\"\nfirstWins = %cond %eq @.active \"active\" \"A\" %eq @.active \"pending\" \"P\" \"X\"\nfallthrough = %cond %eq @.unknown \"active\" \"A\" %eq @.unknown \"pending\" \"P\" \"X\"",

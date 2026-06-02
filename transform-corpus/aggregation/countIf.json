@@ -1,7 +1,7 @@
 {
   "id": "countIf",
   "family": "aggregation",
-  "title": "%countIf — count items matching a condition",
+  "title": "%countIf - count items matching a condition",
   "purpose": "Count the array items whose field satisfies an operator/value condition.",
   "signature": "%countIf <array> <field> <op> <value> -> integer",
   "transform": "{out}\npaid = %countIf @.orders \"status\" \"=\" \"paid\"\nnoMatch = %countIf @.orders \"status\" \"=\" \"void\"",

@@ -1,7 +1,7 @@
 {
   "id": "cumsum",
   "family": "array",
-  "title": "%cumsum — running total",
+  "title": "%cumsum - running total",
   "purpose": "Return the cumulative sum at each position.",
   "signature": "%cumsum <array> -> array",
   "transform": "{out}\nrunning = %cumsum @.values\nwithNeg = %cumsum @.withNeg\nnonArray = %cumsum @.notArr",

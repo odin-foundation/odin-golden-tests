@@ -1,7 +1,7 @@
 {
   "id": "quadratic",
   "family": "expr",
-  "title": "%expr — a quadratic formula",
+  "title": "%expr - a quadratic formula",
   "purpose": "Combine variables, powers, and precedence in one formula with explicit bindings.",
   "signature": "%expr \"<formula>\" [@bindings] -> number",
   "transform": "{out}\nr = %expr \"a*x^2 + b*x + c\" @.v",

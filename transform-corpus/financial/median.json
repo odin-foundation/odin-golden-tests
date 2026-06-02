@@ -1,7 +1,7 @@
 {
   "id": "median",
   "family": "financial",
-  "title": "%median — middle value",
+  "title": "%median - middle value",
   "purpose": "Return the median of a numeric array, averaging the two middle values when the count is even.",
   "signature": "%median <array:values> -> number",
   "transform": "{out}\nr = %median @.prices\neven = %median @.evenSet\nsingle = %median @.one",

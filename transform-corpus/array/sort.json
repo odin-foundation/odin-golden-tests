@@ -1,15 +1,15 @@
 {
   "id": "sort",
   "family": "array",
-  "title": "%sort — sort a primitive array ascending",
+  "title": "%sort - sort a primitive array ascending",
   "purpose": "Order array values ascending (numeric when all numbers, else lexical).",
-  "signature": "%sort <array> [<string:field>] [<string:direction>] -> array",
+  "signature": "%sort <array> -> array",
   "transform": "{out}\nsorted = %sort @.scores\nlexical = %sort @.words",
   "input": "{scores[] : ~}\n##30\n##10\n##20\n\n{words[] : ~}\n\"banana\"\n\"apple\"\n\"cherry\"",
   "expectedOutput": "{out}\n{.sorted[] : ~}\n##10\n##20\n##30\n{.lexical[] : ~}\n\"apple\"\n\"banana\"\n\"cherry\"",
   "notes": [
     "Numeric arrays sort numerically; mixed/string arrays sort lexically.",
-    "Optional second/third args sort an object array by field and direction (\"asc\"/\"desc\")."
+    "Sorts primitive values only; use %sortDesc for descending order and %sortBy to sort an object array by a field."
   ],
   "avoid": []
 }

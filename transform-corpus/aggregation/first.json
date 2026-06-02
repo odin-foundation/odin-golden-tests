@@ -1,7 +1,7 @@
 {
   "id": "first",
   "family": "aggregation",
-  "title": "%first — first element of an array",
+  "title": "%first - first element of an array",
   "purpose": "Return the first element of an array reference, preserving its type.",
   "signature": "%first <array> -> any",
   "transform": "{out}\nf = %first @.names\nnumeric = %first @.amounts\nsingle = %first @.one",

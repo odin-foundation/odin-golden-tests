@@ -1,7 +1,7 @@
 {
   "id": "padLeft",
   "family": "string",
-  "title": "%padLeft — left-pad to a width",
+  "title": "%padLeft - left-pad to a width",
   "purpose": "Pad the start of a string with a fill character until it reaches a target length.",
   "signature": "%padLeft <string> <length:integer> <char:string> -> string",
   "transform": "{out}\npadded = %padLeft @.code ##6 \"0\"\nalready = %padLeft @.long ##3 \"0\"\nexact = %padLeft @.exact ##2 \"0\"",

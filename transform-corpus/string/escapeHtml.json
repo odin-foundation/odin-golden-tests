@@ -1,7 +1,7 @@
 {
   "id": "escapeHtml",
   "family": "string",
-  "title": "%escapeHtml — escape HTML special characters",
+  "title": "%escapeHtml - escape HTML special characters",
   "purpose": "Escape the five HTML special characters & < > \" and the apostrophe as entities.",
   "signature": "%escapeHtml <string> -> string",
   "transform": "{out}\nescaped = %escapeHtml @.raw\nempty = %escapeHtml @.blank",

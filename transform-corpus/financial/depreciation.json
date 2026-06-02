@@ -1,8 +1,8 @@
 {
   "id": "depreciation",
   "family": "financial",
-  "title": "%depreciation — straight-line depreciation per period",
-  "purpose": "Compute the constant per-period depreciation: (cost − salvage) / life.",
+  "title": "%depreciation - straight-line depreciation per period",
+  "purpose": "Compute the constant per-period depreciation: (cost - salvage) / life.",
   "signature": "%depreciation <number:cost> <number:salvage> <number:life> -> number",
   "transform": "{out}\nr = %depreciation @.cost @.salvage @.life\nsalvageOverCost = %depreciation @.lowCost @.highSalvage @.life\nzeroLife = %depreciation @.cost @.salvage @.zero",
   "input": "cost = #10000\nsalvage = #2000\nlife = ##5\nlowCost = #2000\nhighSalvage = #10000\nzero = ##0",

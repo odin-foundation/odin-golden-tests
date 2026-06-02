@@ -1,7 +1,7 @@
 {
   "id": "values",
   "family": "object",
-  "title": "%values — property values of an object",
+  "title": "%values - property values of an object",
   "purpose": "Return the own enumerable property values of an object as an array.",
   "signature": "%values <object> -> array",
   "transform": "{out}\nv = %values @.obj\nnonObject = %values @.notObj",

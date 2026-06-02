@@ -1,7 +1,7 @@
 {
   "id": "interpolate",
   "family": "financial",
-  "title": "%interpolate — linear interpolation between two points",
+  "title": "%interpolate - linear interpolation between two points",
   "purpose": "Estimate y at x along the line through (x1, y1) and (x2, y2).",
   "signature": "%interpolate <number:x> <number:x1> <number:y1> <number:x2> <number:y2> -> number",
   "transform": "{out}\nr = %interpolate @.x @.x1 @.y1 @.x2 @.y2\nflatX = %interpolate @.x @.x1 @.y1 @.x1 @.y2\nextrapolate = %interpolate @.beyond @.x1 @.y1 @.x2 @.y2",

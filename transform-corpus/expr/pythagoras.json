@@ -1,7 +1,7 @@
 {
   "id": "pythagoras",
   "family": "expr",
-  "title": "%expr — variables and sqrt",
+  "title": "%expr - variables and sqrt",
   "purpose": "Variables resolve under an explicit bindings object; sqrt is whitelisted.",
   "signature": "%expr \"<formula>\" [@bindings] -> number",
   "transform": "{out}\nr = %expr \"sqrt(x^2 + y^2)\" @.v",

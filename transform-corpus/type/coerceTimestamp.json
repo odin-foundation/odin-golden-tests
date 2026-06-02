@@ -1,7 +1,7 @@
 {
   "id": "coerceTimestamp",
   "family": "type",
-  "title": "%coerceTimestamp — convert a value to a timestamp",
+  "title": "%coerceTimestamp - convert a value to a timestamp",
   "purpose": "Parse a value into a typed timestamp, preserving the time-of-day component.",
   "signature": "%coerceTimestamp <value> -> timestamp",
   "transform": "{out}\nt = %coerceTimestamp @.raw",

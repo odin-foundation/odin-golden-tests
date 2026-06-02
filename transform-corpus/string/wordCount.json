@@ -1,7 +1,7 @@
 {
   "id": "wordCount",
   "family": "string",
-  "title": "%wordCount — count words",
+  "title": "%wordCount - count words",
   "purpose": "Count the whitespace-separated words in a string.",
   "signature": "%wordCount <string> -> integer",
   "transform": "{out}\nout = %wordCount @.text\nsingle = %wordCount @.one\npadded = %wordCount @.spaced\nempty = %wordCount @.blank",

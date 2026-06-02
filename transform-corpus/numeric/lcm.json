@@ -1,7 +1,7 @@
 {
   "id": "lcm",
   "family": "numeric",
-  "title": "%lcm — least common multiple",
+  "title": "%lcm - least common multiple",
   "purpose": "Compute the least common multiple of two integers.",
   "signature": "%lcm <integer> <integer> -> integer",
   "transform": "{out}\nnormal = %lcm @.a @.b\nwithZero = %lcm @.zero @.a",

@@ -1,7 +1,7 @@
 {
   "id": "formatPhone",
   "family": "string",
-  "title": "%formatPhone — format a phone number by country",
+  "title": "%formatPhone - format a phone number by country",
   "purpose": "Strip non-digits and format a phone number for a given country code.",
   "signature": "%formatPhone <string> <country:string> -> string",
   "transform": "{out}\nout = %formatPhone @.phone \"US\"\neleven = %formatPhone @.phone11 \"US\"\nwrongCount = %formatPhone @.short \"US\"\ndirty = %formatPhone @.dirty \"US\"",

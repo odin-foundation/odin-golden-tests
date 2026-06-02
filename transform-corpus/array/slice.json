@@ -1,7 +1,7 @@
 {
   "id": "slice",
   "family": "array",
-  "title": "%slice — sub-range of an array",
+  "title": "%slice - sub-range of an array",
   "purpose": "Return elements from a start index up to (not including) an end index.",
   "signature": "%slice <array> <integer:start> [<integer:end>] -> array",
   "transform": "{out}\nmid = %slice @.items ##1 ##3\nhead = %slice @.items ##0 ##2\nnegStart = %slice @.items ##-2 ##4",

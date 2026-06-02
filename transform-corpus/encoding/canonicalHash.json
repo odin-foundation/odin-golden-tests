@@ -1,7 +1,7 @@
 {
   "id": "canonicalHash",
   "family": "encoding",
-  "title": "%canonicalHash — sha256 of the canonical form",
+  "title": "%canonicalHash - sha256 of the canonical form",
   "purpose": "Hash a value by its canonical (sorted-key) JSON form, yielding an order-independent fingerprint.",
   "signature": "%canonicalHash <any> -> string",
   "transform": "{out}\nh1 = %canonicalHash @.a\nh2 = %canonicalHash @.b",

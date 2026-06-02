@@ -1,7 +1,7 @@
 {
   "id": "sumIf",
   "family": "aggregation",
-  "title": "%sumIf — sum a field over matching items",
+  "title": "%sumIf - sum a field over matching items",
   "purpose": "Sum a field over the array items that satisfy a condition; the sum field defaults to the predicate field.",
   "signature": "%sumIf <array> <field> <op> <value> [<sumField>] -> number",
   "transform": "{out}\npaidTotal = %sumIf @.orders \"status\" \"=\" \"paid\" \"amount\"\nnoMatch = %sumIf @.orders \"status\" \"=\" \"void\" \"amount\"",

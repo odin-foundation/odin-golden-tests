@@ -1,7 +1,7 @@
 {
   "id": "typeOf",
   "family": "logic",
-  "title": "%typeOf — type name of a value",
+  "title": "%typeOf - type name of a value",
   "purpose": "Return the type name of a value as a string.",
   "signature": "%typeOf <value> -> string",
   "transform": "{out}\nkind = %typeOf @.amount\ntext = %typeOf @.name\nflag = %typeOf @.active\nnothing = %typeOf @.missing",

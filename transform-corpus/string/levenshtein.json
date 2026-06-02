@@ -1,15 +1,14 @@
 {
   "id": "levenshtein",
   "family": "string",
-  "title": "%levenshtein — edit distance between two strings",
+  "title": "%levenshtein - edit distance between two strings",
   "purpose": "Return the minimum single-character edits to turn one string into another.",
   "signature": "%levenshtein <string> <string> -> integer",
   "transform": "{out}\nedit = %levenshtein @.a @.b\nsame = %levenshtein @.same1 @.same2\nfromEmpty = %levenshtein @.empty @.word",
   "input": "a = \"kitten\"\nb = \"sitting\"\nsame1 = \"abc\"\nsame2 = \"abc\"\nempty = \"\"\nword = \"abc\"",
   "expectedOutput": "{out}\nedit = ##3\nsame = ##0\nfromEmpty = ##3",
   "notes": [
-    "Two required string arguments. Counts insertions, deletions, and substitutions. Returns an integer (## prefix).",
-    "Inputs longer than an internal length limit return null."
+    "Two required string arguments. Counts insertions, deletions, and substitutions. Returns an integer (## prefix)."
   ],
   "avoid": []
 }

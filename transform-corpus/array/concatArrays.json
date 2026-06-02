@@ -1,7 +1,7 @@
 {
   "id": "concatArrays",
   "family": "array",
-  "title": "%concatArrays — join two arrays",
+  "title": "%concatArrays - join two arrays",
   "purpose": "Append the second array to the first, preserving order.",
   "signature": "%concatArrays <array> <array> -> array",
   "transform": "{out}\ncombined = %concatArrays @.a @.b\noneEmpty = %concatArrays @.a @.empty\nbothNonArray = %concatArrays @.x @.y",

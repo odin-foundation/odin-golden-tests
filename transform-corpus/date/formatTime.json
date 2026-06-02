@@ -1,7 +1,7 @@
 {
   "id": "formatTime",
   "family": "date",
-  "title": "%formatTime — render the time portion of a timestamp",
+  "title": "%formatTime - render the time portion of a timestamp",
   "purpose": "Format the clock portion of a timestamp using a display pattern.",
   "signature": "%formatTime <timestamp> <string:pattern> -> string",
   "transform": "{out}\nt = %formatTime @.ts \"HH:mm:ss\"\nshort = %formatTime @.ts \"HH:mm\"\nmidnight = %formatTime @.mid \"HH:mm:ss\"",

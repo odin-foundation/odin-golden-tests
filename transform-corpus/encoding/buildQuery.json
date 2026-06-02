@@ -1,7 +1,7 @@
 {
   "id": "buildQuery",
   "family": "encoding",
-  "title": "%buildQuery — serialize an object to a query string",
+  "title": "%buildQuery - serialize an object to a query string",
   "purpose": "Serialize an object into a query string with keys sorted; null values are skipped.",
   "signature": "%buildQuery <object> -> string",
   "transform": "{out}\nqs = %buildQuery @.params\nskipsNull = %buildQuery @.withNull",

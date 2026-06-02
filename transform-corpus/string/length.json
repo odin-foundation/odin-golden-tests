@@ -1,7 +1,7 @@
 {
   "id": "length",
   "family": "string",
-  "title": "%length — character count of a string",
+  "title": "%length - character count of a string",
   "purpose": "Return the number of characters in a string.",
   "signature": "%length <string> -> integer",
   "transform": "{out}\nout = %length @.name\nempty = %length @.empty\nspaces = %length @.spaces",

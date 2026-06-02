@@ -1,14 +1,14 @@
 {
   "id": "and",
   "family": "logic",
-  "title": "%and — boolean AND",
+  "title": "%and - boolean AND",
   "purpose": "Return true only when both conditions are truthy.",
   "signature": "%and <a:boolean> <b:boolean> -> boolean",
   "transform": "{out}\nboth = %and %gte @.age ##18 %lt @.age ##65\nfailLow = %and %gte @.young ##18 %lt @.young ##65\nfailHigh = %and %gte @.old ##18 %lt @.old ##65",
   "input": "age = ##30\nyoung = ##16\nold = ##70",
   "expectedOutput": "{out}\nboth = ?true\nfailLow = ?false\nfailHigh = ?false",
   "notes": [
-    "Each operand is itself a verb-expression that yields a boolean (%gte …, %lt …).",
+    "Each operand is itself a verb-expression that yields a boolean (%gte ..., %lt ...).",
     "Exactly two operands; nest %and inside %and for three or more conditions."
   ],
   "avoid": [

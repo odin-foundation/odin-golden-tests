@@ -1,7 +1,7 @@
 {
   "id": "symmetricDifference",
   "family": "array",
-  "title": "%symmetricDifference — elements in exactly one array",
+  "title": "%symmetricDifference - elements in exactly one array",
   "purpose": "Return the distinct elements that appear in exactly one of the two arrays.",
   "signature": "%symmetricDifference <array> <array> -> array",
   "transform": "{out}\nxor = %symmetricDifference @.a @.b\ndisjoint = %symmetricDifference @.c @.d\ndeduped = %symmetricDifference @.e @.f",

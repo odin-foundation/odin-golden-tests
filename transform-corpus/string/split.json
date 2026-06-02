@@ -1,7 +1,7 @@
 {
   "id": "split",
   "family": "string",
-  "title": "%split — split and select one element",
+  "title": "%split - split and select one element",
   "purpose": "Split a string on a delimiter and return the element at a given index.",
   "signature": "%split <string> <delim:string> <index:integer> -> string",
   "transform": "{out}\nout = %split @.csv \",\" ##1\nlast = %split @.csv \",\" ##-1\noob = %split @.csv \",\" ##9",

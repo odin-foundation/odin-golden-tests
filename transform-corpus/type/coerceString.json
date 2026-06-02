@@ -1,7 +1,7 @@
 {
   "id": "coerceString",
   "family": "type",
-  "title": "%coerceString — convert any value to a string",
+  "title": "%coerceString - convert any value to a string",
   "purpose": "Force a value to a quoted string regardless of its source type.",
   "signature": "%coerceString <value> -> string",
   "transform": "{out}\ns = %coerceString @.raw\nfromBool = %coerceString @.flag\nfromFloat = %coerceString @.pi",

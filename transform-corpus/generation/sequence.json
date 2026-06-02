@@ -1,7 +1,7 @@
 {
   "id": "sequence",
   "family": "generation",
-  "title": "%sequence — next value in a named counter",
+  "title": "%sequence - next value in a named counter",
   "purpose": "Emit successive integers from a named counter that persists across mappings in one execution.",
   "signature": "%sequence <string:name> -> integer",
   "transform": "{out}\nfirst = %sequence \"ln\"\nsecond = %sequence \"ln\"\nthird = %sequence \"ln\"",
@@ -13,6 +13,9 @@
     "Deterministic, so it is corpus-safe (unlike %uuid or %nanoid)."
   ],
   "avoid": [
-    { "snippet": "n = %sequence \"ln\" ##100", "why": "an inline start value is rejected — a literal after the name raises a parse error (Unexpected content after value); %sequence takes only the name and always begins at 1" }
+    {
+      "snippet": "n = %sequence \"ln\" ##100",
+      "why": "an inline start value is rejected - a literal after the name raises a parse error (Unexpected content after value); %sequence takes only the name and always begins at 1"
+    }
   ]
 }

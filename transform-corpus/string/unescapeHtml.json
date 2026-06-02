@@ -1,7 +1,7 @@
 {
   "id": "unescapeHtml",
   "family": "string",
-  "title": "%unescapeHtml — decode HTML entities",
+  "title": "%unescapeHtml - decode HTML entities",
   "purpose": "Decode named and numeric HTML entities back to their characters.",
   "signature": "%unescapeHtml <string> -> string",
   "transform": "{out}\ndecoded = %unescapeHtml @.raw\nnumeric = %unescapeHtml @.refs",

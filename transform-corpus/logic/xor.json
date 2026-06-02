@@ -1,7 +1,7 @@
 {
   "id": "xor",
   "family": "logic",
-  "title": "%xor — exclusive OR",
+  "title": "%xor - exclusive OR",
   "purpose": "Return true when exactly one of two conditions is truthy.",
   "signature": "%xor <a:boolean> <b:boolean> -> boolean",
   "transform": "{out}\nexactlyOne = %xor @.hasEmail @.hasPhone\nboth = %xor @.hasEmail @.hasFax\nneither = %xor @.hasPhone @.hasSms",

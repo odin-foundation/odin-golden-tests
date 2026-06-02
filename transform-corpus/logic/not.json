@@ -1,7 +1,7 @@
 {
   "id": "not",
   "family": "logic",
-  "title": "%not — boolean NOT",
+  "title": "%not - boolean NOT",
   "purpose": "Return the logical negation of a boolean value.",
   "signature": "%not <value:boolean> -> boolean",
   "transform": "{out}\ninactive = %not @.active\nactive = %not @.disabled",
@@ -14,7 +14,7 @@
   "avoid": [
     {
       "snippet": "inactive = %not \"false\"",
-      "why": "the literal string \"false\" is not one of the recognized truthy tokens (true/yes/y/1), so it is treated as falsy and %not returns ?true — the opposite of intent. Negate an actual boolean path or verb, e.g. %not @.active."
+      "why": "the literal string \"false\" is not one of the recognized truthy tokens (true/yes/y/1), so it is treated as falsy and %not returns ?true - the opposite of intent. Negate an actual boolean path or verb, e.g. %not @.active."
     }
   ]
 }

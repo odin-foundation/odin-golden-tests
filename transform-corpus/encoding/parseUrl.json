@@ -1,7 +1,7 @@
 {
   "id": "parseUrl",
   "family": "encoding",
-  "title": "%parseUrl — split a URL into parts",
+  "title": "%parseUrl - split a URL into parts",
   "purpose": "Parse a URL into an object of scheme, host, port, path, query, and fragment.",
   "signature": "%parseUrl <string> -> object",
   "transform": "{out}\nfull = %parseUrl @.url\nnoPort = %parseUrl @.bare\ninvalid = %parseUrl @.bad",

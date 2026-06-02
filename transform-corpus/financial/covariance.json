@@ -1,7 +1,7 @@
 {
   "id": "covariance",
   "family": "financial",
-  "title": "%covariance — population covariance of two series",
+  "title": "%covariance - population covariance of two series",
   "purpose": "Measure how two numeric series vary together.",
   "signature": "%covariance <array:x> <array:y> -> number",
   "transform": "{out}\nr = %covariance @.x @.y\nuneven = %covariance @.x @.shortY\nconstant = %covariance @.x @.flat",

@@ -1,7 +1,7 @@
 {
   "id": "keyBy",
   "family": "array",
-  "title": "%keyBy — index items by a field",
+  "title": "%keyBy - index items by a field",
   "purpose": "Build an object that maps each item field value to the item.",
   "signature": "%keyBy <array> <field> -> object",
   "transform": "{out}\nbyId = %keyBy @.users \"id\"",

@@ -1,7 +1,7 @@
 {
   "id": "flatten",
   "family": "array",
-  "title": "%flatten — flatten nested arrays one level",
+  "title": "%flatten - flatten nested arrays one level",
   "purpose": "Collapse an array of arrays into a single array, one level deep.",
   "signature": "%flatten <array> -> array",
   "transform": "{out}\nall = %flatten @.nested\nflat = %flatten @.alreadyFlat",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\n{.all[] : ~}\n##1\n##2\n##3\n##4\n{.flat[] : ~}\n##1\n##2\n##3",
   "notes": [
     "A nested (2D) array is supplied as a JSON-array string literal; the engine parses it into nested arrays before flattening.",
-    "Flattening is one level deep only — deeper nesting is preserved."
+    "Flattening is one level deep only - deeper nesting is preserved."
   ],
   "avoid": []
 }

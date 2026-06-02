@@ -1,7 +1,7 @@
 {
   "id": "endOfDay",
   "family": "date",
-  "title": "%endOfDay — raise a timestamp to the last instant of its day",
+  "title": "%endOfDay - raise a timestamp to the last instant of its day",
   "purpose": "Set a timestamp to the final moment of its day (23:59:59.999).",
   "signature": "%endOfDay <timestamp> -> string",
   "transform": "{out}\nt = %endOfDay @.ts",

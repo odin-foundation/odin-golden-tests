@@ -1,7 +1,7 @@
 {
   "id": "convertUnit",
   "family": "numeric",
-  "title": "%convertUnit — unit conversion",
+  "title": "%convertUnit - unit conversion",
   "purpose": "Convert a value between two compatible units of the same family.",
   "signature": "%convertUnit <number> <string:fromUnit> <string:toUnit> -> number",
   "transform": "{out}\nv = %convertUnit @.a \"kg\" \"lb\"\ntemp = %convertUnit @.t \"C\" \"F\"\ncrossFamily = %convertUnit @.a \"kg\" \"km\"\nunknownUnit = %convertUnit @.a \"kg\" \"zz\"",
@@ -10,7 +10,7 @@
   "notes": [
     "Supports mass, length, volume, speed, area, data, time, and temperature (C/F/K) families.",
     "Results are rounded to at most six decimal places.",
-    "Incompatible units across families (e.g. kg → km) yield null (~)."
+    "Incompatible units across families (e.g. kg -> km) yield null (~)."
   ],
   "avoid": [
     {

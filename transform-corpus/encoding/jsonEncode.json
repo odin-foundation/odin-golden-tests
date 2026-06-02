@@ -1,7 +1,7 @@
 {
   "id": "jsonEncode",
   "family": "encoding",
-  "title": "%jsonEncode — Serialize a value to JSON text",
+  "title": "%jsonEncode - Serialize a value to JSON text",
   "purpose": "Serialize an object or array into a compact JSON string.",
   "signature": "%jsonEncode <value> -> string",
   "transform": "{out}\nj = %jsonEncode @.data\nlist = %jsonEncode @.nums\nscalar = %jsonEncode @.text",

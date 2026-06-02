@@ -1,7 +1,7 @@
 {
   "id": "round",
   "family": "numeric",
-  "title": "%round — round to N decimal places",
+  "title": "%round - round to N decimal places",
   "purpose": "Round a number to a fixed number of decimal places.",
   "signature": "%round <number> <integer:places> -> number",
   "transform": "{out}\namount = %round @.amount ##2\nwhole = %round @.b ##0\nnegative = %round @.c ##1",

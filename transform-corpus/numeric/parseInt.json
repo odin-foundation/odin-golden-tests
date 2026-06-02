@@ -1,7 +1,7 @@
 {
   "id": "parseInt",
   "family": "numeric",
-  "title": "%parseInt — parse string to integer with radix",
+  "title": "%parseInt - parse string to integer with radix",
   "purpose": "Parse a string into an integer using an explicit numeric base.",
   "signature": "%parseInt <string> [integer:radix] -> integer",
   "transform": "{out}\nv = %parseInt @.a ##16\ndecimal = %parseInt @.b ##10\nbinary = %parseInt @.c ##2\nbadRadix = %parseInt @.d ##99",

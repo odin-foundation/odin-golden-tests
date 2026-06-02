@@ -1,7 +1,7 @@
 {
   "id": "compact",
   "family": "array",
-  "title": "%compact — drop empty values",
+  "title": "%compact - drop empty values",
   "purpose": "Remove null and empty-string elements from an array.",
   "signature": "%compact <array> -> array",
   "transform": "{out}\nclean = %compact @.values\nkeepsFalsy = %compact @.falsy\nnonArray = %compact @.notArr",

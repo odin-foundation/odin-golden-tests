@@ -1,7 +1,7 @@
 {
   "id": "sqrt",
   "family": "financial",
-  "title": "%sqrt — square root",
+  "title": "%sqrt - square root",
   "purpose": "Take the square root of a non-negative value.",
   "signature": "%sqrt <number:value> -> number",
   "transform": "{out}\nr = %sqrt @.x\nperfect = %sqrt @.nine\nzero = %sqrt @.zero\nnegative = %sqrt @.neg",

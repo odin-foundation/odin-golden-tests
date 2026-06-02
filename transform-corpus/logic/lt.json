@@ -1,7 +1,7 @@
 {
   "id": "lt",
   "family": "logic",
-  "title": "%lt — less than",
+  "title": "%lt - less than",
   "purpose": "Return true when the first value is strictly less than the second.",
   "signature": "%lt <a:value> <b:value> -> boolean",
   "transform": "{out}\nsmall = %lt @.amount ##1000\nequal = %lt @.amount @.amount\nbigger = %lt ##1000 @.amount\nlexical = %lt @.alpha \"beta\"",

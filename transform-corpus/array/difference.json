@@ -1,7 +1,7 @@
 {
   "id": "difference",
   "family": "array",
-  "title": "%difference — elements only in the first array",
+  "title": "%difference - elements only in the first array",
   "purpose": "Return the distinct elements of the first array that are not in the second.",
   "signature": "%difference <array> <array> -> array",
   "transform": "{out}\nonly = %difference @.a @.b\nnoOverlap = %difference @.a @.c",

@@ -1,7 +1,7 @@
 {
   "id": "rowNumber",
   "family": "array",
-  "title": "%rowNumber — add sequential row numbers",
+  "title": "%rowNumber - add sequential row numbers",
   "purpose": "Tag each element with a 1-based _rowNum field.",
   "signature": "%rowNumber <array> -> array",
   "transform": "{out}\nnumbered = %rowNumber @.names\nrecords = %rowNumber @.people",

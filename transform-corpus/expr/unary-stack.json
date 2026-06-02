@@ -1,7 +1,7 @@
 {
   "id": "unary-stack",
   "family": "expr",
-  "title": "%expr — stacked unary minus",
+  "title": "%expr - stacked unary minus",
   "purpose": "Unary minus may be applied repeatedly.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"--2\"",

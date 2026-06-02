@@ -1,7 +1,7 @@
 {
   "id": "addMonths",
   "family": "date",
-  "title": "%addMonths — shift a date by whole months",
+  "title": "%addMonths - shift a date by whole months",
   "purpose": "Add (or subtract) a number of months to a date, returning an ISO date.",
   "signature": "%addMonths <date> <integer:months> -> string",
   "transform": "{out}\nd = %addMonths @.start ##2\nfebOverflow = %addMonths @.jan31 ##1\nback = %addMonths @.start ##-3\nbad = %addMonths @.notDate ##2",
@@ -9,7 +9,8 @@
   "expectedOutput": "{out}\nd = \"2024-03-31\"\nfebOverflow = \"2024-03-02\"\nback = \"2023-10-31\"\nbad = ~",
   "notes": [
     "Month arithmetic uses calendar-month stepping, not a fixed day count.",
-    "A negative count moves the date backward."
+    "A negative count moves the date backward.",
+    "Overflow is not clamped: a day absent from the target month rolls forward (Jan 31 + 1 month is Mar 2, not Feb 29). Every SDK must reproduce this rollover."
   ],
   "avoid": []
 }

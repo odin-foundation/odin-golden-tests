@@ -1,7 +1,7 @@
 {
   "id": "contains",
   "family": "string",
-  "title": "%contains — substring test",
+  "title": "%contains - substring test",
   "purpose": "Return true when the string contains the given substring.",
   "signature": "%contains <string> <search:string> -> boolean",
   "transform": "{out}\nout = %contains @.name \"ond\"\nmissing = %contains @.name \"xyz\"\ncaseDiff = %contains @.name \"HON\"\nempty = %contains @.name \"\"",

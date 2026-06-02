@@ -1,7 +1,7 @@
 {
   "id": "fillMissing",
   "family": "array",
-  "title": "%fillMissing — replace null values",
+  "title": "%fillMissing - replace null values",
   "purpose": "Substitute a value for null/missing array elements.",
   "signature": "%fillMissing <array> [<value:fill>] [<string:strategy>] -> array",
   "transform": "{out}\nfilled = %fillMissing @.values ##0\nforward = %fillMissing @.gaps ##0 \"forward\"\nnoNulls = %fillMissing @.full ##0",

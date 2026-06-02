@@ -1,7 +1,7 @@
 {
   "id": "formatTimestamp",
   "family": "date",
-  "title": "%formatTimestamp — render a full timestamp with a pattern",
+  "title": "%formatTimestamp - render a full timestamp with a pattern",
   "purpose": "Format both date and time portions of a timestamp using a display pattern.",
   "signature": "%formatTimestamp <timestamp> <string:pattern> -> string",
   "transform": "{out}\nt = %formatTimestamp @.ts \"YYYY-MM-DD HH:mm:ss\"\ndateOnly = %formatTimestamp @.ts \"YYYY-MM-DD\"\ntimeOnly = %formatTimestamp @.ts \"HH:mm:ss\"",

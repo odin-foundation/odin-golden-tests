@@ -1,7 +1,7 @@
 {
   "id": "countBy",
   "family": "array",
-  "title": "%countBy — count items per field value",
+  "title": "%countBy - count items per field value",
   "purpose": "Group array items by a field and count how many fall in each group.",
   "signature": "%countBy <array> [<field>] -> object",
   "transform": "{out}\nbyRegion = %countBy @.items \"region\"\nbyValue = %countBy @.tags\nnonArray = %countBy @.notArr",

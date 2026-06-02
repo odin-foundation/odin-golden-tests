@@ -1,7 +1,7 @@
 {
   "id": "isArray",
   "family": "logic",
-  "title": "%isArray — array-type test",
+  "title": "%isArray - array-type test",
   "purpose": "Return true when a value is an array.",
   "signature": "%isArray <value> -> boolean",
   "transform": "{out}\nisList = %isArray @.tags\nnotList = %isArray @.name",

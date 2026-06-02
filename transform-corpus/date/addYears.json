@@ -1,7 +1,7 @@
 {
   "id": "addYears",
   "family": "date",
-  "title": "%addYears — shift a date by whole years",
+  "title": "%addYears - shift a date by whole years",
   "purpose": "Add (or subtract) a number of years to a date, returning an ISO date.",
   "signature": "%addYears <date> <integer:years> -> string",
   "transform": "{out}\nd = %addYears @.start ##1",

@@ -1,14 +1,14 @@
 {
   "id": "formatPercent",
   "family": "numeric",
-  "title": "%formatPercent — fraction to percentage string",
+  "title": "%formatPercent - fraction to percentage string",
   "purpose": "Format a fractional ratio as a percentage string with a fixed number of decimals.",
   "signature": "%formatPercent <number> <integer:decimals> -> string",
   "transform": "{out}\nv = %formatPercent @.a ##1\nzeroDecimals = %formatPercent @.a ##0\nwhole = %formatPercent @.b ##1\nnegative = %formatPercent @.c ##1",
   "input": "a = #0.1234\nb = #1\nc = #-0.05",
   "expectedOutput": "{out}\nv = \"12.3%\"\nzeroDecimals = \"12%\"\nwhole = \"100.0%\"\nnegative = \"-5.0%\"",
   "notes": [
-    "Multiplies by 100 and appends a percent sign (0.1234 → \"12.3%\").",
+    "Multiplies by 100 and appends a percent sign (0.1234 -> \"12.3%\").",
     "The result is a string."
   ],
   "avoid": [

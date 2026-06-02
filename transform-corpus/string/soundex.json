@@ -1,7 +1,7 @@
 {
   "id": "soundex",
   "family": "string",
-  "title": "%soundex — phonetic code",
+  "title": "%soundex - phonetic code",
   "purpose": "Return the 4-character Soundex code for a word.",
   "signature": "%soundex <string> -> string",
   "transform": "{out}\nout = %soundex @.name\nsimilar = %soundex @.rupert\nshort = %soundex @.lee",

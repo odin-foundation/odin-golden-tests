@@ -1,7 +1,7 @@
 {
   "id": "lag",
   "family": "array",
-  "title": "%lag — previous value at each position",
+  "title": "%lag - previous value at each position",
   "purpose": "Shift values forward so each row sees the earlier value.",
   "signature": "%lag <array> [<integer:periods>] [<value:default>] -> array",
   "transform": "{out}\nprev = %lag @.prices\nby2 = %lag @.prices ##2\nwithDefault = %lag @.prices ##1 ##0",

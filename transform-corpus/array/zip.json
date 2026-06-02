@@ -1,7 +1,7 @@
 {
   "id": "zip",
   "family": "array",
-  "title": "%zip — pair two arrays element-wise",
+  "title": "%zip - pair two arrays element-wise",
   "purpose": "Combine two arrays into an array of positional pairs.",
   "signature": "%zip <array> <array> -> array",
   "transform": "{out}\npaired = %zip @.names @.scores\nuneven = %zip @.names @.few\nnonArray = %zip @.names @.scalar",

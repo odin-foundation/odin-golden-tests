@@ -1,7 +1,7 @@
 {
   "id": "round-default-scale",
   "family": "expr",
-  "title": "%expr — round to an integer",
+  "title": "%expr - round to an integer",
   "purpose": "round with one argument rounds to a whole number.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"round(3.7)\"",

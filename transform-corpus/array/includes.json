@@ -1,7 +1,7 @@
 {
   "id": "includes",
   "family": "array",
-  "title": "%includes — membership test",
+  "title": "%includes - membership test",
   "purpose": "Return true when an array contains a value.",
   "signature": "%includes <array> <value> -> boolean",
   "transform": "{out}\nhasCA = %includes @.states \"CA\"\nabsent = %includes @.states \"FL\"",

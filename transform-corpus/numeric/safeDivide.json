@@ -1,7 +1,7 @@
 {
   "id": "safeDivide",
   "family": "numeric",
-  "title": "%safeDivide — division with zero fallback",
+  "title": "%safeDivide - division with zero fallback",
   "purpose": "Divide two numbers, returning a supplied default when the divisor is zero or invalid.",
   "signature": "%safeDivide <number:numerator> <number:denominator> <default> -> number",
   "transform": "{out}\nv = %safeDivide @.a @.b ##0\nnormal = %safeDivide @.c @.d ##0\nstringDefault = %safeDivide @.e @.f \"N/A\"",

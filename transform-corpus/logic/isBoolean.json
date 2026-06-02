@@ -1,7 +1,7 @@
 {
   "id": "isBoolean",
   "family": "logic",
-  "title": "%isBoolean — boolean-type test",
+  "title": "%isBoolean - boolean-type test",
   "purpose": "Return true when a value is of boolean type.",
   "signature": "%isBoolean <value> -> boolean",
   "transform": "{out}\nisBool = %isBoolean @.active\nnotBool = %isBoolean @.label",

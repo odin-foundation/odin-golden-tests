@@ -1,7 +1,7 @@
 {
   "id": "mod",
   "family": "numeric",
-  "title": "%mod — remainder of division",
+  "title": "%mod - remainder of division",
   "purpose": "Return the remainder of dividing the first number by the second.",
   "signature": "%mod <number:a> <number:b> -> number",
   "transform": "{out}\nv = %mod @.a @.b\nnegDividend = %mod @.c @.d\nzeroDivisor = %mod @.e @.f",

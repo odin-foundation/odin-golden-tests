@@ -1,7 +1,7 @@
 {
   "id": "min",
   "family": "aggregation",
-  "title": "%min — smallest numeric value in an array",
+  "title": "%min - smallest numeric value in an array",
   "purpose": "Reduce an array reference to its minimum numeric element.",
   "signature": "%min <array> -> number",
   "transform": "{out}\nlo = %min @.amounts\nnegatives = %min @.deltas\nfractional = %min @.prices\nsingle = %min @.one",

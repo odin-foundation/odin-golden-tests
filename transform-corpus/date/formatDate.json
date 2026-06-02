@@ -1,7 +1,7 @@
 {
   "id": "formatDate",
   "family": "date",
-  "title": "%formatDate — render a date with a pattern",
+  "title": "%formatDate - render a date with a pattern",
   "purpose": "Format an ISO date string using a display pattern.",
   "signature": "%formatDate <date> <string:pattern> -> string",
   "transform": "{out}\ndate = %formatDate @.date \"MM/DD/YYYY\"\niso = %formatDate @.date \"YYYY-MM-DD\"\ncompact = %formatDate @.date \"MMDDYYYY\"\nbad = %formatDate @.notDate \"MM/DD/YYYY\"",

@@ -1,7 +1,7 @@
 {
   "id": "titleCase",
   "family": "string",
-  "title": "%titleCase — capitalize each word",
+  "title": "%titleCase - capitalize each word",
   "purpose": "Lowercase the string, then uppercase the first letter of every whitespace-separated word.",
   "signature": "%titleCase <string> -> string",
   "transform": "{out}\nout = %titleCase @.phrase\nmixed = %titleCase @.shouty\nsingle = %titleCase @.word",

@@ -1,7 +1,7 @@
 {
   "id": "ceil",
   "family": "numeric",
-  "title": "%ceil — round up to integer",
+  "title": "%ceil - round up to integer",
   "purpose": "Round a number up toward positive infinity, returning an integer.",
   "signature": "%ceil <number> -> integer",
   "transform": "{out}\nv = %ceil @.a\nnegative = %ceil @.neg\nalready = %ceil @.whole\nofNull = %ceil @.nul",

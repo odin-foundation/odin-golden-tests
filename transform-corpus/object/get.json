@@ -1,7 +1,7 @@
 {
   "id": "get",
   "family": "object",
-  "title": "%get — read a property with an optional default",
+  "title": "%get - read a property with an optional default",
   "purpose": "Read a value at a key path from an object, falling back to a default when absent.",
   "signature": "%get <object> <string:path> [<default>] -> value",
   "transform": "{out}\ng = %get @.obj \"role\"\nnested = %get @.obj \"addr.city\"\nmissing = %get @.obj \"zzz\"\nfallback = %get @.obj \"zzz\" \"n/a\"\nnonObject = %get @.notObj \"role\"",

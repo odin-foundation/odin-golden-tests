@@ -1,7 +1,7 @@
 {
   "id": "movingAvg",
   "family": "financial",
-  "title": "%movingAvg — rolling window average",
+  "title": "%movingAvg - rolling window average",
   "purpose": "Smooth a numeric series with a simple moving average over a fixed window.",
   "signature": "%movingAvg <array:values> <integer:window> -> array",
   "transform": "{out}\nr = %movingAvg @.prices @.w\nwindowOne = %movingAvg @.prices @.one\nwideWindow = %movingAvg @.prices @.big",

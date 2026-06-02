@@ -1,7 +1,7 @@
 {
   "id": "limit",
   "family": "array",
-  "title": "%limit — first N items",
+  "title": "%limit - first N items",
   "purpose": "Return the first count items (alias of %take).",
   "signature": "%limit <array> <integer:count> -> array",
   "transform": "{out}\ntop2 = %limit @.results ##2\nover = %limit @.results ##10",

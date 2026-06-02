@@ -1,7 +1,7 @@
 {
   "id": "divide-fraction",
   "family": "expr",
-  "title": "%expr — division yields a fraction",
+  "title": "%expr - division yields a fraction",
   "purpose": "Division of integers produces a fractional result.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"1 / 2\"",

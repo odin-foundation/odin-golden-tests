@@ -1,7 +1,7 @@
 {
   "id": "union",
   "family": "array",
-  "title": "%union — distinct elements from both arrays",
+  "title": "%union - distinct elements from both arrays",
   "purpose": "Return the distinct elements from both arrays.",
   "signature": "%union <array> <array> -> array",
   "transform": "{out}\nall = %union @.a @.b\ndisjoint = %union @.c @.d\nfromB = %union @.empty @.b",

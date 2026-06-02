@@ -1,7 +1,7 @@
 {
   "id": "lookup",
   "family": "lookup",
-  "title": "%lookup — map a key through a table",
+  "title": "%lookup - map a key through a table",
   "purpose": "Translate a value via a declared lookup table.",
   "signature": "%lookup <string:\"TABLE.column\"> <key> [<key>...] -> value",
   "transform": "{$table.BODY_TYPES[name, code]}\n\"sedan\", \"SD\"\n\"coupe\", \"CP\"\n\"suv\", \"SU\"\n\n{out}\nvehicleCode = %lookup \"BODY_TYPES.code\" @.vehicleType\nsuvCode = %lookup \"BODY_TYPES.code\" @.suvType\nunknownCode = %lookup \"BODY_TYPES.code\" @.unknownType",

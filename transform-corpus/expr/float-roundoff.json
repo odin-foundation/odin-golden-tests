@@ -1,7 +1,7 @@
 {
   "id": "float-roundoff",
   "family": "expr",
-  "title": "%expr — binary float round-off",
+  "title": "%expr - binary float round-off",
   "purpose": "Decimal sums inherit IEEE 754 round-off from the underlying verbs.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"0.1 + 0.2\"",

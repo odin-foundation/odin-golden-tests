@@ -1,7 +1,7 @@
 {
   "id": "every",
   "family": "array",
-  "title": "%every — do all items match a condition",
+  "title": "%every - do all items match a condition",
   "purpose": "Return true when every record satisfies a field condition.",
   "signature": "%every <array> <string:field> <string:op> <value> -> boolean",
   "transform": "{out}\nallActive = %every @.coverages \"status\" \"=\" \"active\"\nnotAll = %every @.mixed \"status\" \"=\" \"active\"\nnonArray = %every @.notArr \"status\" \"=\" \"active\"",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\nallActive = ?true\nnotAll = ?false\nnonArray = ~",
   "notes": [
     "Field, operator, and value are three separate quoted arguments.",
-    "An empty array returns ?true (vacuous truth)."
+    "A non-array or empty input routes through the non-array path and yields ~ (null)."
   ],
   "avoid": []
 }

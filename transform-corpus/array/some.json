@@ -1,7 +1,7 @@
 {
   "id": "some",
   "family": "array",
-  "title": "%some — does any item match a condition",
+  "title": "%some - does any item match a condition",
   "purpose": "Return true when at least one record satisfies a field condition.",
   "signature": "%some <array> <string:field> <string:op> <value> -> boolean",
   "transform": "{out}\nhasCancelled = %some @.coverages \"status\" \"=\" \"cancelled\"\nhasPending = %some @.coverages \"status\" \"=\" \"pending\"",

@@ -1,7 +1,7 @@
 {
   "id": "center",
   "family": "string",
-  "title": "%center — center-pad to a width",
+  "title": "%center - center-pad to a width",
   "purpose": "Pad both sides of a string to center it within a target width.",
   "signature": "%center <string> <width:integer> [char:string] -> string",
   "transform": "{out}\nout = %center @.hi ##6 \"-\"\nodd = %center @.hi ##7 \"-\"\nwide = %center @.long ##3 \"-\"\nspacePad = %center @.hi ##6 \" \"",

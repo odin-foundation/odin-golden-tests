@@ -1,7 +1,7 @@
 {
   "id": "pmt",
   "family": "financial",
-  "title": "%pmt — level payment for a loan",
+  "title": "%pmt - level payment for a loan",
   "purpose": "Compute the constant per-period payment that amortizes a principal over n periods.",
   "signature": "%pmt <number:principal> <number:rate> <number:periods> -> number",
   "transform": "{out}\nr = %pmt @.principal @.rate @.periods\nzeroRate = %pmt @.principal @.zero @.periods\nzeroPeriods = %pmt @.principal @.rate @.noPeriods",

@@ -1,7 +1,7 @@
 {
   "id": "power-right-assoc",
   "family": "expr",
-  "title": "%expr — right-associative power",
+  "title": "%expr - right-associative power",
   "purpose": "The ^ operator is right-associative.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"2^3^2\"",

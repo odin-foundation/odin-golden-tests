@@ -1,7 +1,7 @@
 {
   "id": "find",
   "family": "array",
-  "title": "%find — first record matching a condition",
+  "title": "%find - first record matching a condition",
   "purpose": "Return the first record where a field matches, or null.",
   "signature": "%find <array> <string:field> <string:op> <value> -> object",
   "transform": "{out}\nmissing = %find @.coverages \"status\" \"=\" \"void\"\n{.first} = %find @.coverages \"status\" \"=\" \"active\"",

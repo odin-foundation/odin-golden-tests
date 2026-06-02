@@ -1,7 +1,7 @@
 {
   "id": "base64urlEncode",
   "family": "encoding",
-  "title": "%base64urlEncode — URL-safe Base64 without padding",
+  "title": "%base64urlEncode - URL-safe Base64 without padding",
   "purpose": "Encode a UTF-8 string as URL-safe Base64 (- and _ instead of + and /, no = padding).",
   "signature": "%base64urlEncode <string> -> string",
   "transform": "{out}\nencoded = %base64urlEncode @.content\nroundTrip = %base64urlDecode %base64urlEncode @.content",

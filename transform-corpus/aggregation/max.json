@@ -1,7 +1,7 @@
 {
   "id": "max",
   "family": "aggregation",
-  "title": "%max — largest numeric value in an array",
+  "title": "%max - largest numeric value in an array",
   "purpose": "Reduce an array reference to its maximum numeric element.",
   "signature": "%max <array> -> number",
   "transform": "{out}\nhi = %max @.amounts\nnegatives = %max @.deltas\nfractional = %max @.prices\nsingle = %max @.one",

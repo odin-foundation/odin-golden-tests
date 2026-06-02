@@ -1,7 +1,7 @@
 {
   "id": "crc32",
   "family": "encoding",
-  "title": "%crc32 — CRC-32 checksum of a string",
+  "title": "%crc32 - CRC-32 checksum of a string",
   "purpose": "Compute the CRC-32 (IEEE) checksum of a string as lowercase hex.",
   "signature": "%crc32 <string> -> string",
   "transform": "{out}\nh = %crc32 @.data\ncheck = %crc32 @.digits\nempty = %crc32 @.blank",

@@ -1,7 +1,7 @@
 {
   "id": "quarter",
   "family": "date",
-  "title": "%quarter — calendar quarter of a date",
+  "title": "%quarter - calendar quarter of a date",
   "purpose": "Return the calendar quarter (1-4) that a date falls in.",
   "signature": "%quarter <date> -> integer",
   "transform": "{out}\nq2 = %quarter @.date\nq1 = %quarter @.jan\nq4 = %quarter @.dec",

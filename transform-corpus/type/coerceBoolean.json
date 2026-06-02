@@ -1,7 +1,7 @@
 {
   "id": "coerceBoolean",
   "family": "type",
-  "title": "%coerceBoolean — convert a value to a boolean",
+  "title": "%coerceBoolean - convert a value to a boolean",
   "purpose": "Coerce truthy/falsy text or numbers to a typed boolean.",
   "signature": "%coerceBoolean <value> -> boolean",
   "transform": "{out}\nb = %coerceBoolean @.raw\nfromOne = %coerceBoolean @.one\nfromZero = %coerceBoolean @.zero\nfromOther = %coerceBoolean @.other",

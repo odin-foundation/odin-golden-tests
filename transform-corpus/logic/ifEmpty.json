@@ -1,14 +1,14 @@
 {
   "id": "ifEmpty",
   "family": "logic",
-  "title": "%ifEmpty — fallback when empty string",
+  "title": "%ifEmpty - fallback when empty string",
   "purpose": "Return a fallback value when the input is an empty string, otherwise the input.",
   "signature": "%ifEmpty <value> <fallback> -> value",
   "transform": "{out}\nlabel = %ifEmpty @.label \"untitled\"\nkept = %ifEmpty @.title \"untitled\"\nwhitespaceKept = %ifEmpty @.spaces \"untitled\"",
   "input": "label = \"\"\ntitle = \"Report\"\nspaces = \"  \"",
   "expectedOutput": "{out}\nlabel = \"untitled\"\nkept = \"Report\"\nwhitespaceKept = \"  \"",
   "notes": [
-    "Triggers only on the empty string \"\"; a null (~) is not empty here — use %ifNull for null.",
+    "Triggers only on the empty string \"\"; a null (~) is not empty here - use %ifNull for null.",
     "Whitespace-only strings are not empty; trim first with %trim if you want that behavior."
   ],
   "avoid": []

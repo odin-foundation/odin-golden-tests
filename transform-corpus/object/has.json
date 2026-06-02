@@ -1,7 +1,7 @@
 {
   "id": "has",
   "family": "object",
-  "title": "%has — test for a property",
+  "title": "%has - test for a property",
   "purpose": "Return true when an object contains a key, with dot notation for nested paths.",
   "signature": "%has <object> <string:key> -> boolean",
   "transform": "{out}\nh = %has @.obj \"role\"\nnested = %has @.obj \"addr.city\"\nmissing = %has @.obj \"zzz\"\nnonObject = %has @.notObj \"role\"",

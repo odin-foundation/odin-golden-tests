@@ -1,7 +1,7 @@
 {
   "id": "sha1",
   "family": "encoding",
-  "title": "%sha1 — SHA-1 hash of a string",
+  "title": "%sha1 - SHA-1 hash of a string",
   "purpose": "Compute the SHA-1 digest of a string as lowercase hex.",
   "signature": "%sha1 <string> -> string",
   "transform": "{out}\nh = %sha1 @.data\nworld = %sha1 @.other\nempty = %sha1 @.blank",

@@ -1,14 +1,14 @@
 {
   "id": "trunc",
   "family": "numeric",
-  "title": "%trunc — truncate toward zero",
+  "title": "%trunc - truncate toward zero",
   "purpose": "Discard the fractional part of a number, rounding toward zero.",
   "signature": "%trunc <number> -> integer",
   "transform": "{out}\nv = %trunc @.a\npositive = %trunc @.b\nwhole = %trunc @.c",
   "input": "a = #-3.7\nb = #3.9\nc = #5",
   "expectedOutput": "{out}\nv = ##-3\npositive = ##3\nwhole = ##5",
   "notes": [
-    "Rounds toward zero (-3.7 → -3), unlike %floor which rounds toward negative infinity (-3.7 → -4).",
+    "Rounds toward zero (-3.7 -> -3), unlike %floor which rounds toward negative infinity (-3.7 -> -4).",
     "Always returns an integer (##)."
   ],
   "avoid": []

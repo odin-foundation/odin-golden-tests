@@ -1,7 +1,7 @@
 {
   "id": "minOf",
   "family": "numeric",
-  "title": "%minOf — minimum of scalar arguments",
+  "title": "%minOf - minimum of scalar arguments",
   "purpose": "Return the smallest of two or more scalar numeric arguments.",
   "signature": "%minOf <number> <number> ... -> number",
   "transform": "{out}\nv = %minOf @.a @.b @.c\nnegatives = %minOf @.n1 @.n2 @.n3\npair = %minOf @.p1 @.p2",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\nv = ##4\nnegatives = ##-9\npair = ##3",
   "notes": [
     "Variadic: pass each operand as a separate scalar argument.",
-    "This is not an array-reducing verb — to take the minimum of an array, fan its elements out as individual references."
+    "This is not an array-reducing verb - to take the minimum of an array, fan its elements out as individual references."
   ],
   "avoid": [
     {

@@ -1,7 +1,7 @@
 {
   "id": "toObject",
   "family": "type",
-  "title": "%toObject — build an object from key/value pairs",
+  "title": "%toObject - build an object from key/value pairs",
   "purpose": "Fold an array of [key, value] pairs into a single object keyed by the first element.",
   "signature": "%toObject <array> -> object",
   "transform": "{out}\nobj = %toObject @.pairs\nnonArray = %toObject @.notArr",

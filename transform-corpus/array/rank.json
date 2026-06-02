@@ -1,7 +1,7 @@
 {
   "id": "rank",
   "family": "array",
-  "title": "%rank — assign ranks to values",
+  "title": "%rank - assign ranks to values",
   "purpose": "Tag each element with a _rank field (ties share a rank).",
   "signature": "%rank <array> [<string:field>] [<string:direction>] -> array",
   "transform": "{out}\nranked = %rank @.scores\nascending = %rank @.scores2 \"\" \"asc\"",

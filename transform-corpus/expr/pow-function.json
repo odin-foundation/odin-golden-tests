@@ -1,7 +1,7 @@
 {
   "id": "pow-function",
   "family": "expr",
-  "title": "%expr — pow function",
+  "title": "%expr - pow function",
   "purpose": "pow raises a base to an exponent.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"pow(2, 10)\"",

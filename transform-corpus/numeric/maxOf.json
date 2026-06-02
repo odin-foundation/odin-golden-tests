@@ -1,7 +1,7 @@
 {
   "id": "maxOf",
   "family": "numeric",
-  "title": "%maxOf — maximum of scalar arguments",
+  "title": "%maxOf - maximum of scalar arguments",
   "purpose": "Return the largest of two or more scalar numeric arguments.",
   "signature": "%maxOf <number> <number> ... -> number",
   "transform": "{out}\nv = %maxOf @.a @.b @.c\nnegatives = %maxOf @.na @.nb\ntwoEqual = %maxOf @.a @.a\nmixed = %maxOf @.flt @.a",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\nv = ##9\nnegatives = ##-2\ntwoEqual = ##9\nmixed = #9.5",
   "notes": [
     "Variadic: pass each operand as a separate scalar argument.",
-    "This is not an array-reducing verb — to take the maximum of an array, fan its elements out as individual references."
+    "This is not an array-reducing verb - to take the maximum of an array, fan its elements out as individual references."
   ],
   "avoid": [
     {

@@ -1,7 +1,7 @@
 {
   "id": "zscore",
   "family": "financial",
-  "title": "%zscore — standard score of a value",
+  "title": "%zscore - standard score of a value",
   "purpose": "Express how many population standard deviations a value lies from a dataset's mean.",
   "signature": "%zscore <number:value> <array:dataset> -> number",
   "transform": "{out}\nr = %zscore @.value @.scores\natMean = %zscore @.mean @.scores\nflat = %zscore @.value @.flat",

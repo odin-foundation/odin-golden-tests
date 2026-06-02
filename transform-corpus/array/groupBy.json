@@ -1,7 +1,7 @@
 {
   "id": "groupBy",
   "family": "array",
-  "title": "%groupBy — group records by a field",
+  "title": "%groupBy - group records by a field",
   "purpose": "Bucket an object array into { key, items } groups by a field value.",
   "signature": "%groupBy <array> <string:field> -> array",
   "transform": "{out}\ngroups = %groupBy @.orders \"status\"\nsingle = %groupBy @.solo \"status\"",

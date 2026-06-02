@@ -1,7 +1,7 @@
 {
   "id": "ageFromDate",
   "family": "date",
-  "title": "%ageFromDate — completed years between two dates",
+  "title": "%ageFromDate - completed years between two dates",
   "purpose": "Compute age in complete years from a birth date as of a reference date.",
   "signature": "%ageFromDate <date:birth> <date:asOf> -> integer",
   "transform": "{out}\nn = %ageFromDate @.birth @.asOf\nbeforeBirthday = %ageFromDate @.birthLate @.asOf\nonBirthday = %ageFromDate @.birthExact @.asOf\nbad = %ageFromDate @.notDate @.asOf",

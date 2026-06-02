@@ -1,7 +1,7 @@
 {
   "id": "bearing",
   "family": "geo",
-  "title": "%bearing — initial heading between two points",
+  "title": "%bearing - initial heading between two points",
   "purpose": "Compute the initial bearing (forward azimuth) in degrees from one point to another.",
   "signature": "%bearing <number:lat1> <number:lng1> <number:lat2> <number:lng2> -> number",
   "transform": "{out}\nheading = %bearing @.lat1 @.lng1 @.lat2 @.lng2\nsamePoint = %bearing @.lat1 @.lng1 @.lat1 @.lng1\noutOfRange = %bearing @.lat1 @.lng1 @.badLat @.lng2",

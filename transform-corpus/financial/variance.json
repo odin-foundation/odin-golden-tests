@@ -1,7 +1,7 @@
 {
   "id": "variance",
   "family": "financial",
-  "title": "%variance — population variance",
+  "title": "%variance - population variance",
   "purpose": "Compute the population variance of a numeric array.",
   "signature": "%variance <array:values> -> number",
   "transform": "{out}\nr = %variance @.returns\nflat = %variance @.flat\nscalar = %variance @.x",

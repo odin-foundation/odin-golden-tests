@@ -1,7 +1,7 @@
 {
   "id": "pascalCase",
   "family": "string",
-  "title": "%pascalCase — convert to PascalCase",
+  "title": "%pascalCase - convert to PascalCase",
   "purpose": "Re-case a delimited or mixed-case string into PascalCase.",
   "signature": "%pascalCase <string> -> string",
   "transform": "{out}\nhyphen = %pascalCase @.name\nspaced = %pascalCase @.spaced\nsnake = %pascalCase @.snake",

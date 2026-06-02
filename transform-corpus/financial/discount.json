@@ -1,7 +1,7 @@
 {
   "id": "discount",
   "family": "financial",
-  "title": "%discount — present value of a future amount",
+  "title": "%discount - present value of a future amount",
   "purpose": "Discount a future value back to today: FV / (1 + r)^n.",
   "signature": "%discount <number:futureValue> <number:rate> <number:periods> -> number",
   "transform": "{out}\nr = %discount @.fv @.rate @.years",

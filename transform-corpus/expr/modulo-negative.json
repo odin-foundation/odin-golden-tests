@@ -1,7 +1,7 @@
 {
   "id": "modulo-negative",
   "family": "expr",
-  "title": "%expr — modulo of a negative",
+  "title": "%expr - modulo of a negative",
   "purpose": "The remainder follows the sign of the dividend.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"-5 % 2\"",

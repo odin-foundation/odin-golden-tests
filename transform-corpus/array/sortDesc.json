@@ -1,14 +1,14 @@
 {
   "id": "sortDesc",
   "family": "array",
-  "title": "%sortDesc — sort a primitive array descending",
+  "title": "%sortDesc - sort a primitive array descending",
   "purpose": "Order array values from highest to lowest.",
   "signature": "%sortDesc <array> -> array",
   "transform": "{out}\nsorted = %sortDesc @.scores\nwords = %sortDesc @.tags",
   "input": "{scores[] : ~}\n##10\n##30\n##20\n\n{tags[] : ~}\n\"apple\"\n\"cherry\"\n\"banana\"",
   "expectedOutput": "{out}\n{.sorted[] : ~}\n##30\n##20\n##10\n{.words[] : ~}\n\"cherry\"\n\"banana\"\n\"apple\"",
   "notes": [
-    "Takes only the array — no field argument; it sorts the values directly."
+    "Takes only the array - no field argument; it sorts the values directly."
   ],
   "avoid": []
 }

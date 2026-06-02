@@ -1,7 +1,7 @@
 {
   "id": "kebabCase",
   "family": "string",
-  "title": "%kebabCase — convert to kebab-case",
+  "title": "%kebabCase - convert to kebab-case",
   "purpose": "Re-case a delimited or mixed-case string into kebab-case.",
   "signature": "%kebabCase <string> -> string",
   "transform": "{out}\nout = %kebabCase @.name\nsnake = %kebabCase @.snake\nspaced = %kebabCase @.spaced\nallCaps = %kebabCase @.allCaps",

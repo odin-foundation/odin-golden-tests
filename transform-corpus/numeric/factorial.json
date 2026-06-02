@@ -1,7 +1,7 @@
 {
   "id": "factorial",
   "family": "numeric",
-  "title": "%factorial — n!",
+  "title": "%factorial - n!",
   "purpose": "Compute the factorial of a non-negative integer.",
   "signature": "%factorial <integer> -> integer",
   "transform": "{out}\nfive = %factorial @.five\nzero = %factorial @.zero\nmax = %factorial @.max\nover = %factorial @.over\nnegative = %factorial @.neg",

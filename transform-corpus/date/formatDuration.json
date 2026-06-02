@@ -1,7 +1,7 @@
 {
   "id": "formatDuration",
   "family": "date",
-  "title": "%formatDuration — human-readable duration",
+  "title": "%formatDuration - human-readable duration",
   "purpose": "Render a duration in seconds (or ISO 8601) as English components.",
   "signature": "%formatDuration <integer:seconds> -> string",
   "transform": "{out}\ns = %formatDuration @.elapsed\niso = %formatDuration @.isoDur\noneHour = %formatDuration @.hour\nseconds = %formatDuration @.secs",

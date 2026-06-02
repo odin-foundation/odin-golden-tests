@@ -1,7 +1,7 @@
 {
   "id": "tokenize",
   "family": "string",
-  "title": "%tokenize — split text into tokens",
+  "title": "%tokenize - split text into tokens",
   "purpose": "Split text into an array of tokens, on whitespace by default.",
   "signature": "%tokenize <string> [delim:string] -> array",
   "transform": "{out}\nout = %tokenize @.text\ncomma = %tokenize @.csv \",\"\nspaced = %tokenize @.padded",

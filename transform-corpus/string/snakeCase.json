@@ -1,7 +1,7 @@
 {
   "id": "snakeCase",
   "family": "string",
-  "title": "%snakeCase — convert to snake_case",
+  "title": "%snakeCase - convert to snake_case",
   "purpose": "Re-case a delimited or mixed-case string into snake_case.",
   "signature": "%snakeCase <string> -> string",
   "transform": "{out}\nout = %snakeCase @.name\npascal = %snakeCase @.pascal\nkebab = %snakeCase @.kebab",

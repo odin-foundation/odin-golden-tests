@@ -1,14 +1,14 @@
 {
   "id": "reverseString",
   "family": "string",
-  "title": "%reverseString — reverse the characters",
+  "title": "%reverseString - reverse the characters",
   "purpose": "Return the string with its characters in reverse order.",
   "signature": "%reverseString <string> -> string",
   "transform": "{out}\nrev = %reverseString @.name\npalindrome = %reverseString @.pal\nsingle = %reverseString @.one",
   "input": "name = \"Honda\"\npal = \"racecar\"\none = \"x\"",
   "expectedOutput": "{out}\nrev = \"adnoH\"\npalindrome = \"racecar\"\nsingle = \"x\"",
   "notes": [
-    "Single argument. Reversal is Unicode-aware (code points, not UTF-16 units)."
+    "Single argument. Reverses the character order."
   ],
   "avoid": []
 }

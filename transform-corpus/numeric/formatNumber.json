@@ -1,14 +1,14 @@
 {
   "id": "formatNumber",
   "family": "numeric",
-  "title": "%formatNumber — fixed decimal-place string",
+  "title": "%formatNumber - fixed decimal-place string",
   "purpose": "Format a number as a string with a fixed number of decimal places.",
   "signature": "%formatNumber <number> <integer:decimals> -> string",
   "transform": "{out}\nv = %formatNumber @.a ##3\nrounds = %formatNumber @.a ##2\nzeroDecimals = %formatNumber @.a ##0\npadsZeros = %formatNumber @.b ##4",
   "input": "a = #3.14159\nb = #2.5",
   "expectedOutput": "{out}\nv = \"3.142\"\nrounds = \"3.14\"\nzeroDecimals = \"3\"\npadsZeros = \"2.5000\"",
   "notes": [
-    "The result is a string (quoted), not a number — trailing/rounded decimals are fixed by toFixed.",
+    "The result is a string (quoted), not a number - trailing/rounded decimals are fixed by toFixed.",
     "The decimals argument is required."
   ],
   "avoid": [

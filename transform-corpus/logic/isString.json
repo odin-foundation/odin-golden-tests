@@ -1,7 +1,7 @@
 {
   "id": "isString",
   "family": "logic",
-  "title": "%isString — string-type test",
+  "title": "%isString - string-type test",
   "purpose": "Return true when a value is of string type.",
   "signature": "%isString <value> -> boolean",
   "transform": "{out}\nisText = %isString @.name\nempty = %isString @.blank\nnumeric = %isString @.amount\nnullVal = %isString @.missing",

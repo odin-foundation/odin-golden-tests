@@ -1,7 +1,7 @@
 {
   "id": "resetSequence",
   "family": "generation",
-  "title": "%resetSequence — reset a named counter",
+  "title": "%resetSequence - reset a named counter",
   "purpose": "Reset a named counter so a later %sequence on that name restarts.",
   "signature": "%resetSequence <string:name> -> integer",
   "transform": "{out}\nresetTo = %resetSequence \"ctr\"\nadvanced = %sequence \"hits\"\nadvanced2 = %sequence \"hits\"\nresetAfterUse = %resetSequence \"hits\"\nnextAfterReset = %sequence \"hits\"\nresetUnused = %resetSequence \"fresh\"",
@@ -15,7 +15,7 @@
   "avoid": [
     {
       "snippet": "r = %resetSequence \"ctr\" ##5",
-      "why": "an inline reset value is rejected — a literal after the name raises a parse error (Unexpected content after value); the reset is always to 0"
+      "why": "an inline reset value is rejected - a literal after the name raises a parse error (Unexpected content after value); the reset is always to 0"
     }
   ]
 }

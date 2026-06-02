@@ -1,7 +1,7 @@
 {
   "id": "addSeconds",
   "family": "date",
-  "title": "%addSeconds — shift a timestamp by seconds",
+  "title": "%addSeconds - shift a timestamp by seconds",
   "purpose": "Add (or subtract) seconds to a timestamp, returning an ISO date-time.",
   "signature": "%addSeconds <timestamp> <number:seconds> -> string",
   "transform": "{out}\nt = %addSeconds @.ts ##45",

@@ -1,7 +1,7 @@
 {
   "id": "gcd",
   "family": "numeric",
-  "title": "%gcd — greatest common divisor",
+  "title": "%gcd - greatest common divisor",
   "purpose": "Compute the greatest common divisor of two integers.",
   "signature": "%gcd <integer> <integer> -> integer",
   "transform": "{out}\nnormal = %gcd @.a @.b\nwithZero = %gcd @.zero @.a\nnegative = %gcd @.neg @.b",

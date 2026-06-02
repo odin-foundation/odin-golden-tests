@@ -1,14 +1,14 @@
 {
   "id": "correlation",
   "family": "financial",
-  "title": "%correlation — Pearson correlation coefficient",
-  "purpose": "Measure the linear correlation between two numeric series, from −1 to 1.",
+  "title": "%correlation - Pearson correlation coefficient",
+  "purpose": "Measure the linear correlation between two numeric series, from -1 to 1.",
   "signature": "%correlation <array:x> <array:y> -> number",
   "transform": "{out}\nr = %correlation @.x @.y",
   "input": "{x[] : ~}\n##1\n##2\n##3\n##4\n##5\n\n{y[] : ~}\n##2\n##4\n##5\n##4\n##6",
   "expectedOutput": "{out}\nr = #0.8528028654224417",
   "notes": [
-    "Result lies in [−1, 1]; positive means the series move together.",
+    "Result lies in [-1, 1]; positive means the series move together.",
     "If either series has zero variance the coefficient is undefined and yields ~ (null).",
     "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
   ],

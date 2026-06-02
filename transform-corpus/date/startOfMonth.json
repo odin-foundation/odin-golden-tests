@@ -1,7 +1,7 @@
 {
   "id": "startOfMonth",
   "family": "date",
-  "title": "%startOfMonth — first day of the month",
+  "title": "%startOfMonth - first day of the month",
   "purpose": "Collapse a date to the first day of its calendar month.",
   "signature": "%startOfMonth <date> -> string",
   "transform": "{out}\nmid = %startOfMonth @.date\nalready = %startOfMonth @.first",

@@ -1,14 +1,14 @@
 {
   "id": "filter",
   "family": "array",
-  "title": "%filter — keep array elements matching a condition",
+  "title": "%filter - keep array elements matching a condition",
   "purpose": "Filter an array of objects to the rows where a field matches a value.",
   "signature": "%filter <array> <string:field> <string:op> <value> -> array",
   "transform": "{out}\nactive = %filter @.coverages \"status\" \"=\" \"active\"\ngreater = %filter @.coverages \"limit\" \">\" ##100\nnotActive = %filter @.coverages \"status\" \"!=\" \"active\"",
   "input": "{coverages[] : type, status, limit}\n\"liability\", \"active\", ##50\n\"collision\", \"cancelled\", ##200\n\"comprehensive\", \"active\", ##300",
   "expectedOutput": "{out}\n{.active[] : type, status, limit}\n\"liability\", \"active\", ##50\n\"comprehensive\", \"active\", ##300\n{.greater[] : type, status, limit}\n\"collision\", \"cancelled\", ##200\n\"comprehensive\", \"active\", ##300\n{.notActive[] : type, status, limit}\n\"collision\", \"cancelled\", ##200",
   "notes": [
-    "The field, operator, and value are three separate quoted arguments — not one condition string.",
+    "The field, operator, and value are three separate quoted arguments - not one condition string.",
     "The kept rows are emitted as a relative tabular sub-block ({.active[] : ...}) under the output section."
   ],
   "avoid": [

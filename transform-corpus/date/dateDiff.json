@@ -1,7 +1,7 @@
 {
   "id": "dateDiff",
   "family": "date",
-  "title": "%dateDiff — difference between two dates in a unit",
+  "title": "%dateDiff - difference between two dates in a unit",
   "purpose": "Measure the gap from the first date to the second in days, months, or years.",
   "signature": "%dateDiff <date> <date> <string:unit> -> integer",
   "transform": "{out}\nd = %dateDiff @.a @.b \"days\"\nmonths = %dateDiff @.a @.b \"months\"\nyears = %dateDiff @.c @.d \"years\"\nreverse = %dateDiff @.b @.a \"days\"",

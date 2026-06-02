@@ -1,14 +1,14 @@
 {
   "id": "stdSample",
   "family": "financial",
-  "title": "%stdSample — sample standard deviation",
-  "purpose": "Compute the sample standard deviation (n−1 denominator) of a numeric array.",
+  "title": "%stdSample - sample standard deviation",
+  "purpose": "Compute the sample standard deviation (n-1 denominator) of a numeric array.",
   "signature": "%stdSample <array:values> -> number",
   "transform": "{out}\nr = %stdSample @.returns\npair = %stdSample @.pair\nsingle = %stdSample @.one",
   "input": "{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01\n\n{pair[] : ~}\n#10\n#20\n\n{one[] : ~}\n#5",
   "expectedOutput": "{out}\nr = #0.0223606797749979\npair = #7.0710678118654755\nsingle = ~",
   "notes": [
-    "Divides the summed squared deviations by n−1 (Bessel's correction), so it exceeds %std on the same data.",
+    "Divides the summed squared deviations by n-1 (Bessel's correction), so it exceeds %std on the same data.",
     "A two-element array [10, 20] gives sqrt(50) = ~7.071; a single-element array yields ~ (null)."
   ],
   "avoid": []

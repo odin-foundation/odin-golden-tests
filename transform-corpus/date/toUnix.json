@@ -1,7 +1,7 @@
 {
   "id": "toUnix",
   "family": "date",
-  "title": "%toUnix — timestamp to epoch seconds",
+  "title": "%toUnix - timestamp to epoch seconds",
   "purpose": "Convert a timestamp to whole seconds since the Unix epoch.",
   "signature": "%toUnix <timestamp> -> integer",
   "transform": "{out}\nts = %toUnix @.ts\nepoch = %toUnix @.epoch",

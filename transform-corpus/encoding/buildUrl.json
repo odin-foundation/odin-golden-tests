@@ -1,7 +1,7 @@
 {
   "id": "buildUrl",
   "family": "encoding",
-  "title": "%buildUrl — assemble a URL from parts",
+  "title": "%buildUrl - assemble a URL from parts",
   "purpose": "Assemble a URL from an object of scheme, host, port, path, query, and fragment.",
   "signature": "%buildUrl <object> -> string",
   "transform": "{out}\nurl = %buildUrl @.parts\nnoScheme = %buildUrl @.bad",

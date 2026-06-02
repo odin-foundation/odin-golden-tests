@@ -1,7 +1,7 @@
 {
   "id": "trimRight",
   "family": "string",
-  "title": "%trimRight — strip trailing whitespace",
+  "title": "%trimRight - strip trailing whitespace",
   "purpose": "Remove whitespace from the end of a string only.",
   "signature": "%trimRight <string> -> string",
   "transform": "{out}\nout = %trimRight @.raw\ntrailingOnly = %trimRight @.back\nnoTrail = %trimRight @.clean",
@@ -14,7 +14,7 @@
   "avoid": [
     {
       "snippet": "out = %trimRight",
-      "why": "missing the source argument — the engine raises a verb-arity error"
+      "why": "missing the source argument - the engine raises a verb-arity error"
     }
   ]
 }

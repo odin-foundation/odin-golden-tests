@@ -1,7 +1,7 @@
 {
   "id": "take",
   "family": "array",
-  "title": "%take — first N elements",
+  "title": "%take - first N elements",
   "purpose": "Return the first count elements of an array.",
   "signature": "%take <array> <integer:count> -> array",
   "transform": "{out}\nfirst2 = %take @.items ##2\nover = %take @.items ##9\nnegative = %take @.items ##-1",

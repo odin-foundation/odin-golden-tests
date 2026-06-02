@@ -1,7 +1,7 @@
 {
   "id": "join",
   "family": "array",
-  "title": "%join — join an array into a string",
+  "title": "%join - join an array into a string",
   "purpose": "Concatenate array elements into one string with a separator.",
   "signature": "%join <array> <string:separator> -> string",
   "transform": "{out}\ntags = %join @.tags \", \"\nsingle = %join @.one \", \"",

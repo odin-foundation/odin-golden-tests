@@ -1,7 +1,7 @@
 {
   "id": "multiply",
   "family": "numeric",
-  "title": "%multiply — product of two numbers",
+  "title": "%multiply - product of two numbers",
   "purpose": "Multiply two numbers.",
   "signature": "%multiply <number:a> <number:b> -> number",
   "transform": "{out}\nv = %multiply @.a @.b\nfractional = %multiply @.c @.d\nnegatives = %multiply @.e @.f",

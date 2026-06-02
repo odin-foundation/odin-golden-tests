@@ -1,12 +1,12 @@
 {
   "id": "extract",
   "family": "string",
-  "title": "%extract — pull a regex capture group",
+  "title": "%extract - pull a regex capture group",
   "purpose": "Return a capture group from the first regex match in a string.",
   "signature": "%extract <string> <pattern:string> [group:integer] -> string",
-  "transform": "{out}\nout = %extract @.text \"([0-9]+)\" ##1\nwhole = %extract @.text \"[0-9]+\" ##0\nnoMatch = %extract @.text \"([a-z]{20})\" ##1\nbadGroup = %extract @.text \"([0-9]+)\" ##5",
+  "transform": "{out}\ngroup1 = %extract @.text \"order ([0-9]+)\" ##1\nwhole = %extract @.text \"order ([0-9]+)\" ##0\nnoMatch = %extract @.text \"([a-z]{20})\" ##1\nbadGroup = %extract @.text \"([0-9]+)\" ##5",
   "input": "text = \"order 42 placed\"",
-  "expectedOutput": "{out}\nout = \"42\"\nwhole = \"42\"\nnoMatch = ~\nbadGroup = ~",
+  "expectedOutput": "{out}\ngroup1 = \"42\"\nwhole = \"order 42\"\nnoMatch = ~\nbadGroup = ~",
   "notes": [
     "Two required arguments plus an optional group index (default 0 = whole match, 1 = first capture group).",
     "Returns null when the pattern does not match or the group index is out of range."

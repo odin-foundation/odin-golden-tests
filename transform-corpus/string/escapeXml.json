@@ -1,7 +1,7 @@
 {
   "id": "escapeXml",
   "family": "string",
-  "title": "%escapeXml — escape XML special characters",
+  "title": "%escapeXml - escape XML special characters",
   "purpose": "Escape & < > \" and the apostrophe as XML entities, using &apos; for the apostrophe.",
   "signature": "%escapeXml <string> -> string",
   "transform": "{out}\nescaped = %escapeXml @.raw\nangles = %escapeXml @.tag\nplain = %escapeXml @.plain",

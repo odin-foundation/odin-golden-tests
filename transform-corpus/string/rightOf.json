@@ -1,7 +1,7 @@
 {
   "id": "rightOf",
   "family": "string",
-  "title": "%rightOf — text after a delimiter",
+  "title": "%rightOf - text after a delimiter",
   "purpose": "Return the portion of a string after the first occurrence of a delimiter.",
   "signature": "%rightOf <string> <delim:string> -> string",
   "transform": "{out}\nout = %rightOf @.path \".\"\nnoMatch = %rightOf @.plain \".\"\nfirstOnly = %rightOf @.dotted \".\"",

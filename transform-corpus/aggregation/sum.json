@@ -1,7 +1,7 @@
 {
   "id": "sum",
   "family": "aggregation",
-  "title": "%sum — total of an array's numeric values",
+  "title": "%sum - total of an array's numeric values",
   "purpose": "Reduce an array reference to the sum of its numeric elements.",
   "signature": "%sum <array> -> number",
   "transform": "{out}\ntotal = %sum @.amounts\nfractional = %sum @.prices\nnegatives = %sum @.deltas\nsingle = %sum @.one",

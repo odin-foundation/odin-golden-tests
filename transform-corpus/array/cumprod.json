@@ -1,7 +1,7 @@
 {
   "id": "cumprod",
   "family": "array",
-  "title": "%cumprod — running product",
+  "title": "%cumprod - running product",
   "purpose": "Return the cumulative product at each position.",
   "signature": "%cumprod <array> -> array",
   "transform": "{out}\ngrowth = %cumprod @.factors\nwithZero = %cumprod @.withZero\nnonArray = %cumprod @.notArr",

@@ -1,14 +1,14 @@
 {
   "id": "subtract",
   "family": "numeric",
-  "title": "%subtract — difference of two numbers",
+  "title": "%subtract - difference of two numbers",
   "purpose": "Subtract the second number from the first.",
   "signature": "%subtract <number:a> <number:b> -> number",
   "transform": "{out}\nv = %subtract @.a @.b\nfractional = %subtract @.c @.d\nnegativeResult = %subtract @.e @.f",
   "input": "a = #10\nb = #3\nc = #5.5\nd = #2\ne = #3\nf = #8",
   "expectedOutput": "{out}\nv = ##7\nfractional = #3.5\nnegativeResult = ##-5",
   "notes": [
-    "Argument order is a − b.",
+    "Argument order is a - b.",
     "A whole-valued result emits as an integer (##); a fractional result emits as a number (#)."
   ],
   "avoid": [

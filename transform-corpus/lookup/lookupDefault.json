@@ -1,7 +1,7 @@
 {
   "id": "lookupDefault",
   "family": "lookup",
-  "title": "%lookupDefault — map a key through a table with a fallback",
+  "title": "%lookupDefault - map a key through a table with a fallback",
   "purpose": "Translate a value via a declared lookup table, returning a default when no row matches.",
   "signature": "%lookupDefault <string:\"TABLE.column\"> <key> [<key>...] <default> -> value",
   "transform": "{$table.BODY_TYPES[name, code]}\n\"sedan\", \"SD\"\n\"coupe\", \"CP\"\n\"suv\", \"SU\"\n\n{out}\nvehicleCode = %lookupDefault \"BODY_TYPES.code\" @.vehicleType \"??\"\nmatchedCode = %lookupDefault \"BODY_TYPES.code\" @.matchedType \"??\"\ncoupeCode = %lookupDefault \"BODY_TYPES.code\" @.coupeType \"??\"",

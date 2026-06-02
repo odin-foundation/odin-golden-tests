@@ -1,7 +1,7 @@
 {
   "id": "jsonDecode",
   "family": "encoding",
-  "title": "%jsonDecode — Parse JSON text into a value",
+  "title": "%jsonDecode - Parse JSON text into a value",
   "purpose": "Parse a JSON object or array string into a structured ODIN value.",
   "signature": "%jsonDecode <string> -> value",
   "transform": "{out}\nd = %jsonDecode @.j\ntext = %jsonDecode @.t\nbad = %jsonDecode @.x",

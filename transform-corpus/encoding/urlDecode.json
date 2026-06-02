@@ -1,7 +1,7 @@
 {
   "id": "urlDecode",
   "family": "encoding",
-  "title": "%urlDecode — Decode a percent-encoded string",
+  "title": "%urlDecode - Decode a percent-encoded string",
   "purpose": "Reverse percent-encoding, turning a URL component back into plain text.",
   "signature": "%urlDecode <string> -> string",
   "transform": "{out}\ndec = %urlDecode @.q\nplain = %urlDecode @.raw\nbad = %urlDecode @.malformed",

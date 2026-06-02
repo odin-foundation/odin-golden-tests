@@ -1,7 +1,7 @@
 {
   "id": "floor",
   "family": "numeric",
-  "title": "%floor — round down to integer",
+  "title": "%floor - round down to integer",
   "purpose": "Round a number down toward negative infinity, returning an integer.",
   "signature": "%floor <number> -> integer",
   "transform": "{out}\nv = %floor @.a\nnegative = %floor @.neg\nalready = %floor @.whole\nofNull = %floor @.nul",

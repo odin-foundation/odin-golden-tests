@@ -1,14 +1,14 @@
 {
   "id": "formatInteger",
   "family": "numeric",
-  "title": "%formatInteger — floor to integer string",
+  "title": "%formatInteger - floor to integer string",
   "purpose": "Format a number as an integer string by flooring it.",
   "signature": "%formatInteger <number> -> string",
   "transform": "{out}\nv = %formatInteger @.a\nnegative = %formatInteger @.neg\nalready = %formatInteger @.whole",
   "input": "a = #42.9\nneg = #-2.1\nwhole = ##1000",
   "expectedOutput": "{out}\nv = \"42\"\nnegative = \"-3\"\nalready = \"1000\"",
   "notes": [
-    "Flooring discards the fraction (42.9 → 42), it does not round.",
+    "Flooring discards the fraction (42.9 -> 42), it does not round.",
     "The result is a string, not a number type."
   ],
   "avoid": []

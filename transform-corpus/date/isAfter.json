@@ -1,7 +1,7 @@
 {
   "id": "isAfter",
   "family": "date",
-  "title": "%isAfter — chronological greater-than",
+  "title": "%isAfter - chronological greater-than",
   "purpose": "Test whether the first date follows the second.",
   "signature": "%isAfter <date> <date> -> boolean",
   "transform": "{out}\nb = %isAfter @.a @.b\nbefore = %isAfter @.b @.a\nequal = %isAfter @.a @.a",

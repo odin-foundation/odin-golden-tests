@@ -1,7 +1,7 @@
 {
   "id": "wrap",
   "family": "string",
-  "title": "%wrap — word-wrap to a width",
+  "title": "%wrap - word-wrap to a width",
   "purpose": "Insert newlines at word boundaries so each line fits within a width.",
   "signature": "%wrap <string> <width:integer> -> string",
   "transform": "{out}\nout = %wrap @.text ##10\nshort = %wrap @.tiny ##10\nexact = %wrap @.exact ##5\nzero = %wrap @.text ##0",

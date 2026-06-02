@@ -1,7 +1,7 @@
 {
   "id": "explode",
   "family": "array",
-  "title": "%explode — one row per array element",
+  "title": "%explode - one row per array element",
   "purpose": "Expand an array-valued field, emitting one row per element with that field replaced by the element.",
   "signature": "%explode <array> <field> -> array",
   "transform": "{out}\nrows = %explode @.orders \"tags\"\nmissingField = %explode @.plain \"tags\"",

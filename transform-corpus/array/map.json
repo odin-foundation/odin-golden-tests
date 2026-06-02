@@ -1,7 +1,7 @@
 {
   "id": "map",
   "family": "array",
-  "title": "%map — extract one field from each record",
+  "title": "%map - extract one field from each record",
   "purpose": "Project a single field out of every object into a flat array.",
   "signature": "%map <array> <string:field> -> array",
   "transform": "{out}\ntypes = %map @.coverages \"type\"\nmissing = %map @.coverages \"premium\"",

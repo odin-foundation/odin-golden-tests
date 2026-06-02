@@ -1,7 +1,7 @@
 {
   "id": "isNaN",
   "family": "numeric",
-  "title": "%isNaN — NaN test",
+  "title": "%isNaN - NaN test",
   "purpose": "Test whether a numeric value is NaN.",
   "signature": "%isNaN <number> -> boolean",
   "transform": "{out}\nv = %isNaN @.a\nzero = %isNaN @.z\nnonNumeric = %isNaN @.s",

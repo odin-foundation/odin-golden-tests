@@ -1,7 +1,7 @@
 {
   "id": "gte",
   "family": "logic",
-  "title": "%gte — greater than or equal",
+  "title": "%gte - greater than or equal",
   "purpose": "Return true when the first value is greater than or equal to the second.",
   "signature": "%gte <a:value> <b:value> -> boolean",
   "transform": "{out}\nok = %gte @.score ##60\nbelow = %gte @.low ##60\nabove = %gte @.high ##60",

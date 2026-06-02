@@ -1,7 +1,7 @@
 {
   "id": "shift",
   "family": "array",
-  "title": "%shift — offset elements by N positions",
+  "title": "%shift - offset elements by N positions",
   "purpose": "Move elements forward (or backward) filling gaps with null.",
   "signature": "%shift <array> [<integer:periods>] [<value:fill>] -> array",
   "transform": "{out}\nlagged = %shift @.prices ##1\nbackward = %shift @.prices ##-1\nfilled = %shift @.prices ##1 ##0",

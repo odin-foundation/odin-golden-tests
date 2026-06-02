@@ -1,7 +1,7 @@
 {
   "id": "weekOfYear",
   "family": "date",
-  "title": "%weekOfYear — ISO week number",
+  "title": "%weekOfYear - ISO week number",
   "purpose": "Return the ISO 8601 week number (1-53) for a date.",
   "signature": "%weekOfYear <date> -> integer",
   "transform": "{out}\nmid = %weekOfYear @.date\nfirst = %weekOfYear @.jan\nyearEnd = %weekOfYear @.dec",

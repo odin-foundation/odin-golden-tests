@@ -1,7 +1,7 @@
 {
   "id": "modulo",
   "family": "expr",
-  "title": "%expr — modulo",
+  "title": "%expr - modulo",
   "purpose": "The % operator computes a remainder.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"5 % 2\"",

@@ -1,7 +1,7 @@
 {
   "id": "parseTimestamp",
   "family": "date",
-  "title": "%parseTimestamp — parse a string into an ISO timestamp",
+  "title": "%parseTimestamp - parse a string into an ISO timestamp",
   "purpose": "Read a timestamp from a formatted string and normalize it to ISO date-time.",
   "signature": "%parseTimestamp <string:value> <string:pattern> -> string",
   "transform": "{out}\nspaced = %parseTimestamp @.raw \"YYYY-MM-DD HH:mm:ss\"\ncompact = %parseTimestamp @.compact \"YYYYMMDDHHmmss\"",

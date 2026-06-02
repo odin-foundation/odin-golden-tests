@@ -1,7 +1,7 @@
 {
   "id": "inBoundingBox",
   "family": "geo",
-  "title": "%inBoundingBox — test a point against a rectangle",
+  "title": "%inBoundingBox - test a point against a rectangle",
   "purpose": "Return true when a lat/lng point falls inside a min/max bounding box.",
   "signature": "%inBoundingBox <number:lat> <number:lng> <number:minLat> <number:minLng> <number:maxLat> <number:maxLng> -> boolean",
   "transform": "{out}\ninside = %inBoundingBox @.lat @.lng #24.5 #-125 #49.5 #-66\noutside = %inBoundingBox @.farLat @.lng #24.5 #-125 #49.5 #-66\nonEdge = %inBoundingBox @.edgeLat @.edgeLng #24.5 #-125 #49.5 #-66",

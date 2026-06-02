@@ -1,7 +1,7 @@
 {
   "id": "isDate",
   "family": "logic",
-  "title": "%isDate — date-type test",
+  "title": "%isDate - date-type test",
   "purpose": "Return true when a value is a date or timestamp type.",
   "signature": "%isDate <value> -> boolean",
   "transform": "{out}\nisDt = %isDate %coerceDate @.born\nnotDate = %isDate @.born",
@@ -9,7 +9,7 @@
   "expectedOutput": "{out}\nisDt = ?true\nnotDate = ?false",
   "notes": [
     "True for both date and timestamp types.",
-    "An ISO string arriving as text is a string, not a date — %coerceDate promotes it to a real date first."
+    "An ISO string arriving as text is a string, not a date - %coerceDate promotes it to a real date first."
   ],
   "avoid": [
     {

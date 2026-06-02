@@ -1,7 +1,7 @@
 {
   "id": "sortBy",
   "family": "array",
-  "title": "%sortBy — sort an object array by a field",
+  "title": "%sortBy - sort an object array by a field",
   "purpose": "Order an array of records ascending by one named field.",
   "signature": "%sortBy <array> <string:field> -> array",
   "transform": "{out}\nranked = %sortBy @.coverages \"premium\"\nbyType = %sortBy @.coverages \"type\"\nsingle = %sortBy @.solo \"premium\"",

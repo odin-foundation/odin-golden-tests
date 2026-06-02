@@ -1,7 +1,7 @@
 {
   "id": "reduce",
   "family": "array",
-  "title": "%reduce — fold an array with a verb",
+  "title": "%reduce - fold an array with a verb",
   "purpose": "Combine all elements into one value using a named verb and a seed.",
   "signature": "%reduce <array> <string:verb> <value:initial> -> value",
   "transform": "{out}\ntotal = %reduce @.prices \"add\" ##0\nproduct = %reduce @.factors \"multiply\" ##1\nseeded = %reduce @.prices \"add\" ##100",

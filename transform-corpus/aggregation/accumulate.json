@@ -1,7 +1,7 @@
 {
   "id": "accumulate",
   "family": "aggregation",
-  "title": "%accumulate — running total across loop records",
+  "title": "%accumulate - running total across loop records",
   "purpose": "Add a value to a named accumulator on each loop pass, building a running total.",
   "signature": "%accumulate <name> <number> -> number",
   "transform": "{$accumulator}\nrunningTotal = ##0\nrunningTotal._persist = true\n\n{lines[]}\n_loop = \"@items\"\namount = @.amount\n_ = %accumulate runningTotal @.amount\n\n{summary}\ntotal = \"@$accumulator.runningTotal\"",

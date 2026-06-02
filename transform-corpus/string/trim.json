@@ -1,7 +1,7 @@
 {
   "id": "trim",
   "family": "string",
-  "title": "%trim — strip leading and trailing whitespace",
+  "title": "%trim - strip leading and trailing whitespace",
   "purpose": "Remove whitespace from both ends of a string.",
   "signature": "%trim <string> -> string",
   "transform": "{out}\nout = %trim @.raw\ninterior = %trim @.spaced\ntabs = %trim @.tabbed",
@@ -14,7 +14,7 @@
   "avoid": [
     {
       "snippet": "out = %trim",
-      "why": "missing the source argument — the engine raises a verb-arity error"
+      "why": "missing the source argument - the engine raises a verb-arity error"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "id": "assert",
   "family": "logic",
-  "title": "%assert — validate a condition",
+  "title": "%assert - validate a condition",
   "purpose": "Return the condition value when truthy, otherwise null, for inline validation.",
   "signature": "%assert <condition:boolean> [<message:string>] -> value",
   "transform": "{out}\nvalid = %assert %gt @.amount ##0\nfailed = %assert %gt @.zero ##0\npassThrough = %assert %eq @.status \"active\"",

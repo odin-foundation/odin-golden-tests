@@ -1,7 +1,7 @@
 {
   "id": "dayOfWeek",
   "family": "date",
-  "title": "%dayOfWeek — ISO weekday number",
+  "title": "%dayOfWeek - ISO weekday number",
   "purpose": "Return the ISO 8601 weekday of a date (Monday=1 through Sunday=7).",
   "signature": "%dayOfWeek <date> -> integer",
   "transform": "{out}\nn = %dayOfWeek @.sat\nmon = %dayOfWeek @.mon\nsun = %dayOfWeek @.sun\nbad = %dayOfWeek @.notDate",

@@ -1,7 +1,7 @@
 {
   "id": "lead",
   "family": "array",
-  "title": "%lead — next value at each position",
+  "title": "%lead - next value at each position",
   "purpose": "Shift values backward so each row sees the following value.",
   "signature": "%lead <array> [<integer:periods>] [<value:default>] -> array",
   "transform": "{out}\nnext = %lead @.prices\nby2 = %lead @.prices ##2\nwithDefault = %lead @.prices ##1 ##0",

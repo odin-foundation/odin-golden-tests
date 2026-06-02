@@ -1,7 +1,7 @@
 {
   "id": "camelCase",
   "family": "string",
-  "title": "%camelCase — convert to camelCase",
+  "title": "%camelCase - convert to camelCase",
   "purpose": "Re-case a delimited or mixed-case string into camelCase.",
   "signature": "%camelCase <string> -> string",
   "transform": "{out}\nout = %camelCase @.name\nsnake = %camelCase @.snake\nspaced = %camelCase @.spaced\nallCaps = %camelCase @.allCaps",

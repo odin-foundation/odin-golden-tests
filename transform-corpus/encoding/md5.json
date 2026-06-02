@@ -1,7 +1,7 @@
 {
   "id": "md5",
   "family": "encoding",
-  "title": "%md5 — MD5 hash of a string",
+  "title": "%md5 - MD5 hash of a string",
   "purpose": "Compute the MD5 digest of a string as lowercase hex.",
   "signature": "%md5 <string> -> string",
   "transform": "{out}\nh = %md5 @.data\nworld = %md5 @.other\nempty = %md5 @.blank",

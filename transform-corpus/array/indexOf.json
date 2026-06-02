@@ -1,7 +1,7 @@
 {
   "id": "indexOf",
   "family": "array",
-  "title": "%indexOf — first index of a value",
+  "title": "%indexOf - first index of a value",
   "purpose": "Return the position of a value in an array, or -1 if absent.",
   "signature": "%indexOf <array> <value> -> integer",
   "transform": "{out}\npos = %indexOf @.nums ##20\nabsent = %indexOf @.nums ##99",

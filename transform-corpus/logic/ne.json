@@ -1,10 +1,10 @@
 {
   "id": "ne",
   "family": "logic",
-  "title": "%ne — inequality test",
+  "title": "%ne - inequality test",
   "purpose": "Return true when two values are not equal.",
   "signature": "%ne <a:value> <b:value> -> boolean",
-  "transform": "{out}\nchanged = %ne @.status \"active\"\nsame = %ne @.status \"closed\"\ncrossType = %ne @.count ##5",
+  "transform": "{out}\nchanged = %ne @.status \"active\"\nsame = %ne @.status \"closed\"\ncrossType = %ne @.count \"5\"",
   "input": "status = \"closed\"\ncount = ##5",
   "expectedOutput": "{out}\nchanged = ?true\nsame = ?false\ncrossType = ?false",
   "notes": [

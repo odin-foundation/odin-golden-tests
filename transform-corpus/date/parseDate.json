@@ -1,7 +1,7 @@
 {
   "id": "parseDate",
   "family": "date",
-  "title": "%parseDate — parse a string into an ISO date",
+  "title": "%parseDate - parse a string into an ISO date",
   "purpose": "Read a date from a formatted string and normalize it to YYYY-MM-DD.",
   "signature": "%parseDate <string:value> <string:pattern> -> string",
   "transform": "{out}\nslashUs = %parseDate @.raw \"MM/DD/YYYY\"\nisoSlash = %parseDate @.isoSlash \"YYYY/MM/DD\"\ndmy = %parseDate @.dmy \"DD/MM/YYYY\"",

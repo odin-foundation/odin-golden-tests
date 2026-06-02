@@ -1,7 +1,7 @@
 {
   "id": "match",
   "family": "string",
-  "title": "%match — regex test",
+  "title": "%match - regex test",
   "purpose": "Return true when a string matches a regular expression.",
   "signature": "%match <string> <pattern:string> -> boolean",
   "transform": "{out}\nhit = %match @.code \"^[A-Z]{3}$\"\nmiss = %match @.lower \"^[A-Z]{3}$\"\nbad = %match @.code \"([\"",

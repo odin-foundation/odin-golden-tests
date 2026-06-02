@@ -1,7 +1,7 @@
 {
   "id": "toDegrees",
   "family": "geo",
-  "title": "%toDegrees — radians to degrees",
+  "title": "%toDegrees - radians to degrees",
   "purpose": "Convert an angle in radians to degrees.",
   "signature": "%toDegrees <number:radians> -> number",
   "transform": "{out}\ndeg = %toDegrees @.rad\nzero = %toDegrees @.zero\nnegative = %toDegrees @.negRad",

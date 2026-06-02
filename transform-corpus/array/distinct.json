@@ -1,7 +1,7 @@
 {
   "id": "distinct",
   "family": "array",
-  "title": "%distinct — remove duplicate values",
+  "title": "%distinct - remove duplicate values",
   "purpose": "Drop repeated values from a primitive array, keeping first occurrence.",
   "signature": "%distinct <array> [<string:field>] -> array",
   "transform": "{out}\nuniq = %distinct @.tags\nallUnique = %distinct @.codes",

@@ -1,7 +1,7 @@
 {
   "id": "nextBusinessDay",
   "family": "date",
-  "title": "%nextBusinessDay — next weekday after a date",
+  "title": "%nextBusinessDay - next weekday after a date",
   "purpose": "Return the first Monday-Friday date strictly after the input.",
   "signature": "%nextBusinessDay <date> -> string",
   "transform": "{out}\nfriday = %nextBusinessDay @.friday\nsaturday = %nextBusinessDay @.saturday\nmidweek = %nextBusinessDay @.wednesday",

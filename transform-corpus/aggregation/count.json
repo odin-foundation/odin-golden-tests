@@ -1,7 +1,7 @@
 {
   "id": "count",
   "family": "aggregation",
-  "title": "%count — number of elements in an array",
+  "title": "%count - number of elements in an array",
   "purpose": "Return the element count of an array reference as an integer.",
   "signature": "%count <array> -> integer",
   "transform": "{out}\nn = %count @.amounts\nsingle = %count @.one\nstrings = %count @.names",

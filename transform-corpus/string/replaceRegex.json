@@ -1,7 +1,7 @@
 {
   "id": "replaceRegex",
   "family": "string",
-  "title": "%replaceRegex — regex replace all",
+  "title": "%replaceRegex - regex replace all",
   "purpose": "Replace every match of a regular expression with a replacement string.",
   "signature": "%replaceRegex <string> <pattern:string> <replacement:string> -> string",
   "transform": "{out}\nhit = %replaceRegex @.text \"[0-9]+\" \"#\"\nmiss = %replaceRegex @.text \"[xyz]+\" \"#\"\nbad = %replaceRegex @.text \"([\" \"#\"",

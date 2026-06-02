@@ -1,7 +1,7 @@
 {
   "id": "replace",
   "family": "string",
-  "title": "%replace — replace all literal occurrences",
+  "title": "%replace - replace all literal occurrences",
   "purpose": "Replace every literal occurrence of a substring with a replacement.",
   "signature": "%replace <string> <find:string> <replacement:string> -> string",
   "transform": "{out}\nhit = %replace @.name \"o\" \"0\"\nmiss = %replace @.name \"z\" \"0\"\nall = %replace @.many \"a\" \"A\"",
@@ -14,7 +14,7 @@
   "avoid": [
     {
       "snippet": "out = %replace @.name \"o\"",
-      "why": "missing the replacement argument — the engine raises a 3-argument arity error"
+      "why": "missing the replacement argument - the engine raises a 3-argument arity error"
     }
   ]
 }

@@ -1,21 +1,16 @@
 {
   "id": "std",
   "family": "financial",
-  "title": "%std — population standard deviation",
+  "title": "%std - population standard deviation",
   "purpose": "Compute the population standard deviation of a numeric array.",
   "signature": "%std <array:values> -> number",
   "transform": "{out}\nr = %std @.returns\nflat = %std @.flat\nscalar = %std @.x",
   "input": "x = #5\n\n{returns[] : ~}\n#0.02\n#0.05\n#-0.01\n#0.03\n#0.01\n\n{flat[] : ~}\n#3\n#3\n#3",
   "expectedOutput": "{out}\nr = #0.02\nflat = ##0\nscalar = ~",
   "notes": [
-    "Divides the summed squared deviations by n (population), not n−1.",
+    "Divides the summed squared deviations by n (population), not n-1.",
     "Identical values have zero spread, so the result is 0.",
     "Provide the array as a typed array block ({returns[] : ~}); a scalar argument yields ~ (null)."
   ],
-  "avoid": [
-    {
-      "snippet": "r = %std @.x  ; x = #5",
-      "why": "passing a scalar instead of an array yields ~ (null); %std needs a numeric array"
-    }
-  ]
+  "avoid": []
 }

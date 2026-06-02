@@ -1,7 +1,7 @@
 {
   "id": "hexDecode",
   "family": "encoding",
-  "title": "%hexDecode — Decode a hexadecimal string",
+  "title": "%hexDecode - Decode a hexadecimal string",
   "purpose": "Decode a hexadecimal string back into its original text.",
   "signature": "%hexDecode <string> -> string",
   "transform": "{out}\nd = %hexDecode @.h\nlower = %hexDecode @.low\nodd = %hexDecode @.bad",

@@ -1,7 +1,7 @@
 {
   "id": "isObject",
   "family": "logic",
-  "title": "%isObject — object-type test",
+  "title": "%isObject - object-type test",
   "purpose": "Return true when a value is a nested object.",
   "signature": "%isObject <value> -> boolean",
   "transform": "{out}\nplain = %isObject @.name\nnullVal = %isObject @.missing\nisObj = %isObject @.address",

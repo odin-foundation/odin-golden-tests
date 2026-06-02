@@ -1,20 +1,20 @@
 {
   "id": "ifElse",
   "family": "logic",
-  "title": "%ifElse — choose a value on a condition",
+  "title": "%ifElse - choose a value on a condition",
   "purpose": "Return one of two values depending on a boolean condition.",
   "signature": "%ifElse <condition> <then> <else> -> value",
   "transform": "{out}\ntier = %ifElse %gt @.amount ##1000 \"VIP\" \"Standard\"\nelseBranch = %ifElse %gt @.small ##1000 \"VIP\" \"Standard\"",
   "input": "amount = ##2500\nsmall = ##50",
   "expectedOutput": "{out}\ntier = \"VIP\"\nelseBranch = \"Standard\"",
   "notes": [
-    "The condition is a verb-expression (%gt @.amount ##1000), evaluated left-to-right — not a quoted infix string.",
+    "The condition is a verb-expression (%gt @.amount ##1000), evaluated left-to-right - not a quoted infix string.",
     "ifElse calls nest: the else branch can be another %ifElse for multi-way classification."
   ],
   "avoid": [
     {
       "snippet": "tier = %ifElse \"@.amount > 1000\" \"VIP\" \"Standard\"",
-      "why": "a quoted string is a literal, always truthy-or-not as data — it is never parsed as a condition; the comparison silently never fires. Use %gt @.amount ##1000"
+      "why": "a quoted string is a literal, always truthy-or-not as data - it is never parsed as a condition; the comparison silently never fires. Use %gt @.amount ##1000"
     }
   ]
 }

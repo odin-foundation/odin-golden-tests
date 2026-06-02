@@ -1,7 +1,7 @@
 {
   "id": "avgIf",
   "family": "aggregation",
-  "title": "%avgIf — average a field over matching items",
+  "title": "%avgIf - average a field over matching items",
   "purpose": "Average a field over the array items that satisfy a condition; the average field defaults to the predicate field.",
   "signature": "%avgIf <array> <field> <op> <value> [<avgField>] -> number",
   "transform": "{out}\npaidAvg = %avgIf @.orders \"status\" \"=\" \"paid\" \"amount\"\nnoMatch = %avgIf @.orders \"status\" \"=\" \"void\" \"amount\"",

@@ -1,14 +1,15 @@
 {
   "id": "slugify",
   "family": "string",
-  "title": "%slugify — make a URL-safe slug",
+  "title": "%slugify - make a URL-safe slug",
   "purpose": "Lowercase a string, strip punctuation, and join words with hyphens.",
   "signature": "%slugify <string> -> string",
   "transform": "{out}\nout = %slugify @.title\npunct = %slugify @.messy\nunderscore = %slugify @.snake",
   "input": "title = \"Hello World!\"\nmessy = \"  --Café & Tea--  \"\nsnake = \"hello_world_foo\"",
   "expectedOutput": "{out}\nout = \"hello-world\"\npunct = \"caf-tea\"\nunderscore = \"hello-world-foo\"",
   "notes": [
-    "Non-word characters are removed, spaces and underscores become hyphens, repeated hyphens collapse, and leading/trailing hyphens are trimmed."
+    "Non-word characters are removed, spaces and underscores become hyphens, repeated hyphens collapse, and leading/trailing hyphens are trimmed.",
+    "Accented or non-ASCII letters are removed rather than transliterated; chain %stripAccents before %slugify to fold them to ASCII first."
   ],
   "avoid": []
 }

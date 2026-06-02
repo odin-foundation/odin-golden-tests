@@ -1,7 +1,7 @@
 {
   "id": "midpoint",
   "family": "geo",
-  "title": "%midpoint — geographic midpoint of two points",
+  "title": "%midpoint - geographic midpoint of two points",
   "purpose": "Compute the great-circle midpoint between two lat/lng coordinates.",
   "signature": "%midpoint <number:lat1> <number:lng1> <number:lat2> <number:lng2> -> object",
   "transform": "{out}\nmid = %midpoint @.lat1 @.lng1 @.lat2 @.lng2\nsame = %midpoint @.lat1 @.lng1 @.lat1 @.lng1\noutOfRange = %midpoint @.lat1 @.lng1 @.badLat @.lng2",

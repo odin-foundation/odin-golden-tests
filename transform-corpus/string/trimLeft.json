@@ -1,7 +1,7 @@
 {
   "id": "trimLeft",
   "family": "string",
-  "title": "%trimLeft — strip leading whitespace",
+  "title": "%trimLeft - strip leading whitespace",
   "purpose": "Remove whitespace from the start of a string only.",
   "signature": "%trimLeft <string> -> string",
   "transform": "{out}\nout = %trimLeft @.raw\nleadingOnly = %trimLeft @.front\nnoLead = %trimLeft @.clean",
@@ -14,7 +14,7 @@
   "avoid": [
     {
       "snippet": "out = %trimLeft",
-      "why": "missing the source argument — the engine raises a verb-arity error"
+      "why": "missing the source argument - the engine raises a verb-arity error"
     }
   ]
 }

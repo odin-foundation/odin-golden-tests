@@ -1,14 +1,15 @@
 {
   "id": "unique",
   "family": "array",
-  "title": "%unique — remove duplicate values",
+  "title": "%unique - remove duplicate values",
   "purpose": "Drop repeated values from an array (alias of %distinct).",
-  "signature": "%unique <array> [<string:field>] -> array",
+  "signature": "%unique <array> -> array",
   "transform": "{out}\nuniq = %unique @.tags\nallNew = %unique @.distinctTags\nnonAdjacent = %unique @.codes",
   "input": "{tags[] : ~}\n\"auto\"\n\"home\"\n\"auto\"\n\n{distinctTags[] : ~}\n\"x\"\n\"y\"\n\"z\"\n\n{codes[] : ~}\n##1\n##2\n##1\n##3\n##2",
   "expectedOutput": "{out}\n{.uniq[] : ~}\n\"auto\"\n\"home\"\n{.allNew[] : ~}\n\"x\"\n\"y\"\n\"z\"\n{.nonAdjacent[] : ~}\n##1\n##2\n##3",
   "notes": [
-    "Alias for %distinct; keeps the first occurrence of each value."
+    "Alias for %distinct; keeps the first occurrence of each value.",
+    "Field-based dedup is not available through this verb; use %dedupe or %distinct for that."
   ],
   "avoid": []
 }

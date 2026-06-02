@@ -1,7 +1,7 @@
 {
   "id": "startsWith",
   "family": "string",
-  "title": "%startsWith — prefix test",
+  "title": "%startsWith - prefix test",
   "purpose": "Return true when the string begins with the given prefix.",
   "signature": "%startsWith <string> <prefix:string> -> boolean",
   "transform": "{out}\nout = %startsWith @.name \"Hon\"\nnoMatch = %startsWith @.name \"civ\"\nempty = %startsWith @.name \"\"",

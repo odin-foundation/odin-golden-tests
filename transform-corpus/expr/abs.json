@@ -1,7 +1,7 @@
 {
   "id": "abs",
   "family": "expr",
-  "title": "%expr — abs function",
+  "title": "%expr - abs function",
   "purpose": "Whitelisted numeric functions are available by name.",
   "signature": "%expr \"<formula>\" -> number",
   "transform": "{out}\nr = %expr \"abs(-7)\"",

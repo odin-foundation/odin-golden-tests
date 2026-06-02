@@ -1,7 +1,7 @@
 {
   "id": "sha512",
   "family": "encoding",
-  "title": "%sha512 — SHA-512 hash of a string",
+  "title": "%sha512 - SHA-512 hash of a string",
   "purpose": "Compute the SHA-512 digest of a string as lowercase hex.",
   "signature": "%sha512 <string> -> string",
   "transform": "{out}\nh = %sha512 @.data\nworld = %sha512 @.other\nempty = %sha512 @.blank",

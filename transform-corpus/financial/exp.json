@@ -1,7 +1,7 @@
 {
   "id": "exp",
   "family": "financial",
-  "title": "%exp — exponential (e^x)",
+  "title": "%exp - exponential (e^x)",
   "purpose": "Raise Euler's number e to the given power.",
   "signature": "%exp <number:value> -> number",
   "transform": "{out}\nr = %exp @.one\nzero = %exp @.zero\nnegative = %exp @.neg",

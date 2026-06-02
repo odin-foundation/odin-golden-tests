@@ -1,7 +1,7 @@
 {
   "id": "sign",
   "family": "numeric",
-  "title": "%sign — sign of a number",
+  "title": "%sign - sign of a number",
   "purpose": "Return -1, 0, or 1 according to the sign of a number.",
   "signature": "%sign <number> -> integer",
   "transform": "{out}\nv = %sign @.a\npositive = %sign @.b\nzero = %sign @.c",

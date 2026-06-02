@@ -1,7 +1,7 @@
 {
   "id": "last",
   "family": "aggregation",
-  "title": "%last — last element of an array",
+  "title": "%last - last element of an array",
   "purpose": "Return the last element of an array reference, preserving its type.",
   "signature": "%last <array> -> any",
   "transform": "{out}\nl = %last @.names\nnumeric = %last @.amounts\nsingle = %last @.one",
