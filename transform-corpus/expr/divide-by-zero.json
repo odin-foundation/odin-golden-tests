@@ -1,0 +1,14 @@
+{
+  "id": "divide-by-zero",
+  "family": "expr",
+  "title": "%expr — division by zero",
+  "purpose": "Dividing by zero yields null, following the divide verb.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"1 / 0\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ~",
+  "notes": [
+    "1 / 0 resolves to ~ (null) rather than raising."
+  ],
+  "avoid": []
+}

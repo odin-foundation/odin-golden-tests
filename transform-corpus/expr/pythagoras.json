@@ -1,0 +1,20 @@
+{
+  "id": "pythagoras",
+  "family": "expr",
+  "title": "%expr — variables and sqrt",
+  "purpose": "Variables resolve under an explicit bindings object; sqrt is whitelisted.",
+  "signature": "%expr \"<formula>\" [@bindings] -> number",
+  "transform": "{out}\nr = %expr \"sqrt(x^2 + y^2)\" @.v",
+  "input": "{v}\nx = ##3\ny = ##4",
+  "expectedOutput": "{out}\nr = ##5",
+  "notes": [
+    "The names x and y read @.v.x and @.v.y from the bindings object; the hypotenuse of 3 and 4 is 5.",
+    "A formula that uses a variable without a bindings object fails to compile."
+  ],
+  "avoid": [
+    {
+      "snippet": "r = %expr \"sqrt(x^2 + y^2)\"",
+      "why": "the bindings object is required when the formula has variables; pass it as @.v"
+    }
+  ]
+}

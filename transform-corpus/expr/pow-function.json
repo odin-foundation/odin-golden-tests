@@ -1,0 +1,14 @@
+{
+  "id": "pow-function",
+  "family": "expr",
+  "title": "%expr — pow function",
+  "purpose": "pow raises a base to an exponent.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"pow(2, 10)\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##1024",
+  "notes": [
+    "Equivalent to 2^10."
+  ],
+  "avoid": []
+}

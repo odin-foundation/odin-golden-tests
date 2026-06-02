@@ -1,0 +1,14 @@
+{
+  "id": "precedence",
+  "family": "expr",
+  "title": "%expr — operator precedence",
+  "purpose": "Multiplication binds tighter than addition.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"2 + 3 * 4\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##14",
+  "notes": [
+    "%expr compiles the formula to a verb tree at parse time; * is applied before +."
+  ],
+  "avoid": []
+}

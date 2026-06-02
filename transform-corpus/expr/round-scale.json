@@ -1,0 +1,16 @@
+{
+  "id": "round-scale",
+  "family": "expr",
+  "title": "%expr — round to a scale",
+  "purpose": "round with two arguments rounds to a number of decimals.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"round(3.14159, 2)\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = #3.14",
+  "notes": [
+    "The second argument is the decimal scale.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
+  ],
+  "avoid": [],
+  "tsOnly": true
+}

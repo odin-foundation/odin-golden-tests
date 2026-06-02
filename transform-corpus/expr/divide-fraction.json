@@ -1,0 +1,14 @@
+{
+  "id": "divide-fraction",
+  "family": "expr",
+  "title": "%expr — division yields a fraction",
+  "purpose": "Division of integers produces a fractional result.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"1 / 2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = #0.5",
+  "notes": [
+    "/ compiles to %divide; 1/2 = 0.5."
+  ],
+  "avoid": []
+}

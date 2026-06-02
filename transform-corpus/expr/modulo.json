@@ -1,0 +1,19 @@
+{
+  "id": "modulo",
+  "family": "expr",
+  "title": "%expr — modulo",
+  "purpose": "The % operator computes a remainder.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"5 % 2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##1",
+  "notes": [
+    "% compiles to %mod."
+  ],
+  "avoid": [
+    {
+      "snippet": "5 mod 2",
+      "why": "there is no word operator; use the % symbol"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "abs",
+  "family": "expr",
+  "title": "%expr — abs function",
+  "purpose": "Whitelisted numeric functions are available by name.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"abs(-7)\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##7",
+  "notes": [
+    "Available functions: abs, floor, ceil, trunc, round, sqrt, pow, min, max."
+  ],
+  "avoid": []
+}

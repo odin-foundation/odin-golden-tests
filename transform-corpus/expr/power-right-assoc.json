@@ -1,0 +1,14 @@
+{
+  "id": "power-right-assoc",
+  "family": "expr",
+  "title": "%expr — right-associative power",
+  "purpose": "The ^ operator is right-associative.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"2^3^2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##512",
+  "notes": [
+    "2^3^2 groups as 2^(3^2) = 2^9 = 512."
+  ],
+  "avoid": []
+}

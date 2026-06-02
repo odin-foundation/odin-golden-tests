@@ -1446,6 +1446,96 @@
       "id": "tryCoerce",
       "family": "type",
       "path": "type/tryCoerce.json"
+    },
+    {
+      "id": "precedence",
+      "family": "expr",
+      "path": "expr/precedence.json"
+    },
+    {
+      "id": "power-right-assoc",
+      "family": "expr",
+      "path": "expr/power-right-assoc.json"
+    },
+    {
+      "id": "unary-vs-power",
+      "family": "expr",
+      "path": "expr/unary-vs-power.json"
+    },
+    {
+      "id": "paren-negate-base",
+      "family": "expr",
+      "path": "expr/paren-negate-base.json"
+    },
+    {
+      "id": "nested-parens",
+      "family": "expr",
+      "path": "expr/nested-parens.json"
+    },
+    {
+      "id": "unary-stack",
+      "family": "expr",
+      "path": "expr/unary-stack.json"
+    },
+    {
+      "id": "divide-fraction",
+      "family": "expr",
+      "path": "expr/divide-fraction.json"
+    },
+    {
+      "id": "modulo",
+      "family": "expr",
+      "path": "expr/modulo.json"
+    },
+    {
+      "id": "modulo-negative",
+      "family": "expr",
+      "path": "expr/modulo-negative.json"
+    },
+    {
+      "id": "divide-by-zero",
+      "family": "expr",
+      "path": "expr/divide-by-zero.json"
+    },
+    {
+      "id": "float-roundoff",
+      "family": "expr",
+      "path": "expr/float-roundoff.json"
+    },
+    {
+      "id": "abs",
+      "family": "expr",
+      "path": "expr/abs.json"
+    },
+    {
+      "id": "min-max",
+      "family": "expr",
+      "path": "expr/min-max.json"
+    },
+    {
+      "id": "round-default-scale",
+      "family": "expr",
+      "path": "expr/round-default-scale.json"
+    },
+    {
+      "id": "round-scale",
+      "family": "expr",
+      "path": "expr/round-scale.json"
+    },
+    {
+      "id": "pow-function",
+      "family": "expr",
+      "path": "expr/pow-function.json"
+    },
+    {
+      "id": "pythagoras",
+      "family": "expr",
+      "path": "expr/pythagoras.json"
+    },
+    {
+      "id": "quadratic",
+      "family": "expr",
+      "path": "expr/quadratic.json"
     }
   ],
   "idioms": [
@@ -1534,7 +1624,8 @@
     "encoding",
     "generation",
     "geo",
-    "object"
+    "object",
+    "expr"
   ],
   "errors": [
     {
@@ -1620,6 +1711,30 @@
       "family": "error",
       "code": "T014",
       "path": "errors/t014-nested-interpolation.json"
+    },
+    {
+      "id": "t015-expr-unknown-function",
+      "family": "error",
+      "code": "T015",
+      "path": "errors/t015-expr-unknown-function.json"
+    },
+    {
+      "id": "t015-expr-incomplete",
+      "family": "error",
+      "code": "T015",
+      "path": "errors/t015-expr-incomplete.json"
+    },
+    {
+      "id": "t015-expr-unbalanced-parens",
+      "family": "error",
+      "code": "T015",
+      "path": "errors/t015-expr-unbalanced-parens.json"
+    },
+    {
+      "id": "t015-expr-unbound-variable",
+      "family": "error",
+      "code": "T015",
+      "path": "errors/t015-expr-unbound-variable.json"
     }
   ]
 }

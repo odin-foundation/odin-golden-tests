@@ -1,0 +1,14 @@
+{
+  "id": "round-default-scale",
+  "family": "expr",
+  "title": "%expr — round to an integer",
+  "purpose": "round with one argument rounds to a whole number.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"round(3.7)\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##4",
+  "notes": [
+    "round(x) supplies a default scale of 0."
+  ],
+  "avoid": []
+}

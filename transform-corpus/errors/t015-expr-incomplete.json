@@ -1,0 +1,17 @@
+{
+  "id": "t015-expr-incomplete",
+  "family": "error",
+  "code": "T015",
+  "title": "T015 — incomplete %expr formula",
+  "purpose": "A %expr formula that ends after an operator fails to compile.",
+  "transform": "{out}\nr = %expr \"2 +\"",
+  "input": "seed = ##0",
+  "targetFormat": "odin",
+  "surfaces": "throw",
+  "enforced": true,
+  "trigger": "%expr formula '2 +' has a trailing operator with no right operand.",
+  "fix": "Complete the expression, e.g. \"2 + 3\".",
+  "notes": [
+    "Compilation fails at parse time with the T015 code; the message reads 'Invalid %expr formula: unexpected end of formula'."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "modulo-negative",
+  "family": "expr",
+  "title": "%expr — modulo of a negative",
+  "purpose": "The remainder follows the sign of the dividend.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"-5 % 2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##-1",
+  "notes": [
+    "-5 % 2 = -1, matching the %mod verb."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "t015-expr-unbalanced-parens",
+  "family": "error",
+  "code": "T015",
+  "title": "T015 — unbalanced parentheses in %expr",
+  "purpose": "A %expr formula with a missing closing parenthesis fails to compile.",
+  "transform": "{out}\nr = %expr \"(1 + 2\"",
+  "input": "seed = ##0",
+  "targetFormat": "odin",
+  "surfaces": "throw",
+  "enforced": true,
+  "trigger": "%expr formula '(1 + 2' opens a parenthesis that is never closed.",
+  "fix": "Balance the parentheses, e.g. \"(1 + 2)\".",
+  "notes": [
+    "Compilation fails at parse time with the T015 code; the message reads 'Invalid %expr formula: missing closing parenthesis'."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "t015-expr-unknown-function",
+  "family": "error",
+  "code": "T015",
+  "title": "T015 — unknown %expr function",
+  "purpose": "A %expr formula that calls a function outside the deterministic whitelist fails to compile.",
+  "transform": "{out}\nr = %expr \"sin(x)\"",
+  "input": "x = ##1",
+  "targetFormat": "odin",
+  "surfaces": "throw",
+  "enforced": true,
+  "trigger": "%expr formula calls sin(), which is not in the whitelist (abs, floor, ceil, trunc, round, sqrt, pow, min, max).",
+  "fix": "Use a whitelisted function, or precompute the value with a verb before the formula.",
+  "notes": [
+    "%expr is a parse-time macro; the error is raised while compiling the formula to a verb tree, before any row is processed.",
+    "The thrown error carries the stable T015 code; its message reads 'Invalid %expr formula: unknown function ...'.",
+    "Transcendental functions (sin, cos, tan, exp, ln) are excluded because they are not byte-identical across language runtimes."
+  ]
+}

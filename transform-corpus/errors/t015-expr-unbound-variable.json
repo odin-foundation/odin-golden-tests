@@ -1,0 +1,18 @@
+{
+  "id": "t015-expr-unbound-variable",
+  "family": "error",
+  "code": "T015",
+  "title": "T015 — %expr variable without a bindings object",
+  "purpose": "A %expr formula that names a variable but is given no bindings object fails to compile.",
+  "transform": "{out}\nr = %expr \"a + b\"",
+  "input": "{v}\na = ##1\nb = ##2",
+  "targetFormat": "odin",
+  "surfaces": "throw",
+  "enforced": true,
+  "trigger": "%expr formula 'a + b' uses variables but no bindings object is passed.",
+  "fix": "Pass the bindings object as the second argument, e.g. %expr \"a + b\" @.v.",
+  "notes": [
+    "Bindings are explicit: variables resolve under the object passed as the second argument (a reads @.v.a), and a formula with variables requires one.",
+    "Compilation fails at parse time with the T015 code; the message names the unbound variable."
+  ]
+}

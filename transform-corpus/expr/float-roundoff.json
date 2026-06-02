@@ -1,0 +1,16 @@
+{
+  "id": "float-roundoff",
+  "family": "expr",
+  "title": "%expr — binary float round-off",
+  "purpose": "Decimal sums inherit IEEE 754 round-off from the underlying verbs.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"0.1 + 0.2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = #0.30000000000000004",
+  "notes": [
+    "0.1 + 0.2 is the canonical 0.30000000000000004; no special rounding is applied.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
+  ],
+  "avoid": [],
+  "tsOnly": true
+}

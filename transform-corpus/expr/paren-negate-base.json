@@ -1,0 +1,14 @@
+{
+  "id": "paren-negate-base",
+  "family": "expr",
+  "title": "%expr — parenthesized negative base",
+  "purpose": "Parentheses negate the base before exponentiation.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"(-2)^2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##4",
+  "notes": [
+    "(-2)^2 = 4, in contrast to -2^2 = -4."
+  ],
+  "avoid": []
+}

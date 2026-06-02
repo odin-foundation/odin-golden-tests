@@ -1,0 +1,14 @@
+{
+  "id": "unary-vs-power",
+  "family": "expr",
+  "title": "%expr — unary minus binds looser than power",
+  "purpose": "A leading minus applies to the whole power expression.",
+  "signature": "%expr \"<formula>\" -> number",
+  "transform": "{out}\nr = %expr \"-2^2\"",
+  "input": "seed = ##0",
+  "expectedOutput": "{out}\nr = ##-4",
+  "notes": [
+    "-2^2 groups as -(2^2) = -4. Use (-2)^2 to negate the base first."
+  ],
+  "avoid": []
+}
