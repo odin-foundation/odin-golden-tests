@@ -1,0 +1,14 @@
+{
+  "id": "symmetricDifference",
+  "family": "array",
+  "title": "%symmetricDifference — elements in exactly one array",
+  "purpose": "Return the distinct elements that appear in exactly one of the two arrays.",
+  "signature": "%symmetricDifference <array> <array> -> array",
+  "transform": "{out}\nxor = %symmetricDifference @.a @.b",
+  "input": "{a[] : ~}\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4",
+  "expectedOutput": "{out}\n{.xor[] : ~}\n##1\n##4",
+  "notes": [
+    "First-array exclusives precede second-array exclusives; the result is distinct."
+  ],
+  "avoid": []
+}

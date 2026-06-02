@@ -1,0 +1,14 @@
+{
+  "id": "omit",
+  "family": "object",
+  "title": "%omit — drop named keys",
+  "purpose": "Return a copy of an object with the named keys removed.",
+  "signature": "%omit <object> <key...> -> object",
+  "transform": "{out}\no = %omit @.rec \"active\"",
+  "input": "{rec}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\n{.o}\nname = \"Ada\"\nrole = \"admin\"",
+  "notes": [
+    "Keys not present in the object are ignored; remaining key order is preserved."
+  ],
+  "avoid": []
+}

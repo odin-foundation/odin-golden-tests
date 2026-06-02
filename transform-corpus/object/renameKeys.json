@@ -1,0 +1,14 @@
+{
+  "id": "renameKeys",
+  "family": "object",
+  "title": "%renameKeys — rename keys via a mapping",
+  "purpose": "Rename object keys according to an old-to-new mapping object.",
+  "signature": "%renameKeys <object> <mapping> -> object",
+  "transform": "{out}\nr = %renameKeys @.rec @.mapping",
+  "input": "{rec}\nfn = \"Ada\"\nln = \"Lovelace\"\n\n{mapping}\nfn = \"firstName\"\nln = \"lastName\"",
+  "expectedOutput": "{out}\n{.r}\nfirstName = \"Ada\"\nlastName = \"Lovelace\"",
+  "notes": [
+    "Keys absent from the mapping are passed through unchanged."
+  ],
+  "avoid": []
+}

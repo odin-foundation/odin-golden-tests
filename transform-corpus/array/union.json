@@ -1,0 +1,14 @@
+{
+  "id": "union",
+  "family": "array",
+  "title": "%union — distinct elements from both arrays",
+  "purpose": "Return the distinct elements from both arrays.",
+  "signature": "%union <array> <array> -> array",
+  "transform": "{out}\nall = %union @.a @.b",
+  "input": "{a[] : ~}\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4",
+  "expectedOutput": "{out}\n{.all[] : ~}\n##1\n##2\n##3\n##4",
+  "notes": [
+    "Elements are de-duplicated; first-array order precedes new elements from the second."
+  ],
+  "avoid": []
+}

@@ -288,6 +288,46 @@
       "path": "array/zip.json"
     },
     {
+      "id": "intersection",
+      "family": "array",
+      "path": "array/intersection.json"
+    },
+    {
+      "id": "union",
+      "family": "array",
+      "path": "array/union.json"
+    },
+    {
+      "id": "difference",
+      "family": "array",
+      "path": "array/difference.json"
+    },
+    {
+      "id": "symmetricDifference",
+      "family": "array",
+      "path": "array/symmetricDifference.json"
+    },
+    {
+      "id": "countBy",
+      "family": "array",
+      "path": "array/countBy.json"
+    },
+    {
+      "id": "keyBy",
+      "family": "array",
+      "path": "array/keyBy.json"
+    },
+    {
+      "id": "explode",
+      "family": "array",
+      "path": "array/explode.json"
+    },
+    {
+      "id": "window",
+      "family": "array",
+      "path": "array/window.json"
+    },
+    {
       "id": "addDays",
       "family": "date",
       "path": "date/addDays.json"
@@ -1081,6 +1121,41 @@
       "id": "values",
       "family": "object",
       "path": "object/values.json"
+    },
+    {
+      "id": "pick",
+      "family": "object",
+      "path": "object/pick.json"
+    },
+    {
+      "id": "omit",
+      "family": "object",
+      "path": "object/omit.json"
+    },
+    {
+      "id": "fromEntries",
+      "family": "object",
+      "path": "object/fromEntries.json"
+    },
+    {
+      "id": "invert",
+      "family": "object",
+      "path": "object/invert.json"
+    },
+    {
+      "id": "defaults",
+      "family": "object",
+      "path": "object/defaults.json"
+    },
+    {
+      "id": "renameKeys",
+      "family": "object",
+      "path": "object/renameKeys.json"
+    },
+    {
+      "id": "compactObject",
+      "family": "object",
+      "path": "object/compactObject.json"
     },
     {
       "id": "camelCase",

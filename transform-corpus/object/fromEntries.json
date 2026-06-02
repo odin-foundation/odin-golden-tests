@@ -1,0 +1,14 @@
+{
+  "id": "fromEntries",
+  "family": "object",
+  "title": "%fromEntries — object from key/value pairs",
+  "purpose": "Build an object from an array of two-element [key, value] pairs.",
+  "signature": "%fromEntries <array> -> object",
+  "transform": "{out}\no = %fromEntries @.pairs",
+  "input": "{pairs[0][] : ~}\n\"name\"\n\"Ada\"\n\n{pairs[1][] : ~}\n\"role\"\n\"admin\"",
+  "expectedOutput": "{out}\n{.o}\nname = \"Ada\"\nrole = \"admin\"",
+  "notes": [
+    "The inverse of %entries. Each pair is [key, value]; later pairs win on duplicate keys."
+  ],
+  "avoid": []
+}

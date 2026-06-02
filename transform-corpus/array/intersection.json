@@ -1,0 +1,14 @@
+{
+  "id": "intersection",
+  "family": "array",
+  "title": "%intersection — elements in both arrays",
+  "purpose": "Return the distinct elements present in both arrays.",
+  "signature": "%intersection <array> <array> -> array",
+  "transform": "{out}\nboth = %intersection @.a @.b",
+  "input": "{a[] : ~}\n##1\n##2\n##3\n\n{b[] : ~}\n##2\n##3\n##4",
+  "expectedOutput": "{out}\n{.both[] : ~}\n##2\n##3",
+  "notes": [
+    "Result elements are distinct; order follows the first array."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "countBy",
+  "family": "array",
+  "title": "%countBy — count items per field value",
+  "purpose": "Group array items by a field and count how many fall in each group.",
+  "signature": "%countBy <array> [<field>] -> object",
+  "transform": "{out}\nbyRegion = %countBy @.items \"region\"",
+  "input": "{items[] : region}\n\"east\"\n\"west\"\n\"east\"",
+  "expectedOutput": "{out}\n{.byRegion}\neast = ##2\nwest = ##1",
+  "notes": [
+    "Without a field argument the items themselves are counted. Result keys are sorted."
+  ],
+  "avoid": []
+}

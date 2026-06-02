@@ -1,0 +1,14 @@
+{
+  "id": "defaults",
+  "family": "object",
+  "title": "%defaults — fill missing keys",
+  "purpose": "Merge a defaults object under a base object, filling only keys the base lacks.",
+  "signature": "%defaults <object> <defaults> -> object",
+  "transform": "{out}\nd = %defaults @.rec @.fallback",
+  "input": "{rec}\nname = \"Ada\"\n\n{fallback}\nname = \"Anon\"\nrole = \"guest\"",
+  "expectedOutput": "{out}\n{.d}\nname = \"Ada\"\nrole = \"guest\"",
+  "notes": [
+    "Existing keys in the base object are kept; only absent keys are taken from the defaults."
+  ],
+  "avoid": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "keyBy",
+  "family": "array",
+  "title": "%keyBy — index items by a field",
+  "purpose": "Build an object that maps each item field value to the item.",
+  "signature": "%keyBy <array> <field> -> object",
+  "transform": "{out}\nbyId = %keyBy @.users \"id\"",
+  "input": "{users[] : id, name}\n\"u1\", \"Ada\"\n\"u2\", \"Bo\"",
+  "expectedOutput": "{out}\n{.byId}\n{out.byId.u1}\nid = \"u1\"\nname = \"Ada\"\n{out.byId.u2}\nid = \"u2\"\nname = \"Bo\"",
+  "notes": [
+    "On duplicate field values the last item wins."
+  ],
+  "avoid": []
+}

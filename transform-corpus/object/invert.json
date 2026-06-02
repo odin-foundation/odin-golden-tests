@@ -1,0 +1,14 @@
+{
+  "id": "invert",
+  "family": "object",
+  "title": "%invert — swap keys and values",
+  "purpose": "Return an object with keys and values swapped.",
+  "signature": "%invert <object> -> object",
+  "transform": "{out}\ninv = %invert @.m",
+  "input": "{m}\na = \"x\"\nb = \"y\"",
+  "expectedOutput": "{out}\n{.inv}\nx = \"a\"\ny = \"b\"",
+  "notes": [
+    "Values are coerced to strings to become keys; duplicate values collapse to the last key."
+  ],
+  "avoid": []
+}
