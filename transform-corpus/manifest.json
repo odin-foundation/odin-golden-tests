@@ -53,6 +53,21 @@
       "path": "aggregation/sum.json"
     },
     {
+      "id": "countIf",
+      "family": "aggregation",
+      "path": "aggregation/countIf.json"
+    },
+    {
+      "id": "sumIf",
+      "family": "aggregation",
+      "path": "aggregation/sumIf.json"
+    },
+    {
+      "id": "avgIf",
+      "family": "aggregation",
+      "path": "aggregation/avgIf.json"
+    },
+    {
       "id": "at",
       "family": "array",
       "path": "array/at.json"
@@ -543,6 +558,16 @@
       "path": "encoding/buildUrl.json"
     },
     {
+      "id": "stableStringify",
+      "family": "encoding",
+      "path": "encoding/stableStringify.json"
+    },
+    {
+      "id": "canonicalHash",
+      "family": "encoding",
+      "path": "encoding/canonicalHash.json"
+    },
+    {
       "id": "clamp",
       "family": "financial",
       "path": "financial/clamp.json"
@@ -696,6 +721,16 @@
       "id": "zscore",
       "family": "financial",
       "path": "financial/zscore.json"
+    },
+    {
+      "id": "xnpv",
+      "family": "financial",
+      "path": "financial/xnpv.json"
+    },
+    {
+      "id": "xirr",
+      "family": "financial",
+      "path": "financial/xirr.json"
     },
     {
       "id": "resetSequence",
@@ -1001,6 +1036,21 @@
       "id": "trunc",
       "family": "numeric",
       "path": "numeric/trunc.json"
+    },
+    {
+      "id": "gcd",
+      "family": "numeric",
+      "path": "numeric/gcd.json"
+    },
+    {
+      "id": "lcm",
+      "family": "numeric",
+      "path": "numeric/lcm.json"
+    },
+    {
+      "id": "factorial",
+      "family": "numeric",
+      "path": "numeric/factorial.json"
     },
     {
       "id": "entries",

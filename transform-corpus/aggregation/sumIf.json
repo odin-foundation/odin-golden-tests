@@ -1,0 +1,15 @@
+{
+  "id": "sumIf",
+  "family": "aggregation",
+  "title": "%sumIf — sum a field over matching items",
+  "purpose": "Sum a field over the array items that satisfy a condition; the sum field defaults to the predicate field.",
+  "signature": "%sumIf <array> <field> <op> <value> [<sumField>] -> number",
+  "transform": "{out}\npaidTotal = %sumIf @.orders \"status\" \"=\" \"paid\" \"amount\"",
+  "input": "{orders[] : status, amount}\n\"paid\", ##100\n\"open\", ##200\n\"paid\", ##300",
+  "expectedOutput": "{out}\npaidTotal = ##400",
+  "notes": [
+    "Without a fifth argument the predicate field itself is summed.",
+    "Operators match %filter."
+  ],
+  "avoid": []
+}

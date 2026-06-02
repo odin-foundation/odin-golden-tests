@@ -1,0 +1,14 @@
+{
+  "id": "lcm",
+  "family": "numeric",
+  "title": "%lcm — least common multiple",
+  "purpose": "Compute the least common multiple of two integers.",
+  "signature": "%lcm <integer> <integer> -> integer",
+  "transform": "{out}\nl = %lcm @.a @.b",
+  "input": "a = ##4\nb = ##6",
+  "expectedOutput": "{out}\nl = ##12",
+  "notes": [
+    "lcm(n, 0) is 0. A result beyond the safe integer range yields ~."
+  ],
+  "avoid": []
+}

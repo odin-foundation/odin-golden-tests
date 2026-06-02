@@ -1,0 +1,17 @@
+{
+  "id": "xirr",
+  "family": "financial",
+  "title": "%xirr — internal rate of return for dated cash flows",
+  "purpose": "Find the rate that makes the net present value of dated cash flows zero.",
+  "signature": "%xirr <array:amounts> <array:dates> [<number:guess>] -> number",
+  "transform": "{out}\nr = %xirr @.amounts @.dates",
+  "input": "{amounts[] : ~}\n#-1000\n#110\n#110\n#110\n#1100\n\n{dates[] : ~}\n\"2020-01-01\"\n\"2021-01-01\"\n\"2022-01-01\"\n\"2023-01-01\"\n\"2024-01-01\"",
+  "expectedOutput": "{out}\nr = #0.10777982564924497",
+  "notes": [
+    "Solved by Newton–Raphson from a default 10% guess; an optional third argument overrides it.",
+    "Needs at least two cash flows of equal length with the dates; non-convergent series yield ~.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
+  ],
+  "avoid": [],
+  "tsOnly": true
+}

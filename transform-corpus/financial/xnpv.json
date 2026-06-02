@@ -1,0 +1,17 @@
+{
+  "id": "xnpv",
+  "family": "financial",
+  "title": "%xnpv — net present value of dated cash flows",
+  "purpose": "Discount cash flows that occur on specific dates and sum them, on a 365-day basis.",
+  "signature": "%xnpv <number:rate> <array:amounts> <array:dates> -> number",
+  "transform": "{out}\nv = %xnpv @.rate @.amounts @.dates",
+  "input": "rate = #0.09\n\n{amounts[] : ~}\n#-1000\n#110\n#110\n#110\n#1100\n\n{dates[] : ~}\n\"2020-01-01\"\n\"2021-01-01\"\n\"2022-01-01\"\n\"2023-01-01\"\n\"2024-01-01\"",
+  "expectedOutput": "{out}\nv = #57.460446077146344",
+  "notes": [
+    "Each amount is discounted by (1+rate)^((date - firstDate)/365); the first date is the t=0 reference.",
+    "amounts and dates must have equal length; otherwise the result is ~.",
+    "Output is a TS shortest-round-trip float (last-digit f64 differs cross-language); verified in TS only."
+  ],
+  "avoid": [],
+  "tsOnly": true
+}

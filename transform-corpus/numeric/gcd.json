@@ -1,0 +1,14 @@
+{
+  "id": "gcd",
+  "family": "numeric",
+  "title": "%gcd — greatest common divisor",
+  "purpose": "Compute the greatest common divisor of two integers.",
+  "signature": "%gcd <integer> <integer> -> integer",
+  "transform": "{out}\ng = %gcd @.a @.b",
+  "input": "a = ##12\nb = ##18",
+  "expectedOutput": "{out}\ng = ##6",
+  "notes": [
+    "Operands are truncated to their absolute integer value; gcd(n, 0) is n."
+  ],
+  "avoid": []
+}

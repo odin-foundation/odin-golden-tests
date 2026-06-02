@@ -1,0 +1,14 @@
+{
+  "id": "factorial",
+  "family": "numeric",
+  "title": "%factorial — n!",
+  "purpose": "Compute the factorial of a non-negative integer.",
+  "signature": "%factorial <integer> -> integer",
+  "transform": "{out}\nf = %factorial @.n",
+  "input": "n = ##6",
+  "expectedOutput": "{out}\nf = ##720",
+  "notes": [
+    "Defined for 0 <= n <= 18, which is the range that stays within safe integer precision; other inputs yield ~."
+  ],
+  "avoid": []
+}
