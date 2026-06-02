@@ -4,9 +4,9 @@
   "title": "%countIf — count items matching a condition",
   "purpose": "Count the array items whose field satisfies an operator/value condition.",
   "signature": "%countIf <array> <field> <op> <value> -> integer",
-  "transform": "{out}\npaid = %countIf @.orders \"status\" \"=\" \"paid\"",
+  "transform": "{out}\npaid = %countIf @.orders \"status\" \"=\" \"paid\"\nnoMatch = %countIf @.orders \"status\" \"=\" \"void\"",
   "input": "{orders[] : status, amount}\n\"paid\", ##100\n\"open\", ##200\n\"paid\", ##300",
-  "expectedOutput": "{out}\npaid = ##2",
+  "expectedOutput": "{out}\npaid = ##2\nnoMatch = ##0",
   "notes": [
     "Operators match %filter: =, !=, <, <=, >, >=, contains, startsWith, endsWith."
   ],

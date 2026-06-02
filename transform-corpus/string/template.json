@@ -4,9 +4,9 @@
   "title": "%template — fill {placeholders} from an object",
   "purpose": "Substitute {key} placeholders in a template string with values from an object.",
   "signature": "%template <template> <object> -> string",
-  "transform": "{out}\nmsg = %template @.tpl @.data",
-  "input": "tpl = \"Hi {name}, you are {age}\"\n{data}\nname = \"Ada\"\nage = ##36",
-  "expectedOutput": "{out}\nmsg = \"Hi Ada, you are 36\"",
+  "transform": "{out}\nfilled = %template \"Hi {name}, you are {age}\" @.data\nmissingKey = %template \"a{missing}b\" @.data",
+  "input": "{data}\nname = \"Ada\"\nage = ##36",
+  "expectedOutput": "{out}\nfilled = \"Hi Ada, you are 36\"\nmissingKey = \"ab\"",
   "notes": [
     "Placeholders name fields of the object; a missing key renders as an empty string.",
     "Whitespace inside braces is trimmed, so {name} and { name } are equivalent."

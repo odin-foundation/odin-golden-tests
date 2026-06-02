@@ -4,9 +4,9 @@
   "title": "%unescapeHtml — decode HTML entities",
   "purpose": "Decode named and numeric HTML entities back to their characters.",
   "signature": "%unescapeHtml <string> -> string",
-  "transform": "{out}\nout = %unescapeHtml @.raw",
-  "input": "raw = \"&lt;p&gt;1 &amp; 2&lt;/p&gt;\"",
-  "expectedOutput": "{out}\nout = \"<p>1 & 2</p>\"",
+  "transform": "{out}\ndecoded = %unescapeHtml @.raw\nnumeric = %unescapeHtml @.refs",
+  "input": "raw = \"&lt;p&gt;1 &amp; 2&lt;/p&gt;\"\nrefs = \"&#65;&#x42;\"",
+  "expectedOutput": "{out}\ndecoded = \"<p>1 & 2</p>\"\nnumeric = \"AB\"",
   "notes": [
     "Decodes &amp; &lt; &gt; &quot; &#39; &apos; plus numeric (&#65;) and hex (&#x41;) references."
   ],

@@ -4,9 +4,9 @@
   "title": "%gcd — greatest common divisor",
   "purpose": "Compute the greatest common divisor of two integers.",
   "signature": "%gcd <integer> <integer> -> integer",
-  "transform": "{out}\ng = %gcd @.a @.b",
-  "input": "a = ##12\nb = ##18",
-  "expectedOutput": "{out}\ng = ##6",
+  "transform": "{out}\nnormal = %gcd @.a @.b\nwithZero = %gcd @.zero @.a\nnegative = %gcd @.neg @.b",
+  "input": "a = ##12\nb = ##18\nzero = ##0\nneg = ##-12",
+  "expectedOutput": "{out}\nnormal = ##6\nwithZero = ##12\nnegative = ##6",
   "notes": [
     "Operands are truncated to their absolute integer value; gcd(n, 0) is n."
   ],

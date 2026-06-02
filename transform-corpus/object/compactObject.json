@@ -4,9 +4,9 @@
   "title": "%compactObject — drop empty entries",
   "purpose": "Return a copy of an object with null, empty-string, empty-array, and empty-object values removed.",
   "signature": "%compactObject <object> -> object",
-  "transform": "{out}\nc = %compactObject @.rec",
-  "input": "{rec}\nname = \"Ada\"\nmiddle = ~\nnickname = \"\"",
-  "expectedOutput": "out.c.name = \"Ada\"",
+  "transform": "{out}\ncleaned = %compactObject @.rec",
+  "input": "{rec}\nname = \"Ada\"\nmiddle = ~\nnickname = \"\"\nzero = ##0\nflag = ?false",
+  "expectedOutput": "{out}\n{.cleaned}\nname = \"Ada\"\nzero = ##0\nflag = ?false",
   "notes": [
     "Drops ~ (null), empty strings, empty arrays, and empty objects; other falsy values such as ##0 and ?false are kept."
   ],

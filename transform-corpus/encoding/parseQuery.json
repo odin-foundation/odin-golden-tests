@@ -4,9 +4,9 @@
   "title": "%parseQuery — parse a query string",
   "purpose": "Parse a query string into an object; a leading ? is tolerated.",
   "signature": "%parseQuery <string> -> object",
-  "transform": "{out}\nq = %parseQuery @.qs",
-  "input": "qs = \"z=1&a=2\"",
-  "expectedOutput": "{out}\n{.q}\na = \"2\"\nz = \"1\"",
+  "transform": "{out}\nparsed = %parseQuery @.qs\nleadingQ = %parseQuery @.q2",
+  "input": "qs = \"z=1&a=2\"\nq2 = \"?a=2\"",
+  "expectedOutput": "{out}\nleadingQ.a = \"2\"\n{.parsed}\na = \"2\"\nz = \"1\"",
   "notes": [
     "Keys are sorted for canonical output. Values are strings.",
     "Invert with %buildQuery."

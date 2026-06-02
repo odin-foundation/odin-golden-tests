@@ -4,9 +4,9 @@
   "title": "%invert — swap keys and values",
   "purpose": "Return an object with keys and values swapped.",
   "signature": "%invert <object> -> object",
-  "transform": "{out}\ninv = %invert @.m",
-  "input": "{m}\na = \"x\"\nb = \"y\"",
-  "expectedOutput": "{out}\n{.inv}\nx = \"a\"\ny = \"b\"",
+  "transform": "{out}\nswapped = %invert @.m\ndupLastWins = %invert @.dup",
+  "input": "{m}\na = \"x\"\nb = \"y\"\n\n{dup}\na = \"same\"\nb = \"same\"",
+  "expectedOutput": "{out}\ndupLastWins.same = \"b\"\n{.swapped}\nx = \"a\"\ny = \"b\"",
   "notes": [
     "Values are coerced to strings to become keys; duplicate values collapse to the last key."
   ],

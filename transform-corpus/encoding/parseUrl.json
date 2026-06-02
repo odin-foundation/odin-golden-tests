@@ -4,9 +4,9 @@
   "title": "%parseUrl — split a URL into parts",
   "purpose": "Parse a URL into an object of scheme, host, port, path, query, and fragment.",
   "signature": "%parseUrl <string> -> object",
-  "transform": "{out}\nparts = %parseUrl @.url",
-  "input": "url = \"https://example.com:8080/a/b?z=1&a=2#frag\"",
-  "expectedOutput": "{out}\n{.parts}\nscheme = \"https\"\nhost = \"example.com\"\nport = ##8080\npath = \"/a/b\"\nfragment = \"frag\"\n{out.parts.query}\na = \"2\"\nz = \"1\"",
+  "transform": "{out}\nfull = %parseUrl @.url\nnoPort = %parseUrl @.bare\ninvalid = %parseUrl @.bad",
+  "input": "url = \"https://example.com:8080/a/b?z=1&a=2#frag\"\nbare = \"https://example.com/x\"\nbad = \"not a url\"",
+  "expectedOutput": "{out}\ninvalid = ~\n{.full}\nscheme = \"https\"\nhost = \"example.com\"\nport = ##8080\npath = \"/a/b\"\nfragment = \"frag\"\n{out.full.query}\na = \"2\"\nz = \"1\"\n{.noPort}\nscheme = \"https\"\nhost = \"example.com\"\nport = ~\npath = \"/x\"\nfragment = \"\"",
   "notes": [
     "Query keys are sorted for canonical output. The port is ~ when absent.",
     "Invert with %buildUrl."

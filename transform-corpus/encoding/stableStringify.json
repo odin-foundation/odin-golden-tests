@@ -4,9 +4,9 @@
   "title": "%stableStringify — canonical JSON",
   "purpose": "Serialize a value to JSON with object keys sorted recursively, for a stable representation.",
   "signature": "%stableStringify <any> -> string",
-  "transform": "{out}\ns = %stableStringify @.doc",
-  "input": "{doc}\nb = ##2\na = ##1",
-  "expectedOutput": "{out}\ns = \"{\\\"a\\\":1,\\\"b\\\":2}\"",
+  "transform": "{out}\ncanonical = %stableStringify @.doc",
+  "input": "{doc}\nb = ##2\na = ##1\n{doc.nested}\ny = ##2\nx = ##1",
+  "expectedOutput": "{out}\ncanonical = \"{\\\"a\\\":1,\\\"b\\\":2,\\\"nested\\\":{\\\"x\\\":1,\\\"y\\\":2}}\"",
   "notes": [
     "Object keys are sorted at every level, so the output is independent of source key order.",
     "Pair with %canonicalHash to fingerprint a value."

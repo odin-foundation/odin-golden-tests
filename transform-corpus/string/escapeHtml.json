@@ -4,9 +4,9 @@
   "title": "%escapeHtml — escape HTML special characters",
   "purpose": "Escape the five HTML special characters & < > \" and the apostrophe as entities.",
   "signature": "%escapeHtml <string> -> string",
-  "transform": "{out}\nout = %escapeHtml @.raw",
-  "input": "raw = \"<p>1 & 2</p>\"",
-  "expectedOutput": "{out}\nout = \"&lt;p&gt;1 &amp; 2&lt;/p&gt;\"",
+  "transform": "{out}\nescaped = %escapeHtml @.raw\nempty = %escapeHtml @.blank",
+  "input": "raw = \"<p>1 & 2</p>\"\nblank = \"\"",
+  "expectedOutput": "{out}\nescaped = \"&lt;p&gt;1 &amp; 2&lt;/p&gt;\"\nempty = \"\"",
   "notes": [
     "The apostrophe is escaped as &#39;. Invert with %unescapeHtml."
   ],

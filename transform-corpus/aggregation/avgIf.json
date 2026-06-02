@@ -4,9 +4,9 @@
   "title": "%avgIf — average a field over matching items",
   "purpose": "Average a field over the array items that satisfy a condition; the average field defaults to the predicate field.",
   "signature": "%avgIf <array> <field> <op> <value> [<avgField>] -> number",
-  "transform": "{out}\npaidAvg = %avgIf @.orders \"status\" \"=\" \"paid\" \"amount\"",
+  "transform": "{out}\npaidAvg = %avgIf @.orders \"status\" \"=\" \"paid\" \"amount\"\nnoMatch = %avgIf @.orders \"status\" \"=\" \"void\" \"amount\"",
   "input": "{orders[] : status, amount}\n\"paid\", ##100\n\"open\", ##200\n\"paid\", ##300",
-  "expectedOutput": "{out}\npaidAvg = ##200",
+  "expectedOutput": "{out}\npaidAvg = ##200\nnoMatch = ~",
   "notes": [
     "Returns ~ when no item matches.",
     "Operators match %filter."

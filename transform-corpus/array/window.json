@@ -4,9 +4,9 @@
   "title": "%window — sliding windows of size n",
   "purpose": "Return overlapping consecutive slices of length n from an array.",
   "signature": "%window <array> <integer> -> array",
-  "transform": "{out}\npanes = %window @.nums ##2",
-  "input": "{nums[] : ~}\n##1\n##2\n##3\n##4",
-  "expectedOutput": "{out}\n{.panes[] : [0], [1]}\n##1, ##2\n##2, ##3\n##3, ##4",
+  "transform": "{out}\npairs = %window @.nums ##2\nsingles = %window @.nums ##1",
+  "input": "{nums[] : ~}\n##1\n##2\n##3",
+  "expectedOutput": "{out}\n{.pairs[] : [0], [1]}\n##1, ##2\n##2, ##3\n{.singles[] : [0]}\n##1\n##2\n##3",
   "notes": [
     "Produces (length - n + 1) windows; an n larger than the array yields an empty result."
   ],

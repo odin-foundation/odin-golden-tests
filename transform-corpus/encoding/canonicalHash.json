@@ -4,9 +4,9 @@
   "title": "%canonicalHash — sha256 of the canonical form",
   "purpose": "Hash a value by its canonical (sorted-key) JSON form, yielding an order-independent fingerprint.",
   "signature": "%canonicalHash <any> -> string",
-  "transform": "{out}\nh = %canonicalHash @.doc",
-  "input": "{doc}\nb = ##2\na = ##1",
-  "expectedOutput": "{out}\nh = \"43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777\"",
+  "transform": "{out}\nh1 = %canonicalHash @.a\nh2 = %canonicalHash @.b",
+  "input": "{a}\nb = ##2\na = ##1\n\n{b}\na = ##1\nb = ##2",
+  "expectedOutput": "{out}\nh1 = \"43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777\"\nh2 = \"43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777\"",
   "notes": [
     "The digest is the lowercase hex sha256 of the %stableStringify output, so reordering keys does not change it."
   ],

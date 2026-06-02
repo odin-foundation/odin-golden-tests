@@ -4,9 +4,9 @@
   "title": "%pick — keep only named keys",
   "purpose": "Return a copy of an object containing only the named keys.",
   "signature": "%pick <object> <key...> -> object",
-  "transform": "{out}\np = %pick @.rec \"name\" \"role\"",
-  "input": "{rec}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
-  "expectedOutput": "{out}\n{.p}\nname = \"Ada\"\nrole = \"admin\"",
+  "transform": "{out}\nkept = %pick @.rec \"name\" \"role\"\nabsentKey = %pick @.rec \"name\" \"zzz\"\nnonObject = %pick @.notObj \"name\"",
+  "input": "notObj = \"x\"\n\n{rec}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\nabsentKey.name = \"Ada\"\nnonObject = ~\n{.kept}\nname = \"Ada\"\nrole = \"admin\"",
   "notes": [
     "Keys that are absent in the source are skipped; source key order is preserved."
   ],

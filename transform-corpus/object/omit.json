@@ -4,9 +4,9 @@
   "title": "%omit — drop named keys",
   "purpose": "Return a copy of an object with the named keys removed.",
   "signature": "%omit <object> <key...> -> object",
-  "transform": "{out}\no = %omit @.rec \"active\"",
-  "input": "{rec}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
-  "expectedOutput": "{out}\n{.o}\nname = \"Ada\"\nrole = \"admin\"",
+  "transform": "{out}\ndropped = %omit @.rec \"active\"\nabsentKey = %omit @.rec \"zzz\"\nnonObject = %omit @.notObj \"name\"",
+  "input": "notObj = \"x\"\n\n{rec}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
+  "expectedOutput": "{out}\nnonObject = ~\n{.dropped}\nname = \"Ada\"\nrole = \"admin\"\n{.absentKey}\nname = \"Ada\"\nrole = \"admin\"\nactive = ?true",
   "notes": [
     "Keys not present in the object are ignored; remaining key order is preserved."
   ],

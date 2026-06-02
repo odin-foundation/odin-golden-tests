@@ -4,9 +4,9 @@
   "title": "%factorial — n!",
   "purpose": "Compute the factorial of a non-negative integer.",
   "signature": "%factorial <integer> -> integer",
-  "transform": "{out}\nf = %factorial @.n",
-  "input": "n = ##6",
-  "expectedOutput": "{out}\nf = ##720",
+  "transform": "{out}\nfive = %factorial @.five\nzero = %factorial @.zero\nmax = %factorial @.max\nover = %factorial @.over\nnegative = %factorial @.neg",
+  "input": "five = ##5\nzero = ##0\nmax = ##18\nover = ##19\nneg = ##-1",
+  "expectedOutput": "{out}\nfive = ##120\nzero = ##1\nmax = ##6402373705728000\nover = ~\nnegative = ~",
   "notes": [
     "Defined for 0 <= n <= 18, which is the range that stays within safe integer precision; other inputs yield ~."
   ],

@@ -4,9 +4,9 @@
   "title": "%stripTags — remove HTML/XML tags",
   "purpose": "Remove angle-bracket tags from a string, leaving the text content.",
   "signature": "%stripTags <string> -> string",
-  "transform": "{out}\nout = %stripTags @.raw",
-  "input": "raw = \"<p>Hello <b>world</b></p>\"",
-  "expectedOutput": "{out}\nout = \"Hello world\"",
+  "transform": "{out}\nstripped = %stripTags @.raw\nnoTags = %stripTags @.plain",
+  "input": "raw = \"<p>Hello <b>world</b></p>\"\nplain = \"no tags here\"",
+  "expectedOutput": "{out}\nstripped = \"Hello world\"\nnoTags = \"no tags here\"",
   "notes": [
     "Removes anything matching <...>; it does not decode entities in the remaining text."
   ],
