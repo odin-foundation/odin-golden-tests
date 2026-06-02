@@ -4,13 +4,12 @@
   "title": "%addYears - shift a date by whole years",
   "purpose": "Add (or subtract) a number of years to a date, returning an ISO date.",
   "signature": "%addYears <date> <integer:years> -> string",
-  "transform": "{out}\nd = %addYears @.start ##1",
-  "input": "start = 2024-02-29",
-  "expectedOutput": "{out}\nd = \"2025-03-01\"",
+  "transform": "{out}\nd = %addYears @.start ##2\nfebClamp = %addYears @.leap ##1",
+  "input": "start = 2022-06-15\nleap = 2024-02-29",
+  "expectedOutput": "{out}\nd = \"2024-06-15\"\nfebClamp = \"2025-02-28\"",
   "notes": [
-    "A leap-day input rolls forward to March 1 in a non-leap target year.",
     "A negative count moves the date backward.",
-    "Output uses the TS Date format (millis/Z or JS year-rollover); verified in TS only."
+    "Feb 29 is clamped to Feb 28 when the target year is not a leap year, not rolled into March."
   ],
   "avoid": [],
   "tsOnly": true
