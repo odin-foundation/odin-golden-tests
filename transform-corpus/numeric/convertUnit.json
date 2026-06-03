@@ -6,7 +6,7 @@
   "signature": "%convertUnit <number> <string:fromUnit> <string:toUnit> -> number",
   "transform": "{out}\nv = %convertUnit @.a \"kg\" \"lb\"\ntemp = %convertUnit @.t \"C\" \"F\"\ncrossFamily = %convertUnit @.a \"kg\" \"km\"\nunknownUnit = %convertUnit @.a \"kg\" \"zz\"",
   "input": "a = #100\nt = #100",
-  "expectedOutput": "{out}\nv = #220.462442\ntemp = ##212\ncrossFamily = ~\nunknownUnit = ~",
+  "expectedOutput": "{out}\nv = #220.462262\ntemp = ##212\ncrossFamily = ~\nunknownUnit = ~",
   "notes": [
     "Supports mass, length, volume, speed, area, data, time, and temperature (C/F/K) families.",
     "Results are rounded to at most six decimal places.",
