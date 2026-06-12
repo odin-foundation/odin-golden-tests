@@ -1,0 +1,19 @@
+{
+  "id": "xml-attr-on-verb",
+  "family": "idiom",
+  "group": "format-conversion",
+  "title": "Field modifiers (:attr) apply to verb-valued mappings",
+  "purpose": "A trailing field modifier after a verb-valued mapping (x = %verb ... :attr) attaches to the mapping, not the verb's last argument. So a computed value can be emitted as an XML attribute, matching the path-valued form.",
+  "signature": "producerCode = %upper @.code :attr   ; renders as an attribute",
+  "targetFormat": "xml",
+  "targetOptions": { "root": "Quote" },
+  "transform": "{Quote}\nproducerCode = %upper @.code :attr\ntotal = #$@.total",
+  "input": "code = \"b2\"\ntotal = #$1250.00",
+  "expectedOutput": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Quote xmlns:odin=\"https://odin.foundation/ns\" producerCode=\"B2\">\n  <total odin:type=\"currency\">1250.00</total>\n</Quote>",
+  "notes": [
+    "The :attr modifier after the %upper verb expression belongs to the producerCode mapping; it must not be consumed as the verb's last argument.",
+    "producerCode therefore renders as an attribute on the Quote element, while total (no :attr) stays a child element.",
+    "Argument-level directives such as :pos and :len still attach to verb arguments; only field modifiers (:attr, :required, :confidential, :deprecated, :redacted) bubble up to the mapping."
+  ],
+  "avoid": []
+}

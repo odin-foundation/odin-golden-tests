@@ -18,9 +18,19 @@
       "path": "aggregation/avg.json"
     },
     {
+      "id": "avgIf",
+      "family": "aggregation",
+      "path": "aggregation/avgIf.json"
+    },
+    {
       "id": "count",
       "family": "aggregation",
       "path": "aggregation/count.json"
+    },
+    {
+      "id": "countIf",
+      "family": "aggregation",
+      "path": "aggregation/countIf.json"
     },
     {
       "id": "first",
@@ -53,19 +63,9 @@
       "path": "aggregation/sum.json"
     },
     {
-      "id": "countIf",
-      "family": "aggregation",
-      "path": "aggregation/countIf.json"
-    },
-    {
       "id": "sumIf",
       "family": "aggregation",
       "path": "aggregation/sumIf.json"
-    },
-    {
-      "id": "avgIf",
-      "family": "aggregation",
-      "path": "aggregation/avgIf.json"
     },
     {
       "id": "at",
@@ -88,6 +88,11 @@
       "path": "array/concatArrays.json"
     },
     {
+      "id": "countBy",
+      "family": "array",
+      "path": "array/countBy.json"
+    },
+    {
       "id": "cumprod",
       "family": "array",
       "path": "array/cumprod.json"
@@ -108,6 +113,11 @@
       "path": "array/diff.json"
     },
     {
+      "id": "difference",
+      "family": "array",
+      "path": "array/difference.json"
+    },
+    {
       "id": "distinct",
       "family": "array",
       "path": "array/distinct.json"
@@ -121,6 +131,11 @@
       "id": "every",
       "family": "array",
       "path": "array/every.json"
+    },
+    {
+      "id": "explode",
+      "family": "array",
+      "path": "array/explode.json"
     },
     {
       "id": "fillMissing",
@@ -163,9 +178,19 @@
       "path": "array/indexOf.json"
     },
     {
+      "id": "intersection",
+      "family": "array",
+      "path": "array/intersection.json"
+    },
+    {
       "id": "join",
       "family": "array",
       "path": "array/join.json"
+    },
+    {
+      "id": "keyBy",
+      "family": "array",
+      "path": "array/keyBy.json"
     },
     {
       "id": "lag",
@@ -268,9 +293,19 @@
       "path": "array/sortDesc.json"
     },
     {
+      "id": "symmetricDifference",
+      "family": "array",
+      "path": "array/symmetricDifference.json"
+    },
+    {
       "id": "take",
       "family": "array",
       "path": "array/take.json"
+    },
+    {
+      "id": "union",
+      "family": "array",
+      "path": "array/union.json"
     },
     {
       "id": "unique",
@@ -283,49 +318,14 @@
       "path": "array/unpivot.json"
     },
     {
-      "id": "zip",
-      "family": "array",
-      "path": "array/zip.json"
-    },
-    {
-      "id": "intersection",
-      "family": "array",
-      "path": "array/intersection.json"
-    },
-    {
-      "id": "union",
-      "family": "array",
-      "path": "array/union.json"
-    },
-    {
-      "id": "difference",
-      "family": "array",
-      "path": "array/difference.json"
-    },
-    {
-      "id": "symmetricDifference",
-      "family": "array",
-      "path": "array/symmetricDifference.json"
-    },
-    {
-      "id": "countBy",
-      "family": "array",
-      "path": "array/countBy.json"
-    },
-    {
-      "id": "keyBy",
-      "family": "array",
-      "path": "array/keyBy.json"
-    },
-    {
-      "id": "explode",
-      "family": "array",
-      "path": "array/explode.json"
-    },
-    {
       "id": "window",
       "family": "array",
       "path": "array/window.json"
+    },
+    {
+      "id": "zip",
+      "family": "array",
+      "path": "array/zip.json"
     },
     {
       "id": "addDays",
@@ -503,6 +503,31 @@
       "path": "encoding/base64Encode.json"
     },
     {
+      "id": "base64urlDecode",
+      "family": "encoding",
+      "path": "encoding/base64urlDecode.json"
+    },
+    {
+      "id": "base64urlEncode",
+      "family": "encoding",
+      "path": "encoding/base64urlEncode.json"
+    },
+    {
+      "id": "buildQuery",
+      "family": "encoding",
+      "path": "encoding/buildQuery.json"
+    },
+    {
+      "id": "buildUrl",
+      "family": "encoding",
+      "path": "encoding/buildUrl.json"
+    },
+    {
+      "id": "canonicalHash",
+      "family": "encoding",
+      "path": "encoding/canonicalHash.json"
+    },
+    {
       "id": "crc32",
       "family": "encoding",
       "path": "encoding/crc32.json"
@@ -516,6 +541,11 @@
       "id": "hexEncode",
       "family": "encoding",
       "path": "encoding/hexEncode.json"
+    },
+    {
+      "id": "hmac",
+      "family": "encoding",
+      "path": "encoding/hmac.json"
     },
     {
       "id": "jsonDecode",
@@ -538,6 +568,16 @@
       "path": "encoding/md5.json"
     },
     {
+      "id": "parseQuery",
+      "family": "encoding",
+      "path": "encoding/parseQuery.json"
+    },
+    {
+      "id": "parseUrl",
+      "family": "encoding",
+      "path": "encoding/parseUrl.json"
+    },
+    {
       "id": "sha1",
       "family": "encoding",
       "path": "encoding/sha1.json"
@@ -553,6 +593,11 @@
       "path": "encoding/sha512.json"
     },
     {
+      "id": "stableStringify",
+      "family": "encoding",
+      "path": "encoding/stableStringify.json"
+    },
+    {
       "id": "urlDecode",
       "family": "encoding",
       "path": "encoding/urlDecode.json"
@@ -563,49 +608,94 @@
       "path": "encoding/urlEncode.json"
     },
     {
-      "id": "base64urlEncode",
-      "family": "encoding",
-      "path": "encoding/base64urlEncode.json"
+      "id": "abs",
+      "family": "expr",
+      "path": "expr/abs.json"
     },
     {
-      "id": "base64urlDecode",
-      "family": "encoding",
-      "path": "encoding/base64urlDecode.json"
+      "id": "divide-by-zero",
+      "family": "expr",
+      "path": "expr/divide-by-zero.json"
     },
     {
-      "id": "hmac",
-      "family": "encoding",
-      "path": "encoding/hmac.json"
+      "id": "divide-fraction",
+      "family": "expr",
+      "path": "expr/divide-fraction.json"
     },
     {
-      "id": "parseUrl",
-      "family": "encoding",
-      "path": "encoding/parseUrl.json"
+      "id": "float-roundoff",
+      "family": "expr",
+      "path": "expr/float-roundoff.json"
     },
     {
-      "id": "parseQuery",
-      "family": "encoding",
-      "path": "encoding/parseQuery.json"
+      "id": "min-max",
+      "family": "expr",
+      "path": "expr/min-max.json"
     },
     {
-      "id": "buildQuery",
-      "family": "encoding",
-      "path": "encoding/buildQuery.json"
+      "id": "modulo-negative",
+      "family": "expr",
+      "path": "expr/modulo-negative.json"
     },
     {
-      "id": "buildUrl",
-      "family": "encoding",
-      "path": "encoding/buildUrl.json"
+      "id": "modulo",
+      "family": "expr",
+      "path": "expr/modulo.json"
     },
     {
-      "id": "stableStringify",
-      "family": "encoding",
-      "path": "encoding/stableStringify.json"
+      "id": "nested-parens",
+      "family": "expr",
+      "path": "expr/nested-parens.json"
     },
     {
-      "id": "canonicalHash",
-      "family": "encoding",
-      "path": "encoding/canonicalHash.json"
+      "id": "paren-negate-base",
+      "family": "expr",
+      "path": "expr/paren-negate-base.json"
+    },
+    {
+      "id": "pow-function",
+      "family": "expr",
+      "path": "expr/pow-function.json"
+    },
+    {
+      "id": "power-right-assoc",
+      "family": "expr",
+      "path": "expr/power-right-assoc.json"
+    },
+    {
+      "id": "precedence",
+      "family": "expr",
+      "path": "expr/precedence.json"
+    },
+    {
+      "id": "pythagoras",
+      "family": "expr",
+      "path": "expr/pythagoras.json"
+    },
+    {
+      "id": "quadratic",
+      "family": "expr",
+      "path": "expr/quadratic.json"
+    },
+    {
+      "id": "round-default-scale",
+      "family": "expr",
+      "path": "expr/round-default-scale.json"
+    },
+    {
+      "id": "round-scale",
+      "family": "expr",
+      "path": "expr/round-scale.json"
+    },
+    {
+      "id": "unary-stack",
+      "family": "expr",
+      "path": "expr/unary-stack.json"
+    },
+    {
+      "id": "unary-vs-power",
+      "family": "expr",
+      "path": "expr/unary-vs-power.json"
     },
     {
       "id": "clamp",
@@ -758,9 +848,9 @@
       "path": "financial/weightedAvg.json"
     },
     {
-      "id": "zscore",
+      "id": "xirr",
       "family": "financial",
-      "path": "financial/zscore.json"
+      "path": "financial/xirr.json"
     },
     {
       "id": "xnpv",
@@ -768,9 +858,9 @@
       "path": "financial/xnpv.json"
     },
     {
-      "id": "xirr",
+      "id": "zscore",
       "family": "financial",
-      "path": "financial/xirr.json"
+      "path": "financial/zscore.json"
     },
     {
       "id": "resetSequence",
@@ -973,6 +1063,11 @@
       "path": "numeric/divide.json"
     },
     {
+      "id": "factorial",
+      "family": "numeric",
+      "path": "numeric/factorial.json"
+    },
+    {
       "id": "floor",
       "family": "numeric",
       "path": "numeric/floor.json"
@@ -1003,6 +1098,11 @@
       "path": "numeric/formatPercent.json"
     },
     {
+      "id": "gcd",
+      "family": "numeric",
+      "path": "numeric/gcd.json"
+    },
+    {
       "id": "isFinite",
       "family": "numeric",
       "path": "numeric/isFinite.json"
@@ -1011,6 +1111,11 @@
       "id": "isNaN",
       "family": "numeric",
       "path": "numeric/isNaN.json"
+    },
+    {
+      "id": "lcm",
+      "family": "numeric",
+      "path": "numeric/lcm.json"
     },
     {
       "id": "maxOf",
@@ -1078,24 +1183,24 @@
       "path": "numeric/trunc.json"
     },
     {
-      "id": "gcd",
-      "family": "numeric",
-      "path": "numeric/gcd.json"
+      "id": "compactObject",
+      "family": "object",
+      "path": "object/compactObject.json"
     },
     {
-      "id": "lcm",
-      "family": "numeric",
-      "path": "numeric/lcm.json"
-    },
-    {
-      "id": "factorial",
-      "family": "numeric",
-      "path": "numeric/factorial.json"
+      "id": "defaults",
+      "family": "object",
+      "path": "object/defaults.json"
     },
     {
       "id": "entries",
       "family": "object",
       "path": "object/entries.json"
+    },
+    {
+      "id": "fromEntries",
+      "family": "object",
+      "path": "object/fromEntries.json"
     },
     {
       "id": "get",
@@ -1108,6 +1213,11 @@
       "path": "object/has.json"
     },
     {
+      "id": "invert",
+      "family": "object",
+      "path": "object/invert.json"
+    },
+    {
       "id": "keys",
       "family": "object",
       "path": "object/keys.json"
@@ -1118,9 +1228,9 @@
       "path": "object/merge.json"
     },
     {
-      "id": "values",
+      "id": "omit",
       "family": "object",
-      "path": "object/values.json"
+      "path": "object/omit.json"
     },
     {
       "id": "pick",
@@ -1128,34 +1238,14 @@
       "path": "object/pick.json"
     },
     {
-      "id": "omit",
-      "family": "object",
-      "path": "object/omit.json"
-    },
-    {
-      "id": "fromEntries",
-      "family": "object",
-      "path": "object/fromEntries.json"
-    },
-    {
-      "id": "invert",
-      "family": "object",
-      "path": "object/invert.json"
-    },
-    {
-      "id": "defaults",
-      "family": "object",
-      "path": "object/defaults.json"
-    },
-    {
       "id": "renameKeys",
       "family": "object",
       "path": "object/renameKeys.json"
     },
     {
-      "id": "compactObject",
+      "id": "values",
       "family": "object",
-      "path": "object/compactObject.json"
+      "path": "object/values.json"
     },
     {
       "id": "camelCase",
@@ -1191,6 +1281,16 @@
       "id": "endsWith",
       "family": "string",
       "path": "string/endsWith.json"
+    },
+    {
+      "id": "escapeHtml",
+      "family": "string",
+      "path": "string/escapeHtml.json"
+    },
+    {
+      "id": "escapeXml",
+      "family": "string",
+      "path": "string/escapeXml.json"
     },
     {
       "id": "extract",
@@ -1328,9 +1428,19 @@
       "path": "string/stripAccents.json"
     },
     {
+      "id": "stripTags",
+      "family": "string",
+      "path": "string/stripTags.json"
+    },
+    {
       "id": "substring",
       "family": "string",
       "path": "string/substring.json"
+    },
+    {
+      "id": "template",
+      "family": "string",
+      "path": "string/template.json"
     },
     {
       "id": "titleCase",
@@ -1363,6 +1473,11 @@
       "path": "string/truncate.json"
     },
     {
+      "id": "unescapeHtml",
+      "family": "string",
+      "path": "string/unescapeHtml.json"
+    },
+    {
       "id": "upper",
       "family": "string",
       "path": "string/upper.json"
@@ -1376,31 +1491,6 @@
       "id": "wrap",
       "family": "string",
       "path": "string/wrap.json"
-    },
-    {
-      "id": "escapeHtml",
-      "family": "string",
-      "path": "string/escapeHtml.json"
-    },
-    {
-      "id": "unescapeHtml",
-      "family": "string",
-      "path": "string/unescapeHtml.json"
-    },
-    {
-      "id": "escapeXml",
-      "family": "string",
-      "path": "string/escapeXml.json"
-    },
-    {
-      "id": "stripTags",
-      "family": "string",
-      "path": "string/stripTags.json"
-    },
-    {
-      "id": "template",
-      "family": "string",
-      "path": "string/template.json"
     },
     {
       "id": "coerceBoolean",
@@ -1446,96 +1536,6 @@
       "id": "tryCoerce",
       "family": "type",
       "path": "type/tryCoerce.json"
-    },
-    {
-      "id": "precedence",
-      "family": "expr",
-      "path": "expr/precedence.json"
-    },
-    {
-      "id": "power-right-assoc",
-      "family": "expr",
-      "path": "expr/power-right-assoc.json"
-    },
-    {
-      "id": "unary-vs-power",
-      "family": "expr",
-      "path": "expr/unary-vs-power.json"
-    },
-    {
-      "id": "paren-negate-base",
-      "family": "expr",
-      "path": "expr/paren-negate-base.json"
-    },
-    {
-      "id": "nested-parens",
-      "family": "expr",
-      "path": "expr/nested-parens.json"
-    },
-    {
-      "id": "unary-stack",
-      "family": "expr",
-      "path": "expr/unary-stack.json"
-    },
-    {
-      "id": "divide-fraction",
-      "family": "expr",
-      "path": "expr/divide-fraction.json"
-    },
-    {
-      "id": "modulo",
-      "family": "expr",
-      "path": "expr/modulo.json"
-    },
-    {
-      "id": "modulo-negative",
-      "family": "expr",
-      "path": "expr/modulo-negative.json"
-    },
-    {
-      "id": "divide-by-zero",
-      "family": "expr",
-      "path": "expr/divide-by-zero.json"
-    },
-    {
-      "id": "float-roundoff",
-      "family": "expr",
-      "path": "expr/float-roundoff.json"
-    },
-    {
-      "id": "abs",
-      "family": "expr",
-      "path": "expr/abs.json"
-    },
-    {
-      "id": "min-max",
-      "family": "expr",
-      "path": "expr/min-max.json"
-    },
-    {
-      "id": "round-default-scale",
-      "family": "expr",
-      "path": "expr/round-default-scale.json"
-    },
-    {
-      "id": "round-scale",
-      "family": "expr",
-      "path": "expr/round-scale.json"
-    },
-    {
-      "id": "pow-function",
-      "family": "expr",
-      "path": "expr/pow-function.json"
-    },
-    {
-      "id": "pythagoras",
-      "family": "expr",
-      "path": "expr/pythagoras.json"
-    },
-    {
-      "id": "quadratic",
-      "family": "expr",
-      "path": "expr/quadratic.json"
     }
   ],
   "idioms": [
@@ -1596,6 +1596,12 @@
       "id": "short-circuit-eval",
       "family": "idiom",
       "path": "idioms/short-circuit-eval.json"
+    },
+    {
+      "id": "xml-attr-on-verb",
+      "family": "idiom",
+      "group": "format-conversion",
+      "path": "idioms/xml-attr-on-verb.json"
     }
   ],
   "idiomGroups": [
@@ -1718,12 +1724,6 @@
       "path": "errors/t014-nested-interpolation.json"
     },
     {
-      "id": "t015-expr-unknown-function",
-      "family": "error",
-      "code": "T015",
-      "path": "errors/t015-expr-unknown-function.json"
-    },
-    {
       "id": "t015-expr-incomplete",
       "family": "error",
       "code": "T015",
@@ -1740,6 +1740,12 @@
       "family": "error",
       "code": "T015",
       "path": "errors/t015-expr-unbound-variable.json"
+    },
+    {
+      "id": "t015-expr-unknown-function",
+      "family": "error",
+      "code": "T015",
+      "path": "errors/t015-expr-unknown-function.json"
     }
   ]
 }

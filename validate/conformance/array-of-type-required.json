@@ -1,0 +1,79 @@
+{
+  "$schema": "https://odin.foundation/schemas/test-suite-v1.json",
+  "suite": "validate-array-of-type-required",
+  "description": "Required markers on array-of-object entry fields declared inside a reusable type are enforced per present element, for both the reference form (arr[] = @type) and the inline form (arr[].field). Absent arrays are skipped (permissive); present-but-incomplete entries fail with V001 at the indexed path.",
+  "tests": [
+    {
+      "id": "ref-form-entry-missing-required",
+      "description": "arr[] = @type: a present entry missing a required entry field fails with V001 at the indexed path",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"array-required-ref\"\nversion = \"1.0.0\"\n\n{@uw_producer}\ncarrier_id = !\ncode = !\n\n{@uw_agency}\nid = !\nname =\nproducers[] = @uw_producer\n\n{}\nagency = @uw_agency",
+      "input": "{agency}\nid = \"A1\"\n\n{agency.producers[0]}\ncarrier_id = \"bravo\"",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V001",
+            "path": "agency.producers[0].code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ref-form-entry-complete",
+      "description": "arr[] = @type: a complete entry validates",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"array-required-ref\"\nversion = \"1.0.0\"\n\n{@uw_producer}\ncarrier_id = !\ncode = !\n\n{@uw_agency}\nid = !\nname =\nproducers[] = @uw_producer\n\n{}\nagency = @uw_agency",
+      "input": "{agency}\nid = \"A1\"\n\n{agency.producers[0]}\ncarrier_id = \"bravo\"\ncode = \"B2\"",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "ref-form-array-absent",
+      "description": "arr[] = @type: an absent array is permissive (no entry-level requirement fires)",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"array-required-ref\"\nversion = \"1.0.0\"\n\n{@uw_producer}\ncarrier_id = !\ncode = !\n\n{@uw_agency}\nid = !\nname =\nproducers[] = @uw_producer\n\n{}\nagency = @uw_agency",
+      "input": "{agency}\nid = \"A1\"",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "ref-form-second-entry-incomplete",
+      "description": "arr[] = @type: only the incomplete element is flagged; per-index",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"array-required-ref\"\nversion = \"1.0.0\"\n\n{@uw_producer}\ncarrier_id = !\ncode = !\n\n{@uw_agency}\nid = !\nname =\nproducers[] = @uw_producer\n\n{}\nagency = @uw_agency",
+      "input": "{agency}\nid = \"A1\"\n\n{agency.producers[0]}\ncarrier_id = \"b\"\ncode = \"c\"\n\n{agency.producers[1]}\ncarrier_id = \"d\"",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V001",
+            "path": "agency.producers[1].code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inline-form-complete",
+      "description": "arr[].field inside a type: a complete entry validates (no false positive against the unexpanded path)",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"array-required-inline\"\nversion = \"1.0.0\"\n\n{@uw_agency}\nid = !\nproducers[].carrier_id = !\nproducers[].code = !\n\n{}\nagency = @uw_agency",
+      "input": "{agency}\nid = \"A1\"\n\n{agency.producers[0]}\ncarrier_id = \"bravo\"\ncode = \"B2\"",
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "id": "inline-form-missing-required",
+      "description": "arr[].field inside a type: a present entry missing a required field fails with V001 at the indexed path",
+      "schema": "{$}\nodin = \"1.0.0\"\nschema = \"1.0.0\"\nid = \"array-required-inline\"\nversion = \"1.0.0\"\n\n{@uw_agency}\nid = !\nproducers[].carrier_id = !\nproducers[].code = !\n\n{}\nagency = @uw_agency",
+      "input": "{agency}\nid = \"A1\"\n\n{agency.producers[0]}\ncarrier_id = \"bravo\"",
+      "expected": {
+        "valid": false,
+        "errors": [
+          {
+            "code": "V001",
+            "path": "agency.producers[0].code"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -38,6 +38,12 @@
       "name": "Schema Definition Enforcement",
       "description": "Invariant evaluation, currency/percent bounds, override restrictiveness, intersection conflicts, tabular columns, default-value rules",
       "path": "conformance/schema-definition.json"
+    },
+    {
+      "id": "array-of-type-required",
+      "name": "Array-of-Type Required Enforcement",
+      "description": "Required markers on array-of-object entry fields inside a reusable type (reference and inline forms), enforced per present element",
+      "path": "conformance/array-of-type-required.json"
     }
   ],
   "features_tested": [
